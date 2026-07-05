@@ -1,6 +1,6 @@
 # Open Science Pillars: Build Progress
 
-**Last Updated:** 2026-07-04 · **Org:** github.com/open-science-pillars
+**Last Updated:** 2026-07-05 · **Org:** github.com/open-science-pillars
 **Phase:** 0 complete (documents final) → Phase 1 build
 Surface columns: Cd = Claude Code, Cw = Cowork, Sc = Claude Science.
 Legend: 🟢 complete · 🟡 in progress · ⚪ not started · 🔴 blocked · 📋 proposed · n/a not applicable
@@ -49,7 +49,7 @@ Legend: 🟢 complete · 🟡 in progress · ⚪ not started · 🔴 blocked · 
 | core knowledge bundle (3 concepts) lint-clean | 🟢 | n/a | n/a | zero 🔴; steward-verified by Paul Ramirez; standing 🟡 eval case (PARKING #8) |
 | /doctor description budget clean | 🟢 | n/a | n/a | via /skills per PARKING #7: 30 skills loaded, no truncation |
 | Core golden notebook (analysis_pipeline) green headless | 🟢 | n/a | n/a | exit 0; asserts six sections, 3 concept citations, uncertainty on headline (0.199 +/- 0.002 K/decade) |
-| Core evals seed: 3 methodology cases | ⚪ | n/a | n/a | Session 10 |
+| Core evals seed: 3 methodology cases | 🟢 | n/a | n/a | graded 2026-07-04 in RESULTS-seed.md: area-weighting pass, trend-method pass with note, uncertainty-statement FAIL recorded honestly |
 | Core 3-surface integration test | 🟢 | 🟡 | 🟡 | Cd complete 2026-07-04 (all prompt files, both forms); Cw/Sc deferred by Paul, prompts and setup ready in docs/prompts/ (report.md carries the inline two-step) |
 
 ## Ocean Science (Sessions 6-10)
@@ -78,10 +78,10 @@ Legend: 🟢 complete · 🟡 in progress · ⚪ not started · 🔴 blocked · 
 
 | Deliverable | Status |
 |---|---|
-| Tutorial 1 / 2 (+SWOT) / 3 (Quarto; surfaces recorded) | 🟡 T1+T2 pushed 2026-07-05, fresh-install timed (4.6 and 15.0 min vs 10/20 targets), headers record Cd verified and Cw/Sc pending; T3 Session 12 |
-| arset-style template; knowledge-, eval-, and verification-authoring guides | ⚪ |
-| steward-playbook.md + CODEOWNERS (knowledge paths) | ⚪ |
-| knowledge-seeder agent (drafts with evidence; never merges) | ⚪ |
+| Tutorial 1 / 2 (+SWOT) / 3 (Quarto; surfaces recorded) | 🟢 all three pushed 2026-07-05, fresh-walkthrough timed (4.6 / 15.0 / 12.3 min vs 10/20/30 targets); headers record surfaces (T1/T2 Cw/Sc pending with the packet; T3 Code-side by nature) |
+| arset-style template; knowledge-, eval-, and verification-authoring guides | 🟢 2026-07-05, plus skill/agent/connector/testing guides: zero placeholder docs remain in marketplace/docs |
+| steward-playbook.md + CODEOWNERS (knowledge paths) | 🟢 2026-07-05; playbook with §5.4 checklist and interview script; CODEOWNERS in core and ocean-science map /knowledge/ to @PaulMRamirez |
+| knowledge-seeder agent (drafts with evidence; never merges) | 🟢 2026-07-05 test-passed on PO.DAAC SWOT docs: 4 evidence-linked drafts, 7 open questions, redirects off-domain refused, nothing merged |
 | Demo recording + WASM companion | ⚪ |
 | AI-for-Science submitted (≤7/15) | ⚪ |
 | Fresh-install ×3 surfaces; known-limitations | ⚪ |
@@ -116,7 +116,7 @@ Legend: 🟢 complete · 🟡 in progress · ⚪ not started · 🔴 blocked · 
 | 9 | 2026-07-04 | ~2.3 | two verified concepts corrected by the verification loop itself: heat-budget tolerance re-grounded on measurement (relative criteria meaningless below float32 quantization; now absolute 1e-10 degC/s), and the MHT recipe anchor rescoped after a skill-following test agent discovered it was the global circle not the Atlantic (basin decomposition verified: 0.666+0.430+0.002=1.098), PARKING #11; ecco_v4_py basin masks need binary data installed (env quirk, noted in recipe) |
 | 10 | 2026-07-04 | ~1.6 | e2e exceeded spec: fetched real RAPID/MOCHA obs via DOI after the official page dead-ended in SharePoint (that discovery became the build's first operational ingest, rapid-mocha.md); e2e honored the local-config gate autonomously by narrowing its own window; eval seed finding: the house uncertainty rule does not reliably fire on uncoached computation prompts outside the report workflow (core uncertainty-statement FAIL, recorded for Phase-2 tuning); Cw/Sc surface pass remains with Paul |
 | 11 | 2026-07-05 | ~1.2 | Quarto wasn't installed (prerequisite gap; user-space tarball install, no sudo); timing claims drafted before measurement were caught and replaced with measured values pre-review; T2 walkthrough ingested the SWOT crossover-calibration finding (ssha arrives uncorrected, +/-2.9 m ramp on flag-gated data) and the whole-pass spatial-match nuance; close lint then showed both SWOT skills routed around the new fact, accommodation diffs applied (PARKING #13 for gotcha promotion) |
-| 12 | | | |
+| 12 | 2026-07-05 | ~1.4 | seeder test surfaced enrichment candidates our bundle lacks (C-to-D transition dates, 2024 telemetry window; drafts preserved as test artifacts for optional steward promotion); T3 walkthrough independently rediscovered both known ecosystem wrinkles and negative-tested its golden; Quarto book now three chapters |
 | 13 | | | |
 | 14 | | | |
 | 15 | | | |
