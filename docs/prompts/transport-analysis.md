@@ -18,3 +18,4 @@ No hardcoded expectations; recipe citation present; ~1.098 PW for 2010 on Cd whe
 ## Results log
 | Date | Surface | Form | Result | Notes |
 |---|---|---|---|---|
+| 2026-07-04 | Cd | slash | pass | recipe cited; reproduced anchor AND discovered the global-vs-Atlantic scope error, diagnosed, flagged for steward; led to the recipe scope correction |

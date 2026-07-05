@@ -18,3 +18,4 @@ Exact ShortName resolved and shown; gotchas restated (no formal errors; release 
 ## Results log
 | Date | Surface | Form | Result | Notes |
 |---|---|---|---|---|
+| 2026-07-04 | Cd | conversational | pass | cache-hit under gate, ShortName resolved, geometry merged, snapshot foresight for budgets |
