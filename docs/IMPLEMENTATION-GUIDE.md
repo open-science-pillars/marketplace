@@ -1,6 +1,7 @@
 # Open Science Pillars: Implementation Guide
 
-**Version:** 2.3.3 (final, frozen with SPEC v0.5.1) · **Aligned to:** SPECIFICATION.md v0.5.1, ARCHITECTURE.md, BUILD-HARNESS.md
+**Version:** 2.4.0 (Phase-2 detail) · **Aligned to:** SPECIFICATION.md v0.6.0, ARCHITECTURE.md, BUILD-HARNESS.md
+**Merged in 2.4.0 (2026-07-05):** Phase-2 outline expanded into full Session 15-19 blocks per SPEC v0.6 §10; ocean-bundle v0.6 completion scheduled into Session 18; pre-registration gate before Session 18-19 analysis work.
 **Merged in 2.3.3:** Session 6 live-access fallback; Session 14 non-author validation restored; PARKING.md seeded (freeze mechanism in use); Session 1 moves PARKING.md with the canonical docs; consistency errata (versions, hours, punctuation) applied same date.
 **Merged in 2.3.2 (last pre-build round):** assumption smoke test in Session 0b; scope-freeze rule (harness rule 11); MVP cut-line (README); Phase-1 total ~35.5 hr.
 **Merged in 2.3.1:** launch hygiene: Discussions and DCO (Session 1); model-version recording in RESULTS-seed (Session 10); official plugin-directory submission (Session 14).
@@ -156,9 +157,72 @@ README polish across repos; fresh-install test on all three surfaces; at least o
 
 ---
 
-## Phase 2 Outline: Sessions 15-19 (Hydrology Bridge + Evals, ~11 hr)
+## Session 15: Hydrology Scaffold + SWOT River/Lake (2.5 hr)
 
-Spec detail lands in SPEC v0.5 first. S15: hydrology scaffold + SWOT river/lake products (+ knowledge). S16: GRACE-FO groundwater (reusing 8b concepts) + NWIS via dataretrieval (provisional-data gotcha) + SMAP (radar-loss history). S17: water-resources applied pack anchored on ARSET's reservoir-management training, drought recipe with expected-uncertainty framing, three-surface end-to-end, and `nasa-daac-knowledge` created as the **canonical home**: the podaac concepts move there under a PO.DAAC steward's CODEOWNERS entry, and ocean-science pins a snapshot back into its own knowledge/ with source repo and commit recorded in index.md per SPEC §5.7 (the steward handoff and the release-time sync step both demonstrated). **S18: evals runner.** Org `evals` repo: Agent SDK-driven headless runs of Claude Code with the plugin installed; programmatic graders plus the rubric judge (ported from the rubric-eval plugin); suite manifests; N-trial execution (default 20) with binomial-CI pass rates; scoreboard as versioned JSON plus a static page. **S19: bundle ablation.** Run the gotcha suite bundle-on vs bundle-off, same model, same N; publish the trap-hit-rate delta with intervals; wire goldens and evals into per-PR CI. Lands before Openscapes/ESIP outreach so the announcement carries numbers.
+Per SPEC v0.6 §10. 1. Scaffold the hydrology repo from plugin-template
+(§10.1 tree; placeholders carry name/purpose/session/spec-ref). 2. Live
+audit of SWOT hydrology collections (river reach/node, lake) against
+CMR with dates recorded; author swot-hydro/SKILL.md + reference
+(ocean/hydro product split; reach-vs-node scope as a first-class
+fact). 3. Author load-swot-hydro (gate contract as load-swot). 4. Seed
+datasets/swot-river-lake.md (+Uncertainty: node vs reach uncertainty
+variables) and gotchas/swot-reach-node-scope.md, evidence-linked,
+steward-reviewed. 5. Golden: load_swot_hydro.py on a synthetic
+reach/node fixture. **Checkpoint:** scaffold live; skill + loader
+authored; two concepts verified; golden green.
+
+## Session 16: GRACE Groundwater + NWIS + SMAP (2.5 hr)
+
+1. grace-groundwater skill (TWS-to-groundwater partitioning caveats)
+reusing the 8b GRACE concepts via a §5.7 pinned snapshot (source and
+commit recorded in index.md). 2. nwis skill + load-nwis via
+dataretrieval (gotcha: provisional data revised after approval;
+verified against a live gauge pull). 3. smap skill + load-smap
+(radar-loss lineage). 4. Concepts: nwis-streamflow, smap-l3 datasets
+(+Uncertainty), nwis-provisional-data and smap-radar-loss gotchas
+(severity high, eval ids reserved). 5. Golden: load_nwis.py on a
+cached gauge subset. **Checkpoint:** three skills + two loaders; four
+concepts verified; snapshot mechanics demonstrated; golden green.
+
+## Session 17: Applied Pack + Canonical Home (2.5 hr; tight supervision)
+
+1. drought-analysis and reservoir-analysis workflows reading
+recipes/{drought-index, reservoir-storage-change}.md (ARSET
+reservoir-management anchor, linked with credit); recipes carry
+expected values AND expected-uncertainty validated against gauge
+records. 2. Goldens: drought_analysis.py, reservoir_storage.py.
+3. Create nasa-daac-knowledge as the CANONICAL HOME: move podaac
+concepts under a PO.DAAC steward CODEOWNERS entry (you pro tem until
+the handoff), pin snapshots back into ocean-science and hydrology with
+source repo + commit in index.md (§5.7), demonstrate the release-time
+sync step. 4. Hydrology three-surface end-to-end with prompt files.
+**Checkpoint:** applied pack green; canonical home live with snapshot
+round-trip; e2e recorded per surface.
+
+## Session 18: Evals Runner + Bundle Completion (3.0 hr)
+
+GATE: docs/phase2-preregistration.md must be published BEFORE this
+session's analysis work. 1. Org evals repo: Agent SDK headless runs of
+Claude Code with plugins installed; programmatic graders plus the
+rubric judge; suite manifests; N-trial execution (default 20) with
+binomial-CI pass rates; scoreboard as versioned JSON plus a static
+page. 2. Ocean-bundle v0.6 completion (SPEC §10.5): promote V4R4B,
+MHT-scope, and crossover gotchas with matching eval cases; core
+fill-value case; salt/volume recipes with measured residuals.
+3. Hydrology eval seed graded into RESULTS-seed.md. **Checkpoint:**
+runner reproduces the Phase-1 manual grades within CI bounds; bundle
+completion lint-clean; scoreboard renders.
+
+## Session 19: The Ablation (2.0 hr; tight supervision)
+
+Per the pre-registration, no deviations without a logged amendment:
+gotcha-avoidance suite bundle-on vs bundle-off, same model, same N=20,
+trap-hit-rate delta with binomial intervals, published to the
+scoreboard and PROGRESS regardless of outcome. Wire goldens and evals
+into per-PR CI (actions SHA-pinned, no secrets). Lands before
+Openscapes/ESIP outreach so the announcement carries numbers.
+**Checkpoint:** ablation published with intervals; CI green on a test
+PR; announcement updated with the numbers (or the null result).
 
 ---
 

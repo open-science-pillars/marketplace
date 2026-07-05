@@ -21,6 +21,12 @@ Format: item | why it matters | triage target.
 | 13 | Promote the SWOT crossover-calibration fact to a severity-high gotcha with a matching eval case: ssha_karin arrives without height_cor_xover applied, and flag-gated statistics on the raw field are silently wrong by meters (observed PGD0, 2026-07-05, Tutorial 2 walkthrough; recorded meanwhile in swot-karin Known issues and both SWOT skills). | Gotcha-caliber silently-wrong-results fact currently living as a dataset bullet; rule 9 pairs the promotion with an eval case. | SPEC v0.6 ocean bundle. |
 
 ## Log
+- 2026-07-05: post-Session-10 triage EXECUTED into SPEC v0.6 (steward-approved):
+  items 1 and 4 resolved; item 2 executed as docs/phase2-preregistration.md;
+  items 3, 5, 6, 7 landed as v0.6 text edits; items 8, 9, 11, 12, 13
+  scheduled into the Session 18 block (SPEC §10.5); item 10 partial
+  (catalog note stands; upstream issue on Paul's punch list). The lot is
+  retained below for history; the table is now closed against v0.6.
 - 2026-07-03: file created; items 1-4 seeded during the final pre-build review round.
 - 2026-07-04: item 5 added during the Session 0b assumption smoke test (Science install mechanism).
 - 2026-07-04: item 4 resolved before Session 1: usage-limit headroom confirmed by Paul.

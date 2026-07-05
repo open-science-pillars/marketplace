@@ -1,11 +1,12 @@
 # Open Science Pillars: Specification
 
 **Organization:** Open Science Pillars (github.com/open-science-pillars)
-**Version:** 0.5.1 (final pre-build)
-**Date:** 2026-07-03
-**Scope:** Phase 1 (core plugin + ocean-science plugin + infrastructure + knowledge layer + verification layer + evals seed + knowledge stewardship)
+**Version:** 0.6.0 (first build-informed revision)
+**Date:** 2026-07-05
+**Scope:** Phase 1 (built; core + ocean-science + infrastructure + knowledge + verification + evals seed + stewardship) plus Phase 2 spec detail (hydrology bridge, §10)
 
 **Changelog:**
+- 0.6.0 (2026-07-05, written by the build per harness rule 11 after the post-Session-10 PARKING triage): §0.1/§2.3 Claude Science install corrected to observed marketplace-install behavior (PARKING #5); §0.3 description-budget verification instrument corrected from /doctor to the /skills panel (PARKING #7); §2.2 marketplace.json verbatim block replaced with the CLI-validated working schema (owner object, source objects; PARKING #6); §9 non-author acceptance criterion restored and launch success criteria referenced (PARKING #1, #3); new §10 Hydrology Plugin (Phase 2 spec detail) including the v0.6 ocean-bundle completion list scheduled into Session 18 (PARKING #8, #9, #11, #12, #13). Phase-2 go/stop pre-registration published separately (docs/phase2-preregistration.md, PARKING #2).
 - 0.5.1 erratum (same date, no version bump, freeze intact): PARKING.md added to the §2.1 docs listing for consistency with harness rule 11; title punctuation normalized. No scope change.
 - 0.5.1 (same date): security and launch hygiene: knowledge-is-declarative rule and linter imperative scan (§5.8); CI-without-secrets and fixture-license notes (§6); DCO sign-off and GitHub Discussions (§1.2); model-version recording in eval results; official-directory submission at launch.
 - 0.5.0 (same date): knowledge population and stewardship: four intake channels and the knowledge-seeder agent (§5.5); status lifecycle and mandatory evidence links (§5.6); steward playbook, CODEOWNERS, and review rules (§5.4); canonical-home plus pinned-snapshot precedence resolving the §0.5 self-containment contradiction with bundle promotion (§5.7); linter checks extended accordingly.
@@ -26,7 +27,7 @@ Everything targets three surfaces equally: **Claude Code**, **Claude Cowork**, a
 |---|---|---|---|
 | Claude Code | Plugin via marketplace | `claude plugin install <name>@open-science-pillars` | `/plugin-name:skill-name` or conversational |
 | Claude Cowork | Same plugin format | claude.com/plugins or upload | Conversational |
-| Claude Science | Skills imported to workspace; connectors per session | Skill import / connector config | Conversational |
+| Claude Science | Same plugin format via marketplace install (observed 2026-07-04; the workspace skill-import path exists but is not required); connectors per session | Marketplace add + install / connector config | Conversational |
 
 ### 0.2 Skill invocation rules
 
@@ -47,7 +48,7 @@ description: One sentence, under 200 characters, front-loaded with the keywords 
 ---
 ```
 
-**Description budget rule:** skill descriptions share a context budget (about 1% of the context window; overflow shortens descriptions and can strip matching keywords). Requirement: ≤200 characters, keyword-first. Verified with `/doctor` on Claude Code.
+**Description budget rule:** skill descriptions share a context budget (about 1% of the context window; overflow shortens descriptions and can strip matching keywords). Requirement: ≤200 characters, keyword-first. Verified with the `/skills` panel on Claude Code (per-skill token cost and truncation state; `/doctor` no longer carries this check as of CLI 2.1.x).
 
 ### 0.4 Surface-neutral writing rules
 
@@ -126,26 +127,27 @@ marketplace/
   "name": "open-science-pillars",
   "version": "0.3.0",
   "description": "AI-assisted open science for earth, planetary, and applied science: skills, knowledge bundles, verification notebooks, and connectors for Claude Code, Cowork, and Claude Science.",
+  "owner": { "name": "Open Science Pillars Community" },
   "author": { "name": "Open Science Pillars Community" },
   "homepage": "https://github.com/open-science-pillars",
   "plugins": [
     {
       "name": "core",
       "description": "Foundation: earth science data formats, statistics, uncertainty quantification, cartography, quality control, reproducibility, analysis review.",
-      "repository": "open-science-pillars/core",
+      "source": { "source": "github", "repo": "open-science-pillars/core" },
       "tags": ["netcdf", "xarray", "cartopy", "geotiff", "zarr", "climate", "geospatial", "qc", "uncertainty", "reproducibility"]
     },
     {
       "name": "ocean-science",
       "description": "Physical oceanography: ECCO state estimate, SWOT SSH, meridional transport, budget closure, water masses. Install core first.",
-      "repository": "open-science-pillars/ocean-science",
+      "source": { "source": "github", "repo": "open-science-pillars/ocean-science" },
       "tags": ["oceanography", "ecco", "swot", "podaac", "amoc", "heat-transport", "sea-level"]
     }
   ]
 }
 ```
 
-No `dependencies` field: the plugin system does not resolve cross-plugin dependencies.
+No `dependencies` field: the plugin system does not resolve cross-plugin dependencies. (v0.6 note: the `owner` object is required by the CLI's marketplace schema, and plugin entries use the `source` object form; a bare `repository: "owner/repo"` string is not an installable source type. Both were discovered at the Session 1 install test.)
 
 ### 2.3 Install experience
 
@@ -155,7 +157,7 @@ claude plugin install core@open-science-pillars
 claude plugin install ocean-science@open-science-pillars
 ```
 
-Cowork: claude.com/plugins. Claude Science: import skills into the workspace, add connectors per session (surface-testing-guide.md documents both).
+Cowork: claude.com/plugins, or an unlisted marketplace by GitHub repo. Claude Science: add the marketplace and install, same as Cowork (observed 2026-07-04); connectors per session (surface-testing-guide.md documents the tested paths).
 
 **Releases:** tagged releases of every repo are archived to Zenodo for a DOI; each CITATION.cff points at the repo's concept DOI so contributions are citable in the literature.
 
@@ -429,3 +431,84 @@ Per-surface recording (Cd/Cw/Sc) for behavioral items in PROGRESS.md.
 **Evals (seed):** SCHEMA.md exists; core ships its 3 methodology cases and ocean its 5 cases covering every 🔴 rule and each high-severity gotcha; knowledge-linter flags a high-severity gotcha lacking a case; a manual grading pass (one trial per case, rubric-scored) is recorded in each plugin's evals/RESULTS-seed.md.
 
 **Knowledge population and stewardship:** knowledge-seeder drafts a dataset-plus-gotchas set from supplied seed URLs with per-claim evidence and `status: draft`, and refuses to merge; every Phase-1 gotcha carries at least one resolving evidence link and `status: verified` with verifier fields set; steward-playbook.md and CODEOWNERS exist; the ocean bundle's index.md carries the snapshot source-metadata fields (placeholders until Session 17); the linter flags a gotcha lacking evidence and an `upstream: pending` concept older than 60 days; the imperative-phrasing scan runs clean on all Phase-1 concepts.
+
+**External validation (restored in v0.6 per PARKING #3, operationalized in the Session 14 block):** at least one non-author scientist completes the end-to-end workflow (Tutorial 2) unaided, with friction notes captured in known-limitations.md. The launch announcement states its success criteria before posting (PARKING #1; the criteria live in docs/announcement-draft.md and the Phase-2 pre-registration).
+
+---
+
+## 10. Hydrology Plugin (Phase 2)
+
+Spec detail for the outline's Sessions 15-17, written by the build per
+harness rule 11 (v0.6). The bridge thesis: SWOT observes ocean and
+inland water from one instrument; this plugin serves the hydrology
+community from the same archive, knowledge discipline, and verification
+practice as ocean-science. Install core first; ocean-science is not a
+dependency.
+
+### 10.1 Structure
+
+```
+hydrology/
+├── .claude-plugin/plugin.json · .mcp.json · CONNECTORS.md
+├── README.md · LICENSE · CITATION.cff
+├── hydrology.local.md.template          # basins, gauges, gate, Knowledge block
+├── skills/
+│   ├── swot-hydro/SKILL.md + references/swot-hydro-products.md
+│   │       # river reaches/nodes, lake products, the ocean/hydro product split
+│   ├── grace-groundwater/SKILL.md       # TWS anomaly to groundwater, reusing 8b concepts
+│   ├── nwis/SKILL.md                    # USGS streamflow via dataretrieval; provisional data
+│   ├── smap/SKILL.md                    # soil moisture; radar-loss history
+│   ├── load-swot-hydro/ · load-nwis/ · load-grace-tws/ · load-smap/
+│   │       # gated loaders, same contract as load-ecco/load-swot
+│   ├── drought-analysis/                # reads the drought recipe
+│   └── reservoir-analysis/              # the ARSET-anchored applied workflow
+├── agents/hydro-scout/agent.md          # same contract as ecco-scout
+├── knowledge/                           # hydrology bundle (+ pinned podaac snapshot per §5.7)
+│   ├── index.md · log.md
+│   ├── datasets/{swot-river-lake, nwis-streamflow, smap-l3, grace-fo-mascons-snapshot}.md
+│   ├── gotchas/{nwis-provisional-data, smap-radar-loss, swot-reach-node-scope, ...}.md
+│   └── recipes/{drought-index, reservoir-storage-change}.md
+├── evals/  (SCHEMA.md; gotcha-avoidance per high gotcha, volume-gate, recipe-fidelity)
+├── verification/{load_swot_hydro, load_nwis, drought_analysis, reservoir_storage}.py
+└── tutorials/quickstart.md
+```
+
+### 10.2 Knowledge bundle requirements
+
+Same rules as §4.6/§5: Uncertainty sections on all datasets (SWOT
+river/lake heights: node vs reach uncertainty variables; NWIS: rating
+curves and provisional-to-approved revisions; SMAP: retrieval quality
+flags and the radar loss; GRACE: snapshot of the 8b concepts per §5.7
+with source and commit recorded). Known high-severity candidates from
+the outline, each requiring evidence and an eval case: NWIS provisional
+data silently revised after approval; SMAP radar loss (2015) changing
+product lineage; SWOT reach-vs-node scope (statistics quoted at the
+wrong aggregation level). The drought and reservoir recipes carry
+expected values AND expected-uncertainty validated against gauge
+records, with provenance.
+
+### 10.3 Verification and evals
+
+Golden notebooks per workflow skill on scripted, cached subsets (a
+gauge-validated drought index over a named basin; reservoir storage
+change against a published record); pointwise assertions with measured
+tolerances per the verification guide. Eval seed: one case per
+high-severity gotcha plus a volume-gate rejection and one
+recipe-fidelity case; manually graded into RESULTS-seed.md exactly as
+Phase 1.
+
+### 10.4 Acceptance (Phase 2, hydrology)
+
+Loaders gate and restate gotchas; provisional-data caveat surfaces on
+any recent NWIS window; drought and reservoir analyses read recipes and
+report uncertainty per the house rule; three-surface end-to-end
+(question → scout → load → analysis → report) recorded per surface;
+bundle lint-clean with verified_by set; goldens green headless.
+
+### 10.5 Ocean-bundle v0.6 completion (scheduled into Session 18)
+
+Per the PARKING triage: promote to severity-high gotchas WITH matching
+eval cases: V4R4B release mixing (#9), MHT basin scope (#11), SWOT
+crossover calibration unapplied (#13); author core's fill-value
+detection eval case (#8); author the salt and volume budget recipes
+with measured residual expectations (#12).

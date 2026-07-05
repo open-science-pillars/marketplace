@@ -87,6 +87,18 @@ Legend: 🟢 complete · 🟡 in progress · ⚪ not started · 🔴 blocked · 
 | Fresh-install ×3 surfaces; known-limitations | 🟡 Code fresh-install re-verified 2026-07-05 (add + both installs in 8 s, smoke green); known-limitations.md published; Cw/Sc install rides Paul's packet |
 | Announcement (Pangeo / Openscapes / ESIP) | 🟡 draft in docs/announcement-draft.md (success criteria stated per PARKING #1); posting is Paul's call after the human-side items land |
 
+## Phase 2 (SPEC v0.6 §10; sessions per guide v2.4)
+
+| Item | Status |
+|---|---|
+| SPEC v0.6 published (PARKING triage executed; hydrology §10; Session 15-19 blocks; autonomy rows) | 🟢 2026-07-05 |
+| Phase-2 pre-registration published before results | 🟢 docs/phase2-preregistration.md, 2026-07-05 |
+| S15 hydrology scaffold + SWOT river/lake | ⚪ |
+| S16 GRACE groundwater + NWIS + SMAP | ⚪ |
+| S17 applied pack + canonical home | ⚪ |
+| S18 evals runner + ocean-bundle v0.6 completion | ⚪ |
+| S19 ablation published with intervals | ⚪ |
+
 ## Phase 2+ (proposed)
 
 | Item | Status | Champion |
@@ -119,7 +131,7 @@ Legend: 🟢 complete · 🟡 in progress · ⚪ not started · 🔴 blocked · 
 | 12 | 2026-07-05 | ~1.4 | seeder test surfaced enrichment candidates our bundle lacks (C-to-D transition dates, 2024 telemetry window; drafts preserved as test artifacts for optional steward promotion); T3 walkthrough independently rediscovered both known ecosystem wrinkles and negative-tested its golden; Quarto book now three chapters |
 | 13 | 2026-07-05 | ~0.9 | WASM export path exercised for the first time (marimo export html-wasm; embedded verified numbers, no credentials in-browser); application draft leans on built-Phase-1 evidence (closure numbers, RAPID episode, the scope catch); recording and submission remain with Paul |
 | 14 | 2026-07-05 | ~0.8 | machine-side launch complete: READMEs polished, known-limitations honest (Code-verified-only list, the kept eval failure, ecosystem wrinkles), announcement drafted with pre-stated success criteria; T3 test's tide-gauges demo plugin found installed and cleaned up; human-side punch list handed to Paul (Cw/Sc packet, non-author Tutorial 2, directory submission, DCO, recording, AI4S submission) |
-| 15 | | | |
+| 15 (v0.6 spec session) | 2026-07-05 | ~1.0 | Session 15's preconditions were unmet (outline only, no spec detail, triage queued); replanned on steward decision into the v0.6 revision: 13-item PARKING triage executed, SPEC 0.6.0 with §10, guide 2.4.0 with full S15-19 blocks, autonomy rows 15-19, pre-registration published before any Phase-2 result |
 | 16 | | | |
 | 17 | | | |
 | 18 | | | |

@@ -180,6 +180,10 @@ Your call per session, but these are the defaults I would set given where correc
 | 8, 8b, 9 | Supervised checkpoints; knowledge concepts always human-approved before log.md. | Ingest loop discipline is being formed here. |
 | 10 | Tight for the integration test; batch for fixes it surfaces. | |
 | 11-14 | Batch-friendly, human review of anything public-facing before push. | |
+| 15-16 | Supervised checkpoints. | New domain; concept quality being established, same as 8-9. |
+| 17 | Tight supervision. | Canonical-home handoff and snapshot mechanics are one-way doors; the applied recipes anchor external trainings. |
+| 18 | Supervised checkpoints; pre-registration gate before analysis work. | Runner correctness is mechanical; grading semantics are not. |
+| 19 | Tight supervision. | The ablation is the headline claim; protocol deviations must be impossible or logged. |
 
 Two force-multipliers as the golden-notebook net grows: first, once Sessions 2-5 notebooks are green, later refactors can run with a longer leash because regressions surface mechanically; second, Sessions 7 and 8 have no mutual dependency, so run them in parallel with two Claude Code instances in separate clones (or git worktrees) of ocean-science, merging Session 8 second since it touches fewer shared files.
 
