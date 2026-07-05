@@ -37,11 +37,11 @@ Legend: 🟢 complete · 🟡 in progress · ⚪ not started · 🔴 blocked · 
 | data-formats | 🟢 | ⚪ | ⚪ | Cd 2026-07-04: open-and-summarize behavior test passed (magic bytes, sentinel scan, full summary) |
 | xarray-fundamentals | 🟢 | ⚪ | ⚪ | Cd 2026-07-04: weighted-mean and climatology tests passed (289.06 K weighted, 6.7 K bias named, baseline stated) |
 | basic-statistics | 🟢 | ⚪ | ⚪ | Cd 2026-07-04: trend-map test passed (Hamed-Rao + FDR, inverted stippling); worked example verified on fixture (0.199 vs 0.20 K/decade) |
-| uncertainty-quantification | ⚪ | ⚪ | ⚪ | user-invocable |
+| uncertainty-quantification | 🟢 | ⚪ | ⚪ | user-invocable; Cd 2026-07-04: block-bootstrap CI test passed (12-month blocks, detrended residuals, method/level/seed stated) |
 | cartography (+UQ viz) | 🟢 | ⚪ | ⚪ | Cd 2026-07-04: seasonal panels shared-colorbar and anomaly interval-band tests passed; captions define test, level, method |
-| quality-control | ⚪ | ⚪ | ⚪ | user-invocable |
-| reproducibility | ⚪ | ⚪ | ⚪ | |
-| analysis-review (+3 UQ checks) | ⚪ | ⚪ | ⚪ | user-invocable |
+| quality-control | 🟢 | ⚪ | ⚪ | user-invocable; Cd 2026-07-04: bad-data fixture fully flagged blind (300 sentinels, 400 K value located, 6-month gap), six checks reported |
+| reproducibility | 🟢 | ⚪ | ⚪ | Cd 2026-07-04: authored with DOI quick table; exercised indirectly (seeds and env recorded in test transcripts) |
+| analysis-review (+3 UQ checks) | 🟢 | ⚪ | ⚪ | user-invocable; Cd 2026-07-04: uncovered-trend claim blocked (missing uncertainty 🔴, uncorrected OLS 🔴); also caught fixture provenance and a non-reproducing claimed number |
 | start | ⚪ | ⚪ | ⚪ | |
 | discover-data (surfaces gotchas) | ⚪ | ⚪ | ⚪ | |
 | report (gate; concept cites; uncertainty rule) | ⚪ | ⚪ | ⚪ | |
@@ -107,7 +107,7 @@ Legend: 🟢 complete · 🟡 in progress · ⚪ not started · 🔴 blocked · 
 | 1 | 2026-07-04 | ~0.7 | marketplace.json needed two schema fixes vs SPEC §2.2 verbatim (owner object; source objects instead of repository), PARKING #6; DCO app install left as a manual web-UI step; /doctor is TUI-only headless, description budget verified by count (28 skills, 3575 chars), interactive /doctor lands in Session 2; README-START-HERE.md retained in docs/ rather than deleted with docs-bootstrap |
 | 2 | 2026-07-04 | ~1.0 | plugin updates are version-gated at 0.3.0, mid-build refreshes need uninstall/reinstall (decide: patch bumps per session or keep reinstalling); /doctor 2.1.201 has no skills section, /skills carries the budget check now (PARKING #7); ERA5-like fixture generated not committed per §6; behavior-test agent wrote a stray file beside the fixture, removed |
 | 3 | 2026-07-04 | ~1.0 | pymannkendall hamed_rao returns NaN variance on ~1.5% of cells in per-cell map use; failure mode and deliberate-fallback rule captured in basic-statistics (ingest loop); figure-producing behavior tests take several minutes per headless agent run, plan Session 5 accordingly |
-| 4 | | | |
+| 4 | 2026-07-04 | ~1.2 | none blocking; QC test kept honest by copying the bad fixture to a neutral name away from the README; plugin reinstall hot-loads skills into a running session (observed), useful for Session 5; T2 review caught the deliberately wrong 0.21 claim by recomputation |
 | 5 | | | |
 | 6 | | | |
 | 7 | | | |
