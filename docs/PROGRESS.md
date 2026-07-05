@@ -99,7 +99,7 @@ Legend: 🟢 complete · 🟡 in progress · ⚪ not started · 🔴 blocked · 
 | S15 hydrology scaffold + SWOT river/lake | 🟢 2026-07-05: repo live (8th public), skill+loader authored, 2 concepts steward-verified from live granule evidence, golden green (random-vs-systematic gap asserted) |
 | S16 GRACE groundwater + NWIS + SMAP | 🟢 2026-07-05: 3 skills + 2 loaders, 4 concepts steward-verified from live evidence (P/A transition observed; SPL3SMAP bounded span), §5.7 snapshot demonstrated with provenance + restructure fix, load_nwis golden green |
 | S17 applied pack + canonical home | 🟢 2026-07-05: recipes with measured anchors (regulated-gauge gotcha ingested from a natural experiment), 4 goldens green, canonical home live (nasa-daac-knowledge@a0c84fff959f, round-trip byte-identical), eval seed 6/6, Cd e2e PASS (falsified and fixed a recipe month label) |
-| S18 evals runner + ocean-bundle v0.6 completion | ⚪ |
+| S18 evals runner + ocean-bundle v0.6 completion | 🟢 2026-07-05: §10.5 done (3 gotchas promoted + eval cases, core fill-value case, salt+volume recipes with MEASURED round-off residuals and green goldens); evals runner repo built (package + selftest green + scoreboard rendered from real seed grades); live N=20 sweep is the CI job |
 | S19 ablation published with intervals | ⚪ |
 
 ## Phase 2+ (proposed)
@@ -111,7 +111,7 @@ Legend: 🟢 complete · 🟡 in progress · ⚪ not started · 🔴 blocked · 
 | earthaccess-mcp | 📋 | |
 | remote-sensing / models-and-reanalysis (ensembles skill) / applied-science | 📋 | |
 | planetary-science + pds-knowledge | 📋 | Bessel tie-in |
-| evals repo: runner, graders, scoreboard (S18) | 📋 | |
+| evals repo: runner, graders, scoreboard (S18) | 🟢 2026-07-05: run_evals/graders/judge/stats/scoreboard, self-test green (12 graders + aggregation), manifests for all 3 plugins, seed-baseline scoreboard rendered | |
 | Bundle ablation with headline numbers (S19) | 📋 | before outreach |
 
 ## Session Log
@@ -140,5 +140,5 @@ Legend: 🟢 complete · 🟡 in progress · ⚪ not started · 🔴 blocked · 
 | 16 | 2026-07-05 | ~1.2 | live NWIS pull delivered textbook P/A evidence (trailing month 100% P vs 2023 100% A) plus a bonus ingest (dataretrieval nwis.get_dv deprecated for 2027 removal, recorded in skill+concept); close lint caught the flat-snapshot layout breaking pinned relative links (restructured to canonical shape, files byte-identical); steward ruling: rule-9 eval coverage for pinned copies is owned by the canonical bundle |
 | 17 | 2026-07-05 | ~2.3 | recipe-anchor measurement exposed the regulated-gauge trap (Lees Ferry classified drought and record-snowpack years identically; ingested with the Roaring Fork natural experiment as evidence); e2e falsified the reservoir recipe's minimum-month label (Feb->Apr 13-14, steward-approved erratum); seed case 1 needed a rerun (12-turn cap produced no output, recorded in RESULTS); placeholder sweep now a standing close gate, first org-wide zero |
 | doc-pass | 2026-07-05 | ~2.0 | documentation and continuity pass (SPEC v0.6.1): five-persona doc-review workflow (zero confirmed blockers; corroborated the leaks and found new ones: broken cross-repo evidence links in the canonical bundle, governance pro-tem-review gap, guide summary table stopping at Session 14); aggressive build-era cleanup (session stamps, stale v0.5.1 cites, PARKING refs, build hedges, verified_by -> role, seed-prose reframe); newcomer path repaired (glossary, README rewrites, per-repo status); contributor path repaired (CONTRIBUTING de-stale, episode-with-lesson retrofits, docs map); new build-kit repo closes the harness single-point-of-failure |
-| 18 | | | |
+| 18 | 2026-07-05 | ~3.0 | §10.5 bundle completion: the volume budget surfaced a real formulation trap (WVELMASS already carries the surface freshwater flux, so a separate oceFWflx forcing term double-counts and blows the k=0 residual to ~1e-8; correct budget is transport-convergence only, closes to 4.6e-12), recorded in the recipe and reference; salt closes to 7.2e-11 g/kg/s. Evals runner built and self-tested; live agentic trials are slow (a planning-case trial took 3+ min), so the full N=20 sweep is documented as the CI job, not a laptop run. Lint zero red; one yellow (draft-vs-verified log wording) fixed |
 | 19 | | | |
