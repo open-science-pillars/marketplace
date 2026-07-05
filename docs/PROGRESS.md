@@ -42,15 +42,15 @@ Legend: 🟢 complete · 🟡 in progress · ⚪ not started · 🔴 blocked · 
 | quality-control | 🟢 | ⚪ | ⚪ | user-invocable; Cd 2026-07-04: bad-data fixture fully flagged blind (300 sentinels, 400 K value located, 6-month gap), six checks reported |
 | reproducibility | 🟢 | ⚪ | ⚪ | Cd 2026-07-04: authored with DOI quick table; exercised indirectly (seeds and env recorded in test transcripts) |
 | analysis-review (+3 UQ checks) | 🟢 | ⚪ | ⚪ | user-invocable; Cd 2026-07-04: uncovered-trend claim blocked (missing uncertainty 🔴, uncorrected OLS 🔴); also caught fixture provenance and a non-reproducing claimed number |
-| start | ⚪ | ⚪ | ⚪ | |
-| discover-data (surfaces gotchas) | ⚪ | ⚪ | ⚪ | |
-| report (gate; concept cites; uncertainty rule) | ⚪ | ⚪ | ⚪ | |
-| knowledge-linter agent | ⚪ | n/a | n/a | |
-| core knowledge bundle (3 concepts) lint-clean | ⚪ | n/a | n/a | |
-| /doctor description budget clean | ⚪ | n/a | n/a | |
-| Core golden notebook (analysis_pipeline) green headless | ⚪ | n/a | n/a | |
+| start | 🟢 | ⚪ | ⚪ | Cd 2026-07-04 slash+conv: five parts, one screen, one next step |
+| discover-data (surfaces gotchas) | 🟢 | ⚪ | ⚪ | Cd 2026-07-04 slash+conv: fallback named, table, one question; honestly reported ghrsst-mur placeholder status |
+| report (gate; concept cites; uncertainty rule) | 🟢 | ⚪ | ⚪ | Cd 2026-07-04: gate held unconfirmed (variant A), honored pre-authorization (B), refused empty session (C); uncertainty rule enforced; concept-vs-skill citation nuance to re-verify in Session 10 |
+| knowledge-linter agent | 🟢 | n/a | n/a | Cd 2026-07-04 first real run: 3 real 🔴 caught (strict-YAML frontmatter) plus dead URL and CF section drift; proposed diffs only |
+| core knowledge bundle (3 concepts) lint-clean | 🟢 | n/a | n/a | zero 🔴; steward-verified by Paul Ramirez; standing 🟡 eval case (PARKING #8) |
+| /doctor description budget clean | 🟢 | n/a | n/a | via /skills per PARKING #7: 30 skills loaded, no truncation |
+| Core golden notebook (analysis_pipeline) green headless | 🟢 | n/a | n/a | exit 0; asserts six sections, 3 concept citations, uncertainty on headline (0.199 +/- 0.002 K/decade) |
 | Core evals seed: 3 methodology cases | ⚪ | n/a | n/a | Session 10 |
-| Core 3-surface integration test | ⚪ | ⚪ | ⚪ | |
+| Core 3-surface integration test | 🟢 | 🟡 | 🟡 | Cd complete 2026-07-04 (all prompt files, both forms); Cw/Sc deferred by Paul, prompts and setup ready in docs/prompts/ (report.md carries the inline two-step) |
 
 ## Ocean Science (Sessions 6-10)
 
@@ -108,7 +108,7 @@ Legend: 🟢 complete · 🟡 in progress · ⚪ not started · 🔴 blocked · 
 | 2 | 2026-07-04 | ~1.0 | plugin updates are version-gated at 0.3.0, mid-build refreshes need uninstall/reinstall (decide: patch bumps per session or keep reinstalling); /doctor 2.1.201 has no skills section, /skills carries the budget check now (PARKING #7); ERA5-like fixture generated not committed per §6; behavior-test agent wrote a stray file beside the fixture, removed |
 | 3 | 2026-07-04 | ~1.0 | pymannkendall hamed_rao returns NaN variance on ~1.5% of cells in per-cell map use; failure mode and deliberate-fallback rule captured in basic-statistics (ingest loop); figure-producing behavior tests take several minutes per headless agent run, plan Session 5 accordingly |
 | 4 | 2026-07-04 | ~1.2 | none blocking; QC test kept honest by copying the bad fixture to a neutral name away from the README; plugin reinstall hot-loads skills into a running session (observed), useful for Session 5; T2 review caught the deliberately wrong 0.21 claim by recomputation |
-| 5 | | | |
+| 5 | 2026-07-04 | ~1.8 | linter's first run caught 3 real frontmatter 🔴s (strict YAML vs Claude Code's lenient parser) plus a dead evidence URL; report-gate nuance: an explicit "saved as X" reads as confirmation given (recorded in behavior/report-gate.md); report Provenance cited skills rather than knowledge concepts, re-verify at Session 10; discover-data honestly surfaced ghrsst-mur placeholder status; Earthdata ~/.netrc set up and validated, ECCO velocity ShortName pre-verified in live CMR; behavior-test prompt class added (10 files) per Paul; Cw/Sc integration deferred |
 | 6 | | | |
 | 7 | | | |
 | 8 | | | |
