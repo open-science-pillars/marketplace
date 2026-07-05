@@ -78,7 +78,7 @@ Legend: 🟢 complete · 🟡 in progress · ⚪ not started · 🔴 blocked · 
 
 | Deliverable | Status |
 |---|---|
-| Tutorial 1 / 2 (+SWOT) / 3 (Quarto; surfaces recorded) | ⚪ |
+| Tutorial 1 / 2 (+SWOT) / 3 (Quarto; surfaces recorded) | 🟡 T1+T2 pushed 2026-07-05, fresh-install timed (4.6 and 15.0 min vs 10/20 targets), headers record Cd verified and Cw/Sc pending; T3 Session 12 |
 | arset-style template; knowledge-, eval-, and verification-authoring guides | ⚪ |
 | steward-playbook.md + CODEOWNERS (knowledge paths) | ⚪ |
 | knowledge-seeder agent (drafts with evidence; never merges) | ⚪ |
@@ -115,7 +115,7 @@ Legend: 🟢 complete · 🟡 in progress · ⚪ not started · 🔴 blocked · 
 | 8b | 2026-07-04 | ~1.9 | SWOT version-family split discovered by probe (cal/val only in D; C returns empty silently) and became verified gotcha evidence; crid drift within collections recorded; live loads cheap (8 regional granules ~9.4 MB each); volume gate demonstrated on a 7.25 TB request; linter caught three more check-11 phrasings (my recurring drafting habit, all reworded); load_swot golden's own sanity assert caught a fixture-magnitude bug before ship |
 | 9 | 2026-07-04 | ~2.3 | two verified concepts corrected by the verification loop itself: heat-budget tolerance re-grounded on measurement (relative criteria meaningless below float32 quantization; now absolute 1e-10 degC/s), and the MHT recipe anchor rescoped after a skill-following test agent discovered it was the global circle not the Atlantic (basin decomposition verified: 0.666+0.430+0.002=1.098), PARKING #11; ecco_v4_py basin masks need binary data installed (env quirk, noted in recipe) |
 | 10 | 2026-07-04 | ~1.6 | e2e exceeded spec: fetched real RAPID/MOCHA obs via DOI after the official page dead-ended in SharePoint (that discovery became the build's first operational ingest, rapid-mocha.md); e2e honored the local-config gate autonomously by narrowing its own window; eval seed finding: the house uncertainty rule does not reliably fire on uncoached computation prompts outside the report workflow (core uncertainty-statement FAIL, recorded for Phase-2 tuning); Cw/Sc surface pass remains with Paul |
-| 11 | | | |
+| 11 | 2026-07-05 | ~1.2 | Quarto wasn't installed (prerequisite gap; user-space tarball install, no sudo); timing claims drafted before measurement were caught and replaced with measured values pre-review; T2 walkthrough ingested the SWOT crossover-calibration finding (ssha arrives uncorrected, +/-2.9 m ramp on flag-gated data) and the whole-pass spatial-match nuance; close lint then showed both SWOT skills routed around the new fact, accommodation diffs applied (PARKING #13 for gotcha promotion) |
 | 12 | | | |
 | 13 | | | |
 | 14 | | | |
