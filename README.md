@@ -23,6 +23,14 @@ Cowork and Claude Science: add this marketplace and install from it
 | `core` | Foundation: data formats, statistics, uncertainty quantification, cartography, quality control, reproducibility, analysis review, and the start / discover-data / report workflows. |
 | `ocean-science` | Physical oceanography: ECCO state estimate, SWOT SSH, meridional transport, budget closure, water masses. **Install core first.** |
 
+## Learn it in under an hour
+
+Three timed tutorials and a no-install demo:
+[Getting Started (~10 min)](https://github.com/open-science-pillars/tutorials/blob/main/tutorial-1-getting-started.qmd),
+[ECCO Heat Transport (~20 min)](https://github.com/open-science-pillars/tutorials/blob/main/tutorial-2-ecco-mht.qmd),
+[Build a Domain Plugin (~30 min)](https://github.com/open-science-pillars/tutorials/blob/main/tutorial-3-build-a-plugin.qmd),
+and the [browser-runnable MHT demo](https://github.com/open-science-pillars/tutorials/tree/main/demo).
+
 ## MVP cut-line
 
 Phase 1 ships the two plugins above, their knowledge bundles and golden
