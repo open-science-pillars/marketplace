@@ -60,15 +60,15 @@ Legend: 🟢 complete · 🟡 in progress · ⚪ not started · 🔴 blocked · 
 | swot skill + reference | 🟢 | ⚪ | ⚪ | Cd 2026-07-04: C/D version families CMR-audited, cal/val-only-in-D probed, granule-verified structure |
 | ocean-grids / budget-closure / meridional-transport | 🟢 | ⚪ | ⚪ | read recipes; Cd 2026-07-04 authored under tight supervision, zero hardcoded expected values (verified by review) |
 | water-masses / mixed-layer / sea-level / ocean-indices | 🟢 | ⚪ | ⚪ | Cd 2026-07-04 authored+reviewed; definition-sensitivity framing; V4R4B rule in sea-level, ONI/PDO/AMO convention traps in indices |
-| load-ecco / load-swot (volume gates) | 🟡 | ⚪ | ⚪ | load-swot Cd-green (gate held on 7.25 TB request; cal/val split verified); load-ecco is Session 9 |
-| ocean-budget (native-grid 🔴 rule) | ⚪ | ⚪ | ⚪ | |
-| transport-analysis / compare-obs | ⚪ | ⚪ | ⚪ | |
-| water-mass / mixed-layer / sea-level analysis | ⚪ | ⚪ | ⚪ | |
+| load-ecco / load-swot (volume gates) | 🟢 | ⚪ | ⚪ | both Cd-green: load-swot gate held on 7.25 TB; load-ecco spot test passed (cache hit, merge contract, snapshot foresight) |
+| ocean-budget (native-grid 🔴 rule) | 🟢 | ⚪ | ⚪ | Cd 2026-07-04 authored; refusal already demonstrated Session 6 (regridded-budget-refusal.md); formulation verified by the golden |
+| transport-analysis / compare-obs | 🟢 | ⚪ | ⚪ | Cd 2026-07-04; transport spot test reproduced anchor AND caught the global-vs-Atlantic scope error (recipe corrected under steward review) |
+| water-mass / mixed-layer / sea-level analysis | 🟢 | ⚪ | ⚪ | Cd 2026-07-04 authored+reviewed per one-paragraph specs |
 | ecco-scout (cites concepts) / budget-auditor (geothermal check) | ⚪ | n/a | n/a | |
 | local config filled (SWOT + Knowledge blocks) | ⚪ | n/a | n/a | |
 | podaac-arc bundle: 4 datasets (+Uncertainty), 5 gotchas, 2 recipes; lint-clean | 🟢 | n/a | n/a | 11 of 11 steward-verified 2026-07-04; three full lints, zero 🔴; Uncertainty sections on all four datasets |
 | All seed gotchas: evidence links + status: verified (verified_by set) | 🟢 | n/a | n/a | 5 of 5, every one evidence-linked, verified_by Paul Ramirez; GIA severity medium per recorded rationale |
-| 4 ocean golden notebooks green headless | 🟡 | n/a | n/a | load_swot.py green 2026-07-04 (its sanity assertion caught a fixture bug pre-ship); remaining three Session 9 |
+| 4 ocean golden notebooks green headless | 🟢 | n/a | n/a | all four green 2026-07-04: load_swot, load_ecco, transport_analysis (both anchors + basin-sum identity), ocean_budget (abs residual max 5.0e-11 degC/s over 3.34M cell-months) |
 | Live ingest practiced (concept in log.md) | ⚪ | n/a | n/a | |
 | evals/ SCHEMA + 5 gotcha/rejection cases | 🟡 | n/a | n/a | SCHEMA + 4 cases drafted 2026-07-04 (two with live seed evidence in behavior corpus); volume-gate case Session 10 |
 | Manual grading pass recorded (RESULTS-seed) | ⚪ | n/a | n/a | Session 10 |
@@ -113,7 +113,7 @@ Legend: 🟢 complete · 🟡 in progress · ⚪ not started · 🔴 blocked · 
 | 7 | 2026-07-04 | ~1.1 | MHT 26.5N live-validated: 2010 mean 1.098 PW inside 0.8-1.4, flux year downloaded in 15 s; close lint caught a real self-contradiction (budget-formulation's 1e-9-relative float32 claim vs epsilon ~1.2e-7), reconciled to round-off/epsilon framing with 1e-6 as explicit pass tolerance; conda-run heredoc stdin failure reconfirmed, scripts-from-files is the rule |
 | 8 | 2026-07-04 | ~0.5 | no issues; ran sequentially rather than parallel-worktree (Session 7 momentum made the parallel split unnecessary); all nine ocean knowledge skills now authored |
 | 8b | 2026-07-04 | ~1.9 | SWOT version-family split discovered by probe (cal/val only in D; C returns empty silently) and became verified gotcha evidence; crid drift within collections recorded; live loads cheap (8 regional granules ~9.4 MB each); volume gate demonstrated on a 7.25 TB request; linter caught three more check-11 phrasings (my recurring drafting habit, all reworded); load_swot golden's own sanity assert caught a fixture-magnitude bug before ship |
-| 9 | | | |
+| 9 | 2026-07-04 | ~2.3 | two verified concepts corrected by the verification loop itself: heat-budget tolerance re-grounded on measurement (relative criteria meaningless below float32 quantization; now absolute 1e-10 degC/s), and the MHT recipe anchor rescoped after a skill-following test agent discovered it was the global circle not the Atlantic (basin decomposition verified: 0.666+0.430+0.002=1.098), PARKING #11; ecco_v4_py basin masks need binary data installed (env quirk, noted in recipe) |
 | 10 | | | |
 | 11 | | | |
 | 12 | | | |
