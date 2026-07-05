@@ -95,7 +95,7 @@ Legend: 🟢 complete · 🟡 in progress · ⚪ not started · 🔴 blocked · 
 | Phase-2 pre-registration published before results | 🟢 docs/phase2-preregistration.md, 2026-07-05 |
 | S15 hydrology scaffold + SWOT river/lake | 🟢 2026-07-05: repo live (8th public), skill+loader authored, 2 concepts steward-verified from live granule evidence, golden green (random-vs-systematic gap asserted) |
 | S16 GRACE groundwater + NWIS + SMAP | 🟢 2026-07-05: 3 skills + 2 loaders, 4 concepts steward-verified from live evidence (P/A transition observed; SPL3SMAP bounded span), §5.7 snapshot demonstrated with provenance + restructure fix, load_nwis golden green |
-| S17 applied pack + canonical home | ⚪ |
+| S17 applied pack + canonical home | 🟢 2026-07-05: recipes with measured anchors (regulated-gauge gotcha ingested from a natural experiment), 4 goldens green, canonical home live (nasa-daac-knowledge@a0c84fff959f, round-trip byte-identical), eval seed 6/6, Cd e2e PASS (falsified and fixed a recipe month label) |
 | S18 evals runner + ocean-bundle v0.6 completion | ⚪ |
 | S19 ablation published with intervals | ⚪ |
 
@@ -136,5 +136,6 @@ Legend: 🟢 complete · 🟡 in progress · ⚪ not started · 🔴 blocked · 
 | 16 | | | |
 | 16 | 2026-07-05 | ~1.2 | live NWIS pull delivered textbook P/A evidence (trailing month 100% P vs 2023 100% A) plus a bonus ingest (dataretrieval nwis.get_dv deprecated for 2027 removal, recorded in skill+concept); close lint caught the flat-snapshot layout breaking pinned relative links (restructured to canonical shape, files byte-identical); steward ruling: rule-9 eval coverage for pinned copies is owned by the canonical bundle |
 | 17 | | | |
+| 17 | 2026-07-05 | ~2.3 | recipe-anchor measurement exposed the regulated-gauge trap (Lees Ferry classified drought and record-snowpack years identically; ingested with the Roaring Fork natural experiment as evidence); e2e falsified the reservoir recipe's minimum-month label (Feb->Apr 13-14, steward-approved erratum); seed case 1 needed a rerun (12-turn cap produced no output, recorded in RESULTS); placeholder sweep now a standing close gate, first org-wide zero |
 | 18 | | | |
 | 19 | | | |
