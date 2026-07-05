@@ -1,7 +1,7 @@
 # Connector guide
 
 MCP connectors per plugin: `.mcp.json` registers servers; CONNECTORS.md
-documents them per SPECIFICATION.md v0.5.1 §3.1.
+documents them per SPEC §3.1.
 
 - Verify server entries against the provider's live repository AT
   AUTHORING TIME; never trust URLs from earlier drafts (the

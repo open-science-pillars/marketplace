@@ -1,11 +1,12 @@
 # Open Science Pillars: Specification
 
 **Organization:** Open Science Pillars (github.com/open-science-pillars)
-**Version:** 0.6.0 (first build-informed revision)
+**Version:** 0.6.1 (documentation and continuity pass)
 **Date:** 2026-07-05
 **Scope:** Phase 1 (built; core + ocean-science + infrastructure + knowledge + verification + evals seed + stewardship) plus Phase 2 spec detail (hydrology bridge, §10)
 
 **Changelog:**
+- 0.6.1 (2026-07-05, documentation and continuity pass): added the `build-kit` repo to the §1.1 table (the development harness, so the session protocol is no longer a personal-workspace single point of failure). Non-spec companion work in the same pass (not changing this spec's requirements): build-era artifact references removed from public-facing content; a user glossary and a docs map added; the newcomer and contributor doc paths repaired; broken cross-repo evidence links in the canonical knowledge bundle fixed. Driven by a five-persona documentation review.
 - 0.6.0 (2026-07-05, written by the build per harness rule 11 after the post-Session-10 PARKING triage): §0.1/§2.3 Claude Science install corrected to observed marketplace-install behavior (PARKING #5); §0.3 description-budget verification instrument corrected from /doctor to the /skills panel (PARKING #7); §2.2 marketplace.json verbatim block replaced with the CLI-validated working schema (owner object, source objects; PARKING #6); §9 non-author acceptance criterion restored and launch success criteria referenced (PARKING #1, #3); new §10 Hydrology Plugin (Phase 2 spec detail) including the v0.6 ocean-bundle completion list scheduled into Session 18 (PARKING #8, #9, #11, #12, #13). Phase-2 go/stop pre-registration published separately (docs/phase2-preregistration.md, PARKING #2).
 - 0.5.1 erratum (same date, no version bump, freeze intact): PARKING.md added to the §2.1 docs listing for consistency with harness rule 11; title punctuation normalized. No scope change.
 - 0.5.1 (same date): security and launch hygiene: knowledge-is-declarative rule and linter imperative scan (§5.8); CI-without-secrets and fixture-license notes (§6); DCO sign-off and GitHub Discussions (§1.2); model-version recording in eval results; official-directory submission at launch.
@@ -85,6 +86,7 @@ Plugins are cached and cannot reference files outside their own directory: no `.
 | `plugin-template` | Scaffold for new domain plugins | 1 |
 | `knowledge-template` | Scaffold for new OKF knowledge bundles | 1 |
 | `.github` | Org profile, issue templates, CoC, governance | 1 |
+| `build-kit` | Development harness: session skills, workspace-law template, bootstrap, DEVELOPING guide, doc-review workflow | 1 (infra) |
 | `hydrology` | SWOT rivers/lakes, GRACE-FO, NWIS, SMAP | 2 |
 | `nasa-daac-knowledge` | Standalone per-DAAC bundles (podaac first) | 2 |
 | `earthaccess-mcp` | Connector wrapping NASA earthaccess | 2 |

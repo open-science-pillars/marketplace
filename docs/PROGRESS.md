@@ -1,5 +1,8 @@
 # Open Science Pillars: Build Progress
 
+> **Build record (historical).** This is the live build-status tracker and session log, not user or contributor documentation. See [docs/README.md](README.md) for the map, or the [tutorials](https://github.com/open-science-pillars/tutorials) to get started.
+
+
 **Last Updated:** 2026-07-05 · **Org:** github.com/open-science-pillars
 **Phase:** 0 complete (documents final) → Phase 1 build
 Surface columns: Cd = Claude Code, Cw = Cowork, Sc = Claude Science.
@@ -135,7 +138,7 @@ Legend: 🟢 complete · 🟡 in progress · ⚪ not started · 🔴 blocked · 
 | 15 (build) | 2026-07-05 | ~1.3 | CMR audit found the reach/node collection split, the C/D repeat, LakeSP obs/prior/unassigned, L4 discharge, and SIMULATED pre-launch products in the same catalog (trap recorded); live granule pulls verified anatomy (127-attr reach, 57-attr node, 8x volume asymmetry); close gate caught a scaffold frontmatter escaping bug |
 | 16 | | | |
 | 16 | 2026-07-05 | ~1.2 | live NWIS pull delivered textbook P/A evidence (trailing month 100% P vs 2023 100% A) plus a bonus ingest (dataretrieval nwis.get_dv deprecated for 2027 removal, recorded in skill+concept); close lint caught the flat-snapshot layout breaking pinned relative links (restructured to canonical shape, files byte-identical); steward ruling: rule-9 eval coverage for pinned copies is owned by the canonical bundle |
-| 17 | | | |
 | 17 | 2026-07-05 | ~2.3 | recipe-anchor measurement exposed the regulated-gauge trap (Lees Ferry classified drought and record-snowpack years identically; ingested with the Roaring Fork natural experiment as evidence); e2e falsified the reservoir recipe's minimum-month label (Feb->Apr 13-14, steward-approved erratum); seed case 1 needed a rerun (12-turn cap produced no output, recorded in RESULTS); placeholder sweep now a standing close gate, first org-wide zero |
+| doc-pass | 2026-07-05 | ~2.0 | documentation and continuity pass (SPEC v0.6.1): five-persona doc-review workflow (zero confirmed blockers; corroborated the leaks and found new ones: broken cross-repo evidence links in the canonical bundle, governance pro-tem-review gap, guide summary table stopping at Session 14); aggressive build-era cleanup (session stamps, stale v0.5.1 cites, PARKING refs, build hedges, verified_by -> role, seed-prose reframe); newcomer path repaired (glossary, README rewrites, per-repo status); contributor path repaired (CONTRIBUTING de-stale, episode-with-lesson retrofits, docs map); new build-kit repo closes the harness single-point-of-failure |
 | 18 | | | |
 | 19 | | | |

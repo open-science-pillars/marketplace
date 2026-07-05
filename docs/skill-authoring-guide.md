@@ -1,6 +1,6 @@
 # Skill authoring guide
 
-Frontmatter standard per SPECIFICATION.md v0.5.1 §0.3, plus the
+Frontmatter standard per SPEC §0.3, plus the
 patterns this build settled on.
 
 ## Frontmatter

@@ -1,6 +1,6 @@
 # Eval authoring guide
 
-How to write eval cases per SPECIFICATION.md v0.5.1 §8. Cases live
+How to write eval cases per SPEC §8. Cases live
 per-plugin in `evals/` beside `verification/`; each plugin's SCHEMA.md
 documents the fields; RESULTS-seed.md records Phase-1 manual grades.
 

@@ -1,6 +1,6 @@
 # Testing guide: how the three layers relate
 
-Per SPECIFICATION.md v0.5.1 §6 and §8, plus the surface harness.
+Per SPEC §6 and §8, plus the surface harness.
 
 | Layer | Tests | Instrument | Cadence |
 |---|---|---|---|
@@ -10,8 +10,17 @@ Per SPECIFICATION.md v0.5.1 §6 and §8, plus the surface harness.
 
 Behavior-test prompts (docs/prompts/behavior/) are the bridge: session
 acceptance tests captured verbatim, rerunnable after skill edits, and
-the seed corpus for eval cases. The loops feed each other: a behavior
-test discovered the MHT scope error; the golden falsified two assumed
-tolerances; the linter caught the skills failing to accommodate a
-newly ingested fact. Testing here is not a gate at the end; it is the
-mechanism by which the knowledge layer corrects itself.
+the seed corpus for eval cases. The loops feed each other, and each layer
+has caught a real error the others would have missed:
+
+- A behavior test found that a transport recipe reported a full-latitude-circle
+  number where the observations it was compared against covered only the
+  Atlantic: a scope mismatch that made the result silently wrong. The recipe
+  now states its basin scope on every number.
+- A golden notebook falsified two assumed closure tolerances by measuring the
+  actual residual; the recipe now records the measured tolerance, not a guess.
+- The linter caught two skills that still routed around a newly ingested
+  gotcha, so the fact was documented but not yet acted on.
+
+Testing here is not a gate at the end; it is the mechanism by which the
+knowledge layer corrects itself.

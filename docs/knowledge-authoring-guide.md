@@ -1,7 +1,7 @@
 # Knowledge authoring guide
 
 How to write OKF concepts for Open Science Pillars bundles.
-Conformance: OKF v0.1 plus SPECIFICATION.md v0.5.1 §5; the
+Conformance: OKF v0.1 plus SPEC §5; the
 knowledge-template repo carries one annotated example per type.
 
 ## The four types and their required extras (§5.2)
@@ -41,14 +41,20 @@ lists ARSET or equivalent training URLs on datasets and recipes.
    agent: no "quote this per the house rule", no "never mix X
    silently" imperatives. State the fact ("an analysis that mixes
    releases silently conflates corrections with signal"); behavior
-   lives in skills. The declarative "owned by" pattern is the house
-   style; the linter's check 11 enforces it.
+   lives in skills. Write in the declarative "owned by" voice: prefer
+   "the SWOT cal/val record is a distinct product family" over
+   "always check which family you loaded". The knowledge-linter's
+   imperative-phrasing scan (documented in
+   `core/agents/knowledge-linter`) enforces this.
 4. **Record scopes and dates on numbers.** The build's costliest
-   correction was an anchor recorded without its basin scope; expected
-   values carry the exact scope, method, and the date verified.
+   correction was a heat-transport anchor recorded without its basin
+   scope (a full-circle value that read as if it were the Atlantic),
+   which nearly produced a wrong comparison against Atlantic-only
+   observations; expected values carry the exact scope, method, and
+   the date verified.
 5. **Tolerances are measured, not assumed.** A closure or comparison
    criterion states what was measured, on what, and the headroom
-   (see recipes/ecco-heat-budget.md for the pattern: float32
+   (see ocean-science/knowledge/recipes/ecco-heat-budget.md for the pattern: float32
    quantization made a relative criterion meaningless).
 
 ## Ingest etiquette (§5.3)

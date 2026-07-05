@@ -1,7 +1,7 @@
 # Agent authoring guide
 
 Plugin agents are markdown files (frontmatter + system prompt) in
-`agents/<name>/agent.md`. Per SPECIFICATION.md v0.5.1 §3.5 and §4.5.
+`agents/<name>/agent.md`. Per SPEC §3.5 and §4.5.
 
 ## Frontmatter
 

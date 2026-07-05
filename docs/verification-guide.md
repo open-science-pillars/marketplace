@@ -1,6 +1,6 @@
 # Verification guide: golden-notebook practice
 
-Per SPECIFICATION.md v0.5.1 §6. A workflow skill that encodes a
+Per SPEC §6. A workflow skill that encodes a
 computation is not done until its marimo notebook in `verification/`
 runs green headless (`python verification/x.py`, nonzero exit on
 assertion failure; PEP 723 inline deps so `uv run` works in CI).

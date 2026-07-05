@@ -1,39 +1,55 @@
 # Open Science Pillars: Claude Code Build Harness
 
-**Purpose:** the operational layer for building Open Science Pillars with Claude Code. The spec says what to build, the implementation guide says in what order; this harness makes each session start clean, end verified, and leave the workspace in a state the next session can trust. It follows the same pattern as your Spectral Prism and Bessel harnesses: a workspace CLAUDE.md as law, session bootstrap and close skills, verification gates, and an explicit autonomy dial per session.
+> **The runnable harness now lives in the [build-kit](https://github.com/open-science-pillars/build-kit) repo.**
+> That repo holds the canonical `osp-session` / `osp-close` skills, the
+> workspace-law template, a `bootstrap.sh`, and `DEVELOPING.md` (how to author a
+> new session block and set its autonomy mode). Use build-kit to stand up a
+> workspace; this document is the design rationale, and the paste-ready blocks
+> below (§2-§4) are the original snapshot, kept for history. Where they and
+> build-kit disagree, build-kit wins.
+
+**Purpose:** the operational layer for building Open Science Pillars with Claude Code. The spec says what to build, the implementation guide says in what order; this harness makes each session start clean, end verified, and leave the workspace in a state the next session can trust: a workspace CLAUDE.md as law, session bootstrap and close skills, verification gates, and an explicit autonomy dial per session.
 
 ---
 
 ## 1. Workspace Layout
 
-One meta-directory, every repo cloned flat, canonical documents in exactly one place:
+One workspace directory, every repo cloned flat, the harness skills wired as
+project skills. This is what `build-kit/bootstrap.sh` produces:
 
 ```
-~/osp/
-├── CLAUDE.md                      # Workspace law (content in §2)
-├── harness/
-│   ├── skills/
-│   │   ├── osp-session/SKILL.md   # Session bootstrap (§3)
-│   │   └── osp-close/SKILL.md     # Session close + gates (§4)
-│   └── prompts/                   # Copied from marketplace/docs/prompts after S1
-├── marketplace/                   # Canonical docs live here after Session 1:
-│   └── docs/{SPECIFICATION, IMPLEMENTATION-GUIDE,
-│              PROGRESS, ARCHITECTURE, BUILD-HARNESS}.md
+osp-workspace/
+├── CLAUDE.md                      # Workspace law (from build-kit/CLAUDE.template.md)
+├── .claude/skills/
+│   ├── osp-session -> build-kit/harness/skills/osp-session   # project skills
+│   └── osp-close   -> build-kit/harness/skills/osp-close
+├── marketplace/                   # Canonical docs:
+│   └── docs/{SPECIFICATION, IMPLEMENTATION-GUIDE, PROGRESS,
+│              ARCHITECTURE, BUILD-HARNESS, phase2-preregistration}.md
 ├── core/
 ├── ocean-science/
+├── hydrology/
+├── nasa-daac-knowledge/
 ├── tutorials/
 ├── plugin-template/
 ├── knowledge-template/
+├── build-kit/
 └── .github/
 ```
 
-Before Session 1, the five canonical documents live at `~/osp/docs-bootstrap/`; Session 1 moves them into `marketplace/docs/` and deletes the bootstrap copy, so there is never a second source of truth.
-
-The harness skills are personal, not shipped: symlink `~/osp/harness/skills/*` into `~/.claude/skills/` so they are available in every repo without polluting any plugin.
+The harness skills are **not shipped inside any plugin** (they would pollute it),
+but they are versioned in `build-kit` and linked into the workspace's
+`.claude/skills/` as project skills, so they load when Claude Code runs from the
+workspace. Earlier in the build they lived only in a personal workspace; that
+single point of failure is closed by build-kit.
 
 ---
 
-## 2. Workspace CLAUDE.md (paste-ready)
+## 2. Workspace CLAUDE.md (original snapshot; use build-kit/CLAUDE.template.md)
+
+_Do not paste this block verbatim: its version pins are frozen at the build's
+early state. The maintained, version-current law is `build-kit/CLAUDE.template.md`._
+
 
 ```markdown
 # Open Science Pillars: Workspace
@@ -189,7 +205,7 @@ Two force-multipliers as the golden-notebook net grows: first, once Sessions 2-5
 
 ---
 
-## 6. The Week
+## 6. The Week (historical: the original Phase-1 schedule)
 
 | Day | Sessions | Hours | Notes |
 |---|---|---|---|
@@ -206,7 +222,10 @@ Total ~35.5 hours against your 4-5 hour days. The buffer day is real; protect it
 
 ---
 
-## 7. First Ten Minutes
+## 7. First Ten Minutes (historical; use build-kit/bootstrap.sh)
+
+_This is the original personal-workspace bootstrap. The current, maintained
+setup is `build-kit/bootstrap.sh` and the project-skill layout in §1._
 
 ```bash
 mkdir -p ~/osp/docs-bootstrap ~/osp/harness/skills

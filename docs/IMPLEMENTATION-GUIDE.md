@@ -1,5 +1,8 @@
 # Open Science Pillars: Implementation Guide
 
+> **Build record (historical).** This is the session-by-session build order. Continuing developers use it through the [build-kit](https://github.com/open-science-pillars/build-kit) repo; users want the [tutorials](https://github.com/open-science-pillars/tutorials).
+
+
 **Version:** 2.4.0 (Phase-2 detail) · **Aligned to:** SPECIFICATION.md v0.6.0, ARCHITECTURE.md, BUILD-HARNESS.md
 **Merged in 2.4.0 (2026-07-05):** Phase-2 outline expanded into full Session 15-19 blocks per SPEC v0.6 §10; ocean-bundle v0.6 completion scheduled into Session 18; pre-registration gate before Session 18-19 analysis work.
 **Merged in 2.3.3:** Session 6 live-access fallback; Session 14 non-author validation restored; PARKING.md seeded (freeze mechanism in use); Session 1 moves PARKING.md with the canonical docs; consistency errata (versions, hours, punctuation) applied same date.
@@ -247,3 +250,10 @@ PR; announcement updated with the numbers (or the null result).
 | 13 | Demos + WASM + AI4S | 2.0 |
 | 14 | Launch | 2.0 |
 | **Phase 1** | | **~35.5** |
+| v0.6 | Spec revision: PARKING triage, hydrology §10, Session 15-19 blocks, pre-registration | 1.0 |
+| 15 | Hydrology scaffold + SWOT river/lake | 2.5 |
+| 16 | GRACE groundwater + NWIS + SMAP | 2.5 |
+| 17 | Applied pack + canonical home | 2.5 |
+| 18 | Evals runner + ocean-bundle completion | 3.0 |
+| 19 | The ablation | 2.0 |
+| **Phase 2** | | **~13.5** |

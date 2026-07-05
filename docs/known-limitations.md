@@ -1,7 +1,6 @@
-# Known limitations (launch, 2026-07-05)
+# Known limitations
 
-Honesty layer for the Phase-1 launch. Everything here is tracked in
-PROGRESS.md or PARKING.md; this page is the reader-facing summary.
+An honest summary of what is verified where, and the caveats we ship with.
 
 ## Surface deltas
 
@@ -37,12 +36,12 @@ PROGRESS.md or PARKING.md; this page is the reader-facing summary.
   ambient behavior is the first Phase-2 tuning target.
 - **The hosted Earthdata MCP endpoint was unreachable at build time**;
   discovery uses the documented knowledge-based fallback and names it.
-- **Ecosystem wrinkles** (recorded in PARKING and the tutorials):
+- **Ecosystem wrinkles** (also noted in the tutorials):
   plugin updates are version-gated (same-version refreshes need
   uninstall/reinstall); marketplace plugin sources must live at or
   below the marketplace directory; `ecco_access` statics need
   earthaccess; bare variable-name queries hang scripted use.
-- **Deferred by scope freeze** (PARKING, 13 items): fill-value and
+- **Deferred to a later revision** (tracked in the project roadmap): fill-value and
   GIA/V4R4B/crossover eval-case promotions, salt/volume budget
   recipes, spec-text alignments (marketplace.json schema, /skills vs
   /doctor, Science install path).

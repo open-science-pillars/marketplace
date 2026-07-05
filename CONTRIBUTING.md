@@ -1,9 +1,17 @@
 # Contributing
 
-Thank you for considering it. Until the authoring guides land (Session 12:
-skill-authoring-guide.md, knowledge-authoring-guide.md, eval-authoring-guide.md,
-verification-guide.md in docs/), these are the load-bearing rules; the guides
-will expand them, not contradict them.
+Thank you for considering it. New to the project's vocabulary? Start with the
+[glossary](GLOSSARY.md). The ground rules below are the load-bearing ones; the
+authoring guides in [docs/](docs/) expand them with worked detail:
+
+- [knowledge-authoring-guide](docs/knowledge-authoring-guide.md) (concepts)
+- [skill-authoring-guide](docs/skill-authoring-guide.md) and
+  [agent-authoring-guide](docs/agent-authoring-guide.md)
+- [eval-authoring-guide](docs/eval-authoring-guide.md) and
+  [verification-guide](docs/verification-guide.md)
+- [connector-guide](docs/connector-guide.md) and
+  [testing-guide](docs/testing-guide.md)
+- [steward-playbook](docs/steward-playbook.md) (owning a knowledge bundle)
 
 ## Ground rules
 
@@ -27,6 +35,10 @@ will expand them, not contradict them.
 - Sign off every commit (DCO): `git commit -s`.
 - One domain-maintainer review merges an ordinary PR; two for cross-cutting
   changes and high-severity knowledge edits (see org GOVERNANCE.md).
-- Propose new concepts with the new_knowledge_concept issue template; new
-  plugins start from plugin-template, new bundles from knowledge-template.
+- Adding one skill to an existing plugin: open the new_skill issue template
+  and follow [docs/skill-authoring-guide.md](docs/skill-authoring-guide.md).
+- Proposing a knowledge concept: use the new_knowledge_concept issue template
+  and [docs/knowledge-authoring-guide.md](docs/knowledge-authoring-guide.md).
+- A whole new plugin starts from plugin-template; a new bundle from
+  knowledge-template.
 - Questions go to Discussions on this repo.

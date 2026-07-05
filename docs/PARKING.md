@@ -1,5 +1,8 @@
 # Open Science Pillars: Parking Lot
 
+> **Build record (historical).** This is the scope-freeze holding pen and its triage log, an internal maintainers' record.
+
+
 The holding pen required by harness rule 11: SPECIFICATION.md is frozen until the Session 5 integration test, so ideas and gaps land here with a one-line rationale instead of becoming spec churn. Triage into SPEC v0.6 happens after Session 10 unless an item's triage target says otherwise. This file moves into `marketplace/docs/` at Session 1.
 
 Format: item | why it matters | triage target.
