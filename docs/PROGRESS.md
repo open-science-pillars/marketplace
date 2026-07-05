@@ -59,7 +59,7 @@ Legend: 🟢 complete · 🟡 in progress · ⚪ not started · 🔴 blocked · 
 | ecco skill + 3 references (ShortNames verified, OCEAN_VEL) | 🟢 | ⚪ | ⚪ | Cd 2026-07-04: 19 ShortNames CMR-audited (51-collection sweep), geometry+THETA granule-verified live, budget formulation tutorial-quoted; refusal test passed (regridded-budget-refusal.md) |
 | swot skill + reference | ⚪ | ⚪ | ⚪ | |
 | ocean-grids / budget-closure / meridional-transport | 🟢 | ⚪ | ⚪ | read recipes; Cd 2026-07-04 authored under tight supervision, zero hardcoded expected values (verified by review) |
-| water-masses / mixed-layer / sea-level / ocean-indices | ⚪ | ⚪ | ⚪ | |
+| water-masses / mixed-layer / sea-level / ocean-indices | 🟢 | ⚪ | ⚪ | Cd 2026-07-04 authored+reviewed; definition-sensitivity framing; V4R4B rule in sea-level, ONI/PDO/AMO convention traps in indices |
 | load-ecco / load-swot (volume gates) | ⚪ | ⚪ | ⚪ | |
 | ocean-budget (native-grid 🔴 rule) | ⚪ | ⚪ | ⚪ | |
 | transport-analysis / compare-obs | ⚪ | ⚪ | ⚪ | |
@@ -111,7 +111,7 @@ Legend: 🟢 complete · 🟡 in progress · ⚪ not started · 🔴 blocked · 
 | 5 | 2026-07-04 | ~1.8 | linter's first run caught 3 real frontmatter 🔴s (strict YAML vs Claude Code's lenient parser) plus a dead evidence URL; report-gate nuance: an explicit "saved as X" reads as confirmation given (recorded in behavior/report-gate.md); report Provenance cited skills rather than knowledge concepts, re-verify at Session 10; discover-data honestly surfaced ghrsst-mur placeholder status; Earthdata ~/.netrc set up and validated, ECCO velocity ShortName pre-verified in live CMR; behavior-test prompt class added (10 files) per Paul; Cw/Sc integration deferred |
 | 6 | 2026-07-04 | ~1.5 | live PO.DAAC fast (209 MB in 7 s), tutorial-sample fallback never needed; ecco_access 0.3.1 quirks found and worked around: static collections get guessed nonexistent filenames (use earthaccess) and bare variable-name queries open an interactive picker that hangs scripts (use exact ShortNames), PARKING #10; V4R4B B-release rows for SSH/OBP discovered in the sweep, PARKING #9; linter check-11 rewordings applied on steward decision; ECCO data cache primed at ~/ECCO_V4r4 for Session 7 |
 | 7 | 2026-07-04 | ~1.1 | MHT 26.5N live-validated: 2010 mean 1.098 PW inside 0.8-1.4, flux year downloaded in 15 s; close lint caught a real self-contradiction (budget-formulation's 1e-9-relative float32 claim vs epsilon ~1.2e-7), reconciled to round-off/epsilon framing with 1e-6 as explicit pass tolerance; conda-run heredoc stdin failure reconfirmed, scripts-from-files is the rule |
-| 8 | | | |
+| 8 | 2026-07-04 | ~0.5 | no issues; ran sequentially rather than parallel-worktree (Session 7 momentum made the parallel split unnecessary); all nine ocean knowledge skills now authored |
 | 8b | | | |
 | 9 | | | |
 | 10 | | | |
