@@ -34,8 +34,8 @@ Legend: 🟢 complete · 🟡 in progress · ⚪ not started · 🔴 blocked · 
 
 | Item | Cd | Cw | Sc | Notes |
 |---|---|---|---|---|
-| data-formats | ⚪ | ⚪ | ⚪ | |
-| xarray-fundamentals | ⚪ | ⚪ | ⚪ | |
+| data-formats | 🟢 | ⚪ | ⚪ | Cd 2026-07-04: open-and-summarize behavior test passed (magic bytes, sentinel scan, full summary) |
+| xarray-fundamentals | 🟢 | ⚪ | ⚪ | Cd 2026-07-04: weighted-mean and climatology tests passed (289.06 K weighted, 6.7 K bias named, baseline stated) |
 | basic-statistics | ⚪ | ⚪ | ⚪ | |
 | uncertainty-quantification | ⚪ | ⚪ | ⚪ | user-invocable |
 | cartography (+UQ viz) | ⚪ | ⚪ | ⚪ | |
@@ -105,7 +105,7 @@ Legend: 🟢 complete · 🟡 in progress · ⚪ not started · 🔴 blocked · 
 |---|---|---|---|
 | 0b | 2026-07-04 | ~1.0 | osp conda env did not exist, created per guide prerequisites; hosted earthdata-mcp endpoint unreachable (local/Docker paths documented, fallback recorded); Science installs plugins via unlisted marketplace like Cowork (PARKING #5); ecco_access has no top-level ecco_podaac_download (use ecco_download / ecco_podaac_download_subset) |
 | 1 | 2026-07-04 | ~0.7 | marketplace.json needed two schema fixes vs SPEC §2.2 verbatim (owner object; source objects instead of repository), PARKING #6; DCO app install left as a manual web-UI step; /doctor is TUI-only headless, description budget verified by count (28 skills, 3575 chars), interactive /doctor lands in Session 2; README-START-HERE.md retained in docs/ rather than deleted with docs-bootstrap |
-| 2 | | | |
+| 2 | 2026-07-04 | ~1.0 | plugin updates are version-gated at 0.3.0, mid-build refreshes need uninstall/reinstall (decide: patch bumps per session or keep reinstalling); /doctor 2.1.201 has no skills section, /skills carries the budget check now (PARKING #7); ERA5-like fixture generated not committed per §6; behavior-test agent wrote a stray file beside the fixture, removed |
 | 3 | | | |
 | 4 | | | |
 | 5 | | | |

@@ -12,9 +12,11 @@ Format: item | why it matters | triage target.
 | 4 | Confirm Claude usage-limit headroom for a ~35-hour agentic week across three surfaces, and schedule the heavy sessions (5, 6, 10) accordingly. | A limit collision mid-Session-6 is a bad way to discover plan constraints. | Day 1 morning, before Session 1. |
 | 5 | Align SPEC §0.1 packaging matrix and §2.3 install text for Claude Science: observed in the Session 0b smoke test (2026-07-04) that Science installs plugins from an unlisted marketplace exactly like Cowork; the spec describes workspace skill import plus connector config instead. | Install docs, READMEs, and Tutorial 1 would otherwise teach a clunkier path than the product offers, and the parity story is stronger than the spec claims; surface-testing-guide.md already records observed behavior. | SPEC v0.6. |
 | 6 | Update the SPEC §2.2 marketplace.json verbatim block to the schema the Claude Code CLI actually validates: a required `owner` object, and plugin entries using `source: {source: github, repo: owner/repo}` instead of `repository`. Both deltas discovered and fixed during the Session 1 install test; the committed marketplace.json is the working reference. | The spec's copy-paste block fails `claude plugin marketplace add` as written; anyone scaffolding from the spec hits the same two errors. | SPEC v0.6. |
+| 7 | Replace "verified with /doctor" (SPEC §0.3, and the same wording in the osp-close gate and Session 2 guide text) with the /skills panel: /doctor in CLI 2.1.201 is environment diagnostics only, while /skills lists every loaded skill with per-description token cost and truncation state. | The description-budget verification step points at a check that no longer exists; /skills is the actual instrument and shows per-skill evidence the old check never did. | SPEC v0.6; harness skill wording is Paul's call anytime. |
 
 ## Log
 - 2026-07-03: file created; items 1-4 seeded during the final pre-build review round.
 - 2026-07-04: item 5 added during the Session 0b assumption smoke test (Science install mechanism).
 - 2026-07-04: item 4 resolved before Session 1: usage-limit headroom confirmed by Paul.
 - 2026-07-04: item 6 added during the Session 1 marketplace install test (CLI schema deltas).
+- 2026-07-04: item 7 added at Session 2 close (/doctor superseded by /skills for the budget check).
