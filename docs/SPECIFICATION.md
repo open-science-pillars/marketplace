@@ -48,6 +48,14 @@ description: One sentence, under 200 characters, front-loaded with the keywords 
 ---
 ```
 
+**Quoting rule (v0.6 erratum, 2026-07-05):** any frontmatter value
+containing ": " is double-quoted. Claude Code's frontmatter parser is
+lenient, but GitHub and other strict YAML parsers reject unquoted
+inner colons ("mapping values are not allowed in this context"), so
+unquoted descriptions render as errors on the repository pages. The
+§3.3 description table's texts therefore appear quoted in actual
+frontmatter.
+
 **Description budget rule:** skill descriptions share a context budget (about 1% of the context window; overflow shortens descriptions and can strip matching keywords). Requirement: ≤200 characters, keyword-first. Verified with the `/skills` panel on Claude Code (per-skill token cost and truncation state; `/doctor` no longer carries this check as of CLI 2.1.x).
 
 ### 0.4 Surface-neutral writing rules

@@ -14,6 +14,10 @@ description: Keyword-first, 200 characters max; the words a scientist would use.
 ---
 ```
 
+- QUOTE any frontmatter value containing ": " (GitHub strict-parses
+  frontmatter and rejects unquoted inner colons; Claude Code is
+  lenient, which hides the error until someone views the file on
+  GitHub; found on 2026-07-05 across 31 files and fixed org-wide).
 - The description budget is real (~1% of context shared across all
   loaded skills); verify with the /skills panel, which shows per-skill
   token cost and truncation (the /doctor check named in older docs no
