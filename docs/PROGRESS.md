@@ -58,7 +58,7 @@ Legend: 🟢 complete · 🟡 in progress · ⚪ not started · 🔴 blocked · 
 |---|---|---|---|---|
 | ecco skill + 3 references (ShortNames verified, OCEAN_VEL) | 🟢 | ⚪ | ⚪ | Cd 2026-07-04: 19 ShortNames CMR-audited (51-collection sweep), geometry+THETA granule-verified live, budget formulation tutorial-quoted; refusal test passed (regridded-budget-refusal.md) |
 | swot skill + reference | ⚪ | ⚪ | ⚪ | |
-| ocean-grids / budget-closure / meridional-transport | ⚪ | ⚪ | ⚪ | read recipes |
+| ocean-grids / budget-closure / meridional-transport | 🟢 | ⚪ | ⚪ | read recipes; Cd 2026-07-04 authored under tight supervision, zero hardcoded expected values (verified by review) |
 | water-masses / mixed-layer / sea-level / ocean-indices | ⚪ | ⚪ | ⚪ | |
 | load-ecco / load-swot (volume gates) | ⚪ | ⚪ | ⚪ | |
 | ocean-budget (native-grid 🔴 rule) | ⚪ | ⚪ | ⚪ | |
@@ -66,7 +66,7 @@ Legend: 🟢 complete · 🟡 in progress · ⚪ not started · 🔴 blocked · 
 | water-mass / mixed-layer / sea-level analysis | ⚪ | ⚪ | ⚪ | |
 | ecco-scout (cites concepts) / budget-auditor (geothermal check) | ⚪ | n/a | n/a | |
 | local config filled (SWOT + Knowledge blocks) | ⚪ | n/a | n/a | |
-| podaac-arc bundle: 4 datasets (+Uncertainty), 5 gotchas, 2 recipes; lint-clean | 🟡 | n/a | n/a | Session 6: ecco-v4r4 + 2 ECCO gotchas verified, lint 0 red; SWOT/GRACE/MUR concepts Session 8b, recipes Session 7 |
+| podaac-arc bundle: 4 datasets (+Uncertainty), 5 gotchas, 2 recipes; lint-clean | 🟡 | n/a | n/a | 5 of 11 verified (ecco-v4r4, 2 ECCO gotchas, 2 recipes with live MHT provenance); lint 0 red both runs; SWOT/GRACE/MUR concepts Session 8b |
 | All seed gotchas: evidence links + status: verified (verified_by set) | 🟡 | n/a | n/a | 2 of 5 done (Session 6, Paul verified_by); remaining 3 in Session 8b |
 | 4 ocean golden notebooks green headless | ⚪ | n/a | n/a | |
 | Live ingest practiced (concept in log.md) | ⚪ | n/a | n/a | |
@@ -110,7 +110,7 @@ Legend: 🟢 complete · 🟡 in progress · ⚪ not started · 🔴 blocked · 
 | 4 | 2026-07-04 | ~1.2 | none blocking; QC test kept honest by copying the bad fixture to a neutral name away from the README; plugin reinstall hot-loads skills into a running session (observed), useful for Session 5; T2 review caught the deliberately wrong 0.21 claim by recomputation |
 | 5 | 2026-07-04 | ~1.8 | linter's first run caught 3 real frontmatter 🔴s (strict YAML vs Claude Code's lenient parser) plus a dead evidence URL; report-gate nuance: an explicit "saved as X" reads as confirmation given (recorded in behavior/report-gate.md); report Provenance cited skills rather than knowledge concepts, re-verify at Session 10; discover-data honestly surfaced ghrsst-mur placeholder status; Earthdata ~/.netrc set up and validated, ECCO velocity ShortName pre-verified in live CMR; behavior-test prompt class added (10 files) per Paul; Cw/Sc integration deferred |
 | 6 | 2026-07-04 | ~1.5 | live PO.DAAC fast (209 MB in 7 s), tutorial-sample fallback never needed; ecco_access 0.3.1 quirks found and worked around: static collections get guessed nonexistent filenames (use earthaccess) and bare variable-name queries open an interactive picker that hangs scripts (use exact ShortNames), PARKING #10; V4R4B B-release rows for SSH/OBP discovered in the sweep, PARKING #9; linter check-11 rewordings applied on steward decision; ECCO data cache primed at ~/ECCO_V4r4 for Session 7 |
-| 7 | | | |
+| 7 | 2026-07-04 | ~1.1 | MHT 26.5N live-validated: 2010 mean 1.098 PW inside 0.8-1.4, flux year downloaded in 15 s; close lint caught a real self-contradiction (budget-formulation's 1e-9-relative float32 claim vs epsilon ~1.2e-7), reconciled to round-off/epsilon framing with 1e-6 as explicit pass tolerance; conda-run heredoc stdin failure reconfirmed, scripts-from-files is the rule |
 | 8 | | | |
 | 8b | | | |
 | 9 | | | |
