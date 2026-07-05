@@ -64,15 +64,15 @@ Legend: 🟢 complete · 🟡 in progress · ⚪ not started · 🔴 blocked · 
 | ocean-budget (native-grid 🔴 rule) | 🟢 | ⚪ | ⚪ | Cd 2026-07-04 authored; refusal already demonstrated Session 6 (regridded-budget-refusal.md); formulation verified by the golden |
 | transport-analysis / compare-obs | 🟢 | ⚪ | ⚪ | Cd 2026-07-04; transport spot test reproduced anchor AND caught the global-vs-Atlantic scope error (recipe corrected under steward review) |
 | water-mass / mixed-layer / sea-level analysis | 🟢 | ⚪ | ⚪ | Cd 2026-07-04 authored+reviewed per one-paragraph specs |
-| ecco-scout (cites concepts) / budget-auditor (geothermal check) | ⚪ | n/a | n/a | |
-| local config filled (SWOT + Knowledge blocks) | ⚪ | n/a | n/a | |
+| ecco-scout (cites concepts) / budget-auditor (geothermal check) | 🟢 | n/a | n/a | Cd 2026-07-04: scout read-only with in-plan citations required; auditor recipe-sourced tolerance, geothermal-first; scout plan exercised in the e2e |
+| local config filled (SWOT + Knowledge blocks) | 🟢 | n/a | n/a | filled in the e2e project 2026-07-04; the e2e run honored its 2 GB gate autonomously (narrowed its own window) |
 | podaac-arc bundle: 4 datasets (+Uncertainty), 5 gotchas, 2 recipes; lint-clean | 🟢 | n/a | n/a | 11 of 11 steward-verified 2026-07-04; three full lints, zero 🔴; Uncertainty sections on all four datasets |
 | All seed gotchas: evidence links + status: verified (verified_by set) | 🟢 | n/a | n/a | 5 of 5, every one evidence-linked, verified_by Paul Ramirez; GIA severity medium per recorded rationale |
 | 4 ocean golden notebooks green headless | 🟢 | n/a | n/a | all four green 2026-07-04: load_swot, load_ecco, transport_analysis (both anchors + basin-sum identity), ocean_budget (abs residual max 5.0e-11 degC/s over 3.34M cell-months) |
-| Live ingest practiced (concept in log.md) | ⚪ | n/a | n/a | |
-| evals/ SCHEMA + 5 gotcha/rejection cases | 🟡 | n/a | n/a | SCHEMA + 4 cases drafted 2026-07-04 (two with live seed evidence in behavior corpus); volume-gate case Session 10 |
-| Manual grading pass recorded (RESULTS-seed) | ⚪ | n/a | n/a | Session 10 |
-| Ocean 3-surface end-to-end | ⚪ | ⚪ | ⚪ | |
+| Live ingest practiced (concept in log.md) | 🟢 | n/a | n/a | rapid-mocha ingested via the operational loop during the e2e (SharePoint dead-end, DOI-first rule), steward-verified same session |
+| evals/ SCHEMA + 5 gotcha/rejection cases | 🟢 | n/a | n/a | all five real cases 2026-07-04; plus core's three methodology cases |
+| Manual grading pass recorded (RESULTS-seed) | 🟢 | n/a | n/a | both plugins, model claude-fable-5 and dates recorded: ocean 5/5 pass; core 2/3 pass, uncertainty-statement FAIL recorded honestly as the seed finding |
+| Ocean 3-surface end-to-end | 🟢 | 🟡 | 🟡 | Cd 2026-07-04: anchors reproduced, gate honored autonomously, real RAPID/MOCHA data compared (r=0.94, offset inside recipe spread), report with uncertainty statements; Cw/Sc packet handed to Paul |
 
 ## Tutorials, Community, Launch (Sessions 11-14)
 
@@ -114,7 +114,7 @@ Legend: 🟢 complete · 🟡 in progress · ⚪ not started · 🔴 blocked · 
 | 8 | 2026-07-04 | ~0.5 | no issues; ran sequentially rather than parallel-worktree (Session 7 momentum made the parallel split unnecessary); all nine ocean knowledge skills now authored |
 | 8b | 2026-07-04 | ~1.9 | SWOT version-family split discovered by probe (cal/val only in D; C returns empty silently) and became verified gotcha evidence; crid drift within collections recorded; live loads cheap (8 regional granules ~9.4 MB each); volume gate demonstrated on a 7.25 TB request; linter caught three more check-11 phrasings (my recurring drafting habit, all reworded); load_swot golden's own sanity assert caught a fixture-magnitude bug before ship |
 | 9 | 2026-07-04 | ~2.3 | two verified concepts corrected by the verification loop itself: heat-budget tolerance re-grounded on measurement (relative criteria meaningless below float32 quantization; now absolute 1e-10 degC/s), and the MHT recipe anchor rescoped after a skill-following test agent discovered it was the global circle not the Atlantic (basin decomposition verified: 0.666+0.430+0.002=1.098), PARKING #11; ecco_v4_py basin masks need binary data installed (env quirk, noted in recipe) |
-| 10 | | | |
+| 10 | 2026-07-04 | ~1.6 | e2e exceeded spec: fetched real RAPID/MOCHA obs via DOI after the official page dead-ended in SharePoint (that discovery became the build's first operational ingest, rapid-mocha.md); e2e honored the local-config gate autonomously by narrowing its own window; eval seed finding: the house uncertainty rule does not reliably fire on uncoached computation prompts outside the report workflow (core uncertainty-statement FAIL, recorded for Phase-2 tuning); Cw/Sc surface pass remains with Paul |
 | 11 | | | |
 | 12 | | | |
 | 13 | | | |
