@@ -2,6 +2,7 @@
   "name": "open-science-pillars",
   "version": "0.3.0",
   "description": "AI-assisted open science for earth, planetary, and applied science: skills, knowledge bundles, verification notebooks, and connectors for Claude Code, Cowork, and Claude Science.",
+  "owner": { "name": "Open Science Pillars Community" },
   "author": { "name": "Open Science Pillars Community" },
   "homepage": "https://github.com/open-science-pillars",
   "plugins": [
