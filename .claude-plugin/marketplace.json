@@ -46,6 +46,26 @@
         "source": "github",
         "repo": "open-science-pillars/ocean-science"
       }
+    },
+    {
+      "name": "hydrology",
+      "description": "Hydrology (Phase 2, in build): SWOT rivers and lakes, GRACE-FO groundwater, USGS NWIS streamflow, SMAP soil moisture. Install core first.",
+      "source": {
+        "source": "github",
+        "repo": "open-science-pillars/hydrology"
+      },
+      "tags": [
+        "hydrology",
+        "swot",
+        "rivers",
+        "lakes",
+        "nwis",
+        "streamflow",
+        "grace",
+        "groundwater",
+        "smap",
+        "soil-moisture"
+      ]
     }
   ]
 }
