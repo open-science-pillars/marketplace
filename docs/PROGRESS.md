@@ -22,12 +22,13 @@ Legend: 🟢 complete · 🟡 in progress · ⚪ not started · 🔴 blocked · 
 | Task | Status |
 |---|---|
 | Assumption smoke test: 5 items verified and recorded | 🟢 results atop surface-testing-guide.md, 2026-07-04; (d) hosted endpoint down, earthaccess-direct fallback recorded; (a) via marketplace install, PARKING #5 |
-| Surface-testing guide + prompts/ | 🟢 docs-bootstrap/surface-testing-guide.md + prompts/{start,discover-data,report}.md; moves to marketplace/docs/ in Session 1 |
-| Org created (name availability confirmed) | ⚪ |
-| 7 repos scaffolded; canonical docs in marketplace/docs/ | ⚪ |
-| marketplace add works; both plugins install | ⚪ |
-| knowledge/ + verification/ present; zero commands/ | ⚪ |
-| 5 issue templates incl. new_knowledge_concept | ⚪ |
+| Surface-testing guide + prompts/ | 🟢 docs/surface-testing-guide.md + docs/prompts/{start,discover-data,report}.md (moved from docs-bootstrap in Session 1) |
+| Org created (name availability confirmed) | 🟢 created by Paul 2026-07-04; PaulMRamirez admin |
+| 7 repos scaffolded; canonical docs in marketplace/docs/ | 🟢 all seven pushed public 2026-07-04, Session 1 commits; docs-bootstrap deleted |
+| marketplace add works; both plugins install | 🟢 Cd 2026-07-04: add succeeds, core and ocean-science install; needed owner + source-object fixes vs SPEC §2.2 (PARKING #6); Cw/Sc install of the real marketplace waits for Session 5 |
+| knowledge/ + verification/ present; zero commands/ | 🟢 core, ocean-science, plugin-template; `find . -type d -name commands` = 0; template golden notebook green (exit 0) |
+| 5 issue templates incl. new_knowledge_concept | 🟢 .github/.github/ISSUE_TEMPLATE/{bug_report,feature_request,new_skill,new_domain_plugin,new_knowledge_concept}.yml |
+| DCO app installed org-wide (step 8) | 🟡 needs Paul in the web UI: github.com/apps/dco → install for open-science-pillars, all repositories; blocking ruleset deferred to Session 14 |
 
 ## Core Plugin (Sessions 2-5)
 
@@ -103,7 +104,7 @@ Legend: 🟢 complete · 🟡 in progress · ⚪ not started · 🔴 blocked · 
 | Session | Date | Actual hrs | Issues |
 |---|---|---|---|
 | 0b | 2026-07-04 | ~1.0 | osp conda env did not exist, created per guide prerequisites; hosted earthdata-mcp endpoint unreachable (local/Docker paths documented, fallback recorded); Science installs plugins via unlisted marketplace like Cowork (PARKING #5); ecco_access has no top-level ecco_podaac_download (use ecco_download / ecco_podaac_download_subset) |
-| 1 | | | |
+| 1 | 2026-07-04 | ~0.7 | marketplace.json needed two schema fixes vs SPEC §2.2 verbatim (owner object; source objects instead of repository), PARKING #6; DCO app install left as a manual web-UI step; /doctor is TUI-only headless, description budget verified by count (28 skills, 3575 chars), interactive /doctor lands in Session 2; README-START-HERE.md retained in docs/ rather than deleted with docs-bootstrap |
 | 2 | | | |
 | 3 | | | |
 | 4 | | | |
