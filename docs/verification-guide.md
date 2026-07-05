@@ -1,0 +1,7 @@
+# verification-guide
+
+Placeholder. Content authored in Session 12.
+
+- Purpose: golden-notebook practice: fixtures, assertions, headless runs, CI
+- Authoring session: 12
+- Spec reference: SPECIFICATION.md v0.5.1 §2.1, §6

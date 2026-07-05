@@ -1,0 +1,21 @@
+{
+  "name": "open-science-pillars",
+  "version": "0.3.0",
+  "description": "AI-assisted open science for earth, planetary, and applied science: skills, knowledge bundles, verification notebooks, and connectors for Claude Code, Cowork, and Claude Science.",
+  "author": { "name": "Open Science Pillars Community" },
+  "homepage": "https://github.com/open-science-pillars",
+  "plugins": [
+    {
+      "name": "core",
+      "description": "Foundation: earth science data formats, statistics, uncertainty quantification, cartography, quality control, reproducibility, analysis review.",
+      "repository": "open-science-pillars/core",
+      "tags": ["netcdf", "xarray", "cartopy", "geotiff", "zarr", "climate", "geospatial", "qc", "uncertainty", "reproducibility"]
+    },
+    {
+      "name": "ocean-science",
+      "description": "Physical oceanography: ECCO state estimate, SWOT SSH, meridional transport, budget closure, water masses. Install core first.",
+      "repository": "open-science-pillars/ocean-science",
+      "tags": ["oceanography", "ecco", "swot", "podaac", "amoc", "heat-transport", "sea-level"]
+    }
+  ]
+}
