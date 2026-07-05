@@ -78,7 +78,7 @@ Legend: 🟢 complete · 🟡 in progress · ⚪ not started · 🔴 blocked · 
 
 | Deliverable | Status |
 |---|---|
-| Tutorial 1 / 2 (+SWOT) / 3 (Quarto; surfaces recorded) | 🟢 all three pushed 2026-07-05, fresh-walkthrough timed (4.6 / 15.0 / 12.3 min vs 10/20/30 targets); headers record surfaces (T1/T2 Cw/Sc pending with the packet; T3 Code-side by nature) |
+| Tutorial 1 / 2 (+SWOT) / 3 (Quarto; surfaces recorded) | 🟢 all three pushed 2026-07-05, fresh-walkthrough timed (4.6 / 15.0 / 12.3 min vs 10/20/30 targets); headers record surfaces (T1/T2 Cw/Sc pending with the packet; T3 Code-side by nature); in-plugin quickstarts (core, ocean-science) were missed by the Session 11 checkpoint and filled 2026-07-05 on steward catch |
 | arset-style template; knowledge-, eval-, and verification-authoring guides | 🟢 2026-07-05, plus skill/agent/connector/testing guides: zero placeholder docs remain in marketplace/docs |
 | steward-playbook.md + CODEOWNERS (knowledge paths) | 🟢 2026-07-05; playbook with §5.4 checklist and interview script; CODEOWNERS in core and ocean-science map /knowledge/ to @PaulMRamirez |
 | knowledge-seeder agent (drafts with evidence; never merges) | 🟢 2026-07-05 test-passed on PO.DAAC SWOT docs: 4 evidence-linked drafts, 7 open questions, redirects off-domain refused, nothing merged |
