@@ -57,20 +57,20 @@ Legend: 🟢 complete · 🟡 in progress · ⚪ not started · 🔴 blocked · 
 | Item | Cd | Cw | Sc | Notes |
 |---|---|---|---|---|
 | ecco skill + 3 references (ShortNames verified, OCEAN_VEL) | 🟢 | ⚪ | ⚪ | Cd 2026-07-04: 19 ShortNames CMR-audited (51-collection sweep), geometry+THETA granule-verified live, budget formulation tutorial-quoted; refusal test passed (regridded-budget-refusal.md) |
-| swot skill + reference | ⚪ | ⚪ | ⚪ | |
+| swot skill + reference | 🟢 | ⚪ | ⚪ | Cd 2026-07-04: C/D version families CMR-audited, cal/val-only-in-D probed, granule-verified structure |
 | ocean-grids / budget-closure / meridional-transport | 🟢 | ⚪ | ⚪ | read recipes; Cd 2026-07-04 authored under tight supervision, zero hardcoded expected values (verified by review) |
 | water-masses / mixed-layer / sea-level / ocean-indices | 🟢 | ⚪ | ⚪ | Cd 2026-07-04 authored+reviewed; definition-sensitivity framing; V4R4B rule in sea-level, ONI/PDO/AMO convention traps in indices |
-| load-ecco / load-swot (volume gates) | ⚪ | ⚪ | ⚪ | |
+| load-ecco / load-swot (volume gates) | 🟡 | ⚪ | ⚪ | load-swot Cd-green (gate held on 7.25 TB request; cal/val split verified); load-ecco is Session 9 |
 | ocean-budget (native-grid 🔴 rule) | ⚪ | ⚪ | ⚪ | |
 | transport-analysis / compare-obs | ⚪ | ⚪ | ⚪ | |
 | water-mass / mixed-layer / sea-level analysis | ⚪ | ⚪ | ⚪ | |
 | ecco-scout (cites concepts) / budget-auditor (geothermal check) | ⚪ | n/a | n/a | |
 | local config filled (SWOT + Knowledge blocks) | ⚪ | n/a | n/a | |
-| podaac-arc bundle: 4 datasets (+Uncertainty), 5 gotchas, 2 recipes; lint-clean | 🟡 | n/a | n/a | 5 of 11 verified (ecco-v4r4, 2 ECCO gotchas, 2 recipes with live MHT provenance); lint 0 red both runs; SWOT/GRACE/MUR concepts Session 8b |
-| All seed gotchas: evidence links + status: verified (verified_by set) | 🟡 | n/a | n/a | 2 of 5 done (Session 6, Paul verified_by); remaining 3 in Session 8b |
-| 4 ocean golden notebooks green headless | ⚪ | n/a | n/a | |
+| podaac-arc bundle: 4 datasets (+Uncertainty), 5 gotchas, 2 recipes; lint-clean | 🟢 | n/a | n/a | 11 of 11 steward-verified 2026-07-04; three full lints, zero 🔴; Uncertainty sections on all four datasets |
+| All seed gotchas: evidence links + status: verified (verified_by set) | 🟢 | n/a | n/a | 5 of 5, every one evidence-linked, verified_by Paul Ramirez; GIA severity medium per recorded rationale |
+| 4 ocean golden notebooks green headless | 🟡 | n/a | n/a | load_swot.py green 2026-07-04 (its sanity assertion caught a fixture bug pre-ship); remaining three Session 9 |
 | Live ingest practiced (concept in log.md) | ⚪ | n/a | n/a | |
-| evals/ SCHEMA + 5 gotcha/rejection cases | ⚪ | n/a | n/a | Sessions 8b + 10 |
+| evals/ SCHEMA + 5 gotcha/rejection cases | 🟡 | n/a | n/a | SCHEMA + 4 cases drafted 2026-07-04 (two with live seed evidence in behavior corpus); volume-gate case Session 10 |
 | Manual grading pass recorded (RESULTS-seed) | ⚪ | n/a | n/a | Session 10 |
 | Ocean 3-surface end-to-end | ⚪ | ⚪ | ⚪ | |
 
@@ -112,7 +112,7 @@ Legend: 🟢 complete · 🟡 in progress · ⚪ not started · 🔴 blocked · 
 | 6 | 2026-07-04 | ~1.5 | live PO.DAAC fast (209 MB in 7 s), tutorial-sample fallback never needed; ecco_access 0.3.1 quirks found and worked around: static collections get guessed nonexistent filenames (use earthaccess) and bare variable-name queries open an interactive picker that hangs scripts (use exact ShortNames), PARKING #10; V4R4B B-release rows for SSH/OBP discovered in the sweep, PARKING #9; linter check-11 rewordings applied on steward decision; ECCO data cache primed at ~/ECCO_V4r4 for Session 7 |
 | 7 | 2026-07-04 | ~1.1 | MHT 26.5N live-validated: 2010 mean 1.098 PW inside 0.8-1.4, flux year downloaded in 15 s; close lint caught a real self-contradiction (budget-formulation's 1e-9-relative float32 claim vs epsilon ~1.2e-7), reconciled to round-off/epsilon framing with 1e-6 as explicit pass tolerance; conda-run heredoc stdin failure reconfirmed, scripts-from-files is the rule |
 | 8 | 2026-07-04 | ~0.5 | no issues; ran sequentially rather than parallel-worktree (Session 7 momentum made the parallel split unnecessary); all nine ocean knowledge skills now authored |
-| 8b | | | |
+| 8b | 2026-07-04 | ~1.9 | SWOT version-family split discovered by probe (cal/val only in D; C returns empty silently) and became verified gotcha evidence; crid drift within collections recorded; live loads cheap (8 regional granules ~9.4 MB each); volume gate demonstrated on a 7.25 TB request; linter caught three more check-11 phrasings (my recurring drafting habit, all reworded); load_swot golden's own sanity assert caught a fixture-magnitude bug before ship |
 | 9 | | | |
 | 10 | | | |
 | 11 | | | |
