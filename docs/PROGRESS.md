@@ -15,7 +15,7 @@ Legend: 🟢 complete · 🟡 in progress · ⚪ not started · 🔴 blocked · 
 | BUILD-HARNESS.md | 🟢 |
 | PARKING.md (seeded, 4 items) | 🟢 |
 | PROGRESS.md (this file) | 🟢 |
-| AI-for-Science draft (Session 13; deadline 7/15) | ⚪ |
+| AI-for-Science draft (Session 13; deadline 7/15) | 🟢 draft complete 2026-07-05 (workspace root, untracked pending submission) |
 
 ## Infrastructure (Sessions 0b-1)
 
@@ -82,8 +82,8 @@ Legend: 🟢 complete · 🟡 in progress · ⚪ not started · 🔴 blocked · 
 | arset-style template; knowledge-, eval-, and verification-authoring guides | 🟢 2026-07-05, plus skill/agent/connector/testing guides: zero placeholder docs remain in marketplace/docs |
 | steward-playbook.md + CODEOWNERS (knowledge paths) | 🟢 2026-07-05; playbook with §5.4 checklist and interview script; CODEOWNERS in core and ocean-science map /knowledge/ to @PaulMRamirez |
 | knowledge-seeder agent (drafts with evidence; never merges) | 🟢 2026-07-05 test-passed on PO.DAAC SWOT docs: 4 evidence-linked drafts, 7 open questions, redirects off-domain refused, nothing merged |
-| Demo recording + WASM companion | ⚪ |
-| AI-for-Science submitted (≤7/15) | ⚪ |
+| Demo recording + WASM companion | 🟡 script + WASM companion pushed 2026-07-05 (notebook headless-green, export linked from tutorials index); recording is Paul's take |
+| AI-for-Science submitted (≤7/15) | 🟡 draft ready for Paul's submission pass; deadline 2026-07-15 |
 | Fresh-install ×3 surfaces; known-limitations | ⚪ |
 | Announcement (Pangeo / Openscapes / ESIP) | ⚪ |
 
@@ -117,7 +117,7 @@ Legend: 🟢 complete · 🟡 in progress · ⚪ not started · 🔴 blocked · 
 | 10 | 2026-07-04 | ~1.6 | e2e exceeded spec: fetched real RAPID/MOCHA obs via DOI after the official page dead-ended in SharePoint (that discovery became the build's first operational ingest, rapid-mocha.md); e2e honored the local-config gate autonomously by narrowing its own window; eval seed finding: the house uncertainty rule does not reliably fire on uncoached computation prompts outside the report workflow (core uncertainty-statement FAIL, recorded for Phase-2 tuning); Cw/Sc surface pass remains with Paul |
 | 11 | 2026-07-05 | ~1.2 | Quarto wasn't installed (prerequisite gap; user-space tarball install, no sudo); timing claims drafted before measurement were caught and replaced with measured values pre-review; T2 walkthrough ingested the SWOT crossover-calibration finding (ssha arrives uncorrected, +/-2.9 m ramp on flag-gated data) and the whole-pass spatial-match nuance; close lint then showed both SWOT skills routed around the new fact, accommodation diffs applied (PARKING #13 for gotcha promotion) |
 | 12 | 2026-07-05 | ~1.4 | seeder test surfaced enrichment candidates our bundle lacks (C-to-D transition dates, 2024 telemetry window; drafts preserved as test artifacts for optional steward promotion); T3 walkthrough independently rediscovered both known ecosystem wrinkles and negative-tested its golden; Quarto book now three chapters |
-| 13 | | | |
+| 13 | 2026-07-05 | ~0.9 | WASM export path exercised for the first time (marimo export html-wasm; embedded verified numbers, no credentials in-browser); application draft leans on built-Phase-1 evidence (closure numbers, RAPID episode, the scope catch); recording and submission remain with Paul |
 | 14 | | | |
 | 15 | | | |
 | 16 | | | |
