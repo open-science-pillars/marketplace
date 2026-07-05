@@ -72,6 +72,13 @@ One file per workflow skill in `prompts/` (this directory moves to `marketplace/
 
 Current prompt files: `prompts/start.md`, `prompts/discover-data.md`, `prompts/report.md`.
 
+A second prompt class exists beside these: `prompts/behavior/` captures
+each build session's Claude Code acceptance tests verbatim (setup,
+expected behaviors, pass criteria, results log) so they are rerunnable
+after skill edits and feed the Session 10 grading pass and the Phase 2
+evals runner. See `prompts/README.md` for the two classes and their
+conventions.
+
 A surface run passes only if the expected behaviors appear without coaching: no follow-up hints, no rephrasing, no manual skill invocation after the first prompt (the slash form on Code is itself a first prompt).
 
 ---

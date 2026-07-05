@@ -5,6 +5,12 @@
 
 Precondition: run after an analysis exists in the session (the Session 2-4 fixture pipeline, or any small analysis producing at least one headline quantity).
 
+On surfaces without file access, create the precondition inline with this first message (verbatim), then send the conversational form:
+
+```
+Here are annual global temperature anomalies for 2015-2024 in K: 0.90, 0.95, 1.00, 0.98, 1.02, 1.01, 0.85, 0.89, 1.17, 1.29. Compute the mean and the trend.
+```
+
 ## Slash form (Claude Code only)
 
 ```
