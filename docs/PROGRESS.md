@@ -94,7 +94,7 @@ Legend: 🟢 complete · 🟡 in progress · ⚪ not started · 🔴 blocked · 
 | SPEC v0.6 published (PARKING triage executed; hydrology §10; Session 15-19 blocks; autonomy rows) | 🟢 2026-07-05 |
 | Phase-2 pre-registration published before results | 🟢 docs/phase2-preregistration.md, 2026-07-05 |
 | S15 hydrology scaffold + SWOT river/lake | 🟢 2026-07-05: repo live (8th public), skill+loader authored, 2 concepts steward-verified from live granule evidence, golden green (random-vs-systematic gap asserted) |
-| S16 GRACE groundwater + NWIS + SMAP | ⚪ |
+| S16 GRACE groundwater + NWIS + SMAP | 🟢 2026-07-05: 3 skills + 2 loaders, 4 concepts steward-verified from live evidence (P/A transition observed; SPL3SMAP bounded span), §5.7 snapshot demonstrated with provenance + restructure fix, load_nwis golden green |
 | S17 applied pack + canonical home | ⚪ |
 | S18 evals runner + ocean-bundle v0.6 completion | ⚪ |
 | S19 ablation published with intervals | ⚪ |
@@ -134,6 +134,7 @@ Legend: 🟢 complete · 🟡 in progress · ⚪ not started · 🔴 blocked · 
 | 15 (v0.6 spec session) | 2026-07-05 | ~1.0 | Session 15's preconditions were unmet (outline only, no spec detail, triage queued); replanned on steward decision into the v0.6 revision: 13-item PARKING triage executed, SPEC 0.6.0 with §10, guide 2.4.0 with full S15-19 blocks, autonomy rows 15-19, pre-registration published before any Phase-2 result |
 | 15 (build) | 2026-07-05 | ~1.3 | CMR audit found the reach/node collection split, the C/D repeat, LakeSP obs/prior/unassigned, L4 discharge, and SIMULATED pre-launch products in the same catalog (trap recorded); live granule pulls verified anatomy (127-attr reach, 57-attr node, 8x volume asymmetry); close gate caught a scaffold frontmatter escaping bug |
 | 16 | | | |
+| 16 | 2026-07-05 | ~1.2 | live NWIS pull delivered textbook P/A evidence (trailing month 100% P vs 2023 100% A) plus a bonus ingest (dataretrieval nwis.get_dv deprecated for 2027 removal, recorded in skill+concept); close lint caught the flat-snapshot layout breaking pinned relative links (restructured to canonical shape, files byte-identical); steward ruling: rule-9 eval coverage for pinned copies is owned by the canonical bundle |
 | 17 | | | |
 | 18 | | | |
 | 19 | | | |
