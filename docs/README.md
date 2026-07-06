@@ -32,9 +32,11 @@ Authoring guides (how to add each kind of thing):
 - [SPECIFICATION.md](SPECIFICATION.md): what to build (the authoritative spec)
 - [phase2-preregistration.md](phase2-preregistration.md): the pre-registered
   success/stop conditions for the Phase-2 evaluation
-- [design-knowledge-coupling.md](design-knowledge-coupling.md): proposal:
-  how knowledge should couple to skills and agents so the bundle augments
-  behavior over time (prompted by the Session 19 ablation pilot)
+- [design-knowledge-coupling.md](design-knowledge-coupling.md): ADOPTED
+  design for how knowledge couples to skills and agents so the bundle
+  augments behavior over time (with the measured proof-of-concept)
+- [knowledge-coupling-migration.md](knowledge-coupling-migration.md): the
+  tracked goal and per-domain backlog for adopting that model across all repos
 
 ## Build record (historical)
 

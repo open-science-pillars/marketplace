@@ -1,13 +1,13 @@
 # Design note: how knowledge should couple to skills and agents
 
-**Status:** proposal for steward review (not adopted; no code changed).
+**Status:** ADOPTED 2026-07-05 after a measured proof-of-concept (see POC
+results below); migration across all repos in progress.
 **Date:** 2026-07-05. **Prompted by:** the Session 19 ablation pilot and the
 question "the knowledge bundles were meant to augment the skills and agents
 over time: is that happening?"
-**Decision owner:** steward (Paul Ramirez, pro tem). This note proposes a
-SPEC §5 revision and a proof-of-concept; it does not change the spec (the
-build writes spec revisions, not forethought, harness rule 11). Parked as
-PARKING #14.
+**Decision owner:** steward (Paul Ramirez, pro tem). Parked as PARKING #14.
+The candidate SPEC §5 language below is written into the next spec revision by
+the build, not here (harness rule 11).
 
 ## The question
 
@@ -143,6 +143,80 @@ This gives a concrete, measured before/after on one dataset rather than a
 whole-repo refactor on faith. It also doubles as the redesign the Session 19
 amendment already said the powered ablation needs.
 
+## POC results (2026-07-05)
+
+Executed on the `ocean-science/poc-knowledge-coupling` branch: the basin-scope
+anchors and rule were removed from `meridional-transport` and
+`transport-analysis`, transport-analysis was made to discover and consult the
+concepts dynamically, and `ecco-scout` was made to discover by glob/grep. The
+ablation ran on the installed POC plugin, bundle-ON vs bundle-OFF, model
+claude-opus-4-8 (Fable 5 quota-exhausted), N=5, with `Glob`/`Grep` in the
+trials' toolset so the slimmed skill could discover concepts.
+
+| Case | ON | OFF | delta |
+|---|---|---|---|
+| `mht-basin-scope` (knowledge-dependent) | 4/5 (0.80) | 1/5 (0.20) | **+0.60** |
+| `native-grid-refusal` (hard-refusal control) | 5/5 (1.00) | 5/5 (1.00) | 0.00 |
+
+The same `mht-basin-scope` case on the current design (Session 19 pilot) had a
+delta of **0.00**. So the coupling change flipped the bundle from inert to the
+operative driver of behavior (+0.60), while the hard-refusal control stayed at
+ceiling in both arms, confirming the safety floor is unaffected by removing
+knowledge. Caveats: N=5 leaves the intervals slightly overlapping
+(ON `[0.38, 0.96]`, OFF `[0.04, 0.62]`); the effect is large and correctly
+directed but a powered N=20 is needed to resolve the interval away from zero;
+model is Opus, not the pre-registered Fable 5. The success criterion (positive
+resolvable MHT delta, control at ceiling) is met at pilot scale.
+
+## Decision (2026-07-05): adopt, with a rule for what stays hardcoded
+
+Adopted across all repos. Migration proceeds skill by skill and domain by
+domain, on branches, with the ablation re-run on a knowledge-dependent case
+after each domain to confirm the delta holds and the control stays flat.
+
+**Hard-refusals that stay hardcoded in skills (agreed set):** regridded-budget
+refusal, download volume gates, and credential handling (never in a repo).
+These are safety/correctness guards, not lookups.
+
+**The rule for deciding what stays hardcoded** (so the set is a judgment, not a
+list). A behavior stays hardcoded in a skill only if it passes ALL THREE tests;
+otherwise it is dataset knowledge, lives in exactly one concept, and is
+consulted dynamically. The default is knowledge; hardcoding is the exception
+that must justify itself.
+
+1. **Invariance.** It does not change with a product version, a new dataset, or
+   new learning. "A budget on regridded fields never closes" is a property of
+   the math (invariant); "ssha_karin needs `height_cor_xover`" is a property of
+   a product baseline that can change (not invariant, so knowledge).
+2. **Response shape.** The correct response is to REFUSE or GATE (stop, or
+   require explicit confirmation), not to INFORM or ADJUST. Refusals and gates
+   are binary safety valves; informing the scientist or adjusting the analysis
+   is reasoning that should use current knowledge.
+3. **Universality.** Violating it is wrong or unsafe regardless of the dataset
+   or task, so it must fire every time, not most of the time (a correctness
+   invariant, a safety gate, or a security rule).
+
+If a rule is dataset-specific, could change over time, or its right response is
+"inform or adjust" rather than "refuse or gate," it is knowledge. When
+uncertain, put it in knowledge: an over-hardcoded rule silently freezes
+behavior and makes the knowledge layer inert (the exact failure this change
+fixes), whereas an over-delegated rule at worst adds a consult step. Method
+physics that is invariant and not a refusal (for example "a meridional section
+is a set of cell faces, not a `j = const` row") may stay in a skill as
+procedure; it is not a dataset fact and not something a scientist looks up per
+analysis.
+
+**The mechanism, so this becomes the path forward (not a one-time cleanup):**
+the coupling model and this rule go into `build-kit` (the workspace-law
+template and DEVELOPING guide); a reusable review workflow
+(`build-kit/workflows/knowledge-coupling-review.js`) classifies every skill and
+agent against the rule and emits a migration plan; and the knowledge-linter
+gains checks that flag (a) a skill body that inlines a concept's number or
+restates a dataset gotcha rule, (b) a hardcoded rule that does not pass the
+three tests, and (c) a high-severity concept referenced by no consult path (an
+inert concept). Together these make the model self-enforcing: new development
+follows it, and drift is caught mechanically.
+
 ## Candidate SPEC §5 revision (language to consider, not yet applied)
 
 - **§5 coupling rule (new):** "Skills are deterministic procedures and hard
@@ -186,3 +260,17 @@ Order of work, each measured before the next:
 3. Any constraint on the determinism tradeoff: which behaviors, if any, must
    stay hardcoded-guaranteed regardless (candidate list: regridded-budget
    refusal, volume gates, credential handling)?
+
+## Mechanism built (2026-07-05)
+
+Adoption is now self-enforcing, not a one-time cleanup:
+- Global rule 12 in the build-kit CLAUDE template makes the coupling model law
+  for new work; DEVELOPING.md explains the three-layer division.
+- `build-kit/workflows/knowledge-coupling-review.js` classifies every skill and
+  agent against the rule and emits the migration plan (it produced the current
+  backlog: 37 files, 269 raw items, ~53 candidate concepts).
+- The knowledge-linter gains checks 14 (inlined concept content), 15
+  (unjustified hardcode), 16 (inert concept) to catch regressions at close.
+- The goal and per-domain backlog live in `knowledge-coupling-migration.md`;
+  the migration proceeds domain by domain, concepts-with-evidence first, each
+  ablation-verified. The review workflow reporting zero files is the exit test.
