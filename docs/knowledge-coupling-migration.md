@@ -23,8 +23,30 @@ For each domain: (1) author or extend the target concepts WITH evidence and
 steward review (this is the real cost, and it is the ingest loop, not a
 mechanical move); (2) slim the skills to procedure + hard refusals + a
 standing consult step; (3) re-run the ablation on a knowledge-dependent case
-to confirm the delta appears and the control stays flat; (4) re-run the
-review workflow for the domain to confirm zero-remaining.
+to confirm (a) NO REGRESSION on the migrated skills (bundle-ON matches the
+pre-migration pass rate) and (b) augmentability on at least one NON-OBVIOUS
+knowledge-dependent case in the domain (a positive ON-OFF delta); (4) re-run
+the review workflow for the domain to confirm zero-remaining.
+
+**Finding (2026-07-05), which case proves augmentability.** The ablation delta
+appears only where the knowledge is a non-obvious, dataset-specific trap the
+model does not already know. mht-basin-scope (a project-specific software
+scope trap) gave +0.60; geothermal-omission gave 0.00, because geothermal in a
+deep heat budget is general physics the model includes regardless. So the
+migration gate is no-regression PLUS a delta on a non-obvious case; obvious
+concepts are correct safety nets that will not, and need not, move the
+ablation. This also refines the powered ablation (Session 19): select probe
+cases where the concept is genuinely non-obvious.
+
+## Progress (2026-07-05)
+
+- ocean-science cluster 1 (POC): transport-analysis, meridional-transport,
+  ecco-scout migrated and merged; mht-basin-scope delta +0.60.
+- ocean-science cluster 2: ecco, ocean-budget migrated and merged;
+  no-regression verified (geothermal-omission 5/5 both arms); removed the
+  stale inlined 1e-6 tolerance. 5 of 18 ocean files done.
+- Remaining ocean (13 files), then hydrology (11), then core (8), each with
+  the concept authoring their moves require.
 
 ### ocean-science: 18 files, 143 items, 30 candidate new concepts
 

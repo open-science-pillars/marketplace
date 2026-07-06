@@ -274,3 +274,17 @@ Adoption is now self-enforcing, not a one-time cleanup:
 - The goal and per-domain backlog live in `knowledge-coupling-migration.md`;
   the migration proceeds domain by domain, concepts-with-evidence first, each
   ablation-verified. The review workflow reporting zero files is the exit test.
+
+## Finding: not all knowledge moves the ablation (2026-07-05)
+
+Migrating the ecco/ocean-budget cluster and re-running the ablation showed
+geothermal-omission at 0.00 delta (5/5 both arms), versus mht-basin-scope at
++0.60. The migration is correct (no regression, drift removed); the null is
+about the CASE: geothermal in a deep budget is general physics the model knows,
+so that concept is redundant with training and cannot move the ablation. The
+knowledge layer's measurable value concentrates in the non-obvious,
+dataset-specific traps (scope errors, unapplied corrections, version splits,
+provisional data), not the textbook rules. Implication: judge the knowledge
+layer, and migrations, on non-obvious probe cases; obvious concepts remain
+correct safety nets whose value is a guarantee, not a measurable lift.
+
