@@ -58,4 +58,28 @@ is already public and is not counted as a gotcha-avoidance case.
 
 ## Amendments
 
-(none)
+- 2026-07-05 (Session 19): the powered ablation (7 gotcha-avoidance cases x
+  N=20 x 2 arms = 280+ agentic invocations, minutes each) is not feasible as a
+  laptop run and is deferred to a credentialed CI/cloud job; the harness
+  (`evals/runner/ablate.sh`, which strips `knowledge/` from the installed
+  plugin for the OFF arm and restores it) and the run command are staged for
+  that environment. As a harness sanity check only, an UNDERPOWERED PILOT was
+  run this session at N=3 with model claude-opus-4-8 (the pre-registered model
+  claude-fable-5 was quota-exhausted this session). The pilot is explicitly
+  NOT the pre-registered result: its N is too small for a resolved interval and
+  its model differs. It is published to the scoreboard clearly labelled as a
+  pilot, and the go/stop conditions above remain tied to the powered N=20
+  run on the recorded model, not to the pilot.
+- 2026-07-05 (Session 19, pilot finding): the pilot showed NO ON-OFF
+  difference (pooled 0.76 both arms, per-case delta 0.00), which flags a
+  design confound in the ablation as originally specified: the skills carry
+  the gotcha rules (Must-NOT lists and Knowledge-first restatements live in
+  the skill bodies, loaded in both arms), so stripping only `knowledge/` does
+  not change behaviour on these prompts. Before the powered run the ablation
+  design is revisited (ablate the gotcha content from the skills too, or
+  target prompts that need the concept's numeric/uncertainty detail rather
+  than just the trap's existence). A methods refinement discovered by the
+  pilot, logged here rather than silently changing the protocol; the powered
+  run adopts the revised design with its own recorded rationale. Also noted:
+  `ecco-release-mixing` failed in both arms (0/3), either a skill-routing gap
+  or a too-strict grader, to check before the powered run.
