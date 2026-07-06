@@ -19,7 +19,7 @@ place.
 - **Metric:** per-case trap-hit rate with binomial 95% CIs; the
   headline is the pooled risk difference (ON minus OFF) with its CI.
 - **Publication rule:** results publish to the scoreboard and
-  PROGRESS.md with intervals REGARDLESS of outcome, including a null.
+  build-kit/PROGRESS.md with intervals REGARDLESS of outcome, including a null.
 
 ## Go conditions (fund doubling down: Phases 3+ domains, provider expansion)
 

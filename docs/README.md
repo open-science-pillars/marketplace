@@ -35,21 +35,18 @@ Authoring guides (how to add each kind of thing):
 - [design-knowledge-coupling.md](design-knowledge-coupling.md): ADOPTED
   design for how knowledge couples to skills and agents so the bundle
   augments behavior over time (with the measured proof-of-concept)
-- [knowledge-coupling-migration.md](knowledge-coupling-migration.md): the
-  tracked goal and per-domain backlog for adopting that model across all repos
 
-## Build record (historical)
+## Build record and development harness (now in build-kit)
 
-These document how the project was built. They are a truthful record, not
-user or contributor instructions; continuing developers use them via the
-[build-kit](https://github.com/open-science-pillars/build-kit) repo.
+How the project was built, and how to continue developing it, now live in the
+[build-kit](https://github.com/open-science-pillars/build-kit) repo, not here:
+the initiative/session plan (`IMPLEMENTATION-GUIDE.md`), the development status
+tracker (`PROGRESS.md`), the parking lot (`build-record/PARKING.md`), the
+harness design rationale (`build-record/BUILD-HARNESS.md`), the original
+bootstrap orientation (`build-record/README-START-HERE.md`), and the
+knowledge-coupling migration record
+(`build-record/knowledge-coupling-migration.md`). Start at
+`build-kit/DEVELOPING.md` and `build-kit/docs/development-model.md`.
 
-- [IMPLEMENTATION-GUIDE.md](IMPLEMENTATION-GUIDE.md): the session-by-session
-  build order
-- [PROGRESS.md](PROGRESS.md): the live build status tracker and session log
-- [PARKING.md](PARKING.md): the scope-freeze holding pen and triage log
-- [BUILD-HARNESS.md](BUILD-HARNESS.md): the session protocol's design
-  rationale (the runnable version lives in build-kit)
-- [announcement-draft.md](announcement-draft.md): a launch announcement draft
-- [README-START-HERE.md](README-START-HERE.md): the original bootstrap
-  orientation
+Still here (launch comms, not build machinery):
+[announcement-draft.md](announcement-draft.md), a launch announcement draft.

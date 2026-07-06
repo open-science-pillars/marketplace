@@ -5,7 +5,7 @@ An honest summary of what is verified where, and the caveats we ship with.
 ## Surface deltas
 
 - **Code-verified vs conversational surfaces.** Every behavioral claim
-  in PROGRESS.md's Cd column is test-backed on Claude Code. Cowork and
+  is test-backed on Claude Code. Cowork and
   Claude Science verification is in progress: the surface-parity
   prompts (docs/prompts/) define the tests, and tutorial headers
   record per-surface status. Until those columns fill, treat

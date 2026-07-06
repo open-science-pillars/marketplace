@@ -1,11 +1,12 @@
 # Open Science Pillars: Specification
 
 **Organization:** Open Science Pillars (github.com/open-science-pillars)
-**Version:** 0.6.1 (documentation and continuity pass)
-**Date:** 2026-07-05
+**Version:** 0.6.2 (build-record relocation to build-kit)
+**Date:** 2026-07-06
 **Scope:** Phase 1 (built; core + ocean-science + infrastructure + knowledge + verification + evals seed + stewardship) plus Phase 2 spec detail (hydrology bridge, §10)
 
 **Changelog:**
+- 0.6.2 (2026-07-06, development-model pass): the build record and development harness (IMPLEMENTATION-GUIDE, PROGRESS, PARKING, BUILD-HARNESS, README-START-HERE, and the knowledge-coupling migration record) relocated from `marketplace/docs` to the `build-kit` repo, co-locating them with the harness skills that read them; the §1.1 `build-kit` row and the §2.1 tree updated accordingly. `marketplace/docs` now holds only public-facing canonical docs, guides, and commitments. No Phase-1 scope change (freeze intact). Companion: `build-kit/docs/development-model.md` reframes future work as spec-anchored initiatives plus standing processes, retiring the single linear session sequence.
 - 0.6.1 (2026-07-05, documentation and continuity pass): added the `build-kit` repo to the §1.1 table (the development harness, so the session protocol is no longer a personal-workspace single point of failure). Non-spec companion work in the same pass (not changing this spec's requirements): build-era artifact references removed from public-facing content; a user glossary and a docs map added; the newcomer and contributor doc paths repaired; broken cross-repo evidence links in the canonical knowledge bundle fixed. Driven by a five-persona documentation review.
 - 0.6.0 (2026-07-05, written by the build per harness rule 11 after the post-Session-10 PARKING triage): §0.1/§2.3 Claude Science install corrected to observed marketplace-install behavior (PARKING #5); §0.3 description-budget verification instrument corrected from /doctor to the /skills panel (PARKING #7); §2.2 marketplace.json verbatim block replaced with the CLI-validated working schema (owner object, source objects; PARKING #6); §9 non-author acceptance criterion restored and launch success criteria referenced (PARKING #1, #3); new §10 Hydrology Plugin (Phase 2 spec detail) including the v0.6 ocean-bundle completion list scheduled into Session 18 (PARKING #8, #9, #11, #12, #13). Phase-2 go/stop pre-registration published separately (docs/phase2-preregistration.md, PARKING #2).
 - 0.5.1 erratum (same date, no version bump, freeze intact): PARKING.md added to the §2.1 docs listing for consistency with harness rule 11; title punctuation normalized. No scope change.
@@ -79,14 +80,14 @@ Plugins are cached and cannot reference files outside their own directory: no `.
 
 | Repository | Purpose | Phase |
 |---|---|---|
-| `marketplace` | Plugin catalog, governance, canonical docs, PROGRESS.md | 1 |
+| `marketplace` | Plugin catalog, governance, canonical docs (spec, architecture, guides) | 1 |
 | `core` | Foundation plugin | 1 |
 | `ocean-science` | Ocean domain plugin (ECCO + SWOT SSH; the PO.DAAC arc) | 1 |
 | `tutorials` | Quarto tutorials, templates, demos | 1 |
 | `plugin-template` | Scaffold for new domain plugins | 1 |
 | `knowledge-template` | Scaffold for new OKF knowledge bundles | 1 |
 | `.github` | Org profile, issue templates, CoC, governance | 1 |
-| `build-kit` | Development harness: session skills, workspace-law template, bootstrap, DEVELOPING guide, doc-review workflow | 1 (infra) |
+| `build-kit` | Development harness: session/initiative skills, workspace-law template, bootstrap, DEVELOPING guide, workflows, and the build record (IMPLEMENTATION-GUIDE, PROGRESS, PARKING, BUILD-HARNESS) | 1 (infra) |
 | `hydrology` | SWOT rivers/lakes, GRACE-FO, NWIS, SMAP | 2 |
 | `nasa-daac-knowledge` | Standalone per-DAAC bundles (podaac first) | 2 |
 | `earthaccess-mcp` | Connector wrapping NASA earthaccess | 2 |
@@ -115,19 +116,19 @@ marketplace/
 └── docs/
     ├── ARCHITECTURE.md              # canonical strategy doc
     ├── SPECIFICATION.md             # this document
-    ├── IMPLEMENTATION-GUIDE.md
-    ├── BUILD-HARNESS.md
-    ├── PROGRESS.md                  # per-surface build status
+    ├── design-knowledge-coupling.md # ADOPTED coupling design (feeds §5)
+    ├── phase2-preregistration.md    # pre-registered go/stop conditions (public)
     ├── skill-authoring-guide.md     # frontmatter standard + budget rule
     ├── agent-authoring-guide.md
     ├── knowledge-authoring-guide.md # OKF concepts incl. Uncertainty sections, trainings links
     ├── eval-authoring-guide.md      # case schema, graders, trials and CI reporting (§8)
     ├── steward-playbook.md          # steward duties, review checklist, onboarding (§5.4)
-    ├── PARKING.md                   # freeze holding pen (harness rule 11)
     ├── verification-guide.md        # golden-notebook practice (§6)
     ├── connector-guide.md
     ├── surface-testing-guide.md     # three-surface harness + prompts/
     └── testing-guide.md
+# The build record (IMPLEMENTATION-GUIDE, PROGRESS, PARKING, BUILD-HARNESS)
+# now lives in the build-kit repo, not here.
 ```
 
 ### 2.2 marketplace.json
@@ -428,7 +429,7 @@ pass_threshold: 0.8
 
 ## 9. Acceptance Criteria
 
-Per-surface recording (Cd/Cw/Sc) for behavioral items in PROGRESS.md.
+Per-surface recording (Cd/Cw/Sc) for behavioral items in build-kit/PROGRESS.md.
 
 **Infrastructure:** org and all Phase-1 repos live with LICENSE/README/CITATION.cff; marketplace add and both installs work; zero `commands/` directories anywhere.
 

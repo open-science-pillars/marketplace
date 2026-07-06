@@ -3,7 +3,7 @@
 **Created:** Session 0b, 2026-07-04 · **Spec basis:** SPEC §0 (surface parity), §2.3 (install experience), §3.4 (workflow skill behaviors)
 **Location note:** authored in `docs-bootstrap/` before Session 1; Session 1 step 6 moves it to `marketplace/docs/` with the other canonical docs (per BUILD-HARNESS §1, single source of truth).
 
-Everything in Open Science Pillars targets three surfaces equally: Claude Code (Cd), Claude Cowork (Cw), and Claude Science (Sc). This guide is the harness for proving that: the assumption record below, the standard prompt set, the per-surface install steps, and the convention for recording results in PROGRESS.md.
+Everything in Open Science Pillars targets three surfaces equally: Claude Code (Cd), Claude Cowork (Cw), and Claude Science (Sc). This guide is the harness for proving that: the assumption record below, the standard prompt set, the per-surface install steps, and the convention for recording results in build-kit/PROGRESS.md.
 
 ---
 
@@ -85,13 +85,13 @@ A surface run passes only if the expected behaviors appear without coaching: no 
 
 ## Recording convention (PROGRESS Cd/Cw/Sc columns)
 
-PROGRESS.md carries three surface columns per item: Cd, Cw, Sc. Legend as in PROGRESS.md: 🟢 complete, 🟡 in progress, ⚪ not started, 🔴 blocked, n/a not applicable.
+PROGRESS.md carries three surface columns per item: Cd, Cw, Sc. Legend as in build-kit/PROGRESS.md: 🟢 complete, 🟡 in progress, ⚪ not started, 🔴 blocked, n/a not applicable.
 
 Rules:
 
 1. A column changes only on evidence from that surface (harness rule 8): the prompt file used, the date, and pass/fail. One line per run in the Notes column or the session log, format: `Cd 2026-07-04 start ✓`.
 2. Slash and conversational are both required for a Cd 🟢 on a workflow skill (SPEC §0.4: acceptance includes conversational invocation).
-3. Never claim Cw or Sc from a Cd result. The session-close gate (BUILD-HARNESS §4 gate 5) lists which items still need Cw and Sc; those columns stay ⚪ or 🟡 until run.
+3. Never claim Cw or Sc from a Cd result. The session-close gate (build-kit/build-record/BUILD-HARNESS.md gate 5) lists which items still need Cw and Sc; those columns stay ⚪ or 🟡 until run.
 4. A pass with friction (wording had to be interpreted generously, output partially matched) is 🟡 with a note here in Known Differences, not 🟢.
 
 ---

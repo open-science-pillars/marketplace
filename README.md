@@ -45,8 +45,9 @@ guides in [docs/](docs/) (knowledge, skill, agent, eval, verification,
 connector, and testing guides), plus the [steward playbook](docs/steward-playbook.md).
 
 **Design and strategy:** [ARCHITECTURE.md](docs/ARCHITECTURE.md) (why) and
-[SPECIFICATION.md](docs/SPECIFICATION.md) (what). The build record
-(IMPLEMENTATION-GUIDE, PROGRESS, BUILD-HARNESS) also lives in docs/; see
+[SPECIFICATION.md](docs/SPECIFICATION.md) (what). The build record and the
+development harness (IMPLEMENTATION-GUIDE, PROGRESS, BUILD-HARNESS) now live in
+the [build-kit](https://github.com/open-science-pillars/build-kit) repo; see
 [docs/README.md](docs/README.md) for the map.
 
 ## Community

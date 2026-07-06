@@ -6,7 +6,7 @@ Two prompt classes live here, with different jobs:
    surface-testing-guide.md): one file per workflow skill, fixing the
    slash form and ONE conversational phrasing used verbatim on all three
    surfaces. These prove packaging parity (Cd/Cw/Sc columns in
-   PROGRESS.md). Current: start.md, discover-data.md, report.md; ocean
+   build-kit/PROGRESS.md). Current: start.md, discover-data.md, report.md; ocean
    prompts land in Session 9.
 
 2. **Behavior-test prompts** (`behavior/*.md`): the Claude Code
