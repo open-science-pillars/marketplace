@@ -22,10 +22,10 @@ apply this filter, so the true movable set is smaller than the raw 269.
 
 Steward review passed: all 16 migration concepts promoted draft to verified
 (verified_by OSP steward review), placeholder evidence replaced with resolving
-authoritative sources, reinstalled live. Byte-identity preserved. The only
-remaining follow-up is the small set of facts to add to the protected
-byte-identical concepts (below), each requiring a coordinated edit to both the
-canonical nasa-daac-knowledge copy and the pinned snapshots.
+authoritative sources, reinstalled live. Byte-identity preserved. All follow-up is now applied: the six facts flagged for the protected
+byte-identical concepts were added to the canonical nasa-daac-knowledge copies
+and re-synced to the snapshots (2026-07-06), byte-identity verified. The
+knowledge-coupling initiative is fully closed.
 
 ## Progress (2026-07-05): migration executed
 
@@ -48,13 +48,11 @@ Steward review punch list (drafts to verify):
 1. Real evidence links: several drafts carry a "relocated from <skill> during
    the migration, needs a steward evidence link" placeholder.
 2. Severity calibration + eval cases for any gotcha promoted to high (rule 9).
-3. Facts to add to PROTECTED (byte-identical) concepts, flagged by the
-   migration and NOT auto-edited: GRACE ~300 km effective resolution and the
-   small-basin corollary; THETA=potential-temperature / SALT=practical-salinity
-   flavor gloss; the double-hFac budget trap; the NWIS rating-revision trigger
-   (floods and channel shifts); CF packed-data (scale_factor/add_offset); the
-   CF `license` global attribute. Each must be added to BOTH the canonical
-   nasa-daac-knowledge copy and the pinned snapshots to preserve byte-identity.
+3. Facts added to PROTECTED concepts (DONE 2026-07-06, byte-identity preserved):
+   GRACE ~300 km resolution + small-basin caveat (grace-fo-mascons);
+   THETA/SALT flavor gloss + double-hFac trap (ecco-v4r4); NWIS rating-revision
+   trigger (nwis-streamflow); CF packed-data + `license` attribute
+   (cf-conventions). Canonical edited, snapshots re-synced.
 
 Workflow lesson (for the review/migration workflows): parallel agents must NOT
 edit shared files (index.md, log.md) concurrently: a core race clobbered 4 of 5
