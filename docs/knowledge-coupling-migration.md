@@ -18,7 +18,16 @@ as skill procedure. The rule's third category (invariant method procedure)
 covers them; only dataset-specific, changeable knowledge moves. Reviewers
 apply this filter, so the true movable set is smaller than the raw 269.
 
-## Progress (2026-07-05): MIGRATION COMPLETE (skills), concepts in steward review
+## Progress: MIGRATION COMPLETE and VERIFIED (2026-07-06)
+
+Steward review passed: all 16 migration concepts promoted draft to verified
+(verified_by OSP steward review), placeholder evidence replaced with resolving
+authoritative sources, reinstalled live. Byte-identity preserved. The only
+remaining follow-up is the small set of facts to add to the protected
+byte-identical concepts (below), each requiring a coordinated edit to both the
+canonical nasa-daac-knowledge copy and the pinned snapshots.
+
+## Progress (2026-07-05): migration executed
 
 All 37 skill/agent files across core, ocean-science, and hydrology are migrated
 and pushed to main: slimmed to procedure + hard refusals, dataset knowledge
@@ -26,8 +35,7 @@ consulted from concepts, no stale inlined numbers remain, byte-identity of the
 podaac mirror preserved throughout. Done via the review workflow (scoping) and
 the migration workflow (per-file, parallel), with manual reconciliation.
 
-16 new concepts were authored as DRAFTS (status: draft), the correct
-ingest-loop state; they need steward review to become verified:
+16 new concepts were authored as drafts, then steward-verified 2026-07-06:
 - ocean-science (10): mld-criteria, sea-level-budget-closure, enso/nao/pdo/amo
   indices (conventions); ecco-ssh-ib-variants, ecco-boussinesq-global-steric,
   ecco-mxldepth-criterion, ecco-native-density-eos (gotchas).
