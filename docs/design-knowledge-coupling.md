@@ -1,7 +1,7 @@
 # Design note: how knowledge should couple to skills and agents
 
 **Status:** ADOPTED 2026-07-05 after a measured proof-of-concept (see POC
-results below); migration across all repos in progress.
+results below); migration across all repos COMPLETE (skills); the 16 new concepts are drafts in steward review.
 **Date:** 2026-07-05. **Prompted by:** the Session 19 ablation pilot and the
 question "the knowledge bundles were meant to augment the skills and agents
 over time: is that happening?"

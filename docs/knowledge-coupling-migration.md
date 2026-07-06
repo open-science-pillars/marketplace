@@ -18,6 +18,44 @@ as skill procedure. The rule's third category (invariant method procedure)
 covers them; only dataset-specific, changeable knowledge moves. Reviewers
 apply this filter, so the true movable set is smaller than the raw 269.
 
+## Progress (2026-07-05): MIGRATION COMPLETE (skills), concepts in steward review
+
+All 37 skill/agent files across core, ocean-science, and hydrology are migrated
+and pushed to main: slimmed to procedure + hard refusals, dataset knowledge
+consulted from concepts, no stale inlined numbers remain, byte-identity of the
+podaac mirror preserved throughout. Done via the review workflow (scoping) and
+the migration workflow (per-file, parallel), with manual reconciliation.
+
+16 new concepts were authored as DRAFTS (status: draft), the correct
+ingest-loop state; they need steward review to become verified:
+- ocean-science (10): mld-criteria, sea-level-budget-closure, enso/nao/pdo/amo
+  indices (conventions); ecco-ssh-ib-variants, ecco-boussinesq-global-steric,
+  ecco-mxldepth-criterion, ecco-native-density-eos (gotchas).
+- core (5): smell-test-ranges, physical-bounds-screening,
+  satellite-qa-flag-decoding, dataset-citations (conventions); hamed-rao-mk-nan
+  (gotcha).
+- hydrology (1): grace-groundwater-partitioning (recipe).
+
+Steward review punch list (drafts to verify):
+1. Real evidence links: several drafts carry a "relocated from <skill> during
+   the migration, needs a steward evidence link" placeholder.
+2. Severity calibration + eval cases for any gotcha promoted to high (rule 9).
+3. Facts to add to PROTECTED (byte-identical) concepts, flagged by the
+   migration and NOT auto-edited: GRACE ~300 km effective resolution and the
+   small-basin corollary; THETA=potential-temperature / SALT=practical-salinity
+   flavor gloss; the double-hFac budget trap; the NWIS rating-revision trigger
+   (floods and channel shifts); CF packed-data (scale_factor/add_offset); the
+   CF `license` global attribute. Each must be added to BOTH the canonical
+   nasa-daac-knowledge copy and the pinned snapshots to preserve byte-identity.
+
+Workflow lesson (for the review/migration workflows): parallel agents must NOT
+edit shared files (index.md, log.md) concurrently: a core race clobbered 4 of 5
+registrations, fixed by hand. The migration workflow should have agents return
+their index/log entries for the orchestrator to apply once, not edit the shared
+files directly.
+
+## Superseded per-domain backlog (kept for history)
+
 ## Execution order (per domain; each domain is a branch, ablation-verified)
 
 For each domain: (1) author or extend the target concepts WITH evidence and
