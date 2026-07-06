@@ -1,6 +1,7 @@
 # Knowledge-coupling migration: the goal and the backlog
 
-**Goal:** every skill and agent across all repos conforms to the
+**Goal (dedicated pass, steward-directed 2026-07-05):** migrate EVERYTHING and
+push it; every skill and agent across all repos conforms to the
 knowledge-coupling model (design-knowledge-coupling.md): skills are
 deterministic procedures plus hard refusals; dataset knowledge lives in one
 concept, consulted dynamically. **Done when** the review workflow
@@ -42,6 +43,15 @@ cases where the concept is genuinely non-obvious.
 
 - ocean-science cluster 1 (POC): transport-analysis, meridional-transport,
   ecco-scout migrated and merged; mht-basin-scope delta +0.60.
+- ocean-science COMPLETE (18/18 files migrated and merged, 10 new draft
+  concepts pending steward review). Byte-identity preserved.
+- Grader finding: the quick programmatic ablations under-report the ON-OFF
+  delta because keyword-matching graders are fooled by "consult the concept
+  for X" pointers (the keyword appears without the knowledge being applied).
+  The rubric judge (skipped for speed in the pilots) and discriminating
+  graders measure real application; mht-basin-scope's +0.60 (a discriminating
+  grader) is the reliable augmentability proof. The powered Session-19 ablation
+  must use the rubric judge, not programmatic-only.
 - ocean-science cluster 2: ecco, ocean-budget migrated and merged;
   no-regression verified (geothermal-omission 5/5 both arms); removed the
   stale inlined 1e-6 tolerance. 5 of 18 ocean files done.
