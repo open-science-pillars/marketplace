@@ -4,6 +4,10 @@
 
 **The three decisions this version encodes:**
 
+> **Current-scope note (2026-07-15):** this historical strategy defines the
+> three Claude surfaces. Native Codex plugin distribution is tracked as a
+> federated roadmap proposal and is not yet a supported plugin surface.
+
 1. **All three surfaces weighted equally.** Claude Science, Claude Code, and Claude Cowork are co-equal targets. Everything we build is surface-neutral markdown, packaged three ways, tested three ways.
 2. **Remote sensing is the horizontal, not a vertical.** "Everything one would do in the remote sensing world" means remote sensing becomes a measurement-layer capability that every science domain consumes, spanning NASA, NOAA, Copernicus, USGS, commercial archives, and model outputs.
 3. **The PO.DAAC arc is the strategic spine.** ECCO for depth, SWOT as the oceanography-to-hydrology bridge (matching the Science Enabling Teams transition), GRACE-FO and Sentinel-6 completing the set. Center-managed archive, center-built missions, two disciplines, one coherent story.
