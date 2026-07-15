@@ -41,10 +41,13 @@ An honest summary of what is verified where, and the caveats we ship with.
   uninstall/reinstall); marketplace plugin sources must live at or
   below the marketplace directory; `ecco_access` statics need
   earthaccess; bare variable-name queries hang scripted use.
-- **Deferred to a later revision** (tracked in the project roadmap): fill-value and
-  GIA/V4R4B/crossover eval-case promotions, salt/volume budget
-  recipes, spec-text alignments (marketplace.json schema, /skills vs
-  /doctor, Science install path).
+- **The powered knowledge-bundle ablation is not complete.** The N=3 pilot was
+  underpowered and exposed a confound; the roadmap requires a pre-registered
+  amendment, calibrated non-obvious probes, and a published powered run before
+  the Phase-3 gate can clear.
+- **Codex distribution is proposed, not yet a supported plugin surface.** The
+  roadmap tracks native manifests, catalog packaging, and activation tests.
+  The roadmap maintenance harness itself supports both Claude Code and Codex.
 
 ## Non-author validation
 

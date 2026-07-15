@@ -23,6 +23,11 @@
 
 Everything targets three surfaces equally: **Claude Code**, **Claude Cowork**, and **Claude Science**. One markdown source, three packagings.
 
+**Codex status (2026-07-15):** native Codex distribution is a roadmap proposal,
+not a current plugin-support claim. The organization maintenance harness runs
+on Claude Code and Codex, while plugin manifests, clean-install verification,
+and activation evals remain acceptance criteria for the proposed Codex surface.
+
 ### 0.1 Packaging matrix
 
 | Surface | Packaging | Install | Invocation |
