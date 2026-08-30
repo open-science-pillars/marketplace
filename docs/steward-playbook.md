@@ -27,12 +27,16 @@ be confused:
   verified by the interim steward are re-reviewed by the incoming provider
   steward at handoff (this is part of accepting the bundle).
 - Approve ingest-loop drafts the sessions produce; promote
-  seeder/assistant drafts from `draft` to `verified` only after the
-  checklist below; set `verified` and `verified_by` at approval.
+  seeder/assistant drafts from `draft` to `stable` only after the
+  checklist below; add a `verified: {by: human:<id>, at}` event at
+  approval (OKF v0.2 §5.2; the `human:` prefix is what yields the
+  human-reviewed trust tier, and the event is added by your hands,
+  never by the drafting agent).
 - Run (or receive) the knowledge-linter before releases and act on its
   findings; recorded acceptances of 🟡 findings go in log.md.
 - Sweep a dataset's concepts when its product baseline changes
-  (status: stale, then re-verify).
+  (staleness is a date comparison in v0.2: pull `stale_after` up to
+  mark the sweep, then re-verify and set the next date).
 - Keep index.md and log.md honest; the log records decision chains,
   not just edits (see the existing entries for the pattern).
 
@@ -50,7 +54,7 @@ be confused:
    states its scope.
 4. A reproduction or eval case exists where required; reproducing
    tests are preferred evidence.
-5. Verification fields set at approval; log entry written.
+5. Verified event added at approval; log entry written.
 6. §5.8 sweep: declarative voice, no directives to the agent (the
    knowledge-linter's imperative-phrasing scan helps, but the steward is
    the control).

@@ -351,9 +351,24 @@ Every bundle (and, in large bundles, every subdirectory) has named stewards in C
 
 Prioritization: the PO.DAAC arc first, then per-domain by usage. A dataset is **seeded** when its dataset concept exists (with Uncertainty section and verified access), every *known* high-severity trap is captured with evidence, and at least one recipe exists where a canonical workflow does. There are no numeric quotas: an evidence-free concept is worse than a gap.
 
-### 5.6 Lifecycle and status
+### 5.6 Lifecycle and status (v0.7 CANDIDATE: OKF v0.2 vocabulary)
 
-Required `status` on every concept: `draft` (unreviewed; consultable but voiced as unverified) → `verified` (steward-reviewed; `verified` and `verified_by` set) → `stale` (set by the linter past the staleness threshold, or by a steward on a product-baseline change; triggers re-verification) → `superseded` (kept for history with a `superseded_by` link) or `disputed` (linked open issue; skills MUST state the dispute when citing). A product baseline change (for example, a SWOT processing-version bump) triggers a steward sweep of that dataset's concepts. Skills surface status when citing: high-severity claims are voiced with their verification provenance.
+> CANDIDATE language, drafted in the OKF v0.2 migration window
+> (marketplace issue #6, 2026-08-30); it becomes normative when SPEC
+> v0.7 is cut. The vendored spec text in docs/upstream is the
+> conformance reference meanwhile.
+
+`status` on every concept is `draft` (unreviewed; consultable but voiced as unverified), `stable` (ready for consumption; the default when absent), or `deprecated` (kept for links and history; the OSP extension key `superseded_by` names the replacement). Trust lives outside status: steward approval adds a `verified: {by: human:<id>, at}` event (independent checks append to the list), and consumers derive the trust tier (unverified, machine-confirmed, human-reviewed) from the events, keyed on the `human:` prefix. Staleness is a date comparison: `stale_after` carries the sweep date and a concept is stale once now >= stale_after; a product baseline change (for example, a SWOT processing-version bump) pulls the date up and triggers a steward sweep of that dataset's concepts. A dispute is the OSP extension `disputed: <open issue URL>` on a stable concept; skills MUST state the dispute when citing. Skills surface status and tier when citing: high-severity claims are voiced with their verification provenance.
+
+Migration mapping (SPEC v0.6 to OKF v0.2, applied to the bundles 2026-08-30):
+
+| v0.6 status | v0.2 form |
+|---|---|
+| `draft` | `status: draft` |
+| `verified` | `status: stable` plus a `verified: {by: human:<id>, at}` event |
+| `stale` | `status: stable` plus `stale_after: <sweep date>` |
+| `superseded` | `status: deprecated`, `superseded_by` kept as an extension key |
+| `disputed` | `status: stable` plus `disputed: <issue-url>` (extension; no v0.2 equivalent) |
 
 ### 5.7 Precedence, canonical home, and snapshots
 

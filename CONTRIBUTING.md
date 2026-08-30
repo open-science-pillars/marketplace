@@ -24,10 +24,17 @@ authoring guides in [docs/](docs/) expand them with worked detail:
 4. Plugins are self-contained: no `../` paths across repos.
 5. Every workflow skill that encodes a computation ships a marimo golden
    notebook in `verification/` that runs green headless.
-6. Knowledge concepts follow SPECIFICATION.md §5: `type` and `status` in
-   frontmatter; datasets carry an `## Uncertainty` section; gotchas link
-   their dataset and carry at least one evidence link; update the bundle's
-   `log.md`. Concepts state facts about data; they never instruct the agent.
+6. Knowledge concepts follow SPECIFICATION.md §5 and OKF v0.2 (the exact
+   spec text is vendored under docs/upstream, pinned by commit): `type`
+   plus the v0.2 families in frontmatter (`status` in draft | stable |
+   deprecated; `generated: {by, at}`; steward approval recorded as a
+   `verified: {by: human:<id>, at}` event; `sources` entries with stable
+   ids that body claims join via `[^id]` footnotes; `stale_after`);
+   datasets carry an `## Uncertainty` section; gotchas link their dataset
+   and carry at least one source; update the bundle's `log.md`. Concepts
+   state facts about data; they never instruct the agent. Unsure whether
+   something is knowledge or a skill? Run the decision aid in
+   [docs/knowledge-vs-skills.md](docs/knowledge-vs-skills.md).
 7. Prose style: no em dashes; use commas, colons, parentheses, or semicolons.
 
 ## Mechanics
