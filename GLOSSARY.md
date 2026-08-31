@@ -73,5 +73,10 @@ If a plugin README or tutorial uses a word you don't recognize, it's here.
 - For real analyses: a **Python environment** with the scientific stack
   (xarray, netCDF4, matplotlib; ocean work adds earthaccess, xgcm, and the
   ECCO libraries; the tutorials list exact packages).
-- For NASA data: an **Earthdata Login** in `~/.netrc` (machine
-  `urs.earthdata.nasa.gov`, `chmod 600`). USGS water data needs no login.
+- For DOWNLOADING NASA data: an **Earthdata Login**. Searching CMR and
+  reading knowledge bundles need no account; the credential is only for
+  moving bytes. earthaccess looks for it in the environment first
+  (`EARTHDATA_TOKEN`, or username and password variables), then
+  `~/.netrc` (machine `urs.earthdata.nasa.gov`, `chmod 600`), then an
+  interactive prompt. Never commit either form to a repository. USGS
+  water data needs no login at all.

@@ -378,7 +378,7 @@ The canonical home of provider knowledge is the provider bundle (e.g., nasa-daac
 
 ### 5.8 Security posture: knowledge is declarative
 
-Installed skills and knowledge bundles are an instruction supply chain into every user's agent, which makes a malicious or careless PR a prompt-injection vector. The rule: **concepts state facts about data; they never instruct the agent.** No imperatives directed at Claude, no tool-invocation directives, no meta-instructions inside concept bodies; skills treat concept content strictly as data to reason over. The knowledge-linter scans concepts for instruction-like phrasing and flags hits for steward review, and steward review of knowledge and skill PRs is understood as a security control, not only a quality control. Credentials never appear in any repo (Earthdata via ~/.netrc or connector configuration only).
+Installed skills and knowledge bundles are an instruction supply chain into every user's agent, which makes a malicious or careless PR a prompt-injection vector. The rule: **concepts state facts about data; they never instruct the agent.** No imperatives directed at Claude, no tool-invocation directives, no meta-instructions inside concept bodies; skills treat concept content strictly as data to reason over. The knowledge-linter scans concepts for instruction-like phrasing and flags hits for steward review, and steward review of knowledge and skill PRs is understood as a security control, not only a quality control. Credentials never appear in any repo (an Earthdata Login lives in the environment, in ~/.netrc, or in connector configuration, and is needed only for downloads).
 
 ### 5.9 Connectors (v0.7 CANDIDATE: the REACH plane)
 

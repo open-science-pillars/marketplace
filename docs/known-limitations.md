@@ -10,8 +10,9 @@ An honest summary of what is verified where, and the caveats we ship with.
   prompts (docs/prompts/) define the tests, and tutorial headers
   record per-surface status. Until those columns fill, treat
   Cowork/Science behavior as expected-but-unverified.
-- **Computation lives Code-side.** Downloads (Earthdata login via
-  ~/.netrc) and heavy computation run where your Python environment
+- **Computation lives Code-side.** Downloads (the only step needing
+  an Earthdata Login) and heavy computation run where your Python
+  environment
   is. On Cowork and Science the workflows exercise planning, gates,
   discovery, and reporting; the gate presenting a download it cannot
   perform is designed behavior.
