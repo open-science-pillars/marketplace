@@ -10,8 +10,9 @@ An honest summary of what is verified where, and the caveats we ship with.
   prompts (docs/prompts/) define the tests, and tutorial headers
   record per-surface status. Until those columns fill, treat
   Cowork/Science behavior as expected-but-unverified.
-- **Computation lives Code-side.** Downloads (Earthdata login via
-  ~/.netrc) and heavy computation run where your Python environment
+- **Computation lives Code-side.** Downloads (the only step needing
+  an Earthdata Login) and heavy computation run where your Python
+  environment
   is. On Cowork and Science the workflows exercise planning, gates,
   discovery, and reporting; the gate presenting a download it cannot
   perform is designed behavior.
@@ -34,8 +35,11 @@ An honest summary of what is verified where, and the caveats we ship with.
   uncertainty statement (core RESULTS-seed.md). The house rule is
   enforced in the report workflow and checked by analysis-review; the
   ambient behavior is the first Phase-2 tuning target.
-- **The hosted Earthdata MCP endpoint was unreachable at build time**;
-  discovery uses the documented knowledge-based fallback and names it.
+- **Discovery names its source.** The hosted Earthdata MCP endpoint was
+  unreachable at build time and is reachable again as of 2026-08-31,
+  verified by listing its tools and running an unauthenticated probe.
+  Discovery uses it when available and the documented knowledge-based
+  fallback when not, naming which one it used either way.
 - **Ecosystem wrinkles** (also noted in the tutorials):
   plugin updates are version-gated (same-version refreshes need
   uninstall/reinstall); marketplace plugin sources must live at or

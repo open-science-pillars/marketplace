@@ -13,5 +13,6 @@ documents them per SPEC §3.1.
 - Per-surface reality: Claude Code and Cowork read the plugin's
   .mcp.json; Claude Science configures connectors per session; state
   this in CONNECTORS.md.
-- Credentials never appear in any repo (§5.8): Earthdata Login lives
-  in ~/.netrc or connector configuration.
+- Credentials never appear in any repo (§5.8): an Earthdata Login
+  lives in the environment, in ~/.netrc, or in connector
+  configuration, and is needed only for downloads.
