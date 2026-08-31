@@ -51,8 +51,8 @@ changed tool surface) means skill.
 Two supporting rules. **The signature rule:** if a steward could not
 meaningfully sign it as true, it is not a concept. **The single-source
 rule:** every number, tolerance, ShortName, and caveat lives in exactly
-one concept; skills consult and cite, they never mirror. The Session 19
-ablation is the standing evidence for why: inlined knowledge made the
+one concept; skills consult and cite, they never mirror. The ablation
+experiment is the standing evidence for why: inlined knowledge made the
 bundle behaviorally inert.
 
 ## The direction of dependence
