@@ -95,7 +95,7 @@ Plugins are cached and cannot reference files outside their own directory: no `.
 | `build-kit` | Development harness: session/initiative skills, workspace-law template, bootstrap, DEVELOPING guide, workflows, and the build record (IMPLEMENTATION-GUIDE, PROGRESS, PARKING, BUILD-HARNESS) | 1 (infra) |
 | `hydrology` | SWOT rivers/lakes, GRACE-FO, NWIS, SMAP | 2 |
 | `nasa-daac-knowledge` | Standalone per-DAAC bundles (podaac first) | 2 |
-| `earthaccess-mcp` | Connector wrapping NASA earthaccess | 2 |
+| `earthaccess-mcp` | SUPERSEDED: the planned wrapper is replaced by the upstream official server [nasa/earthdata-mcp](https://github.com/nasa/earthdata-mcp), already registered in ocean-science `.mcp.json`; its facts live in the podaac bundle as a connector concept (§5.9 candidate) | 2 |
 | `evals` | Eval runner, shared graders, suite manifests, published scoreboard | 2 |
 | `remote-sensing`, `models-and-reanalysis` | Measurement-layer plugins | 3 |
 | `applied-science` | Applications layer (ARSET-anchored packs) | 3 |
@@ -377,6 +377,13 @@ The canonical home of provider knowledge is the provider bundle (e.g., nasa-daac
 ### 5.8 Security posture: knowledge is declarative
 
 Installed skills and knowledge bundles are an instruction supply chain into every user's agent, which makes a malicious or careless PR a prompt-injection vector. The rule: **concepts state facts about data; they never instruct the agent.** No imperatives directed at Claude, no tool-invocation directives, no meta-instructions inside concept bodies; skills treat concept content strictly as data to reason over. The knowledge-linter scans concepts for instruction-like phrasing and flags hits for steward review, and steward review of knowledge and skill PRs is understood as a security control, not only a quality control. Credentials never appear in any repo (Earthdata via ~/.netrc or connector configuration only).
+
+### 5.9 Connectors (v0.7 CANDIDATE: the REACH plane)
+
+> CANDIDATE language, drafted in kit 10 (marketplace issue #20,
+> 2026-08-30); it becomes normative when SPEC v0.7 is cut.
+
+A connector is the REACH plane only: the registration wire (`.mcp.json`) that gives an agent an interactive path to an external service. Three rules keep it in its plane. **Connector facts live in the bundle:** endpoint, transport, tool surface, auth boundary, and deprecation status are world-falsifiable claims, so they are recorded as a `connector` concept (an addition to the §5.2 type table) with sources, verification dates, and a `stale_after` matched to the service's announced flux; re-verification is a smoke run recorded at each steward sweep, and any endpoint, transport, or tool-surface change opens an issue before any doc changes. **Gates never depend on connectors:** verification tooling and attesters (verify_cmr, check_fields, the OKF v0.2 §10 attesters) call provider REST APIs directly, because deterministic receipt-producing checks cannot inherit an interactive service's availability or evolution. **Discovery never outranks signed knowledge:** an interactive catalog result may inform drafting and cross-checks, but a bundle claim (a Schema row, a ShortName, a caveat) changes only through the concept lifecycle (§5.6) with its own verification; UMM variable records describe intent, granules are ground truth. Skills state the graceful-degradation posture: when a connector is unavailable, knowledge-based discovery with archive URLs, said out loud.
 
 ---
 

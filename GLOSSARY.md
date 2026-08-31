@@ -59,8 +59,13 @@ If a plugin README or tutorial uses a word you don't recognize, it's here.
   terminal/IDE tool), **Claude Cowork**, and **Claude Science**. The same
   plugin installs on all three.
 - **Connector (MCP)** — a link from Claude to an external data service (for
-  example NASA Earthdata). When a connector isn't available, the plugins fall
-  back to knowledge-based discovery and say so.
+  example NASA Earthdata). The connector object is the REACH plane: the
+  registration wire in a plugin's `.mcp.json`, and nothing more. Its facts
+  (endpoint, transport, tool surface, auth boundary, deprecation status) are
+  KNOW and live as a `connector` concept in the knowledge bundle, dated,
+  sourced, and stale_after-ed like any claim; when and how to reach for it is
+  ACT (the skills); gates never depend on one (PROVE). When a connector isn't
+  available, the plugins fall back to knowledge-based discovery and say so.
 
 ## Prerequisites at a glance
 

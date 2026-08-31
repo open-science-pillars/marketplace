@@ -72,6 +72,7 @@ though the fact behind each refusal lives in KNOW and is cited by it.
 | An observed tool quirk, dated | KNOW | "ecco_access 0.3.1 synthesizes nonexistent filenames for static collections (observed 2026-07-04)" is a fact; "use earthaccess for static collections" is the skill's conclusion, citing it |
 | A rule that must fire every time | ACT (hard refusal) | the deterministic floor; the fact it rests on is still a concept |
 | A community definition or index convention | KNOW (convention) | citable, signable, world-invalidated |
+| A connector (an MCP server registration) | split | the wire is REACH (`.mcp.json`, not signable); its facts (endpoint, tool surface, auth boundary, deprecation) are KNOW as a connector concept; when to reach for it is ACT; PROVE stays direct, gates never depend on a connector |
 | Worked examples, prompts, workflow discipline, diagnosis order | ACT | behavior shaping; evaluated, not verified |
 
 ## The contributor decision aid
