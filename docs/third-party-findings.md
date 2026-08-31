@@ -1,7 +1,7 @@
 # Publishing findings about third parties (candidate doctrine)
 
 > CANDIDATE doctrine, graduated from the archive-observatory red-team
-> register (kit 11 Session 4, marketplace issue #22) after the
+> register (marketplace issue #22) after the
 > register was exercised across that repo's first four sessions; it
 > becomes normative for every OSP surface when SPEC v0.7 is cut. The
 > register itself (archive-observatory/RED-TEAM.md) carries the attack
