@@ -165,7 +165,7 @@ marketplace/
 }
 ```
 
-No `dependencies` field: the plugin system does not resolve cross-plugin dependencies. (v0.6 note: the `owner` object is required by the CLI's marketplace schema, and plugin entries use the `source` object form; a bare `repository: "owner/repo"` string is not an installable source type. Both were discovered at the Session 1 install test.)
+No `dependencies` field: the plugin system does not resolve cross-plugin dependencies. (v0.6 note: the `owner` object is required by the CLI's marketplace schema, and plugin entries use the `source` object form; a bare `repository: "owner/repo"` string is not an installable source type. Both were discovered during install testing.)
 
 ### 2.3 Install experience
 
@@ -471,7 +471,7 @@ Per-surface recording (Cd/Cw/Sc) for behavioral items in build-kit/PROGRESS.md.
 
 **Evals (seed):** SCHEMA.md exists; core ships its 3 methodology cases and ocean its 5 cases covering every 🔴 rule and each high-severity gotcha; knowledge-linter flags a high-severity gotcha lacking a case; a manual grading pass (one trial per case, rubric-scored) is recorded in each plugin's evals/RESULTS-seed.md.
 
-**Knowledge population and stewardship:** knowledge-seeder drafts a dataset-plus-gotchas set from supplied seed URLs with per-claim evidence and `status: draft`, and refuses to merge; every Phase-1 gotcha carries at least one resolving evidence link and `status: verified` with verifier fields set; steward-playbook.md and CODEOWNERS exist; the ocean bundle's index.md carries the snapshot source-metadata fields (placeholders until Session 17); the linter flags a gotcha lacking evidence and an `upstream: pending` concept older than 60 days; the imperative-phrasing scan runs clean on all Phase-1 concepts.
+**Knowledge population and stewardship:** knowledge-seeder drafts a dataset-plus-gotchas set from supplied seed URLs with per-claim evidence and `status: draft`, and refuses to merge; every Phase-1 gotcha carries at least one resolving evidence link and `status: verified` with verifier fields set; steward-playbook.md and CODEOWNERS exist; the ocean bundle's index.md carries the snapshot source-metadata fields (placeholders until the snapshot pass); the linter flags a gotcha lacking evidence and an `upstream: pending` concept older than 60 days; the imperative-phrasing scan runs clean on all Phase-1 concepts.
 
 **External validation (restored in v0.6 per PARKING #3):** at least one non-author scientist completes the end-to-end workflow (Tutorial 2) unaided, with friction notes captured in known-limitations.md. The launch announcement states its success criteria before posting (PARKING #1; the criteria live in docs/announcement-draft.md and the Phase-2 pre-registration).
 
