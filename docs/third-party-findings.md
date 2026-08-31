@@ -14,7 +14,9 @@ enforced by a designed-in control rather than by intent.
 **1. Tiered publication, opt-in beyond the aggregate (register R1).**
 Cross-community statistics are the only default-public output.
 Findings naming a specific third party are delivered privately to that
-party with a stated window before any public reference, and named
+party with a stated window of no less than 30 days before any public
+reference (shorter only where the named party agrees in writing,
+recorded alongside the opt-in), and named
 public reporting or badging exists only under their written opt-in,
 recorded in the publishing repo. Publication mechanics are allow-lists
 of the artifacts cleared for the public tier, never deny-lists over a
