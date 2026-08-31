@@ -1,11 +1,12 @@
 # Open Science Pillars: Specification
 
 **Organization:** Open Science Pillars (github.com/open-science-pillars)
-**Version:** 0.6.2 (build-record relocation to build-kit)
-**Date:** 2026-07-06
+**Version:** 0.6.3 (archive-observatory repo row)
+**Date:** 2026-08-30
 **Scope:** Phase 1 (built; core + ocean-science + infrastructure + knowledge + verification + evals seed + stewardship) plus Phase 2 spec detail (hydrology bridge, §10)
 
 **Changelog:**
+- 0.6.3 (2026-08-30): section 1.1 gains the `archive-observatory` row (kit 11 Session 1, tracking issue #22): structural sweeper, pyQuARC harness with pinned-tag receipts, deterministic attester, scheduled aggregate sweeps under the publication policy (aggregate-public, provider-detail private, badges opt-in). Repo-table addition only, per the 0.6.1 build-kit precedent; freeze intact, no other change.
 - 0.6.2 (2026-07-06, development-model pass): the build record and development harness (IMPLEMENTATION-GUIDE, PROGRESS, PARKING, BUILD-HARNESS, README-START-HERE, and the knowledge-coupling migration record) relocated from `marketplace/docs` to the `build-kit` repo, co-locating them with the harness skills that read them; the §1.1 `build-kit` row and the §2.1 tree updated accordingly. `marketplace/docs` now holds only public-facing canonical docs, guides, and commitments. No Phase-1 scope change (freeze intact). Companion: `build-kit/docs/development-model.md` reframes future work as spec-anchored initiatives plus standing processes, retiring the single linear session sequence.
 - 0.6.1 (2026-07-05, documentation and continuity pass): added the `build-kit` repo to the §1.1 table (the development harness, so the session protocol is no longer a personal-workspace single point of failure). Non-spec companion work in the same pass (not changing this spec's requirements): build-era artifact references removed from public-facing content; a user glossary and a docs map added; the newcomer and contributor doc paths repaired; broken cross-repo evidence links in the canonical knowledge bundle fixed. Driven by a five-persona documentation review.
 - 0.6.0 (2026-07-05, written by the build per harness rule 11 after the post-Session-10 PARKING triage): §0.1/§2.3 Claude Science install corrected to observed marketplace-install behavior (PARKING #5); §0.3 description-budget verification instrument corrected from /doctor to the /skills panel (PARKING #7); §2.2 marketplace.json verbatim block replaced with the CLI-validated working schema (owner object, source objects; PARKING #6); §9 non-author acceptance criterion restored and launch success criteria referenced (PARKING #1, #3); new §10 Hydrology Plugin (Phase 2 spec detail) including the v0.6 ocean-bundle completion list scheduled into Session 18 (PARKING #8, #9, #11, #12, #13). Phase-2 go/stop pre-registration published separately (docs/phase2-preregistration.md, PARKING #2).
@@ -95,6 +96,7 @@ Plugins are cached and cannot reference files outside their own directory: no `.
 | `build-kit` | Development harness: session/initiative skills, workspace-law template, bootstrap, DEVELOPING guide, workflows, and the build record (IMPLEMENTATION-GUIDE, PROGRESS, PARKING, BUILD-HARNESS) | 1 (infra) |
 | `hydrology` | SWOT rivers/lakes, GRACE-FO, NWIS, SMAP | 2 |
 | `nasa-daac-knowledge` | Standalone per-DAAC bundles (podaac first) | 2 |
+| `archive-observatory` | Cross-archive metadata compliance observatory: sweeper, pinned pyQuARC harness, attester, scheduled aggregate sweeps; publication policy binding (aggregate-public, detail-private, badges opt-in); credential-free by CI-enforced invariant | 2 |
 | `earthaccess-mcp` | SUPERSEDED: the planned wrapper is replaced by the upstream official server [nasa/earthdata-mcp](https://github.com/nasa/earthdata-mcp), already registered in ocean-science `.mcp.json`; its facts live in the podaac bundle as a connector concept (§5.9 candidate) | 2 |
 | `evals` | Eval runner, shared graders, suite manifests, published scoreboard | 2 |
 | `remote-sensing`, `models-and-reanalysis` | Measurement-layer plugins | 3 |
