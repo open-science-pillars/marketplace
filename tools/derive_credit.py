@@ -5,7 +5,7 @@
 # ///
 """Derive contributor credit and release notes from a bundle, mechanically.
 
-Doctrine (kit 13): credit is a derived fact, not a ranking. The inputs
+Doctrine: credit is a derived fact, not a ranking. The inputs
 are exactly three, all already in the bundle: concept frontmatter
 events (generated, verified), CODEOWNERS, and log.md. No human
 editorializes the output; the derivation is deterministic (stable
@@ -142,8 +142,8 @@ def derive(roots: list, since: str | None):
     credits = ["# Contributor credit (derived)", "",
                "Derived mechanically from concept frontmatter events and",
                "CODEOWNERS; deterministic and reproducible from the tree",
-               "alone. No human editorializes this list (kit 13 doctrine:",
-               "credit is a derived fact, not a ranking).", ""]
+               "alone. No human editorializes this list: credit is a",
+               "derived fact, not a ranking.", ""]
     for name in sorted(humans):
         credits.append(f"## {name}")
         for role in sorted(humans[name]):
