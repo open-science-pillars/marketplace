@@ -8,6 +8,12 @@
 > three Claude surfaces. Native Codex plugin distribution is tracked as a
 > federated roadmap proposal and is not yet a supported plugin surface.
 
+> **Current-scope note (2026-08-31):** Parts 1 through 8 are the strategy
+> as written on 2026-07-03 and are left unedited. Part 9 records what the
+> build changed, added, or left untested since, including the plane model
+> this document predates and the provider-facing instruments it has no
+> concept for.
+
 1. **All three surfaces weighted equally.** Claude Science, Claude Code, and Claude Cowork are co-equal targets. Everything we build is surface-neutral markdown, packaged three ways, tested three ways.
 2. **Remote sensing is the horizontal, not a vertical.** "Everything one would do in the remote sensing world" means remote sensing becomes a measurement-layer capability that every science domain consumes, spanning NASA, NOAA, Copernicus, USGS, commercial archives, and model outputs.
 3. **The PO.DAAC arc is the strategic spine.** ECCO for depth, SWOT as the oceanography-to-hydrology bridge (matching the Science Enabling Teams transition), GRACE-FO and Sentinel-6 completing the set. Center-managed archive, center-built missions, two disciplines, one coherent story.
@@ -239,3 +245,117 @@ Action: draft the application against this framing before July 15; roughly a hal
 2. **PO.DAAC steward engagement:** who internally seeds and reviews the podaac knowledge bundle? Even two named reviewers makes the federated-knowledge story real from launch.
 3. **Claude Science access for testing:** confirm workspace access so the three-surface harness can actually run against Science, not just Code and Cowork.
 4. **AI for Science submission:** confirm go/no-go this week given the July 15 date.
+
+---
+
+## Part 9: What changed since v4 (added 2026-08-31)
+
+This part is additive. Parts 1 through 8 are left exactly as written on
+2026-07-03, because a strategy document's value is the record of what
+was intended; where the build diverged, that divergence is recorded
+here rather than edited into the original.
+
+### 9.1 The missing axis: four planes, orthogonal to the five layers
+
+The layer stack in Part 2 answers **which domain** a capability serves.
+It does not answer **what kind of thing** a capability is, and that
+second question turned out to be the one the build kept asking. The
+answer that emerged, now documented in docs/knowledge-vs-skills.md and
+the glossary and normative in SPEC section 5.9, is four planes:
+
+- **KNOW**: concepts. Claims about the world with a truth condition, a
+  named human signature, and a staleness date. Falsifiable by the
+  world.
+- **ACT**: skills. Agent behavior, evaluated rather than signed. Good
+  or bad at a task, never true or false.
+- **PROVE**: gates and attesters. Deterministic checks that emit
+  receipts, with no language model anywhere in the path.
+- **REACH**: connectors. The registration wire to an external service,
+  and nothing more.
+
+Every layer contains all four planes. The planes are how a
+contribution finds its home; the layers are what it is about.
+
+**PROVE is the plane this document never drew, and most of what was
+built since lives there:** attested computations (sanctioned code an
+agent may run but not alter, each run emitting a receipt checked
+against a measured tolerance), the closure badge, validity domains
+with a fitness attester answering can-I-use-X-for-Y, and a pinned
+metadata harness. Golden notebooks (SPEC section 6) are not the same
+thing and do not cover it: a golden notebook tests our own code in our
+own CI, while an attester verifies anyone's run from a receipt they
+hand us. The distinction is load-bearing, because the second is what
+makes a claim checkable by someone who does not trust us.
+
+The rule that keeps PROVE honest is worth stating at architecture
+level: **gates never depend on connectors.** Verification tooling calls
+provider APIs directly, because a deterministic, receipt-producing
+check cannot inherit an interactive service's availability or
+evolution.
+
+### 9.2 A second audience: instruments for archives, not only scientists
+
+All six personas in Part 5 are data consumers. The build produced a
+second product line aimed at data producers, and this document has no
+concept for it:
+
+- a **metadata observatory** that checks an archive's records against
+  written-down requirements and produces receipts, runnable by a
+  producer against records that exist only on their laptop;
+- a **credit loop** that mints DOI'd releases whose contributor lists
+  derive mechanically from signature records, so reviewing and signing
+  becomes citable scholarship rather than a favor;
+- a **two-steward model** in which a provider's own people own the
+  requirements bundle for their holdings.
+
+These are not a new layer. They are the same layers viewed from the
+other side of the archive counter, and they need governance no plugin
+needs: a publication policy (aggregate public, provider detail private,
+per-collection reporting only under written opt-in), and an
+adversarial register reviewed on every change. That governance
+graduated to org doctrine in docs/third-party-findings.md.
+
+The Data Steward persona in Part 5 anticipated this audience but
+scoped it to curating a knowledge bundle. Operating an archive is a
+larger role, and it is the one the provider-facing instruments serve.
+
+### 9.3 Corrections to Part 3
+
+**The connector.** Phase 1 names an `earthaccess-mcp` connector to be
+built here. It was superseded before it was written: NASA now publishes
+an official CMR MCP server (nasa/earthdata-mcp), which is what the
+plugins register. The SPEC section 1.1 row is marked accordingly. The
+architectural point survives the substitution and is stronger for it:
+the connector is REACH, its facts are KNOW (a dated concept in the
+provider bundle), when to reach for it is ACT, and PROVE ignores it.
+
+**An interim to name before it calcifies.** Receipted regional sea
+level briefings are an applications-layer product for the Applications
+Scientist persona, and they currently live inside the ocean-science
+domain plugin because the applied-science plugin does not exist yet.
+That is a deliberate interim, not a judgment that decision products
+belong in domain plugins.
+
+### 9.4 What remains untested
+
+Phase 1 exercised two of the five layers: science domain and knowledge,
+on top of core. **The boldest claim in Part 2, that measurement is a
+horizontal every domain consumes rather than a vertical, has never been
+tested**, because no measurement plugin was built. The claim is not
+contradicted by anything; it is simply unvalidated, and the first
+technique skill shared by two domains is what would validate it.
+
+### 9.5 Out of scope for this document
+
+Named so their absence reads as a decision rather than an oversight:
+
+- **Observatory internals.** Its adversarial register, publication
+  policy, and tooling live in that repository and are owned there.
+- **Program mechanics.** The kit, session, and wave structure used to
+  sequence the build is private bookkeeping, deliberately kept out of
+  artifacts a user reads, and out of this document too.
+- **Outreach and stewardship conversations.** Relationship work, not
+  architecture.
+- **Credit-loop mechanics.** The derivation tool and release checklist
+  are specified where they run; only the existence of the mechanism is
+  architectural.
