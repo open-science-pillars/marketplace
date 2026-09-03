@@ -14,6 +14,14 @@ from the tree alone.
 
 Role mapping, fixed and documented here:
 - a `verified: {by: human:<id>}` event maps that human to Validation
+- a `verified: {by: human:<id>}` event on a concept of `type: finding`
+  maps that human to Formal analysis (finding signature) instead: the
+  signature attests a claim about the world synthesized from receipted
+  computations, not a fact about a product, so it is counted as its
+  own role and never folded into Validation. The event counts wherever
+  the finding later sits on its ladder; a retracted finding keeps its
+  signature as history, and the path listed beside the role lets a
+  reader see which finding it was
 - a `generated: {by: human:<id>}` event maps that human to Writing
   (original draft)
 - a CODEOWNERS entry maps that handle to Stewardship (supervision and
@@ -99,6 +107,9 @@ def parse_codeowners(root: Path) -> list:
     return out
 
 
+FINDING_ROLE = "Formal analysis (finding signature)"
+
+
 def derive(roots: list, since: str | None):
     humans: dict = {}      # name -> {role -> sorted set of relpaths}
     instruments: dict = {} # actor -> count
@@ -113,10 +124,12 @@ def derive(roots: list, since: str | None):
         root = Path(root)
         for rel, fm in walk_bundle(root):
             census[str(fm.get("status", "stable"))] = census.get(str(fm.get("status", "stable")), 0) + 1
+            verified_role = (FINDING_ROLE if str(fm.get("type", "")) == "finding"
+                             else "Validation")
             for ev in events_of(fm, "verified"):
                 actor = str(ev.get("by", ""))
                 if is_human(actor):
-                    add(actor.removeprefix("human:"), "Validation", rel)
+                    add(actor.removeprefix("human:"), verified_role, rel)
                 elif actor:
                     instruments[actor] = instruments.get(actor, 0) + 1
             for ev in events_of(fm, "generated"):
@@ -143,7 +156,10 @@ def derive(roots: list, since: str | None):
                "Derived mechanically from concept frontmatter events and",
                "CODEOWNERS; deterministic and reproducible from the tree",
                "alone. No human editorializes this list: credit is a",
-               "derived fact, not a ranking.", ""]
+               "derived fact, not a ranking. Roles follow CRediT: a",
+               "signature on a finding is Formal analysis, a signature on",
+               "any other concept is Validation, a human draft is Writing",
+               "(original draft), a CODEOWNERS line is Stewardship.", ""]
     for name in sorted(humans):
         credits.append(f"## {name}")
         for role in sorted(humans[name]):
@@ -182,6 +198,11 @@ def selftest() -> int:
             "verified:\n"
             "  - { by: process:sweep, at: 2026-01-03T00:00:00Z }\n"
             "  - { by: human:Alice, at: 2026-01-04T00:00:00Z }\n---\nbody\n")
+        (b / "findings").mkdir()
+        (b / "findings" / "f.md").write_text(
+            "---\ntype: finding\ntitle: F\nstatus: stable\n"
+            "generated: { by: agent-x/claude, at: 2026-01-01T00:00:00Z }\n"
+            "verified: { by: human:Alice, at: 2026-01-06T00:00:00Z }\n---\nbody\n")
         (b / "index.md").write_text("---\nokf_version: '0.2'\n---\nindex\n")
         (b / "log.md").write_text("# log\n\n- 2026-01-05 · second entry\n  continued line\n- 2026-01-01 · first entry\n")
         (Path(td) / "CODEOWNERS").write_text("# c\n* @Alice\n/bundle/ @Carol\n")
@@ -189,12 +210,14 @@ def selftest() -> int:
         c2, n2 = derive([b], since="2026-01-02")
         ok = ok and (c1, n1) == (c2, n2)                      # deterministic
         ok = ok and "## Alice" in c1 and "**Validation** (2)" in c1
+        ok = ok and "**Formal analysis (finding signature)** (1): bundle/findings/f.md" in c1
+        ok = ok and "agent-x/claude: 2 events" in c1
         ok = ok and "## Bob" in c1 and "Writing (original draft)** (1)" in c1
         ok = ok and "## Carol" in c1 and "Stewardship" in c1
-        ok = ok and "agent-x/claude: 1 events" in c1 and "process:sweep: 1 events" in c1
+        ok = ok and "process:sweep: 1 events" in c1
         ok = ok and "human:" not in c1.split("Automated instruments")[1]  # no humans as instruments
         ok = ok and "second entry" in n1 and "first entry" not in n1     # since filter
-        ok = ok and "2 concepts (draft 1, stable 1)" in n1
+        ok = ok and "3 concepts (draft 1, stable 2)" in n1
     print("selftest:", "PASS" if ok else "FAIL")
     return 0 if ok else 1
 
