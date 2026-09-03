@@ -335,6 +335,7 @@ Open Knowledge Format v0.1 (github.com/GoogleCloudPlatform/knowledge-catalog): d
 | dataset-gotcha | One trap: mechanism, wrong-result mode, correct approach, verification | severity (high/medium/low); link to dataset; ≥1 evidence link; severity high requires a matching eval case id |
 | recipe | Validated analysis pattern | inputs; expected values AND expected-uncertainty ranges; validation provenance (evidence links) |
 | convention | Cross-cutting practice | none |
+| finding | One falsifiable scientific claim, bound to the receipts, validity adjudication, and confrontation that support it (§5.10, v0.7 CANDIDATE) | question; claim with interval and receipt bindings; computations cited by receipt; validity adjudication; confrontation record; limitations; explicit status; `human:` signature and verdict IN before stable |
 
 ### 5.3 Operations
 
@@ -387,6 +388,136 @@ Installed skills and knowledge bundles are an instruction supply chain into ever
 > 2026-08-30); it becomes normative when SPEC v0.7 is cut.
 
 A connector is the REACH plane only: the registration wire (`.mcp.json`) that gives an agent an interactive path to an external service. Three rules keep it in its plane. **Connector facts live in the bundle:** endpoint, transport, tool surface, auth boundary, and deprecation status are world-falsifiable claims, so they are recorded as a `connector` concept (an addition to the §5.2 type table) with sources, verification dates, and a `stale_after` matched to the service's announced flux; re-verification is a smoke run recorded at each steward sweep, and any endpoint, transport, or tool-surface change opens an issue before any doc changes. **Gates never depend on connectors:** verification tooling and attesters (verify_cmr, check_fields, the OKF v0.2 §10 attesters) call provider REST APIs directly, because deterministic receipt-producing checks cannot inherit an interactive service's availability or evolution. **Discovery never outranks signed knowledge:** an interactive catalog result may inform drafting and cross-checks, but a bundle claim (a Schema row, a ShortName, a caveat) changes only through the concept lifecycle (§5.6) with its own verification; UMM variable records describe intent, granules are ground truth. Skills state the graceful-degradation posture: when a connector is unavailable, knowledge-based discovery with archive URLs, said out loud.
+
+### 5.10 Findings (v0.7 CANDIDATE: the unit of science)
+
+> CANDIDATE language, drafted alongside the findings work
+> (marketplace issue #38, 2026-09-02); it becomes normative when SPEC
+> v0.7 is cut. Checker support is `check_okf_v02.py --findings`, off by
+> default: without the flag no bundle changes behavior, and with it
+> only `type: finding` concepts are touched.
+
+A finding is the unit of science the stack otherwise lacks. Everything beneath it already exists: attested computations (OKF v0.2 §10) produce receipted numbers, the trend method gives them intervals, validity domains bound their scope, confrontations anchor them to independent observations, and signatures make them citable. A finding binds those into one falsifiable statement: the question asked, the claim made with its interval, the receipts it rests on, the validity adjudication, the observational confrontation, the limitations, and the steward's signature. Three rules keep it honest. **A finding is falsifiable:** one question, one claim with an interval, and a stated way to overturn it; a finding that cannot be wrong is not a finding. **A finding cites only receipted numbers:** every quantitative statement in it resolves, at the precision written, to a field of a receipt the finding cites, or to a declared context constant with a source; there is no number in a finding the reader is asked to take on faith. **A finding is never deleted:** retraction is a first-class position on the status ladder, kept for links and history with the reason on record, and a retracted finding is cited as history, never as a result.
+
+#### 5.10.1 A finding is its own concept
+
+Addition to the §5.2 type table:
+
+| type | Purpose | Required extras |
+|---|---|---|
+| finding | One falsifiable scientific claim, bound to the receipts, validity adjudication, and confrontation that support it | question; claim with interval and receipt bindings; computations cited by receipt; validity adjudication; confrontation record; limitations; explicit status; `human:` signature and verdict IN before stable |
+
+A finding is neither a recipe nor a computation. A recipe says how to compute; an attested computation is one receipted run of sanctioned code over a manifested data tree; a finding is what the run showed about the world, in a stated scope. The three have different lifecycles, which is why they are different types: a finding can be retracted while every computation it cites stays valid (the code was right and the receipt is faithful; the claim the numbers were read to support was not, or the record moved under it), and a computation can be superseded by a better method while the finding that cited it is re-derived and re-signed rather than withdrawn.
+
+#### 5.10.2 The contract
+
+A finding carries these frontmatter fields, all REQUIRED unless marked. Path-valued fields follow OKF v0.2 §6.2; a leading slash means bundle-relative, which is the form the bundles use.
+
+- `question`: one sentence ending in a question mark. One finding answers one question.
+- `claim`: the answer. `statement` (one sentence, the numbers in it written at the precision the receipt supports), `value`, `interval` (a two-element list, low then high), `confidence` (the level the interval is stated at), `units`, and `from`, which binds each of `value`, `interval`, and `confidence` to a dotted field path in one cited receipt. The bound values MUST agree with the receipt at the precision written in the finding; the finding never restates a number the receipt does not carry.
+- `computations`: a non-empty list of `{concept, receipt}` pairs. Each concept is an Attested Computation in the bundle; each receipt is the JSON the sanctioned computation wrote for the run the finding rests on, stored in the bundle, carrying the `code_sha256` of that computation file and the manifest stamp of the data tree it read. The claim's receipt MUST be among them.
+- `validity`: the adjudication of the claim against the bundle's validity domains. `declaration` (product, claim class, region, period, in the attester's vocabulary), `verdict` (`IN`, `OUT`, or `UNADJUDICATED`), `receipt` (the fitness receipt the attester wrote), and `governing` (the validity-domain concepts the receipt names). A finding whose declared claim is OUT of a signed domain fails; it cannot be stated at all.
+- `confrontation`: `status: confronted` with `concept` (the confrontation computation), `receipt` (its receipt, which names the observational record by version or persistent identifier and carries both data-tree stamps), and `observation` (the dataset concept of the independent record); or `status: not-confronted` with a `reason` stated in a sentence. Not confronted is an honest state, never a silent one.
+- `limitations`: a non-empty list of sentences, each a bound on where the claim holds or a caveat on how it was derived.
+- `context` (optional): the constants a finding may quote that are not receipt outputs (a reference density, a grid count), each `{value, meaning, source}` where `source` is an id in `sources`. Everything quantitative that is neither a receipt field nor a context entry is an error.
+- `status`: explicit, never defaulted, one of the OKF v0.2 values (§5.6); the ladder position (§5.10.3) is derived from it and the extension keys beside it.
+- `stale_after` (SHOULD): a finding rests on a product release, so it carries the sweep date of that release's successor.
+- `review` (optional): the URL of the open review; its presence places a draft under review.
+- `retracted`, `superseded_by`, `disputed`: ladder keys, §5.10.3.
+
+The body carries, in this order, `# Question`, `# Claim`, `# Evidence` (what each cited receipt contributes, in prose), `# Validity`, `# Confrontation`, `# Limitations`, `# What would overturn this` (the observation, recomputation, or record change that would falsify the claim), and, on a retracted finding, `# Retraction`. Numbers in the body obey the same rule as numbers in the frontmatter.
+
+Illustrative frontmatter (the shape, with the names a provider bundle would use):
+
+```yaml
+type: finding
+title: "The steric contribution to regional sea level rose over the record"
+description: "In the registered box the steric part rose at +2.80 mm/yr over 312 months, 95 percent interval [+1.51, +4.09]."
+question: "Did the steric contribution to sea level in the registered box rise over the model record?"
+claim:
+  statement: "Over the record the steric contribution rose at +2.80 mm/yr, 95 percent interval [+1.51, +4.09]."
+  value: 2.7999
+  interval: [1.5103, 4.0895]
+  confidence: 0.95
+  units: mm/year
+  from:
+    receipt: /references/retrieval/exhibit-regional-sea-level-record.json
+    value: trend_steric_interval.trend
+    interval: [trend_steric_interval.ci_low, trend_steric_interval.ci_high]
+    confidence: trend_steric_interval.confidence
+computations:
+  - concept: /computations/ecco-regional-sea-level.md
+    receipt: /references/retrieval/exhibit-regional-sea-level-record.json
+validity:
+  declaration: {product: ECCO_L4_SSH_LLC0090GRID_MONTHLY_V4R4, claim: trend, region: "35,45,-75,-65", period: "1992-01:2017-12"}
+  verdict: IN
+  receipt: /references/retrieval/fitness-regional-sea-level-record.json
+  governing: [/validity-domains/ecco-large-scale-statistics.md]
+confrontation:
+  status: confronted
+  concept: /computations/ecco-ssh-vs-altimetry.md
+  receipt: /references/retrieval/exhibit-ssh-vs-altimetry.json
+  observation: /datasets/altimetry-gridded-sla.md
+limitations:
+  - "The claim holds for the registered box only; nothing is stated outside it."
+  - "The interval assumes a linear trend with lag-1 residual correlation (r1 0.89) and an effective sample of 17.6 months."
+context:
+  - {value: 1029, meaning: "Boussinesq reference density, kg per cubic metre", source: ecco-v4r4-doc}
+status: draft
+stale_after: 2027-06-30
+sources:
+  - id: ecco-v4r4-doc
+    resource: https://doi.org/10.5281/zenodo.3765929
+    title: ECCO Version 4 Release 4 documentation
+```
+
+#### 5.10.3 The status ladder
+
+The ladder is derived, never declared: every position is an OKF v0.2 `status` value plus the OSP extension keys beside it, so an OKF consumer that knows nothing of findings still reads each one correctly (a draft is a draft, a deprecated concept is deprecated), and the conformance rule that an extension never changes the meaning of a spec field holds.
+
+| position | frontmatter form | meaning |
+|---|---|---|
+| draft | `status: draft` | Stated, checker-clean, unsigned. Consultable, voiced as unverified. |
+| under review | `status: draft` plus `review: <open review URL>` | A steward is reading it. Same trust as draft; the review is where the argument happens. |
+| stable | `status: stable` plus a `verified: {by: human:<id>, at}` event, with `validity.verdict: IN` | The steward has signed that the claim is true in the stated scope. Citable as a result. |
+| superseded | `status: deprecated` plus `superseded_by: <finding path>` | A later finding answers the question better (a longer record, a tighter interval, a corrected method). Kept for links; the replacement is cited. |
+| retracted | `status: deprecated` plus `retracted: {at, by: human:<id>, reason, issue}` and a `# Retraction` section | The claim was wrong or can no longer be supported. Kept in the bundle and the index with the reason on record; cited only as history. |
+
+`disputed: <open issue URL>` (§5.6) is a modifier on stable, not a position: the finding stays citable and the citation MUST state the dispute. Transitions are one edit each: a draft goes under review by adding `review`; it becomes stable by signature only (the `verified` event, and nothing else, moves a finding to stable, and the checker rejects a stable finding without one); a stable finding is superseded by landing the replacement and pointing `superseded_by` at it; any position goes to retracted by the retraction block, which is a steward's act (`by` is a `human:` actor) and names the issue where the retraction was decided. There is no path back from retracted; a corrected claim is a new finding that cites the retracted one in its history. A superseded finding is not retracted: its claim was right as far as it went.
+
+#### 5.10.4 What the checker enforces
+
+`check_okf_v02.py BUNDLE --findings [--explain]` adds these checks to a bundle's gate; codes beginning `F` are errors and codes beginning `FW` are warnings, on the same footing as E and W. `--explain` prints, for every finding, how each bound value and every number in the text resolved, so a reviewer reads the audit rather than trusting the verdict.
+
+| code | rule |
+|---|---|
+| F1 | A required field is missing or malformed (question, claim and its keys, computations, validity, confrontation, limitations, explicit status). |
+| F2 | The question is not one sentence ending in a question mark. |
+| F3 | The claim is not bound: `from.receipt` missing or not JSON, a field path that does not resolve to a number, or a bound value, interval bound, or confidence that disagrees with the receipt at the precision written. |
+| F4 | A cited computation is broken: the concept is missing or not an Attested Computation, the receipt is missing or not JSON, the receipt's `code_sha256` differs from the sanctioned computation file the concept names, or the receipt carries no verified data-tree stamp. |
+| F5 | The claim's receipt is not among the finding's cited receipts. |
+| F6 | The validity verdict is OUT (the claim lies outside a signed exclusion and cannot be stated), is not a known verdict, disagrees with the fitness receipt, is IN or OUT with no governing domain named, or names a governing concept that is not a validity domain the fitness receipt consulted. |
+| F7 | A stable finding has no `human:` verified event, or its verdict is not IN. |
+| F8 | The ladder is inconsistent: `retracted` without `at`, `by`, `reason`, and `issue`, or with a non-human `by`, or on a finding that is not deprecated, or without a Retraction section; `superseded_by` naming something that is not a finding, or on a finding that is not deprecated; deprecated without saying which. |
+| F9 | A number in the finding's text resolves to no cited receipt field and no context entry (the rule below). |
+| F10 | The confrontation record is incomplete: confronted without concept, receipt, and observation, or with a receipt that names no observational record by version or identifier or no data-tree stamps; not confronted without a reason. |
+| FW1 | No `What would overturn this` section. |
+| FW2 | A stable finding is not confronted against an independent observation. |
+| FW3 | No `stale_after`. |
+| FW4 | A cited computation is inline rather than a file, so receipt identity cannot be checked. |
+| FW5 | The body links to a retracted finding. |
+
+**The number rule (F9).** The checker scans `title`, `description`, `question`, `claim.statement`, every `limitations` entry, and the body. A numeric token (integer, decimal, thousands-separated, or exponent form, with an optional sign) must resolve to a numeric leaf of one of the cited receipts (the computation receipts, the fitness receipt, and the confrontation receipt) at the precision written: a token written to two decimals matches a receipt field within half a unit of its last written place, so `+2.80` matches `2.7999055` and `2.81` does not. A token followed by `%` or `percent` may also match a receipt fraction multiplied by one hundred; a signed token may match the receipt field's magnitude when the sign is carried by the prose (`runs 3.23 low` against a bias of `-3.2322`). Receipt lists longer than four numbers are series and are not matched, so a number cannot be justified by finding it somewhere in a time series. A token that matches a `context` entry's `value` resolves to that entry, which in turn must name a source. Exempt from the scan: fenced and inline code, footnote definitions and references, URLs, DOIs, hex digests of twelve or more characters, ISO timestamps, dates and years, list markers, and identifiers that mix letters and digits (a product ShortName, a grid name). The rule is mechanical on purpose: it does not judge whether a number is the right one to quote, only that the reader can find it in a receipt.
+
+**What the checker does not do.** It never runs a computation or an attester and never recomputes a number. It verifies identity and agreement: that the receipt is the output of the named code (`code_sha256`), read a manifested tree (the stamp), and says what the finding says it says. Whether the receipt is a faithful product of the computation is the attester's question (OKF v0.2 §10.6), answered deterministically at review and again by any consumer at use; whether the claim is true is the steward's question, answered by signature. Passing the checker is necessary for a finding to be signed stable and is not evidence that it should be.
+
+#### 5.10.5 How a consumer uses a finding (informative)
+
+Skills cite a finding by path, with its position and tier voiced the way §5.6 voices status: a draft as an unverified statement of what the numbers show; under review with its review URL; stable with the signature; superseded by citing the replacement and saying so; retracted only as history, with the reason, never as a result. A number quoted from a finding is quoted through it, so the provenance a reader can follow runs quoted number, `claim.from`, receipt field, attested computation, manifested data tree, and each link is a file in the bundle. Briefings cite findings in preference to raw receipts once a finding exists for the claim, and inherit its limitations. The signature on a stable finding is the strongest credit-bearing event in the bundle (the credit derivation counts it distinctly from a signature on a gotcha or a recipe) because it attests a claim about the world rather than a fact about a product.
+
+#### 5.10.6 Verification, attestation, and signature
+
+Three different acts, kept apart. **Verification** is the checker: static, form and binding, runs in the gate, blocks the merge. **Attestation** is the receipt-level attester of each cited computation: deterministic, consumer-side, re-runnable, and the only thing that speaks to whether the receipt's numbers are what the sanctioned code produces. **Signature** is the steward's `human:` verified event, and it is the only thing that moves a finding to stable, because it attests what no tool can: that the claim is true in the stated scope and the limitations are the real ones. Two consequences follow. A finding cannot become stable until a signed validity domain admits its claim (the checker requires verdict IN, and an unsigned domain yields UNADJUDICATED), so the first stable finding in a bundle waits on the first signed domain that governs it. A stable finding may be unconfronted, with FW2 and a limitation that says so, because some claims have no independent record to confront; a confronted finding whose confrontation the steward has read is the stronger object, and briefings say which kind they cite. Any edit to a stable finding after signature obliges re-signature; the gate treats the signature as covering the text it was placed on.
 
 ---
 
