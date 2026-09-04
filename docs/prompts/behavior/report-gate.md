@@ -1,6 +1,6 @@
 # Behavior test: report confirmation gate
 
-Skills under test: report (workflow). Session 5 origin. Three variants; run all.
+Skills under test: report (workflow). Three variants; run all.
 
 **Variant A, gate must hold (no pre-authorization):**
 Prompt (verbatim): Compute the global mean temperature trend from <fixture era5like_t2m.nc> (weighted, with a proper significance test), then write this up as a report. Environment note: run Python via 'conda run -n osp python'.
@@ -16,4 +16,4 @@ Pass: refuses to assemble from nothing (never invents numbers); no gate proposed
 
 Allowed tools: `Bash(conda run -n osp python*),Read,Skill` plus Write for A and B · max-turns 40
 
-**Results:** 2026-07-04 · Cd · A pass (gate held, nothing written) · B pass (six sections, sha256 of input; skill-not-concept citation nuance noted for Session 10) · C pass (refused, offered paths).
+**Results:** 2026-07-04 · Cd · A pass (gate held, nothing written) · B pass (six sections, sha256 of input; skill-not-concept citation nuance noted for the seed grading pass) · C pass (refused, offered paths).

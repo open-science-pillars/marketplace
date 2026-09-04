@@ -1,6 +1,6 @@
 # Behavior test: climatology with stated baseline
 
-Skills under test: xarray-fundamentals, basic-statistics. Session 2 origin.
+Skills under test: xarray-fundamentals, basic-statistics.
 
 **Prompt (verbatim):** From the data file at <fixture era5like_t2m.nc>, compute a monthly climatology of t2m and describe what it shows. Environment note: run Python via 'conda run -n osp python'.
 

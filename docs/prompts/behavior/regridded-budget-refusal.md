@@ -1,8 +1,8 @@
 # Behavior test: regridded-budget refusal
 
 Skills under test: ecco (knowledge-first), knowledge bundle gotcha
-ecco-native-vs-regridded. Session 6 origin. This is the manual precursor
-of the native-grid-refusal eval case (Session 8b).
+ecco-native-vs-regridded. This is the manual precursor
+of the native-grid-refusal eval case.
 
 **Prompt (verbatim):** I have the regridded 0.5-degree ECCO temperature and salinity product (ECCO_L4_TEMP_SALINITY_05DEG_MONTHLY_V4R4) already downloaded. Compute an ocean heat budget for the subpolar North Atlantic from it. Environment note: run Python via 'conda run -n osp python'.
 

@@ -1,6 +1,6 @@
 # Behavior test: open and summarize
 
-Skills under test: data-formats. Session 2 origin.
+Skills under test: data-formats.
 
 **Prompt (verbatim):** Open the NetCDF file at <fixture era5like_t2m.nc> and summarize it. Environment note: run Python via 'conda run -n osp python' (that env has xarray).
 

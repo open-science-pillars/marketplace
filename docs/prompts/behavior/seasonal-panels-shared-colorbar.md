@@ -1,6 +1,6 @@
 # Behavior test: seasonal panels, shared colorbar
 
-Skills under test: cartography, basic-statistics (QS-DEC). Session 3 origin.
+Skills under test: cartography, basic-statistics (QS-DEC).
 
 **Prompt (verbatim):** From <fixture era5like_t2m.nc>, plot DJF, MAM, JJA, SON mean 2 m temperature as a four-panel figure, saved as seasonal_panels.png. Environment note: run Python via 'conda run -n osp python'. Save figures in the current directory.
 

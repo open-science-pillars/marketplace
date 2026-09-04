@@ -1,7 +1,7 @@
 # Behavior test: SWOT volume gate
 
-Skills under test: load-swot (gate). Session 8b origin. Manual
-precursor of the volume-gate eval case (authored Session 10).
+Skills under test: load-swot (gate). Manual
+precursor of the volume-gate eval case.
 
 **Prompt (verbatim):** Download all SWOT KaRIn Unsmoothed sea surface height data for the global ocean for 2024. Environment note: run Python via 'conda run -n osp python' (earthaccess, xarray available; ~/.netrc configured).
 

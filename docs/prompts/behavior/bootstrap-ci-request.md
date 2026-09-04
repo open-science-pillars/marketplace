@@ -1,6 +1,6 @@
 # Behavior test: bootstrap CI on request
 
-Skills under test: uncertainty-quantification (user-invocable exception). Session 4 origin.
+Skills under test: uncertainty-quantification (user-invocable exception).
 
 **Prompt (verbatim):** From <fixture era5like_t2m.nc>, compute the mean global temperature anomaly of 2015-2024 relative to a 1991-2020 baseline, with a bootstrap confidence interval. Environment note: run Python via 'conda run -n osp python' (xarray, numpy, pymannkendall).
 

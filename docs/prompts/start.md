@@ -1,7 +1,7 @@
 # Prompt: start
 
 **Skill:** core / start · **Spec:** SPECIFICATION.md v0.5.1 §3.4 (start)
-**Authored:** Session 0b, 2026-07-04
+**Authored:** 2026-07-04
 
 ## Slash form (Claude Code only)
 
