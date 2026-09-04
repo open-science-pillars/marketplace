@@ -1,11 +1,12 @@
 # Open Science Pillars: Specification
 
 **Organization:** Open Science Pillars (github.com/open-science-pillars)
-**Version:** 0.6.3 (archive-observatory repo row)
-**Date:** 2026-08-30
+**Version:** 0.6.4 (OKF v0.2 vocabulary pass)
+**Date:** 2026-09-03
 **Scope:** Phase 1 (built; core + ocean-science + infrastructure + knowledge + verification + evals seed + stewardship) plus Phase 2 spec detail (hydrology bridge, §10)
 
 **Changelog:**
+- 0.6.4 (2026-09-03): the knowledge layer's remaining OKF v0.1 vocabulary is rewritten in the v0.2 form the bundles already carry (marketplace issue #6): section 5.1 names OKF v0.2, the `knowledge/` root, the root index `okf_version`, the `generated` event in place of `timestamp`, and `sources` cited by footnote in place of `evidence` links; sections 3.5, 5.2, 5.4, 5.5, 9 and 10.4 follow (approval adds the `verified` event; `status: stable` replaces `status: verified`). Section 5.6 stays CANDIDATE until v0.7 is cut but is now the vocabulary the rest of section 5 uses. Section 5.7 states that every repository keeping a bundle keeps it under `knowledge/`.
 - 0.6.3 (2026-08-30): section 1.1 gains the `archive-observatory` row (tracking issue #22): structural sweeper, pyQuARC harness with pinned-tag receipts, deterministic attester, scheduled aggregate sweeps under the publication policy (aggregate-public, provider-detail private, badges opt-in). Repo-table addition only, per the 0.6.1 build-kit precedent; freeze intact, no other change.
 - 0.6.2 (2026-07-06, development-model pass): the build record and development harness (IMPLEMENTATION-GUIDE, PROGRESS, PARKING, BUILD-HARNESS, README-START-HERE, and the knowledge-coupling migration record) relocated from `marketplace/docs` to the `build-kit` repo, co-locating them with the harness skills that read them; the §1.1 `build-kit` row and the §2.1 tree updated accordingly. `marketplace/docs` now holds only public-facing canonical docs, guides, and commitments. No Phase-1 scope change (freeze intact). Companion: `build-kit/docs/development-model.md` reframes future work as spec-anchored initiatives plus standing processes, retiring the single linear session sequence.
 - 0.6.1 (2026-07-05, documentation and continuity pass): added the `build-kit` repo to the §1.1 table (the development harness, so the session protocol is no longer a personal-workspace single point of failure). Non-spec companion work in the same pass (not changing this spec's requirements): build-era artifact references removed from public-facing content; a user glossary and a docs map added; the newcomer and contributor doc paths repaired; broken cross-repo evidence links in the canonical knowledge bundle fixed. Driven by a five-persona documentation review.
@@ -254,9 +255,9 @@ Both invocation paths open; behaviors as specified in v0.1 §3.5 plus:
 
 ### 3.5 Agents: knowledge-linter and knowledge-seeder
 
-**knowledge-linter** health-checks any OKF bundle in scope. Checks: `type` and `status` present; required fields present (title, description, tags, timestamp; resource and an `## Uncertainty` section on dataset concepts); every gotcha carries at least one evidence link; links resolve; concepts reachable from index.md; staleness threshold on dataset timestamps; high-severity gotchas carry a matching eval case id (🟡 if absent); `upstream: pending` concepts older than 60 days flagged; `disputed` concepts with no linked open issue flagged; imperative-phrasing scan (concepts containing instructions directed at the agent are flagged, §5.8); contradiction scan flagged for human review. Proposes fixes as diffs; never modifies.
+**knowledge-linter** health-checks any OKF bundle in scope. Checks: `type` and `status` present; required fields present (title, description, tags, a `generated` event; resource and an `## Uncertainty` section on dataset concepts); legacy `timestamp`, `verified_by`, and `evidence` keys flagged as incomplete migration; every gotcha carries at least one `sources` entry cited from its body; links resolve; concepts reachable from index.md; `stale_after` dates that have passed; high-severity gotchas carry a matching eval case id (🟡 if absent); `upstream: pending` concepts older than 60 days flagged; `disputed` concepts with no linked open issue flagged; imperative-phrasing scan (concepts containing instructions directed at the agent are flagged, §5.8); contradiction scan flagged for human review. Proposes fixes as diffs; never modifies.
 
-**knowledge-seeder** drafts concepts from authoritative sources. Given a dataset and steward-supplied seed URLs (product user guide, ATBD, known-issues page, provider forum threads, library release notes and issue trackers, ARSET Q&A documents), it drafts a dataset concept and gotcha candidates: every claim paraphrased with an evidence link, frontmatter `status: draft`, no log.md entry. MAY crawl only the supplied domains; MUST NOT invent or infer evidence (an unclear claim becomes an open question in the draft, not an assertion); MUST NOT merge anything. Steward review promotes draft to verified.
+**knowledge-seeder** drafts concepts from authoritative sources. Given a dataset and steward-supplied seed URLs (product user guide, ATBD, known-issues page, provider forum threads, library release notes and issue trackers, ARSET Q&A documents), it drafts a dataset concept and gotcha candidates: every claim paraphrased with a `sources` entry cited by footnote, frontmatter `status: draft` with a `generated` event naming the seeder as actor, no log.md entry. MAY crawl only the supplied domains; MUST NOT invent or infer evidence (an unclear claim becomes an open question in the draft, not an assertion); MUST NOT merge anything. Steward review promotes draft to stable and adds the `verified` event (section 5.6).
 
 ### 3.6 Core knowledge bundle
 
@@ -325,15 +326,15 @@ All four dataset concepts carry `## Uncertainty` sections (ECCO: no formal error
 
 ### 5.1 Conformance
 
-Open Knowledge Format v0.1 (github.com/GoogleCloudPlatform/knowledge-catalog): directory of markdown files; one concept per file; path is identity; `type` REQUIRED in frontmatter. This org additionally requires `title`, `description`, `tags`, `timestamp` on every concept; `resource` and an `## Uncertainty` section on dataset concepts; a `status` field on every concept (§5.6); and at least one `evidence` link on every gotcha and recipe. `index.md` at root (and per large subdirectory); `log.md` change history. Standard markdown cross-links; every gotcha links its dataset. Optional `trainings:` frontmatter (list of ARSET or equivalent training URLs) on dataset and recipe concepts.
+Open Knowledge Format v0.2 (github.com/GoogleCloudPlatform/knowledge-catalog; the exact text is vendored in docs/upstream): a `knowledge/` directory of markdown files at the repository root (provider bundles at `knowledge/<provider>/`, §5.7); one concept per file; path is identity; `type` REQUIRED in frontmatter; the bundle-root `index.md` carries `okf_version: "0.2"` and is the only index that carries frontmatter. This org additionally requires `title`, `description`, `tags`, and a `generated: {by: <actor>, at}` event on every concept (actors are `human:`, `process:`, or `team:` prefixed, or `owner/tool`); `resource` and an `## Uncertainty` section on dataset concepts; a `status` field on every concept (§5.6); and at least one `sources` entry (`id`, `resource`, `title`) cited from the body by a `[^id]` footnote on every gotcha and recipe. `index.md` at root (and per large subdirectory); `log.md` change history. Standard markdown cross-links; every gotcha links its dataset. Optional `trainings:` frontmatter (list of ARSET or equivalent training URLs) on dataset and recipe concepts.
 
 ### 5.2 Concept types
 
 | type | Purpose | Required extras |
 |---|---|---|
 | dataset | Identity, access, structure, versions, uncertainty of one product | resource; version/baseline with verification date; ## Uncertainty section |
-| dataset-gotcha | One trap: mechanism, wrong-result mode, correct approach, verification | severity (high/medium/low); link to dataset; ≥1 evidence link; severity high requires a matching eval case id |
-| recipe | Validated analysis pattern | inputs; expected values AND expected-uncertainty ranges; validation provenance (evidence links) |
+| dataset-gotcha | One trap: mechanism, wrong-result mode, correct approach, verification | severity (high/medium/low); link to dataset; ≥1 `sources` entry cited from the body; severity high requires a matching eval case id |
+| recipe | Validated analysis pattern | inputs; expected values AND expected-uncertainty ranges; validation provenance (`sources` entries cited from the body) |
 | convention | Cross-cutting practice | none |
 | finding | One falsifiable scientific claim, bound to the receipts, validity adjudication, and confrontation that support it (§5.10, v0.7 CANDIDATE) | question; claim with interval and receipt bindings; computations cited by receipt; validity adjudication; confrontation record; limitations; explicit status; `human:` signature and verdict IN before stable |
 
@@ -343,14 +344,14 @@ Open Knowledge Format v0.1 (github.com/GoogleCloudPlatform/knowledge-catalog): d
 
 ### 5.4 Stewardship and review
 
-Every bundle (and, in large bundles, every subdirectory) has named stewards in CODEOWNERS; PRs auto-request them. Merge rules: one steward review for any concept; two reviews (including a provider steward, on provider bundles) for high-severity gotchas and for any edit that changes severity, status, or an Uncertainty section. The review checklist (docs/steward-playbook.md): evidence links resolve and actually support the claim; severity is calibrated (high means silently wrong results); scope is minimal (one trap per concept); a reproduction or eval case exists where required; verification fields (`verified` date, `verified_by`) are set at approval. Stewards earn authorship on the bundle's Zenodo releases; onboarding follows the playbook plus the ARSET train-the-trainer methods pattern.
+Every bundle (and, in large bundles, every subdirectory) has named stewards in CODEOWNERS; PRs auto-request them. Merge rules: one steward review for any concept; two reviews (including a provider steward, on provider bundles) for high-severity gotchas and for any edit that changes severity, status, or an Uncertainty section. The review checklist (docs/steward-playbook.md): `sources` resolve and actually support the claims that cite them; severity is calibrated (high means silently wrong results); scope is minimal (one trap per concept); a reproduction or eval case exists where required; the `verified: {by: human:<id>, at}` event is added at approval (§5.6), never by the drafting process. Stewards earn authorship on the bundle's Zenodo releases; onboarding follows the playbook plus the ARSET train-the-trainer methods pattern.
 
 ### 5.5 Population: four intake channels
 
-1. **Mining:** the knowledge-seeder agent (§3.5) drafts candidates from steward-supplied authoritative sources, one evidence link per claim, `status: draft`.
+1. **Mining:** the knowledge-seeder agent (§3.5) drafts candidates from steward-supplied authoritative sources, one cited source per claim, `status: draft`.
 2. **Elicitation:** steward interviews using the playbook's top-five-traps script; Openscapes-style knowledge hackdays; workshop and training Q&A capture.
 3. **Operational ingest:** the analysis-time loop (§5.3), plus eval failures and support tickets, each opening a concept issue via the new_knowledge_concept template.
-4. **Adoption:** importing existing curated caveat notes (for example, cookbook warnings) with attribution and evidence links.
+4. **Adoption:** importing existing curated caveat notes (for example, cookbook warnings) with attribution and cited sources.
 
 Prioritization: the PO.DAAC arc first, then per-domain by usage. A dataset is **seeded** when its dataset concept exists (with Uncertainty section and verified access), every *known* high-severity trap is captured with evidence, and at least one recipe exists where a canonical workflow does. There are no numeric quotas: an evidence-free concept is worse than a gap.
 
@@ -358,7 +359,8 @@ Prioritization: the PO.DAAC arc first, then per-domain by usage. A dataset is **
 
 > CANDIDATE language, drafted in the OKF v0.2 migration window
 > (marketplace issue #6, 2026-08-30); it becomes normative when SPEC
-> v0.7 is cut. The vendored spec text in docs/upstream is the
+> v0.7 is cut. The bundles and the rest of §5 already use this
+> vocabulary (0.6.4). The vendored spec text in docs/upstream is the
 > conformance reference meanwhile.
 
 `status` on every concept is `draft` (unreviewed; consultable but voiced as unverified), `stable` (ready for consumption; the default when absent), or `deprecated` (kept for links and history; the OSP extension key `superseded_by` names the replacement). Trust lives outside status: steward approval adds a `verified: {by: human:<id>, at}` event (independent checks append to the list), and consumers derive the trust tier (unverified, machine-confirmed, human-reviewed) from the events, keyed on the `human:` prefix. Staleness is a date comparison: `stale_after` carries the sweep date and a concept is stale once now >= stale_after; a product baseline change (for example, a SWOT processing-version bump) pulls the date up and triggers a steward sweep of that dataset's concepts. A dispute is the OSP extension `disputed: <open issue URL>` on a stable concept; skills MUST state the dispute when citing. Skills surface status and tier when citing: high-severity claims are voiced with their verification provenance.
@@ -375,7 +377,7 @@ Migration mapping (SPEC v0.6 to OKF v0.2, applied to the bundles 2026-08-30):
 
 ### 5.7 Precedence, canonical home, and snapshots
 
-The canonical home of provider knowledge is the provider bundle (e.g., nasa-daac-knowledge/podaac). Because plugins are self-contained (§0.5), they never reference it by path; instead each domain plugin ships a **pinned snapshot** of the relevant provider concepts under its own knowledge/, with the source repository and commit recorded in the bundle's index.md and refreshed at every plugin release (a documented copy step in the release checklist, not a runtime dependency). Precedence on conflict: the provider-bundle concept wins. Plugin-local concepts exist only for material not yet upstreamed and carry `upstream: pending`, which the linter flags after 60 days. Scientists may additionally point local.md's Knowledge block at any installed standalone bundles; those are consulted at query time alongside the snapshot.
+The canonical home of provider knowledge is the provider bundle (e.g., nasa-daac-knowledge/knowledge/podaac; every repository that carries a bundle keeps it under knowledge/). Because plugins are self-contained (§0.5), they never reference it by path; instead each domain plugin ships a **pinned snapshot** of the relevant provider concepts under its own knowledge/, with the source repository and commit recorded in the bundle's index.md and refreshed at every plugin release (a documented copy step in the release checklist, not a runtime dependency). Precedence on conflict: the provider-bundle concept wins. Plugin-local concepts exist only for material not yet upstreamed and carry `upstream: pending`, which the linter flags after 60 days. Scientists may additionally point local.md's Knowledge block at any installed standalone bundles; those are consulted at query time alongside the snapshot.
 
 ### 5.8 Security posture: knowledge is declarative
 
@@ -602,7 +604,7 @@ Per-surface recording (Cd/Cw/Sc) for behavioral items in build-kit/PROGRESS.md.
 
 **Evals (seed):** SCHEMA.md exists; core ships its 3 methodology cases and ocean its 5 cases covering every 🔴 rule and each high-severity gotcha; knowledge-linter flags a high-severity gotcha lacking a case; a manual grading pass (one trial per case, rubric-scored) is recorded in each plugin's evals/RESULTS-seed.md.
 
-**Knowledge population and stewardship:** knowledge-seeder drafts a dataset-plus-gotchas set from supplied seed URLs with per-claim evidence and `status: draft`, and refuses to merge; every Phase-1 gotcha carries at least one resolving evidence link and `status: verified` with verifier fields set; steward-playbook.md and CODEOWNERS exist; the ocean bundle's index.md carries the snapshot source-metadata fields (placeholders until the snapshot pass); the linter flags a gotcha lacking evidence and an `upstream: pending` concept older than 60 days; the imperative-phrasing scan runs clean on all Phase-1 concepts.
+**Knowledge population and stewardship:** knowledge-seeder drafts a dataset-plus-gotchas set from supplied seed URLs with per-claim cited sources and `status: draft`, and refuses to merge; every Phase-1 gotcha carries at least one resolving source and `status: stable` with a `verified` event; steward-playbook.md and CODEOWNERS exist; the ocean bundle's index.md carries the snapshot source-metadata fields (placeholders until the snapshot pass); the linter flags a gotcha lacking sources and an `upstream: pending` concept older than 60 days; the imperative-phrasing scan runs clean on all Phase-1 concepts.
 
 **External validation (restored in v0.6 per PARKING #3):** at least one non-author scientist completes the end-to-end workflow (Tutorial 2) unaided, with friction notes captured in known-limitations.md. The launch announcement states its success criteria before posting (PARKING #1; the criteria live in docs/announcement-draft.md and the Phase-2 pre-registration).
 
@@ -675,7 +677,7 @@ Loaders gate and restate gotchas; provisional-data caveat surfaces on
 any recent NWIS window; drought and reservoir analyses read recipes and
 report uncertainty per the house rule; three-surface end-to-end
 (question → scout → load → analysis → report) recorded per surface;
-bundle lint-clean with verified_by set; goldens green headless.
+bundle lint-clean with `verified` events set; goldens green headless.
 
 ### 10.5 Ocean-bundle v0.6 completion
 
