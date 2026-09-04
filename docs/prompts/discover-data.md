@@ -1,7 +1,7 @@
 # Prompt: discover-data
 
 **Skill:** core / discover-data · **Spec:** SPECIFICATION.md v0.5.1 §3.4 (discover-data)
-**Authored:** Session 0b, 2026-07-04
+**Authored:** 2026-07-04
 
 ## Slash form (Claude Code only)
 

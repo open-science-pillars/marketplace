@@ -1,6 +1,6 @@
 # Behavior test: QC on the bad-data fixture, blind
 
-Skills under test: quality-control (user-invocable exception). Session 4 origin.
+Skills under test: quality-control (user-invocable exception).
 
 **Setup (keeps the test blind):** copy `core/verification/fixtures/era5like_t2m_bad.nc` to a neutral filename (for example `obs_t2m_monthly.nc`) in a directory away from the fixtures README and generator, which document the defects.
 

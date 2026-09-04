@@ -1,7 +1,7 @@
 # Prompt: sea-level-analysis
 
 **Skill:** ocean-science / sea-level-analysis · **Spec:** SPEC v0.5.1 §4.4
-**Authored:** Session 9, 2026-07-04
+**Authored:** 2026-07-04
 
 ## Slash form (Claude Code only)
 ```

@@ -1,11 +1,12 @@
 # Open Science Pillars: Specification
 
 **Organization:** Open Science Pillars (github.com/open-science-pillars)
-**Version:** 0.6.4 (OKF v0.2 vocabulary pass)
-**Date:** 2026-09-03
+**Version:** 0.6.5 (snapshot manifest and number ownership)
+**Date:** 2026-09-04
 **Scope:** Phase 1 (built; core + ocean-science + infrastructure + knowledge + verification + evals seed + stewardship) plus Phase 2 spec detail (hydrology bridge, §10)
 
 **Changelog:**
+- 0.6.5 (2026-09-04): section 5.7 specifies the snapshot manifest (`knowledge/snapshot.yaml`: source repository, bundle path at the pinned commit, commit, date, copy directory, include or exclude scope), the check and refresh commands the canonical repository provides, the pin rule (a refresh pins a commit at which the canonical bundle owes no signatures, normally the steward's signing commit), and the locality rule (a local concept is one under `knowledge/` and outside the manifest's scope; local provider material carries `upstream: pending`, local domain material needs no key). Section 5.2 gains the `computation` row and the ownership rule for reference numbers (the attested computation owns them; the recipe cites). Section 1.1 gains the `ecco-agent-evals` and `ecco-budget-badge` rows. The eval case schema is documented once in the eval authoring guide and each plugin's `evals/SCHEMA.md` points there (section 8). Build-program labels leave the current text of sections 8 and 10; this changelog stays as written (marketplace issue #41).
 - 0.6.4 (2026-09-03): the knowledge layer's remaining OKF v0.1 vocabulary is rewritten in the v0.2 form the bundles already carry (marketplace issue #6): section 5.1 names OKF v0.2, the `knowledge/` root, the root index `okf_version`, the `generated` event in place of `timestamp`, and `sources` cited by footnote in place of `evidence` links; sections 3.5, 5.2, 5.4, 5.5, 9 and 10.4 follow (approval adds the `verified` event; `status: stable` replaces `status: verified`). Section 5.6 stays CANDIDATE until v0.7 is cut but is now the vocabulary the rest of section 5 uses. Section 5.7 states that every repository keeping a bundle keeps it under `knowledge/`.
 - 0.6.3 (2026-08-30): section 1.1 gains the `archive-observatory` row (tracking issue #22): structural sweeper, pyQuARC harness with pinned-tag receipts, deterministic attester, scheduled aggregate sweeps under the publication policy (aggregate-public, provider-detail private, badges opt-in). Repo-table addition only, per the 0.6.1 build-kit precedent; freeze intact, no other change.
 - 0.6.2 (2026-07-06, development-model pass): the build record and development harness (IMPLEMENTATION-GUIDE, PROGRESS, PARKING, BUILD-HARNESS, README-START-HERE, and the knowledge-coupling migration record) relocated from `marketplace/docs` to the `build-kit` repo, co-locating them with the harness skills that read them; the §1.1 `build-kit` row and the §2.1 tree updated accordingly. `marketplace/docs` now holds only public-facing canonical docs, guides, and commitments. No Phase-1 scope change (freeze intact). Companion: `build-kit/docs/development-model.md` reframes future work as spec-anchored initiatives plus standing processes, retiring the single linear session sequence.
@@ -100,6 +101,8 @@ Plugins are cached and cannot reference files outside their own directory: no `.
 | `archive-observatory` | Cross-archive metadata compliance observatory: sweeper, pinned pyQuARC harness, attester, scheduled aggregate sweeps; publication policy binding (aggregate-public, detail-private, badges opt-in); credential-free by CI-enforced invariant | 2 |
 | `earthaccess-mcp` | SUPERSEDED: the planned wrapper is replaced by the upstream official server [nasa/earthdata-mcp](https://github.com/nasa/earthdata-mcp), already registered in ocean-science `.mcp.json`; its facts live in the podaac bundle as a connector concept (§5.9 candidate) | 2 |
 | `evals` | Eval runner, shared graders, suite manifests, published scoreboard | 2 |
+| `ecco-agent-evals` | Public, versioned eval cases derived from steward-signed ECCO knowledge, with transparent scoring and self-reported results; the authority for the ocean cases that ocean-science `evals/` ports | 2 |
+| `ecco-budget-badge` | Checkable ECCO budget closure: the attested heat budget's portable attester, a pinned copy of the sanctioned computation, and a CI badge any repository can carry | 2 |
 | `remote-sensing`, `models-and-reanalysis` | Measurement-layer plugins | 3 |
 | `applied-science` | Applications layer (ARSET-anchored packs) | 3 |
 | `planetary-science`, `pds-knowledge` | Planetary domain + PDS knowledge | 4 |
@@ -334,9 +337,12 @@ Open Knowledge Format v0.2 (github.com/GoogleCloudPlatform/knowledge-catalog; th
 |---|---|---|
 | dataset | Identity, access, structure, versions, uncertainty of one product | resource; version/baseline with verification date; ## Uncertainty section |
 | dataset-gotcha | One trap: mechanism, wrong-result mode, correct approach, verification | severity (high/medium/low); link to dataset; ≥1 `sources` entry cited from the body; severity high requires a matching eval case id |
-| recipe | Validated analysis pattern | inputs; expected values AND expected-uncertainty ranges; validation provenance (`sources` entries cited from the body) |
+| recipe | Validated analysis pattern | inputs; expected values AND expected-uncertainty ranges, cited by path from the attested computation that owns them where one exists; validation provenance (`sources` entries cited from the body) |
+| computation | One attested computation: the sanctioned code identity, the manifested inputs, and the receipt of one run (OKF v0.2 §10) | code path with its sha; input manifest; receipt; the reference values and tolerances that recipes and findings quote |
 | convention | Cross-cutting practice | none |
 | finding | One falsifiable scientific claim, bound to the receipts, validity adjudication, and confrontation that support it (§5.10, v0.7 CANDIDATE) | question; claim with interval and receipt bindings; computations cited by receipt; validity adjudication; confrontation record; limitations; explicit status; `human:` signature and verdict IN before stable |
+
+**Ownership of numbers.** Where a recipe and an attested computation describe the same analysis, the computation owns the reference values and tolerances (its receipt is the evidence) and the recipe cites them by path, quoting at most the headline value with that path beside it, so a re-run changes one file. A recipe with no computation carries its own expected values with their provenance. Findings follow §5.10: every number resolves to a receipt.
 
 ### 5.3 Operations
 
@@ -377,7 +383,23 @@ Migration mapping (SPEC v0.6 to OKF v0.2, applied to the bundles 2026-08-30):
 
 ### 5.7 Precedence, canonical home, and snapshots
 
-The canonical home of provider knowledge is the provider bundle (e.g., nasa-daac-knowledge/knowledge/podaac; every repository that carries a bundle keeps it under knowledge/). Because plugins are self-contained (§0.5), they never reference it by path; instead each domain plugin ships a **pinned snapshot** of the relevant provider concepts under its own knowledge/, with the source repository and commit recorded in the bundle's index.md and refreshed at every plugin release (a documented copy step in the release checklist, not a runtime dependency). Precedence on conflict: the provider-bundle concept wins. Plugin-local concepts exist only for material not yet upstreamed and carry `upstream: pending`, which the linter flags after 60 days. Scientists may additionally point local.md's Knowledge block at any installed standalone bundles; those are consulted at query time alongside the snapshot.
+The canonical home of provider knowledge is the provider bundle (e.g., nasa-daac-knowledge/knowledge/podaac; every repository that carries a bundle keeps it under knowledge/). Because plugins are self-contained (§0.5), they never reference it by path; instead each domain plugin ships a **pinned snapshot** of the relevant provider concepts under its own knowledge/, declared in a manifest, `knowledge/snapshot.yaml`:
+
+```yaml
+source:
+  repository: open-science-pillars/nasa-daac-knowledge
+  bundle: knowledge/podaac    # the bundle's path in that repository at the pinned commit
+  commit: 9224fe5a83e4              # the steward's signing commit
+  date: 2026-09-03
+copy_dir: snapshot-podaac     # relative to knowledge/; "." puts the copies beside the local concepts
+scope:                        # exactly one of include or exclude; the bundle's own index.md and log.md are never in scope
+  include:
+    - datasets/grace-fo-mascons.md
+    - gotchas/grace-coastal-leakage.md   # the dataset concept links both gotchas;
+    - gotchas/grace-gia-correction.md    # a scope that omits one fails the check as dangling
+```
+
+The copies are byte-identical to the canonical files at the pinned commit, every file type included, and the plugin's index.md repeats the pin for readers in its `Snapshot source commit:` and `Snapshot date:` lines. The canonical repository owns the check and the refresh, both offline: `tools/sync_check.py <plugin>/knowledge` (in nasa-daac-knowledge) verifies each copy against the canonical bundle at the pinned commit and fails on a stale, missing or extra file, a copied concept that links to a canonical file outside the scope, or a pin that differs between manifest and index, while reporting how far behind the pin sits as information; `--refresh <commit>` rewrites the in-scope files, prunes out-of-scope copies from a copy directory, and moves the manifest and index pin lines. The refresh is the documented step of the bundle release checklist, not a runtime dependency. **The pin rule:** a refresh pins a commit at which the canonical bundle owes no signatures, normally the steward's signing commit, so a snapshot never carries an edit its steward has not signed. Precedence on conflict: the provider-bundle concept wins. **The locality rule:** a local concept is one under the plugin's knowledge/ and outside the manifest's scope. Local provider material (facts about a provider's products that belong in a provider bundle) carries `upstream: pending`, which the linter flags after 60 days; local domain material (the plugin's own recipes, computations and conventions) needs no key. Scientists may additionally point local.md's Knowledge block at any installed standalone bundles; those are consulted at query time alongside the snapshot.
 
 ### 5.8 Security posture: knowledge is declarative
 
@@ -563,7 +585,7 @@ As previously specified, plus: authored in Quarto rendering to the tutorials sit
 
 **Case types:** gotcha-avoidance (one per high-severity gotcha, mandatory); rejection (the 🔴 rules and gates: native-grid refusal, volume gate); methodology (area weighting, trend-method choice, uncertainty statement present); recipe-fidelity (end-to-end result inside the recipe's expected range and spread).
 
-**Case schema** (`evals/*.yaml`; each plugin's `evals/SCHEMA.md` documents it):
+**Case schema** (`evals/*.yaml`; the eval authoring guide documents the fields once and each plugin's `evals/SCHEMA.md` points there):
 
 ```yaml
 id: native-grid-refusal
@@ -582,7 +604,7 @@ pass_threshold: 0.8
 
 **Grading:** programmatic checks on transcripts, produced code, and outputs wherever possible; rubric-based LLM judging (a port of the rubric-eval plugin) where judgment is required; periodic human calibration of the judge. **Stochasticity:** each case runs N trials and reports a pass rate with a binomial confidence interval; we apply our own uncertainty-reporting rule to ourselves.
 
-**Placement:** cases live per-plugin in `evals/` beside `verification/`, versioned with the skills and knowledge they test. The runner, shared graders, suite manifests, and the published scoreboard (versioned JSON plus a static page, scored by model and plugin version) live in the org `evals` repo (Phase 2, Sessions 18-19).
+**Placement:** cases live per-plugin in `evals/` beside `verification/`, versioned with the skills and knowledge they test. The runner, shared graders, suite manifests, and the published scoreboard (versioned JSON plus a static page, scored by model and plugin version) live in the org `evals` repo (Phase 2).
 
 **The ablation protocol (the headline experiment):** run the gotcha-avoidance suite with the knowledge bundle installed and with it removed, same model, same N; report the trap-hit-rate delta with intervals. This is the quantitative evidence for the knowledge-layer thesis, produced before outreach so the announcement carries numbers.
 
@@ -612,8 +634,7 @@ Per-surface recording (Cd/Cw/Sc) for behavioral items in build-kit/PROGRESS.md.
 
 ## 10. Hydrology Plugin (Phase 2)
 
-Spec detail for the outline's Sessions 15-17, written by the build per
-harness rule 11 (v0.6). The bridge thesis: SWOT observes ocean and
+Spec detail added at v0.6. The bridge thesis: SWOT observes ocean and
 inland water from one instrument; this plugin serves the hydrology
 community from the same archive, knowledge discipline, and verification
 practice as ocean-science. Install core first; ocean-science is not a

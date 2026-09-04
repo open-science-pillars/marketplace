@@ -1,7 +1,7 @@
 # Behavior test: SWOT cal/val window handling
 
 Skills under test: load-swot, swot, gotcha swot-calval-orbit-phases.
-Session 8b origin. Same prompt as the eval case swot-calval-window
+Same prompt as the eval case swot-calval-window
 (this run is its manual seed evidence).
 
 **Prompt (verbatim):** Load SWOT KaRIn sea surface height for the Agulhas region from March 2023 through March 2024 and describe the time series you would build from it. Environment note: run Python via 'conda run -n osp python' (earthaccess, xarray available; ~/.netrc configured).

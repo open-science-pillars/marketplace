@@ -1,13 +1,12 @@
 # Surface Testing Guide
 
-**Created:** Session 0b, 2026-07-04 · **Spec basis:** SPEC §0 (surface parity), §2.3 (install experience), §3.4 (workflow skill behaviors)
-**Location note:** authored in `docs-bootstrap/` before Session 1; Session 1 step 6 moves it to `marketplace/docs/` with the other canonical docs (per BUILD-HARNESS §1, single source of truth).
+**Created:** 2026-07-04 · **Spec basis:** SPEC §0 (surface parity), §2.3 (install experience), §3.4 (workflow skill behaviors)
 
 Everything in Open Science Pillars targets three surfaces equally: Claude Code (Cd), Claude Cowork (Cw), and Claude Science (Sc). This guide is the harness for proving that: the assumption record below, the standard prompt set, the per-surface install steps, and the convention for recording results in build-kit/PROGRESS.md.
 
 ---
 
-## Assumption smoke test results (Session 0b)
+## Assumption smoke test results (2026-07-04)
 
 Per IMPLEMENTATION-GUIDE v2.3.3 Session 0b, five load-bearing assumptions, verified before any build work. Any failure triggers a targeted spec amendment before Session 1 (the one freeze exception, harness rule 11).
 
@@ -63,7 +62,7 @@ Install (observed 2026-07-04, assumption a): add the marketplace, including unli
 
 ## Standard prompt set
 
-One file per workflow skill in `prompts/` (this directory moves to `marketplace/docs/prompts/` in Session 1; ocean prompts are added in Session 9). Each file fixes:
+One file per workflow skill in `prompts/`. Each file fixes:
 
 1. **Slash form** (Claude Code only), `/plugin:skill`.
 2. **Conversational form**, one phrasing, used **verbatim on all three surfaces**. Do not localize or improve it per surface; drift in phrasing invalidates cross-surface comparison.
@@ -73,10 +72,9 @@ One file per workflow skill in `prompts/` (this directory moves to `marketplace/
 Current prompt files: `prompts/start.md`, `prompts/discover-data.md`, `prompts/report.md`.
 
 A second prompt class exists beside these: `prompts/behavior/` captures
-each build session's Claude Code acceptance tests verbatim (setup,
-expected behaviors, pass criteria, results log) so they are rerunnable
-after skill edits and feed the Session 10 grading pass and the Phase 2
-evals runner. See `prompts/README.md` for the two classes and their
+the Claude Code acceptance tests verbatim (setup, expected behaviors,
+pass criteria, results log) so they are rerunnable after skill edits
+and feed the seed grading pass and the shared evals runner. See `prompts/README.md` for the two classes and their
 conventions.
 
 A surface run passes only if the expected behaviors appear without coaching: no follow-up hints, no rephrasing, no manual skill invocation after the first prompt (the slash form on Code is itself a first prompt).
@@ -98,18 +96,18 @@ Rules:
 
 ## Known Differences
 
-Populated from Session 5 onward as three-surface runs surface friction. Seeded observations:
+Populated as three-surface runs surface friction. Seeded observations:
 
 | Date | Surface | Observation | Consequence |
 |---|---|---|---|
 | 2026-07-04 | Sc | Plugins install from an unlisted marketplace, same as Cowork; the zip skill-import path was not needed (assumption a) | SPEC §0.1 packaging matrix flagged in PARKING item 5; install docs should teach the marketplace path |
-| 2026-07-04 | Sc | Whether agents and `.mcp.json` travel with a marketplace install is unverified | verify during Session 5 three-surface pass; knowledge-linter and earthdata-mcp behaviors need Sc-specific notes once tested |
+| 2026-07-04 | Sc | Whether agents and `.mcp.json` travel with a marketplace install is unverified | verify during the next three-surface pass; knowledge-linter and earthdata-mcp behaviors need Sc-specific notes once tested |
 
 ---
 
 ## Smoke-test artifacts
 
-`smoke-test/` at the workspace root is throwaway harness material, not shipped, deleted before launch (Session 14 at the latest):
+`smoke-test/` at the workspace root is throwaway harness material, not shipped, deleted before launch:
 
 - `smoke-test/osp-smoke-test-skill.zip` and `smoke-test/science-skill/`: assumption (a)
 - `smoke-test/cowork-marketplace/`: assumption (b), a minimal unlisted marketplace with one plugin

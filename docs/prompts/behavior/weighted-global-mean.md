@@ -1,6 +1,6 @@
 # Behavior test: weighted global mean
 
-Skills under test: xarray-fundamentals. Session 2 origin.
+Skills under test: xarray-fundamentals.
 
 **Prompt (verbatim):** Using the data file at <fixture era5like_t2m.nc>, what is the global mean 2 m temperature over the full record? Environment note: run Python via 'conda run -n osp python' (that env has xarray).
 

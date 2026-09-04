@@ -1,6 +1,6 @@
 # Behavior test: analysis-review blocks an uncovered trend
 
-Skills under test: analysis-review (user-invocable exception). Session 4 origin.
+Skills under test: analysis-review (user-invocable exception).
 
 **Prompt (verbatim):** Please review this analysis before I put it in a paper: 'Using OLS on the monthly global mean temperature from <fixture era5like_t2m.nc>, we find a warming trend of 0.21 K/decade. The warming is statistically significant (p < 0.05).' The computation was exactly that: ordinary least squares on the monthly area-weighted global means, scipy linregress p-value.
 

@@ -1,9 +1,9 @@
 # Prompt: report
 
 **Skill:** core / report · **Spec:** SPECIFICATION.md v0.5.1 §3.4 (report)
-**Authored:** Session 0b, 2026-07-04
+**Authored:** 2026-07-04
 
-Precondition: run after an analysis exists in the session (the Session 2-4 fixture pipeline, or any small analysis producing at least one headline quantity).
+Precondition: run after an analysis exists in the session (the core fixture pipeline, or any small analysis producing at least one headline quantity).
 
 On surfaces without file access, create the precondition inline with this first message (verbatim), then send the conversational form:
 
