@@ -90,10 +90,12 @@ def walk_bundle(root: Path):
 
 
 def parse_codeowners(root: Path) -> list:
-    """CODEOWNERS at the bundle root's repo level (root.parent) or the
-    root itself; returns [(scope, handle), ...]."""
+    """CODEOWNERS nearest the bundle root, searching the root itself and
+    then upward (bundles live at knowledge/ or knowledge/<provider>/ under
+    the repository root); returns [(scope, handle), ...]."""
     out = []
-    for cand in (root.parent / "CODEOWNERS", root / "CODEOWNERS"):
+    for cand in (root / "CODEOWNERS", root.parent / "CODEOWNERS",
+                 root.parent.parent / "CODEOWNERS"):
         if cand.exists():
             for line in cand.read_text(encoding="utf-8").splitlines():
                 line = line.strip()
