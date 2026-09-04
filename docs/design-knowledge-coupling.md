@@ -269,8 +269,9 @@ Adoption is now self-enforcing, not a one-time cleanup:
 - `build-kit/workflows/knowledge-coupling-review.js` classifies every skill and
   agent against the rule and emits the migration plan (it produced the current
   backlog: 37 files, 269 raw items, ~53 candidate concepts).
-- The knowledge-linter gains checks 14 (inlined concept content), 15
-  (unjustified hardcode), 16 (inert concept) to catch regressions at close.
+- The knowledge-linter carries the coupling checks (inlined concept
+  content, unjustified hardcode, inert concept, and consult drift;
+  numbered 10 to 13 in the agent) to catch regressions at close.
 - The goal and per-domain backlog live in `build-kit/build-record/knowledge-coupling-migration.md`;
   the migration proceeds domain by domain, concepts-with-evidence first, each
   ablation-verified. The review workflow reporting zero files is the exit test.
