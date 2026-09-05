@@ -46,7 +46,7 @@
       "source": {
         "source": "github",
         "repo": "open-science-pillars/ocean-science",
-        "ref": "ocean-science--v0.6.0"
+        "ref": "ocean-science--v0.7.0"
       }
     },
     {
@@ -55,7 +55,7 @@
       "source": {
         "source": "github",
         "repo": "open-science-pillars/hydrology",
-        "ref": "hydrology--v0.3.0"
+        "ref": "hydrology--v0.4.0"
       },
       "tags": [
         "hydrology",
