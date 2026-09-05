@@ -384,5 +384,6 @@ discipline that makes a release trustworthy (a tag lands only on a
 commit that owes no signatures) and the one check that closes the
 measured gap: a machine's installed record, read where the plugins
 stand, against the catalog. SPECIFICATION §0.5 and §5.7 carry the
-rules; the pinned snapshots Part 2 described survive only as a
-transitional form until each plugin's next release.
+rules; the pinned snapshots Part 2 described survived only as a
+transitional form, retired in ocean-science 0.7.0 and hydrology 0.4.0
+with the sync tooling that kept them honest.
