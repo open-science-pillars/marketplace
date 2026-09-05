@@ -6,7 +6,7 @@ commit) plus the specification's knowledge layer
 (docs/SPECIFICATION.md); the knowledge-template repo carries one
 annotated example per type.
 
-## The four types and their required extras
+## The concept types and their required extras
 
 - **dataset**: `resource`; version or processing baseline WITH a
   verification date; an `## Uncertainty` section in the body. The
@@ -23,6 +23,54 @@ annotated example per type.
   bar, OKF v0.2 §10); validation provenance in `sources`. Skills read
   recipes; recipes never live in skill bodies.
 - **convention**: the org-wide fields only.
+- **computation**: the sanctioned code path with its sha, the input
+  manifest, and the receipt of one run (OKF v0.2 §10). The reference
+  values and tolerances that recipes and findings quote live here, and
+  a recipe cites them by path rather than copying them (the
+  specification's ownership-of-numbers rule).
+- **finding** (a candidate type in the specification): one falsifiable
+  claim. `question`, `claim` bound field by field to a cited receipt,
+  `computations` cited by receipt, `validity` adjudication,
+  `confrontation` record, `limitations`; every number in the text
+  resolves to a receipt field or a sourced context constant; stable
+  only by a `human:` signature with verdict IN. Gate:
+  `check_okf_v02.py --findings` in nasa-daac-knowledge.
+- **dead-end** (a candidate type in the specification): the record of
+  an attempt that failed. `subject` (the concept paths it was tried
+  against), `attempt: {goal, method}`, `failure: {symptom, cause}`
+  (`unknown` is an honest cause), `observations` each
+  `{at, by, source}` (the key is `at`; YAML reads `on` as a boolean),
+  `reopens_if`, and `load_bearing` (high, medium, low; high requires
+  `eval_case`, the gotcha severity rule applied to negative
+  knowledge); `stale_after` should be present, because tools get
+  fixed. Body sections in order: Attempted, Observed, Why it fails,
+  Do instead (optional, expected on a high entry), Reopens if. Write
+  it as an attribution ("this was tried on this date and failed
+  because"), never as a universal ("impossible", "never works"); the
+  checker warns on universals. A dead-end is reopened with evidence,
+  never deleted.
+- **field-state** (a candidate type in the specification): where a
+  field stands on one question as of a date. `question` (one sentence
+  ending in a question mark), `as_of`, `state` (disputed, which needs
+  two or more positions; open; converging), `positions` each
+  `{id, statement, held_by, sources}` with the statement in the
+  holders' own terms, optional `bears_on` (the concepts whose reading
+  depends on the question), `stale_after` (required), and
+  `load_bearing` as above. No `claim`, `verdict`, `answer` or
+  `resolution` key and no section headed that way: the concept records
+  positions and takes no side, and a signature attests the record of
+  the discourse, not a position. Body sections in order: Question,
+  Positions, Bearing, What would move this. Superseded by the later
+  reading, never deleted.
+
+The two negative-knowledge types live under `dead-ends/` and
+`field-states/` in a bundle and are gated by
+`uv run tools/check_negative.py knowledge/<bundle>` in
+nasa-daac-knowledge (in its check routine; `--explain` shows how every
+path and source resolved). Their truth condition is attribution: the
+cited attempts and positions exist and say what the concept says they
+say, whether or not the approach later works or the question is later
+settled.
 
 Org-wide on every concept: `title`, `description`, `tags`,
 `generated: {by, at}` (who wrote it, in the actor convention, and the
@@ -70,8 +118,9 @@ ARSET or equivalent training URLs on datasets and recipes.
 
 A peculiarity discovered during ANY analysis is drafted immediately
 (correct type, frontmatter, links), queued for steward approval, and
-logged in the bundle's log.md with its discovery chain. Never deferred,
-never buried in a comparison note. The rapid-mocha concept and the
+logged in the bundle's log.md with its discovery chain; a method
+that was tried and failed is drafted the same way, as a dead-end.
+Never deferred, never buried in a comparison note. The rapid-mocha concept and the
 SWOT crossover-calibration known issue are live examples, each ingested
 the session it was found.
 
