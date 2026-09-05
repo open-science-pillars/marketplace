@@ -97,10 +97,13 @@ review, not the reverse.
 
 ## Credit
 
-Stewards earn authorship on the bundle's Zenodo releases. At the first
-tagged release, the bundle's `CITATION.cff` gains its concept DOI and adds
-the steward (and, for a provider bundle, the provider organization) as
-authors, for example:
+Stewards earn authorship on the bundle's Zenodo releases, which begin at
+1.0.0 (SPEC 2.3; the provider bundle deposits alongside the first
+dependent plugin's 1.0.0). Until then the derived credit list
+(`tools/derive_credit.py`) travels with each GitHub release and is the
+record of who did what. At that release, the bundle's `CITATION.cff`
+gains its concept DOI and adds the steward (and, for a provider bundle,
+the provider organization) as authors, for example:
 
 ```yaml
 authors:
