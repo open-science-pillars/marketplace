@@ -5,63 +5,63 @@ If a plugin README or tutorial uses a word you don't recognize, it's here.
 
 ## The pieces you install
 
-- **Plugin** — an installable package for Claude (Code, Cowork, or Science)
+- **Plugin**: an installable package for Claude (Code, Cowork, or Science)
   that adds skills, knowledge, and connectors for a topic. `core` is the
   foundation; `ocean-science` and `hydrology` are domain plugins;
   `nasa-daac-knowledge` is a knowledge-only plugin (no skills) that the
   domain plugins depend on, so installing a domain plugin installs it and
   `core` for you.
-- **Skill** — a unit of expertise or a workflow that Claude loads and uses.
+- **Skill**: a unit of expertise or a workflow that Claude loads and uses.
   Two kinds: *knowledge skills* (background expertise Claude consults
   automatically, like how to weight a spatial average) and *workflow skills*
   (things you ask it to do, like "load this dataset" or "write a report").
-- **Gated skill / gated loader** — a workflow skill that stops and asks for
+- **Gated skill / gated loader**: a workflow skill that stops and asks for
   confirmation before an expensive or irreversible action, such as a large
   download. It shows you the size and destination first.
-- **Agent** — a specialized helper Claude can dispatch for a focused job, for
+- **Agent**: a specialized helper Claude can dispatch for a focused job, for
   example checking a knowledge bundle for problems or auditing a computed
   budget. Agents in this project propose changes; they don't apply them.
 
 ## The knowledge layer
 
-- **Knowledge bundle** — a folder of short markdown files capturing what
+- **Knowledge bundle**: a folder of short markdown files capturing what
   practitioners know about real datasets: the traps, the uncertainty
   structure, and validated recipes. Every claim carries an evidence link and
   a review status. This is the reusable heart of the project.
-- **Concept** — one file in a knowledge bundle. Four kinds: a **dataset**
+- **Concept**: one file in a knowledge bundle. Four kinds: a **dataset**
   (what a product is and how its errors behave), a **gotcha** (a specific way
   a naive analysis goes silently wrong), a **recipe** (a validated method with
   expected numbers), and a **convention** (a cross-cutting rule).
-- **Gotcha** — a documented trap that produces plausible-looking but wrong
+- **Gotcha**: a documented trap that produces plausible-looking but wrong
   results if you don't know about it (for example, computing an ocean budget
   on regridded data, which never closes).
-- **Uncertainty section** — a required part of every dataset concept naming
+- **Uncertainty section**: a required part of every dataset concept naming
   the product's error fields and their limits, so results can state how well
   they're known.
-- **Steward** — the person accountable for a knowledge bundle's correctness:
+- **Steward**: the person accountable for a knowledge bundle's correctness:
   they review concepts before they're marked verified.
 
 ## Verification
 
-- **Golden notebook** — an automated notebook (written with **marimo**) that
+- **Golden notebook**: an automated notebook (written with **marimo**) that
   re-runs a workflow's computation on small test data and checks it still
   gets the expected answer. It runs headless in continuous integration; a red
   notebook blocks a change.
-- **marimo** — the reactive Python notebook format the golden notebooks use.
+- **marimo**: the reactive Python notebook format the golden notebooks use.
   It runs as a plain script, so the checks work in automation.
-- **Fixture** — the small, deterministic test dataset a golden notebook runs
+- **Fixture**: the small, deterministic test dataset a golden notebook runs
   on. Synthetic fixtures are built to make a classic mistake visibly wrong.
-- **Eval case** — a test of Claude's scientific *judgment* (not its code):
+- **Eval case**: a test of Claude's scientific *judgment* (not its code):
   given a realistic prompt, does it avoid the gotcha, refuse the unsafe
   request, report uncertainty? The **seed** set is the hand-graded baseline;
   an automated runner with many trials supersedes it.
 
 ## Surfaces and connectors
 
-- **Surface** — one of the three products this ships to: **Claude Code** (the
+- **Surface**: one of the three products this ships to: **Claude Code** (the
   terminal/IDE tool), **Claude Cowork**, and **Claude Science**. The same
   plugin installs on all three.
-- **Connector (MCP)** — a link from Claude to an external data service (for
+- **Connector (MCP)**: a link from Claude to an external data service (for
   example NASA Earthdata). The connector object is the REACH plane: the
   registration wire in a plugin's `.mcp.json`, and nothing more. Its facts
   (endpoint, transport, tool surface, auth boundary, deprecation status) are
