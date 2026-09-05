@@ -26,17 +26,18 @@ claude plugin update ocean-science@open-science-pillars
 This marketplace does not update installs on its own: an install keeps
 the release it was installed from until you update it by name (one
 command per plugin you installed) or enable auto-update for the
-marketplace in `/plugin`. An update moves a plugin's already-installed
-dependencies within the ranges it declares; a dependency the new
-release declares for the first time is not installed by the update,
-and `claude plugin list` then shows the plugin disabled with an error
-naming the install command to run (`claude plugin install
-nasa-daac-knowledge@open-science-pillars` for the domain plugins
-released on 2026-09-04), or `/reload-plugins` in a session installs
-it. A dependency declared without a range (`core`) is not moved by the
-dependent's update either: update it by name. The catalog names each
-plugin's current release, and `claude plugin list` shows which
-versions you have and whether every dependency resolved.
+marketplace in `/plugin`. An update moves only the plugin you name.
+It does not move that plugin's installed dependencies: when a release
+raises its floor past the version you have, `claude plugin list` shows
+the plugin disabled with an error naming the floor and the installed
+version (`Requires nasa-daac-knowledge >=2026.9.2, installed 2026.9.1`
+after the ocean-science 0.8.2 update), and `claude plugin update
+nasa-daac-knowledge@open-science-pillars` (or `core@...`) resolves it.
+A dependency the new release declares for the first time is not
+installed by the update either; the error then names the install
+command to run, or `/reload-plugins` in a session installs it. The
+catalog names each plugin's current release, and `claude plugin list`
+shows which versions you have and whether every dependency resolved.
 
 ## What's available now
 
@@ -78,4 +79,5 @@ the [build-kit](https://github.com/open-science-pillars/build-kit) repo; see
 Questions: [Discussions](https://github.com/open-science-pillars/marketplace/discussions).
 Contributions: [CONTRIBUTING.md](CONTRIBUTING.md); governance and review
 rules live in the org [.github repo](https://github.com/open-science-pillars/.github).
-Releases are archived to Zenodo for DOIs; see CITATION.cff.
+Releases are tags with GitHub releases; Zenodo archiving and DOIs begin
+at each repository's 1.0.0 release (tracked on issue #55). See CITATION.cff.
