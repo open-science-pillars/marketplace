@@ -1,6 +1,6 @@
 # Prompt: discover-data
 
-**Skill:** core / discover-data · **Spec:** SPECIFICATION.md v0.5.1 §3.4 (discover-data)
+**Skill:** core / discover-data
 **Authored:** 2026-07-04
 
 ## Slash form (Claude Code only)
@@ -17,7 +17,7 @@ I need monthly sea surface temperature for the North Atlantic from 2015 to 2020.
 
 ## Expected behavior (a pass looks like)
 
-Per SPEC §3.4, all of:
+The discover-data skill's required behaviors, all of:
 
 1. The need parsed into structured parameters (variable, region, period, resolution) and shown back.
 2. Candidate datasets found via the Earthdata MCP when available; when it is not, the knowledge-based fallback with archive URLs (no silent failure, the fallback is named).

@@ -261,7 +261,8 @@ The layer stack in Part 2 answers **which domain** a capability serves.
 It does not answer **what kind of thing** a capability is, and that
 second question turned out to be the one the build kept asking. The
 answer that emerged, now documented in docs/knowledge-vs-skills.md and
-the glossary and normative in SPEC section 5.9, is four planes:
+the glossary and normative in the specification's connectors section
+(docs/SPECIFICATION.md), is four planes:
 
 - **KNOW**: concepts. Claims about the world with a truth condition, a
   named human signature, and a staleness date. Falsifiable by the
@@ -281,11 +282,12 @@ built since lives there:** attested computations (sanctioned code an
 agent may run but not alter, each run emitting a receipt checked
 against a measured tolerance), the closure badge, validity domains
 with a fitness attester answering can-I-use-X-for-Y, and a pinned
-metadata harness. Golden notebooks (SPEC section 6) are not the same
-thing and do not cover it: a golden notebook tests our own code in our
-own CI, while an attester verifies anyone's run from a receipt they
-hand us. The distinction is load-bearing, because the second is what
-makes a claim checkable by someone who does not trust us.
+metadata harness. Golden notebooks (the specification's verification
+layer) are not the same thing and do not cover it: a golden notebook
+tests our own code in our own CI, while an attester verifies anyone's
+run from a receipt they hand us. The distinction is load-bearing,
+because the second is what makes a claim checkable by someone who does
+not trust us.
 
 The rule that keeps PROVE honest is worth stating at architecture
 level: **gates never depend on connectors.** Verification tooling calls
@@ -324,10 +326,11 @@ larger role, and it is the one the provider-facing instruments serve.
 **The connector.** Phase 1 names an `earthaccess-mcp` connector to be
 built here. It was superseded before it was written: NASA now publishes
 an official CMR MCP server (nasa/earthdata-mcp), which is what the
-plugins register. The SPEC section 1.1 row is marked accordingly. The
-architectural point survives the substitution and is stronger for it:
-the connector is REACH, its facts are KNOW (a dated concept in the
-provider bundle), when to reach for it is ACT, and PROVE ignores it.
+plugins register. The row in the specification's repository table is
+marked accordingly. The architectural point survives the substitution
+and is stronger for it: the connector is REACH, its facts are KNOW (a
+dated concept in the provider bundle), when to reach for it is ACT,
+and PROVE ignores it.
 
 **An interim to name before it calcifies.** Receipted regional sea
 level briefings are an applications-layer product for the Applications
@@ -383,10 +386,11 @@ first" in a README. What remains the organization's is the signature
 discipline that makes a release trustworthy (a tag lands only on a
 commit that owes no signatures) and the one check that closes the
 measured gap: a machine's installed record, read where the plugins
-stand, against the catalog. SPECIFICATION §0.5 and §5.7 carry the
-rules; the pinned snapshots Part 2 described survived only as a
-transitional form, retired in ocean-science 0.7.0 and hydrology 0.4.0
-with the sync tooling that kept them honest.
+stand, against the catalog. The specification's self-containment and
+distribution sections carry the rules; the pinned snapshots Part 2
+described survived only as a transitional form, retired in
+ocean-science 0.7.0 and hydrology 0.4.0 with the sync tooling that
+kept them honest.
 
 ### 9.7 The partner's name (added 2026-09-04)
 

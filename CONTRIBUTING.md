@@ -18,23 +18,24 @@ authoring guides in [docs/](docs/) expand them with worked detail:
 1. Everything behavioral is a skill or an agent. No `commands/` directories.
 2. Every SKILL.md starts with frontmatter: `name`, and a `description` of 200
    characters or fewer, keyword-first. Knowledge skills set
-   `user-invocable: false` (exceptions listed in SPECIFICATION.md §0.2).
+   `user-invocable: false` (the specification, docs/SPECIFICATION.md, lists
+   the exceptions under its skill invocation rules).
 3. Workflow skills keep both invocation paths open; side effects are guarded
    by in-skill confirmation gates.
 4. Plugins are self-contained: no `../` paths across repos.
 5. Every workflow skill that encodes a computation ships a marimo golden
    notebook in `verification/` that runs green headless.
-6. Knowledge concepts follow SPECIFICATION.md §5 and OKF v0.2 (the exact
-   spec text is vendored under docs/upstream, pinned by commit): `type`
-   plus the v0.2 families in frontmatter (`status` in draft | stable |
-   deprecated; `generated: {by, at}`; steward approval recorded as a
-   `verified: {by: human:<id>, at}` event; `sources` entries with stable
-   ids that body claims join via `[^id]` footnotes; `stale_after`);
-   datasets carry an `## Uncertainty` section; gotchas link their dataset
-   and carry at least one source; update the bundle's `log.md`. Concepts
-   state facts about data; they never instruct the agent. Unsure whether
-   something is knowledge or a skill? Run the decision aid in
-   [docs/knowledge-vs-skills.md](docs/knowledge-vs-skills.md).
+6. Knowledge concepts follow the specification's knowledge layer and OKF
+   v0.2 (the exact OKF text is vendored under docs/upstream, pinned by
+   commit): `type` plus the v0.2 families in frontmatter (`status` in
+   draft | stable | deprecated; `generated: {by, at}`; steward approval
+   recorded as a `verified: {by: human:<id>, at}` event; `sources` entries
+   with stable ids that body claims join via `[^id]` footnotes;
+   `stale_after`); datasets carry an `## Uncertainty` section; gotchas
+   link their dataset and carry at least one source; update the bundle's
+   `log.md`. Concepts state facts about data; they never instruct the
+   agent. Unsure whether something is knowledge or a skill? Run the
+   decision aid in [docs/knowledge-vs-skills.md](docs/knowledge-vs-skills.md).
 7. Prose style: no em dashes; use commas, colons, parentheses, or semicolons.
 
 ## Mechanics

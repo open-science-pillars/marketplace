@@ -1,6 +1,6 @@
 # Prompt: report
 
-**Skill:** core / report · **Spec:** SPECIFICATION.md v0.5.1 §3.4 (report)
+**Skill:** core / report
 **Authored:** 2026-07-04
 
 Precondition: run after an analysis exists in the session (the core fixture pipeline, or any small analysis producing at least one headline quantity).
@@ -25,9 +25,9 @@ Please write up this analysis as a report with methods, results, and provenance.
 
 ## Expected behavior (a pass looks like)
 
-Per SPEC §3.4, all of:
+The report skill's required behaviors, all of:
 
-1. **Confirmation gate first:** proposed filename and section list shown, and confirmation awaited, before any file is written. This gate must appear on the conversational path too (SPEC §0.2: gates are in-skill, never frontmatter blocks).
+1. **Confirmation gate first:** proposed filename and section list shown, and confirmation awaited, before any file is written. This gate must appear on the conversational path too (the specification's skill invocation rules: gates are in-skill, never frontmatter blocks).
 2. Sections assembled: Data Description / Methods / Results / Quality Notes / Provenance / Reproducibility.
 3. Markdown by default; docx only on request.
 4. Provenance cites the knowledge concepts consulted, by bundle path.

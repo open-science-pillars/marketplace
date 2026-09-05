@@ -1,12 +1,13 @@
 # Testing guide: how the three layers relate
 
-Per SPEC §6 and §8, plus the surface harness.
+Per the specification's verification and evals layers
+(docs/SPECIFICATION.md), plus the surface harness.
 
 | Layer | Tests | Instrument | Cadence |
 |---|---|---|---|
 | Golden notebooks (verification/) | code paths and expected results | marimo, headless, exit-nonzero | per PR (CI) and at session close for touched skills |
 | Surface harness (docs/prompts/) | packaging parity across Cd/Cw/Sc | verbatim prompt files with per-surface pass criteria | at integration sessions and releases |
-| Evals (evals/, or the plugin's declared eval repository) | agent scientific judgment | cases per §8, seed-graded by hand, shared runner at N=20 | seed pass now; per-PR in Phase 2 |
+| Evals (evals/, or the plugin's declared eval repository) | agent scientific judgment | cases in the specification's eval case format, seed-graded by hand, shared runner at N=20 | seed pass now; per-PR in Phase 2 |
 
 Behavior-test prompts (docs/prompts/behavior/) are the bridge: session
 acceptance tests captured verbatim, rerunnable after skill edits, and

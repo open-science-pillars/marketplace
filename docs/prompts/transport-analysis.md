@@ -1,6 +1,6 @@
 # Prompt: transport-analysis
 
-**Skill:** ocean-science / transport-analysis · **Spec:** SPEC v0.5.1 §4.4
+**Skill:** ocean-science / transport-analysis
 **Authored:** 2026-07-04
 
 ## Slash form (Claude Code only)

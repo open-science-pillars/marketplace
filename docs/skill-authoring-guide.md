@@ -1,7 +1,7 @@
 # Skill authoring guide
 
-Frontmatter standard per SPEC §0.3, plus the
-patterns this build settled on.
+Frontmatter standard per the specification (docs/SPECIFICATION.md),
+plus the patterns this build settled on.
 
 ## Frontmatter
 
@@ -9,7 +9,7 @@ patterns this build settled on.
 ---
 name: skill-name
 description: Keyword-first, 200 characters max; the words a scientist would use.
-# knowledge skills only (with the three §0.2 exceptions):
+# knowledge skills only (with the three exceptions the invocation rules name):
 # user-invocable: false
 ---
 ```
@@ -39,6 +39,6 @@ description: Keyword-first, 200 characters max; the words a scientist would use.
 - Gates present real numbers (count, volume, threshold, destination)
   and a smaller alternative, and wait for explicit confirmation above
   threshold.
-- Surface-neutral writing per §0.4: no terminal assumptions; compute
+- Surface-neutral writing: no terminal assumptions; compute
   declared small/medium/large.
 - No em dashes anywhere in prose (workspace rule 7).

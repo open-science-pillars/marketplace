@@ -1,6 +1,6 @@
 # Prompt: ocean-budget
 
-**Skill:** ocean-science / ocean-budget · **Spec:** SPEC v0.5.1 §4.4
+**Skill:** ocean-science / ocean-budget
 **Authored:** 2026-07-04
 
 ## Slash form (Claude Code only)

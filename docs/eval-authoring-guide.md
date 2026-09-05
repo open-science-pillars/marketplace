@@ -1,7 +1,8 @@
 # Eval authoring guide
 
-How to write eval cases per SPEC §8. A plugin's cases have one home:
-its own `evals/` beside `verification/`, versioned with the skills and
+How to write eval cases per the specification's evals layer
+(docs/SPECIFICATION.md). A plugin's cases have one home: its own
+`evals/` beside `verification/`, versioned with the skills and
 knowledge they test, or an eval repository the plugin declares as
 their home (ocean-science's cases live in `ecco-agent-evals`; the
 plugin carries no copy). This guide is the one place the case schema
