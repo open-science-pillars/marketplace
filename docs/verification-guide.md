@@ -1,9 +1,10 @@
 # Verification guide: golden-notebook practice
 
-Per SPEC §6. A workflow skill that encodes a
-computation is not done until its marimo notebook in `verification/`
-runs green headless (`python verification/x.py`, nonzero exit on
-assertion failure; PEP 723 inline deps so `uv run` works in CI).
+Per the specification's verification layer (docs/SPECIFICATION.md). A
+workflow skill that encodes a computation is not done until its marimo
+notebook in `verification/` runs green headless
+(`python verification/x.py`, nonzero exit on assertion failure; PEP 723
+inline deps so `uv run` works in CI).
 
 ## Practice distilled from this build
 

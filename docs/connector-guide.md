@@ -1,7 +1,8 @@
 # Connector guide
 
 MCP connectors per plugin: `.mcp.json` registers servers; CONNECTORS.md
-documents them per SPEC §3.1.
+documents them, as the specification's plugin structure requires
+(docs/SPECIFICATION.md).
 
 - Verify server entries against the provider's live repository AT
   AUTHORING TIME; never trust URLs from earlier drafts (the
@@ -13,6 +14,6 @@ documents them per SPEC §3.1.
 - Per-surface reality: Claude Code and Cowork read the plugin's
   .mcp.json; Claude Science configures connectors per session; state
   this in CONNECTORS.md.
-- Credentials never appear in any repo (§5.8): an Earthdata Login
+- Credentials never appear in any repo: an Earthdata Login
   lives in the environment, in ~/.netrc, or in connector
   configuration, and is needed only for downloads.

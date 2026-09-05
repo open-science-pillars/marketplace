@@ -1,6 +1,6 @@
 # Prompt: mixed-layer-analysis
 
-**Skill:** ocean-science / mixed-layer-analysis · **Spec:** SPEC v0.5.1 §4.4
+**Skill:** ocean-science / mixed-layer-analysis
 **Authored:** 2026-07-04
 
 ## Slash form (Claude Code only)

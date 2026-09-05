@@ -1,6 +1,7 @@
 # Steward playbook
 
-Stewards own the trustworthiness of a knowledge bundle. Per SPEC §5.4.
+Stewards own the trustworthiness of a knowledge bundle. Per the
+specification's stewardship and review rules (docs/SPECIFICATION.md).
 
 **Current stewardship.** The bundles are held by an interim (pro tem)
 steward while the project is young. Two things are distinct and should not
@@ -40,12 +41,12 @@ be confused:
 - Keep index.md and log.md honest; the log records decision chains,
   not just edits (see the existing entries for the pattern).
 
-## The review checklist (§5.4)
+## The review checklist
 
 1. Evidence links resolve AND actually support the claim (fetch them;
    a resolving link to an off-point page fails).
 2. Severity is calibrated: high means silently wrong results, and high
-   requires a matching eval case id (rule 9).
+   requires a matching eval case id.
 3. Scope is minimal: one trap per concept; scopes and dates on every
    number. The cautionary tale: a heat-transport recipe once recorded an
    expected value without saying it was a full-latitude-circle figure, not
@@ -55,18 +56,18 @@ be confused:
 4. A reproduction or eval case exists where required; reproducing
    tests are preferred evidence.
 5. Verified event added at approval; log entry written. A merged edit
-   to a concept you already signed owes you a new event (§5.4, merge
-   then sign): `tools/signature_check.py <bundle> --diff` in the
-   canonical repository lists the debt with the diff since your signing
-   commit, and a release tag waits until it is clear.
-6. §5.8 sweep: declarative voice, no directives to the agent (the
-   knowledge-linter's imperative-phrasing scan helps, but the steward is
-   the control).
+   to a concept you already signed owes you a new event (merge then
+   sign): `tools/signature_check.py <bundle> --diff` in the canonical
+   repository lists the debt with the diff since your signing commit,
+   and a release tag waits until it is clear.
+6. Security-posture sweep: declarative voice, no directives to the
+   agent (the knowledge-linter's imperative-phrasing scan helps, but the
+   steward is the control).
 
 ## The top-five-traps interview script
 
-For eliciting knowledge from a domain expert or data provider (§5.5
-channel 2), thirty minutes:
+For eliciting knowledge from a domain expert or data provider (the
+elicitation intake channel), thirty minutes:
 
 1. "What do newcomers to this dataset get wrong FIRST?"
 2. "What mistake produces plausible-looking but wrong numbers, and
@@ -98,12 +99,12 @@ review, not the reverse.
 ## Credit
 
 Stewards earn authorship on the bundle's Zenodo releases, which begin at
-1.0.0 (SPEC 2.3; the provider bundle deposits alongside the first
-dependent plugin's 1.0.0). Until then the derived credit list
-(`tools/derive_credit.py`) travels with each GitHub release and is the
-record of who did what. At that release, the bundle's `CITATION.cff`
-gains its concept DOI and adds the steward (and, for a provider bundle,
-the provider organization) as authors, for example:
+1.0.0 (per the specification's release rule; the provider bundle deposits
+alongside the first dependent plugin's 1.0.0). Until then the derived
+credit list (`tools/derive_credit.py`) travels with each GitHub release
+and is the record of who did what. At that release, the bundle's
+`CITATION.cff` gains its concept DOI and adds the steward (and, for a
+provider bundle, the provider organization) as authors, for example:
 
 ```yaml
 authors:
@@ -116,4 +117,4 @@ authors:
 The knowledge repo carries one repo-level `CITATION.cff`; a provider's
 authorship on it is scoped to their bundle's concepts (a per-bundle citation
 file can be added if a provider prefers a distinct DOI). Provider stewards
-(§1.2 governance) own their bundle's review authority outright.
+(per the org's GOVERNANCE.md) own their bundle's review authority outright.

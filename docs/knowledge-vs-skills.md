@@ -22,10 +22,10 @@ events and trust tiers (OKF v0.2 §5); skills get eval cases. Lifecycle:
 concepts expire on world events (a reprocessing, a tool release, a
 successor product) and carry `stale_after`; skills expire on model or
 harness events and get re-tuned. Security: concepts are data and never
-instruct the agent (SPECIFICATION §5.8), which is what lets the
-contribution funnel stay wide for bundles and tight for skills. Audience:
-a concept helps a scientist with no agent in the room; a skill is
-meaningless without an executor.
+instruct the agent, which is what lets the contribution funnel stay
+wide for bundles and tight for skills. Audience: a concept helps a
+scientist with no agent in the room; a skill is meaningless without an
+executor.
 
 ## The three tests
 

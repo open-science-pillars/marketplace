@@ -9,7 +9,7 @@ disrupting the bundles: pin exactly, watch continuously, adopt deliberately.
 
 Every OSP knowledge bundle declares the OKF version it targets in its
 bundle-root `index.md` frontmatter (`okf_version: "0.2"`), the only place
-the spec permits index frontmatter (spec §12). The exact spec text the org
+the spec permits index frontmatter (OKF v0.2 §12). The exact spec text the org
 conforms to is vendored at `docs/upstream/okf-SPEC-v<version>-<sha>.md`,
 pinned to the upstream commit named in the filename. Conformance claims,
 linter rules, and `tools/check_okf_v02.py` all reference the vendored copy,
@@ -18,7 +18,8 @@ never upstream main. Upstream lives at
 
 Current target: **OKF v0.2**. The migration from v0.1 plus our SPEC v0.6
 trust extensions is recorded in the marketplace tracking issue labeled
-`okf-v0.2`; the v0.6-to-v0.2 status mapping lives in SPECIFICATION §5.6.
+`okf-v0.2`; the v0.6-to-v0.2 status mapping lives in the specification's
+lifecycle and status section (docs/SPECIFICATION.md).
 
 ## OSP extension keys (and why they are extensions)
 
@@ -64,7 +65,7 @@ itself.
 ## Adopting a new version
 
 1. The watch (or an announcement) surfaces a change; an adoption issue is
-   opened summarizing the delta the way the spec's own §13 does: breaking
+   opened summarizing the delta the way OKF v0.2 §13 does: breaking
    changes first, additive changes second.
 2. Decide adopt, defer, or reject per change, under lazy consensus with the
    bundle stewards. The spec's versioning rules shape the default: minor

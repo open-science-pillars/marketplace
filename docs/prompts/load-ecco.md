@@ -1,6 +1,6 @@
 # Prompt: load-ecco
 
-**Skill:** ocean-science / load-ecco · **Spec:** SPEC v0.5.1 §4.4
+**Skill:** ocean-science / load-ecco
 **Authored:** 2026-07-04
 
 ## Slash form (Claude Code only)

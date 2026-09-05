@@ -1,6 +1,6 @@
 # Prompt: compare-obs
 
-**Skill:** ocean-science / compare-obs · **Spec:** SPEC v0.5.1 §4.4
+**Skill:** ocean-science / compare-obs
 **Authored:** 2026-07-04
 
 ## Slash form (Claude Code only)

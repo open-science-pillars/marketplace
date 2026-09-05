@@ -1,6 +1,6 @@
 # Prompt: start
 
-**Skill:** core / start · **Spec:** SPECIFICATION.md v0.5.1 §3.4 (start)
+**Skill:** core / start
 **Authored:** 2026-07-04
 
 ## Slash form (Claude Code only)
@@ -17,7 +17,7 @@ What science tools do I have set up here, and what should I do next?
 
 ## Expected behavior (a pass looks like)
 
-Per SPEC §3.4, one screen containing all of:
+The start skill's required behaviors, one screen containing all of:
 
 1. Installed OSP plugins listed (core; ocean-science if installed).
 2. Connector status (Earthdata MCP reachable or not).

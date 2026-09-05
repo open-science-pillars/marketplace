@@ -1,6 +1,6 @@
 # Prompt: water-mass-analysis
 
-**Skill:** ocean-science / water-mass-analysis · **Spec:** SPEC v0.5.1 §4.4
+**Skill:** ocean-science / water-mass-analysis
 **Authored:** 2026-07-04
 
 ## Slash form (Claude Code only)

@@ -1,7 +1,8 @@
 # Agent authoring guide
 
 Plugin agents are markdown files (frontmatter + system prompt) in
-`agents/<name>/agent.md`. Per SPEC §3.5 and §4.5.
+`agents/<name>/agent.md`. Per the specification's core and ocean agent
+sections (docs/SPECIFICATION.md).
 
 ## Frontmatter
 
@@ -16,8 +17,9 @@ structural, not aspirational; the seeder adds Write for drafts only.
 - State the agent's contract in the first paragraph: what it consumes,
   what it produces, and the thing it never does.
 - Ordered checks or behaviors, each with its authority cited (the
-  linter reads §5; the auditor reads the recipe's tolerance and the
-  traps table; the scout cites concepts in-plan).
+  linter reads the specification's knowledge layer; the auditor reads
+  the recipe's tolerance and the traps table; the scout cites concepts
+  in-plan).
 - Findings formats are explicit (flag, path, check, evidence) so
   humans and future runners can consume them.
 - Proposed fixes as diffs with placeholders where only a human can

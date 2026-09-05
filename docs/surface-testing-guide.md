@@ -1,6 +1,6 @@
 # Surface Testing Guide
 
-**Created:** 2026-07-04 · **Spec basis:** SPEC §0 (surface parity), §2.3 (install experience), §3.4 (workflow skill behaviors)
+**Created:** 2026-07-04
 
 Everything in Open Science Pillars targets three surfaces equally: Claude Code (Cd), Claude Cowork (Cw), and Claude Science (Sc). This guide is the harness for proving that: the assumption record below, the standard prompt set, the per-surface install steps, and the convention for recording results in build-kit/PROGRESS.md.
 
@@ -8,7 +8,7 @@ Everything in Open Science Pillars targets three surfaces equally: Claude Code (
 
 ## Assumption smoke test results (2026-07-04)
 
-Per IMPLEMENTATION-GUIDE v2.3.3 Session 0b, five load-bearing assumptions, verified before any build work. Any failure triggers a targeted spec amendment before Session 1 (the one freeze exception, harness rule 11).
+Five load-bearing assumptions, verified before any build work. Any failure triggers a targeted spec amendment before the build proceeds (the one freeze exception).
 
 | # | Assumption | Status | Date |
 |---|---|---|---|
@@ -36,11 +36,11 @@ Environment provenance: the `osp` conda env was created this session exactly per
 
 ## The three surfaces
 
-Packaging matrix per SPEC §0.1: one markdown source, three packagings.
+Packaging matrix per the specification (docs/SPECIFICATION.md): one markdown source, three packagings.
 
 ### Claude Code (Cd)
 
-Install (per SPEC §2.3):
+Install (per the specification's install rules):
 
 ```bash
 claude plugin marketplace add open-science-pillars/marketplace
@@ -49,15 +49,15 @@ claude plugin install ocean-science@open-science-pillars
 
 The one install resolves the plugin's declared dependencies (core and the `nasa-daac-knowledge` bundle); `claude plugin list --json` afterwards shows all three with no `errors` field, and that listing is the first check of any surface pass.
 
-Invocation: both paths, `/plugin-name:skill-name` (for example `/core:start`) and conversational. Every prompt file's slash form is tested here in addition to the conversational form. Run `/doctor` after install to confirm no skill descriptions are truncated or dropped (SPEC §0.3 description budget rule).
+Invocation: both paths, `/plugin-name:skill-name` (for example `/core:start`) and conversational. Every prompt file's slash form is tested here in addition to the conversational form. Run `/doctor` after install to confirm no skill descriptions are truncated or dropped (the specification's description budget rule).
 
 ### Claude Cowork (Cw)
 
-Install: claude.com/plugins (directory) or unlisted marketplace / upload, same plugin format as Code. Invocation: conversational only; slash forms are not tested here. Confirmation gates must appear conversationally (SPEC §0.2: never `disable-model-invocation: true` on workflow skills).
+Install: claude.com/plugins (directory) or unlisted marketplace / upload, same plugin format as Code. Invocation: conversational only; slash forms are not tested here. Confirmation gates must appear conversationally (the specification's skill invocation rules: never `disable-model-invocation: true` on workflow skills).
 
 ### Claude Science (Sc)
 
-Install (observed 2026-07-04, assumption a): add the marketplace, including unlisted ones by GitHub repo, and install the plugin, the same path as Cowork. SPEC §0.1 and §2.3 describe a workspace skill import instead; discrepancy parked as PARKING.md item 5, and this guide records the observed path. Connectors (MCP servers) are configured per session. Invocation: conversational only. Whether agents and `.mcp.json` travel with a marketplace install on Science is unverified; check during the Session 5 three-surface pass and record it in Known Differences.
+Install (observed 2026-07-04, assumption a): add the marketplace, including unlisted ones by GitHub repo, and install the plugin, the same path as Cowork. The specification's packaging matrix and install section describe a workspace skill import instead; discrepancy parked as PARKING.md item 5, and this guide records the observed path. Connectors (MCP servers) are configured per session. Invocation: conversational only. Whether agents and `.mcp.json` travel with a marketplace install on Science is unverified; check during the Session 5 three-surface pass and record it in Known Differences.
 
 ---
 
@@ -88,8 +88,8 @@ PROGRESS.md carries three surface columns per item: Cd, Cw, Sc. Legend as in bui
 
 Rules:
 
-1. A column changes only on evidence from that surface (harness rule 8): the prompt file used, the date, and pass/fail. One line per run in the Notes column or the session log, format: `Cd 2026-07-04 start ✓`.
-2. Slash and conversational are both required for a Cd 🟢 on a workflow skill (SPEC §0.4: acceptance includes conversational invocation).
+1. A column changes only on evidence from that surface: the prompt file used, the date, and pass/fail. One line per run in the Notes column or the session log, format: `Cd 2026-07-04 start ✓`.
+2. Slash and conversational are both required for a Cd 🟢 on a workflow skill (the specification's surface-neutral writing rules: acceptance includes conversational invocation).
 3. Never claim Cw or Sc from a Cd result. The session-close gate (build-kit/build-record/BUILD-HARNESS.md gate 5) lists which items still need Cw and Sc; those columns stay ⚪ or 🟡 until run.
 4. A pass with friction (wording had to be interpreted generously, output partially matched) is 🟡 with a note here in Known Differences, not 🟢.
 

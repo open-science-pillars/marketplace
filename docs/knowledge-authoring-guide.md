@@ -2,10 +2,11 @@
 
 How to write OKF concepts for Open Science Pillars bundles.
 Conformance: OKF v0.2 (vendored under docs/upstream, pinned by
-commit) plus SPEC §5; the knowledge-template repo carries one
+commit) plus the specification's knowledge layer
+(docs/SPECIFICATION.md); the knowledge-template repo carries one
 annotated example per type.
 
-## The four types and their required extras (§5.2)
+## The four types and their required extras
 
 - **dataset**: `resource`; version or processing baseline WITH a
   verification date; an `## Uncertainty` section in the body. The
@@ -14,9 +15,9 @@ annotated example per type.
   none exist and what stands in (ECCO's dynamical consistency is the
   canonical example).
 - **dataset-gotcha**: `severity` (high means silently wrong results;
-  high requires a matching eval-case id per harness rule 9); a link to
+  high requires a matching eval-case id); a link to
   its dataset concept (cross-cutting gotchas state a scope instead,
-  the §3.6 exception); at least one `sources` entry.
+  the core-bundle exception); at least one `sources` entry.
 - **recipe**: `inputs`; `expected` AND `expected_uncertainty` (ranges,
   or a pointer to the Attested Computation concept that owns the pass
   bar, OKF v0.2 §10); validation provenance in `sources`. Skills read
@@ -25,7 +26,7 @@ annotated example per type.
 
 Org-wide on every concept: `title`, `description`, `tags`,
 `generated: {by, at}` (who wrote it, in the actor convention, and the
-last meaningful change), `status` (§5.6 lifecycle: draft, stable,
+last meaningful change), `status` (lifecycle: draft, stable,
 deprecated), a `verified: {by: human:<id>, at}` event once a steward
 signs (never self-added by a drafting agent), `sources:` entries with
 stable ids for what the concept derives from (body claims join them
@@ -41,11 +42,11 @@ ARSET or equivalent training URLs on datasets and recipes.
    day one).
 2. **Sources or nothing.** Every gotcha and recipe claim carries a
    resolving `sources` entry, joined to the claim with a `[^id]`
-   footnote (OKF v0.2 §5.1); a source-free concept is worse than a gap
-   (§5.5). Verify resources resolve BEFORE committing; the linter
-   fetches them. Publisher bot-blocks (a 403 on a real DOI) are acceptable
-   with a recorded secondary verification (Crossref).
-3. **Facts, not instructions (§5.8).** Concepts never direct the
+   footnote (OKF v0.2 §5.1); a source-free concept is worse than a gap.
+   Verify resources resolve BEFORE committing; the linter fetches them.
+   Publisher bot-blocks (a 403 on a real DOI) are acceptable with a
+   recorded secondary verification (Crossref).
+3. **Facts, not instructions.** Concepts never direct the
    agent: no "quote this per the house rule", no "never mix X
    silently" imperatives. State the fact ("an analysis that mixes
    releases silently conflates corrections with signal"); behavior
@@ -65,7 +66,7 @@ ARSET or equivalent training URLs on datasets and recipes.
    (see ocean-science/knowledge/recipes/ecco-heat-budget.md for the pattern: float32
    quantization made a relative criterion meaningless).
 
-## Ingest etiquette (§5.3)
+## Ingest etiquette
 
 A peculiarity discovered during ANY analysis is drafted immediately
 (correct type, frontmatter, links), queued for steward approval, and
@@ -80,4 +81,5 @@ Draft (yours or the knowledge-seeder's) → steward review per the
 playbook checklist → `status: stable` with a
 `verified: {by: human:<id>, at}` event added at approval → log
 entry. High-severity gotchas and Uncertainty-section edits take two
-reviews (a provider steward on provider bundles) per §5.4.
+reviews (a provider steward on provider bundles) per the specification's
+stewardship and review rules.

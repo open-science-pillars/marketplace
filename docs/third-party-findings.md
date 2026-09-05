@@ -39,8 +39,9 @@ sits in any gate path that produces or verifies a published finding;
 metadata and other third-party text are rendered as quoted data, and
 counting or grading walks structure, never serialized text, so planted
 content can neither steer a verdict nor execute as instruction. This
-extends SPECIFICATION section 5.8 from concepts to every publishing
-pipeline.
+extends the specification's security posture (knowledge is declarative
+and never directs the agent; docs/SPECIFICATION.md) from concepts to
+every publishing pipeline.
 
 **4. Mirror, not enforcement (register R7).** Findings are offers of
 help, written with the subject, not about them: zero-fix results say so

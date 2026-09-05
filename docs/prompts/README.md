@@ -15,9 +15,9 @@ Two prompt classes live here, with different jobs:
    acceptance tests, captured verbatim with
    their setup, expected behaviors, and pass criteria, so they are
    rerunnable after any skill edit and feed the manual seed grading
-   pass and the shared evals runner (SPEC §8). These test
-   scientific judgment on one surface; they are not surface-parity
-   prompts.
+   pass and the shared evals runner (the specification's evals
+   layer). These test scientific judgment on one surface; they are
+   not surface-parity prompts.
 
 Conventions for behavior tests: prompts state the task and environment
 only, never the behavior under test (no coaching); tests that must stay
