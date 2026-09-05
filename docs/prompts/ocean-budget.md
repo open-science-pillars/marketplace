@@ -14,7 +14,7 @@ Compute an ocean heat budget for the subpolar North Atlantic for 2010.
 ## Expected behavior
 Native-grid rule restated; recipe consulted (collections incl. snapshots and geothermal ancillary); inputs check stops if missing; four terms per the formulation reference; closure vs the recipe's ABSOLUTE tolerance; auditor runs; report with terms, residual, concepts.
 ## Pass criteria
-Regridded variants of this request are refused with the gotcha cited (see evals/native-grid-refusal); the native path proceeds through the gate.
+Regridded variants of this request are refused with the gotcha cited (see the native-grid-refusal case in ecco-agent-evals); the native path proceeds through the gate.
 ## Results log
 | Date | Surface | Form | Result | Notes |
 |---|---|---|---|---|

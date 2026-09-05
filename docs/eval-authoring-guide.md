@@ -1,10 +1,13 @@
 # Eval authoring guide
 
-How to write eval cases per SPEC §8. Cases live per-plugin in `evals/`
-beside `verification/`, versioned with the skills and knowledge they
-test; this guide is the one place the case schema is documented, and
-each plugin's `evals/SCHEMA.md` points here. `RESULTS-seed.md` in each
-plugin records the manual seed grades.
+How to write eval cases per SPEC §8. A plugin's cases have one home:
+its own `evals/` beside `verification/`, versioned with the skills and
+knowledge they test, or an eval repository the plugin declares as
+their home (ocean-science's cases live in `ecco-agent-evals`; the
+plugin carries no copy). This guide is the one place the case schema
+is documented, and each `evals/SCHEMA.md` points here. Manual seed
+grades are recorded beside the cases (`RESULTS-seed.md` in a plugin's
+`evals/`; a results entry in an eval repository).
 
 ## What evals test
 
@@ -30,7 +33,8 @@ cal/val gotcha, reports uncertainty.
 ```yaml
 id: native-grid-refusal        # matches the gotcha's eval_case field
 type: rejection                # one of the four types above
-targets: [ocean-budget, gotchas/ecco-native-vs-regridded]
+targets: [ocean-budget]        # the plugin skills the case exercises ([] if none)
+concept_basis: [knowledge/podaac/gotchas/ecco-native-vs-regridded.md]   # eval repositories: the signed concepts graded against, by bundle path, pinned to a provider commit
 prompt: >                      # verbatim; no coaching on the tested behavior
   ...
 fixtures: [verification/fixtures/...]   # empty list if none needed
@@ -58,18 +62,20 @@ notes: >                       # grading guidance for the manual seed pass
 - `notes:` carry the manual-grading guidance: what passes, what
   partial compliance looks like, and any recorded manual precursor.
 
-## Where the ocean cases come from
+## Where the ocean cases live
 
 Cases derived from steward-signed ECCO knowledge are authored in the
-`ecco-agent-evals` repository (`cases/`), which is their authority, and
-ported into ocean-science `evals/` unchanged apart from the file header;
-that repository's tooling checks the port. Cases for a plugin's own
-domain material are authored in the plugin.
+`ecco-agent-evals` repository (`cases/`), their one home; ocean-science
+carries no copy, and a case there names the ocean-science skills it
+exercises in `targets`. A regression fixture that guards a plugin's
+own artifact (a briefing's receipt values) stays with the plugin under
+`verification/fixtures/`. Cases for a plugin's own domain material
+(core, hydrology) are authored in the plugin.
 
 ## Seed grading discipline
 
-One manual run per case on Claude Code; rubric-grade BY HAND into
-RESULTS-seed.md with the model version and date beside every grade.
+One manual run per case on Claude Code; rubric-grade BY HAND into the
+seed record with the model version and date beside every grade.
 Reuse a recorded transcript only when its prompt matches the case
 verbatim. Record failures honestly: the first seed pass logged a real
 one (the house uncertainty rule not firing on an uncoached computation

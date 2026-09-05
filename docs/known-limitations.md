@@ -25,7 +25,8 @@ An honest summary of what is verified where, and the caveats we ship with.
 - The ocean end-to-end (plan, gated load, MHT vs RAPID, gated report).
 - All four golden notebooks (they require the cached PO.DAAC subset).
 - The eval seed grades (model claude-fable-5, dates recorded in each
-  plugin's RESULTS-seed.md).
+  seed record: core's RESULTS-seed.md, the ocean seed entry under
+  results/ in ecco-agent-evals).
 - Tutorial timings (fresh-install measured on Code, 2026-07-05).
 
 ## Honest findings we ship with

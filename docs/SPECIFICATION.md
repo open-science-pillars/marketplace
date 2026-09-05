@@ -1,11 +1,12 @@
 # Open Science Pillars: Specification
 
 **Organization:** Open Science Pillars (github.com/open-science-pillars)
-**Version:** 0.6.8 (the copies retired)
+**Version:** 0.6.9 (one home for the ocean cases)
 **Date:** 2026-09-04
 **Scope:** Phase 1 (built; core + ocean-science + infrastructure + knowledge + verification + evals seed + stewardship) plus Phase 2 spec detail (hydrology bridge, §10)
 
 **Changelog:**
+- 0.6.9 (2026-09-04): the ocean eval cases have one home. The `ecco-agent-evals` repository, already the declared authority for the cases derived from steward-signed ECCO knowledge, is now their only location: its case headers carry both `concept_basis` (the signed concepts a case is graded against, by bundle path) and `targets` (the plugin skills a case exercises), and ocean-science 0.7.1 deleted its `evals/` copy, keeping only the regression fixture for its own briefing under `verification/fixtures/`. Section 8 Placement now admits a declared eval repository as a plugin's case home (the plugin's README and bundle index say so; the knowledge-linter's coverage rule reads cases from there), and the eval authoring guide drops the port. Plugins that author cases for their own material (core, hydrology) keep `evals/` as before.
 - 0.6.8 (2026-09-04): the transitional pinned snapshot is gone. Every domain plugin now reaches provider knowledge only as the declared dependency (ocean-science 0.7.0 and hydrology 0.4.0 deleted their copies and `knowledge/snapshot.yaml`; `sync_check.py` retired with them), so section 5.7 loses its transitional paragraph and the pin rule, as that paragraph said it would, and the locality rule loses its snapshot clause. A plugin cites a provider concept by bundle path (`knowledge/podaac/<type>/<concept>.md`), which core's consult-knowledge convention resolves through the installer's record; a concept body that needs another bundle's concept names it the same way, in text, never by a relative link (§0.5).
 - 0.6.7 (2026-09-04): provider knowledge reaches a plugin as a declared dependency, not a copy. The provider repository `nasa-daac-knowledge` is a catalog plugin (its bundles and tools, no skills) with calendar versions; a domain plugin declares `dependencies` in plugin.json (core, and the provider bundle with a version floor), and the installer installs, enables and updates the declared plugins with it. Section 0.5 replaces "install core first" with the declaration; section 2.2 shows the catalog with every entry's `ref` pinned to a release tag; section 2.3 states the one-command install and the by-name update; section 5.7 is retitled "Precedence, canonical home, and distribution" and states the release rule (bump, `{plugin-name}--v{version}` tag on a commit that owes no signatures, catalog ref move), keeps the locality rule, and carries the pinned snapshot as a transitional form until each plugin's next release drops it (marketplace issue #45). Amended the same day after the first real update: section 2.3 records what an update does not do (install a first-time dependency, move a rangeless one).
 - 0.6.6 (2026-09-04): section 5.4 states the merge-then-sign rule: a steward's signature binds a concept's text as of the signing commit; an edit to signed text may merge before the re-sign, so that merges never wait on a signing calendar, and from that merge the concept owes a signature until a new `human:` event follows. The canonical repository's `tools/signature_check.py` measures the debt by the signing commit (not by dates), lists what is owed, and gates `run_checks.sh`; section 5.7's pin rule gains the same measure (`sync_check.py --refresh` refuses a commit at which the canonical bundle owes signatures, and the check reports PIN-OWED on a pin that does). The rule had been practised since 2026-09-02 and is now written (marketplace issue #41).
@@ -104,7 +105,7 @@ Plugins are cached and cannot reference files outside their own directory: no `.
 | `archive-observatory` | Cross-archive metadata compliance observatory: sweeper, pinned pyQuARC harness, attester, scheduled aggregate sweeps; publication policy binding (aggregate-public, detail-private, badges opt-in); credential-free by CI-enforced invariant | 2 |
 | `earthaccess-mcp` | SUPERSEDED: the planned wrapper is replaced by the upstream official server [nasa/earthdata-mcp](https://github.com/nasa/earthdata-mcp), already registered in ocean-science `.mcp.json`; its facts live in the podaac bundle as a connector concept (§5.9 candidate) | 2 |
 | `evals` | Eval runner, shared graders, suite manifests, published scoreboard | 2 |
-| `ecco-agent-evals` | Public, versioned eval cases derived from steward-signed ECCO knowledge, with transparent scoring and self-reported results; the authority for the ocean cases that ocean-science `evals/` ports | 2 |
+| `ecco-agent-evals` | Public, versioned eval cases derived from steward-signed ECCO knowledge, with transparent scoring and self-reported results; the one home of the ocean cases (ocean-science carries no copy) | 2 |
 | `ecco-budget-badge` | Checkable ECCO budget closure: the attested heat budget's portable attester, a pinned copy of the sanctioned computation, and a CI badge any repository can carry | 2 |
 | `remote-sensing`, `models-and-reanalysis` | Measurement-layer plugins | 3 |
 | `applied-science` | Applications layer (ARSET-anchored packs) | 3 |
@@ -309,10 +310,7 @@ ocean-science/
 │   │            swot-calval-orbit-phases, grace-coastal-leakage,
 │   │            grace-gia-correction}.md
 │   └── recipes/{ecco-heat-budget, ecco-mht-26n}.md
-├── evals/                                  # §8 seed cases (gotcha-avoidance + rejection)
-│   ├── SCHEMA.md
-│   └── {native-grid-refusal, geothermal-omission,
-│        swot-calval-window, grace-leakage, volume-gate}.yaml
+├── (no evals/: the ocean cases live in ecco-agent-evals, §8 Placement)
 ├── verification/
 │   ├── load_ecco.py · transport_analysis.py · ocean_budget.py · load_swot.py
 │   └── fixtures/
@@ -595,12 +593,13 @@ As previously specified, plus: authored in Quarto rendering to the tutorials sit
 
 **Case types:** gotcha-avoidance (one per high-severity gotcha, mandatory); rejection (the 🔴 rules and gates: native-grid refusal, volume gate); methodology (area weighting, trend-method choice, uncertainty statement present); recipe-fidelity (end-to-end result inside the recipe's expected range and spread).
 
-**Case schema** (`evals/*.yaml`; the eval authoring guide documents the fields once and each plugin's `evals/SCHEMA.md` points there):
+**Case schema** (one YAML file per case; the eval authoring guide documents the fields once, and a plugin that carries cases keeps an `evals/SCHEMA.md` that points there; the ocean cases add `concept_basis`, the signed concepts by bundle path pinned to a provider commit):
 
 ```yaml
 id: native-grid-refusal
 type: rejection            # gotcha-avoidance | rejection | methodology | recipe-fidelity
-targets: [ocean-budget, gotchas/ecco-native-vs-regridded]
+targets: [ocean-budget]        # the plugin skills the case exercises
+concept_basis: [knowledge/podaac/gotchas/ecco-native-vs-regridded.md]
 prompt: >
   Compute an ocean heat budget for the subpolar North Atlantic from the
   regridded 0.5 degree ECCO temperature file at {fixture}.
@@ -614,7 +613,7 @@ pass_threshold: 0.8
 
 **Grading:** programmatic checks on transcripts, produced code, and outputs wherever possible; rubric-based LLM judging (a port of the rubric-eval plugin) where judgment is required; periodic human calibration of the judge. **Stochasticity:** each case runs N trials and reports a pass rate with a binomial confidence interval; we apply our own uncertainty-reporting rule to ourselves.
 
-**Placement:** cases live per-plugin in `evals/` beside `verification/`, versioned with the skills and knowledge they test. The runner, shared graders, suite manifests, and the published scoreboard (versioned JSON plus a static page, scored by model and plugin version) live in the org `evals` repo (Phase 2).
+**Placement:** a plugin's cases have one home. By default that is the plugin's own `evals/` beside `verification/`, versioned with the skills and knowledge they test. A plugin may instead declare an eval repository as the home of its cases, as ocean-science does with `ecco-agent-evals`: the plugin then carries no copy, its README and its bundle index name the repository, each case there names the plugin skills it exercises in `targets`, and a release of the plugin is run against the tagged case set; the knowledge-linter's coverage rule (a high-severity gotcha needs a matching case) reads the cases from the declared home. The runner, shared graders, suite manifests, and the published scoreboard (versioned JSON plus a static page, scored by model and plugin version) live in the org `evals` repo (Phase 2).
 
 **The ablation protocol (the headline experiment):** run the gotcha-avoidance suite with the knowledge bundle installed and with it removed, same model, same N; report the trap-hit-rate delta with intervals. This is the quantitative evidence for the knowledge-layer thesis, produced before outreach so the announcement carries numbers.
 
