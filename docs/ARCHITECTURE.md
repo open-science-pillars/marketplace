@@ -359,3 +359,30 @@ Named so their absence reads as a decision rather than an oversight:
 - **Credit-loop mechanics.** The derivation tool and release checklist
   are specified where they run; only the existence of the mechanism is
   architectural.
+
+### 9.6 Distribution is the installer's job (added 2026-09-04)
+
+Parts 1 through 8 describe what the organization builds and never say
+how a build reaches a machine. The gap was measured on 2026-09-04: the
+steward's own install still carried the plugins as they stood on
+2026-07-06, because every gate in the program compared repositories
+with repositories and none compared a repository with an install. Two
+months of knowledge and tooling existed on main and nowhere else.
+
+The correction is a division of labor. **The organization ships
+declarations, not copies.** A provider knowledge repository is a
+plugin in the catalog; a domain plugin declares what it depends on
+(core, and the provider bundle with a version floor) in its manifest;
+a release is a version bump, a tag in the form the installer resolves,
+and a catalog entry that names the tag. Resolving those declarations,
+fetching the right release, enabling the dependencies, and moving an
+install forward are the installer's work, and the organization does
+not rebuild any of it: no vendored copies of another repository's
+bundle, no sync tooling to keep the copies honest, no "install this
+first" in a README. What remains the organization's is the signature
+discipline that makes a release trustworthy (a tag lands only on a
+commit that owes no signatures) and the one check that closes the
+measured gap: a machine's installed record, read where the plugins
+stand, against the catalog. SPECIFICATION §0.5 and §5.7 carry the
+rules; the pinned snapshots Part 2 described survive only as a
+transitional form until each plugin's next release.

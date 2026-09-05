@@ -7,7 +7,10 @@ If a plugin README or tutorial uses a word you don't recognize, it's here.
 
 - **Plugin** — an installable package for Claude (Code, Cowork, or Science)
   that adds skills, knowledge, and connectors for a topic. `core` is the
-  foundation; `ocean-science` and `hydrology` are domain plugins.
+  foundation; `ocean-science` and `hydrology` are domain plugins;
+  `nasa-daac-knowledge` is a knowledge-only plugin (no skills) that the
+  domain plugins depend on, so installing a domain plugin installs it and
+  `core` for you.
 - **Skill** — a unit of expertise or a workflow that Claude loads and uses.
   Two kinds: *knowledge skills* (background expertise Claude consults
   automatically, like how to weight a spatial average) and *workflow skills*

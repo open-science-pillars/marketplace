@@ -72,12 +72,14 @@ itself.
    bump gets a migration window like the v0.2 one, declared in a tracking
    issue with the checks-override protocol from that migration's runbook.
 3. Update the tooling first (`migrate_okf_v02.py` successor and
-   `check_okf_v02.py` rules tables), then migrate canonical bundles, then
-   refresh plugin snapshots (`tools/sync_check.py` green closes the window),
-   then update CONTRIBUTING, the authoring guides, and SPECIFICATION.
+   `check_okf_v02.py` rules tables), then migrate the canonical bundles and
+   release the provider plugin, then raise each domain plugin's dependency
+   floor to that release and migrate its local bundle (the last plugin
+   release closes the window), then update CONTRIBUTING, the authoring
+   guides, and SPECIFICATION.
 4. Vendor the new spec text, bump `okf_version` in bundle root indexes, and
    record the adoption in each bundle's `log.md`.
 
-Order matters: tooling, canonical, snapshots, docs. Checks are red only
+Order matters: tooling, canonical, dependents, docs. Checks are red only
 between steps that are declared in the tracking issue, and every override
 names the PR that removes it.
