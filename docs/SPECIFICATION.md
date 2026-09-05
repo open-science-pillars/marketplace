@@ -165,13 +165,13 @@ marketplace/
     {
       "name": "ocean-science",
       "description": "Physical oceanography: ECCO state estimate, SWOT SSH, meridional transport, budget closure, water masses.",
-      "source": { "source": "github", "repo": "open-science-pillars/ocean-science", "ref": "ocean-science--v0.6.0" },
+      "source": { "source": "github", "repo": "open-science-pillars/ocean-science", "ref": "ocean-science--v0.7.0" },
       "tags": ["oceanography", "ecco", "swot", "podaac", "amoc", "heat-transport", "sea-level"]
     },
     {
       "name": "hydrology",
       "description": "Hydrology: SWOT river and lake products, GRACE-FO groundwater, USGS NWIS streamflow, SMAP soil moisture.",
-      "source": { "source": "github", "repo": "open-science-pillars/hydrology", "ref": "hydrology--v0.3.0" },
+      "source": { "source": "github", "repo": "open-science-pillars/hydrology", "ref": "hydrology--v0.4.0" },
       "tags": ["hydrology", "swot", "rivers", "lakes", "nwis", "streamflow", "grace", "groundwater", "smap", "soil-moisture"]
     },
     {
