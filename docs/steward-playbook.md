@@ -54,7 +54,11 @@ be confused:
    states its scope.
 4. A reproduction or eval case exists where required; reproducing
    tests are preferred evidence.
-5. Verified event added at approval; log entry written.
+5. Verified event added at approval; log entry written. A merged edit
+   to a concept you already signed owes you a new event (§5.4, merge
+   then sign): `tools/signature_check.py <bundle> --diff` in the
+   canonical repository lists the debt with the diff since your signing
+   commit, and a release or snapshot refresh waits until it is clear.
 6. §5.8 sweep: declarative voice, no directives to the agent (the
    knowledge-linter's imperative-phrasing scan helps, but the steward is
    the control).
