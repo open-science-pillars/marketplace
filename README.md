@@ -25,10 +25,18 @@ claude plugin update ocean-science@open-science-pillars
 
 This marketplace does not update installs on its own: an install keeps
 the release it was installed from until you update it by name (one
-command per plugin you installed; a plugin's dependencies come along
-within the range it declares) or enable auto-update for the marketplace
-in `/plugin`. The catalog names each plugin's current release, and
-`claude plugin list` shows which versions you have.
+command per plugin you installed) or enable auto-update for the
+marketplace in `/plugin`. An update moves a plugin's already-installed
+dependencies within the ranges it declares; a dependency the new
+release declares for the first time is not installed by the update,
+and `claude plugin list` then shows the plugin disabled with an error
+naming the install command to run (`claude plugin install
+nasa-daac-knowledge@open-science-pillars` for the domain plugins
+released on 2026-09-04), or `/reload-plugins` in a session installs
+it. A dependency declared without a range (`core`) is not moved by the
+dependent's update either: update it by name. The catalog names each
+plugin's current release, and `claude plugin list` shows which
+versions you have and whether every dependency resolved.
 
 ## What's available now
 
