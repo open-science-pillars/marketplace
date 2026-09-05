@@ -28,7 +28,7 @@
       "source": {
         "source": "github",
         "repo": "open-science-pillars/core",
-        "ref": "core--v0.4.0"
+        "ref": "core--v0.4.1"
       }
     },
     {
@@ -46,7 +46,7 @@
       "source": {
         "source": "github",
         "repo": "open-science-pillars/ocean-science",
-        "ref": "ocean-science--v0.7.0"
+        "ref": "ocean-science--v0.7.1"
       }
     },
     {

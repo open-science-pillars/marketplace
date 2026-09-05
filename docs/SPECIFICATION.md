@@ -160,13 +160,13 @@ marketplace/
     {
       "name": "core",
       "description": "Foundation: earth science data formats, statistics, uncertainty quantification, cartography, quality control, reproducibility, analysis review.",
-      "source": { "source": "github", "repo": "open-science-pillars/core", "ref": "core--v0.4.0" },
+      "source": { "source": "github", "repo": "open-science-pillars/core", "ref": "core--v0.4.1" },
       "tags": ["netcdf", "xarray", "cartopy", "geotiff", "zarr", "climate", "geospatial", "qc", "uncertainty", "reproducibility"]
     },
     {
       "name": "ocean-science",
       "description": "Physical oceanography: ECCO state estimate, SWOT SSH, meridional transport, budget closure, water masses.",
-      "source": { "source": "github", "repo": "open-science-pillars/ocean-science", "ref": "ocean-science--v0.7.0" },
+      "source": { "source": "github", "repo": "open-science-pillars/ocean-science", "ref": "ocean-science--v0.7.1" },
       "tags": ["oceanography", "ecco", "swot", "podaac", "amoc", "heat-transport", "sea-level"]
     },
     {
