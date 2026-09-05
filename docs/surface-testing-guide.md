@@ -44,9 +44,10 @@ Install (per SPEC §2.3):
 
 ```bash
 claude plugin marketplace add open-science-pillars/marketplace
-claude plugin install core@open-science-pillars
 claude plugin install ocean-science@open-science-pillars
 ```
+
+The one install resolves the plugin's declared dependencies (core and the `nasa-daac-knowledge` bundle); `claude plugin list --json` afterwards shows all three with no `errors` field, and that listing is the first check of any surface pass.
 
 Invocation: both paths, `/plugin-name:skill-name` (for example `/core:start`) and conversational. Every prompt file's slash form is tested here in addition to the conversational form. Run `/doctor` after install to confirm no skill descriptions are truncated or dropped (SPEC §0.3 description budget rule).
 

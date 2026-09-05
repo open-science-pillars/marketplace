@@ -1,11 +1,12 @@
 # Open Science Pillars: Specification
 
 **Organization:** Open Science Pillars (github.com/open-science-pillars)
-**Version:** 0.6.6 (merge then sign)
+**Version:** 0.6.7 (declared dependencies)
 **Date:** 2026-09-04
 **Scope:** Phase 1 (built; core + ocean-science + infrastructure + knowledge + verification + evals seed + stewardship) plus Phase 2 spec detail (hydrology bridge, §10)
 
 **Changelog:**
+- 0.6.7 (2026-09-04): provider knowledge reaches a plugin as a declared dependency, not a copy. The provider repository `nasa-daac-knowledge` is a catalog plugin (its bundles and tools, no skills) with calendar versions; a domain plugin declares `dependencies` in plugin.json (core, and the provider bundle with a version floor), and the installer installs, enables and updates the declared plugins with it. Section 0.5 replaces "install core first" with the declaration; section 2.2 shows the catalog with every entry's `ref` pinned to a release tag; section 2.3 states the one-command install and the by-name update; section 5.7 is retitled "Precedence, canonical home, and distribution" and states the release rule (bump, `{plugin-name}--v{version}` tag on a commit that owes no signatures, catalog ref move), keeps the locality rule, and carries the pinned snapshot as a transitional form until each plugin's next release drops it (marketplace issue #45).
 - 0.6.6 (2026-09-04): section 5.4 states the merge-then-sign rule: a steward's signature binds a concept's text as of the signing commit; an edit to signed text may merge before the re-sign, so that merges never wait on a signing calendar, and from that merge the concept owes a signature until a new `human:` event follows. The canonical repository's `tools/signature_check.py` measures the debt by the signing commit (not by dates), lists what is owed, and gates `run_checks.sh`; section 5.7's pin rule gains the same measure (`sync_check.py --refresh` refuses a commit at which the canonical bundle owes signatures, and the check reports PIN-OWED on a pin that does). The rule had been practised since 2026-09-02 and is now written (marketplace issue #41).
 - 0.6.5 (2026-09-04): section 5.7 specifies the snapshot manifest (`knowledge/snapshot.yaml`: source repository, bundle path at the pinned commit, commit, date, copy directory, include or exclude scope), the check and refresh commands the canonical repository provides, the pin rule (a refresh pins a commit at which the canonical bundle owes no signatures, normally the steward's signing commit), and the locality rule (a local concept is one under `knowledge/` and outside the manifest's scope; local provider material carries `upstream: pending`, local domain material needs no key). Section 5.2 gains the `computation` row and the ownership rule for reference numbers (the attested computation owns them; the recipe cites). Section 1.1 gains the `ecco-agent-evals` and `ecco-budget-badge` rows. The eval case schema is documented once in the eval authoring guide and each plugin's `evals/SCHEMA.md` points there (section 8). Build-program labels leave the current text of sections 8 and 10; this changelog stays as written (marketplace issue #41).
 - 0.6.4 (2026-09-03): the knowledge layer's remaining OKF v0.1 vocabulary is rewritten in the v0.2 form the bundles already carry (marketplace issue #6): section 5.1 names OKF v0.2, the `knowledge/` root, the root index `okf_version`, the `generated` event in place of `timestamp`, and `sources` cited by footnote in place of `evidence` links; sections 3.5, 5.2, 5.4, 5.5, 9 and 10.4 follow (approval adds the `verified` event; `status: stable` replaces `status: verified`). Section 5.6 stays CANDIDATE until v0.7 is cut but is now the vocabulary the rest of section 5 uses. Section 5.7 states that every repository keeping a bundle keeps it under `knowledge/`.
@@ -75,9 +76,9 @@ frontmatter.
 - Compute is declared, not assumed: tasks labeled small (laptop), medium (Dask), large (HPC/burst).
 - Every workflow skill's acceptance includes conversational invocation with no slash command.
 
-### 0.5 Self-containment rule
+### 0.5 Self-containment and declared dependencies
 
-Plugins are cached and cannot reference files outside their own directory: no `../` paths between plugins; core is a peer install ("install core first" in READMEs and descriptions), never a file dependency; cross-plugin references are conceptual, never by path.
+Plugins are cached and cannot reference files outside their own directory: no `../` paths between plugins; cross-plugin references are conceptual, never by path. What a plugin needs from another plugin it declares in plugin.json's `dependencies` (core for every domain plugin; the provider bundle plugin, with a version floor, for a plugin that builds on provider knowledge; §5.7), and the installer installs and enables the declared plugins with it. A README states the dependencies and the one install command; "install core first" is no longer a reader's step.
 
 ---
 
@@ -98,7 +99,7 @@ Plugins are cached and cannot reference files outside their own directory: no `.
 | `.github` | Org profile, issue templates, CoC, governance | 1 |
 | `build-kit` | Development harness: session/initiative skills, workspace-law template, bootstrap, DEVELOPING guide, workflows, and the build record (IMPLEMENTATION-GUIDE, PROGRESS, PARKING, BUILD-HARNESS) | 1 (infra) |
 | `hydrology` | SWOT rivers/lakes, GRACE-FO, NWIS, SMAP | 2 |
-| `nasa-daac-knowledge` | Standalone per-DAAC bundles (podaac first) | 2 |
+| `nasa-daac-knowledge` | Per-DAAC provider bundles (podaac, esdis) and the bundle tools, shipped as one catalog plugin the domain plugins declare as a dependency (§5.7) | 2 |
 | `archive-observatory` | Cross-archive metadata compliance observatory: sweeper, pinned pyQuARC harness, attester, scheduled aggregate sweeps; publication policy binding (aggregate-public, detail-private, badges opt-in); credential-free by CI-enforced invariant | 2 |
 | `earthaccess-mcp` | SUPERSEDED: the planned wrapper is replaced by the upstream official server [nasa/earthdata-mcp](https://github.com/nasa/earthdata-mcp), already registered in ocean-science `.mcp.json`; its facts live in the podaac bundle as a connector concept (§5.9 candidate) | 2 |
 | `evals` | Eval runner, shared graders, suite manifests, published scoreboard | 2 |
@@ -148,7 +149,7 @@ marketplace/
 ```json
 {
   "name": "open-science-pillars",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "AI-assisted open science for earth, planetary, and applied science: skills, knowledge bundles, verification notebooks, and connectors for Claude Code, Cowork, and Claude Science.",
   "owner": { "name": "Open Science Pillars Community" },
   "author": { "name": "Open Science Pillars Community" },
@@ -157,32 +158,45 @@ marketplace/
     {
       "name": "core",
       "description": "Foundation: earth science data formats, statistics, uncertainty quantification, cartography, quality control, reproducibility, analysis review.",
-      "source": { "source": "github", "repo": "open-science-pillars/core" },
+      "source": { "source": "github", "repo": "open-science-pillars/core", "ref": "core--v0.4.0" },
       "tags": ["netcdf", "xarray", "cartopy", "geotiff", "zarr", "climate", "geospatial", "qc", "uncertainty", "reproducibility"]
     },
     {
       "name": "ocean-science",
-      "description": "Physical oceanography: ECCO state estimate, SWOT SSH, meridional transport, budget closure, water masses. Install core first.",
-      "source": { "source": "github", "repo": "open-science-pillars/ocean-science" },
+      "description": "Physical oceanography: ECCO state estimate, SWOT SSH, meridional transport, budget closure, water masses.",
+      "source": { "source": "github", "repo": "open-science-pillars/ocean-science", "ref": "ocean-science--v0.6.0" },
       "tags": ["oceanography", "ecco", "swot", "podaac", "amoc", "heat-transport", "sea-level"]
+    },
+    {
+      "name": "hydrology",
+      "description": "Hydrology: SWOT river and lake products, GRACE-FO groundwater, USGS NWIS streamflow, SMAP soil moisture.",
+      "source": { "source": "github", "repo": "open-science-pillars/hydrology", "ref": "hydrology--v0.3.0" },
+      "tags": ["hydrology", "swot", "rivers", "lakes", "nwis", "streamflow", "grace", "groundwater", "smap", "soil-moisture"]
+    },
+    {
+      "name": "nasa-daac-knowledge",
+      "description": "Provider knowledge bundles from NASA DAACs: PO.DAAC (ECCO, SWOT, GRACE-FO, MUR, NASA-SSH, RAPID) and the ESDIS metadata requirements. Facts about data, signed by their stewards; no skills. Installed automatically as a dependency of the domain plugins.",
+      "source": { "source": "github", "repo": "open-science-pillars/nasa-daac-knowledge", "ref": "nasa-daac-knowledge--v2026.9.1" },
+      "tags": ["knowledge", "okf", "podaac", "esdis", "ecco", "swot", "grace", "mur", "nasa-ssh", "metadata"]
     }
   ]
 }
 ```
 
-No `dependencies` field: the plugin system does not resolve cross-plugin dependencies. (v0.6 note: the `owner` object is required by the CLI's marketplace schema, and plugin entries use the `source` object form; a bare `repository: "owner/repo"` string is not an installable source type. Both were discovered during install testing.)
+Every entry's `source.ref` names a release tag (§5.7), so an install resolves a release and never a moving branch; a release moves its entry's `ref` in a one-line catalog change. The `dependencies` field lives in each plugin's own plugin.json, where the plugin author owns it, not in the catalog. The catalog's refs shown here are the ones the entries carry once each plugin's first release under this rule is tagged; until then an entry names the latest existing tag. (v0.6 note: the `owner` object is required by the CLI's marketplace schema, and plugin entries use the `source` object form; a bare `repository: "owner/repo"` string is not an installable source type. Both were discovered during install testing.)
 
-### 2.3 Install experience
+### 2.3 Install and update experience
 
 ```bash
 claude plugin marketplace add open-science-pillars/marketplace
-claude plugin install core@open-science-pillars
 claude plugin install ocean-science@open-science-pillars
 ```
 
+One install brings the plugin's declared dependencies with it (core and the provider bundle, §0.5). An install keeps the release it was installed from: it moves when the user updates the plugin by name (`claude plugin update ocean-science@open-science-pillars`, which carries the dependencies along within their ranges) or enables auto-update for the marketplace in `/plugin`. `claude plugin list --json` reports each installed plugin's version and any dependency error, and is the check that a machine has what the repositories say it has.
+
 Cowork: claude.com/plugins, or an unlisted marketplace by GitHub repo. Claude Science: add the marketplace and install, same as Cowork (observed 2026-07-04); connectors per session (surface-testing-guide.md documents the tested paths).
 
-**Releases:** tagged releases of every repo are archived to Zenodo for a DOI; each CITATION.cff points at the repo's concept DOI so contributions are citable in the literature.
+**Releases:** tagged releases of every repo are archived to Zenodo for a DOI; each CITATION.cff points at the repo's concept DOI so contributions are citable in the literature. Plugin release tags take the `{plugin-name}--v{version}` form (§5.7); the marketplace repository keeps bare `vX.Y.Z` tags.
 
 ---
 
@@ -222,7 +236,7 @@ core/
 
 ### 3.2 plugin.json
 
-As marketplace entry, expanded: name `core`, version 0.3.0, Apache-2.0, homepage github.com/open-science-pillars/core.
+As marketplace entry, expanded: name `core`, the release version (§5.7), Apache-2.0, homepage github.com/open-science-pillars/core.
 
 ### 3.3 Knowledge skills
 
@@ -353,7 +367,7 @@ Open Knowledge Format v0.2 (github.com/GoogleCloudPlatform/knowledge-catalog; th
 
 Every bundle (and, in large bundles, every subdirectory) has named stewards in CODEOWNERS; PRs auto-request them. Merge rules: one steward review for any concept; two reviews (including a provider steward, on provider bundles) for high-severity gotchas and for any edit that changes severity, status, or an Uncertainty section. The review checklist (docs/steward-playbook.md): `sources` resolve and actually support the claims that cite them; severity is calibrated (high means silently wrong results); scope is minimal (one trap per concept); a reproduction or eval case exists where required; the `verified: {by: human:<id>, at}` event is added at approval (§5.6), never by the drafting process. Stewards earn authorship on the bundle's Zenodo releases; onboarding follows the playbook plus the ARSET train-the-trainer methods pattern.
 
-**Merge then sign.** A signature binds the concept's text as of its **signing commit**, the commit that introduced that `verified` event; the events themselves are the only lines a signature does not cover. An edit to signed text may merge before the steward re-signs (one steward review still merges it), so that a correction never waits on a signing calendar; from that merge the concept **owes a signature** until a new `human:` event follows, and the older events stay in the list as history. Owing is a debt, not a demotion: the concept stays `stable`, consumers keep citing it at its tier, and the steward clears the debt by appending an event after reading the diff since the signing commit. The debt is measured by commits, never by dates: the canonical repository's `tools/signature_check.py <bundle>` finds each stable concept's signing commit and compares that text with the text under test (`--at <commit>` for a historical state, `--diff` to read what changed), lists what is owed, and fails the gate (`run_checks.sh`) while anything is; a signature written but not yet committed is pending, not owed. A release freezes at a commit that owes nothing (the bundle release checklist, step 1), and a snapshot pins one (§5.7).
+**Merge then sign.** A signature binds the concept's text as of its **signing commit**, the commit that introduced that `verified` event; the events themselves are the only lines a signature does not cover. An edit to signed text may merge before the steward re-signs (one steward review still merges it), so that a correction never waits on a signing calendar; from that merge the concept **owes a signature** until a new `human:` event follows, and the older events stay in the list as history. Owing is a debt, not a demotion: the concept stays `stable`, consumers keep citing it at its tier, and the steward clears the debt by appending an event after reading the diff since the signing commit. The debt is measured by commits, never by dates: the canonical repository's `tools/signature_check.py <bundle>` finds each stable concept's signing commit and compares that text with the text under test (`--at <commit>` for a historical state, `--diff` to read what changed), lists what is owed, and fails the gate (`run_checks.sh`) while anything is; a signature written but not yet committed is pending, not owed. A release tag lands on a commit that owes nothing (the bundle release checklist, step 1), and a transitional snapshot pins one (§5.7).
 
 ### 5.5 Population: four intake channels
 
@@ -384,9 +398,17 @@ Migration mapping (SPEC v0.6 to OKF v0.2, applied to the bundles 2026-08-30):
 | `superseded` | `status: deprecated`, `superseded_by` kept as an extension key |
 | `disputed` | `status: stable` plus `disputed: <issue-url>` (extension; no v0.2 equivalent) |
 
-### 5.7 Precedence, canonical home, and snapshots
+### 5.7 Precedence, canonical home, and distribution
 
-The canonical home of provider knowledge is the provider bundle (e.g., nasa-daac-knowledge/knowledge/podaac; every repository that carries a bundle keeps it under knowledge/). Because plugins are self-contained (§0.5), they never reference it by path; instead each domain plugin ships a **pinned snapshot** of the relevant provider concepts under its own knowledge/, declared in a manifest, `knowledge/snapshot.yaml`:
+The canonical home of provider knowledge is the provider bundle (e.g., nasa-daac-knowledge/knowledge/podaac; every repository that carries a bundle keeps it under knowledge/). The provider repository is itself a plugin in the catalog (`nasa-daac-knowledge`: its bundles and tools, no skills), and a domain plugin that builds on provider knowledge **declares** it in plugin.json with a version floor:
+
+```json
+"dependencies": ["core", { "name": "nasa-daac-knowledge", "version": ">=2026.9.1" }]
+```
+
+The installer resolves the declaration: installing the domain plugin installs and enables core and the provider bundle at the highest tagged release that satisfies every installed plugin's range, and updating the domain plugin moves its dependencies within their ranges. Nothing is copied between repositories. The plugin never references the bundle by path (§0.5); core's consult-knowledge convention finds every installed bundle through the installer's record of installed plugins at query time, and a bundle installed from a provider plugin is the provider tier. **The release rule:** a plugin release is a `version` bump in plugin.json on a commit at which its bundle owes no signatures (§5.4), an annotated git tag `{plugin-name}--v{version}` on that commit (`claude plugin tag --push` derives the name and checks the manifest and catalog agree; the marketplace repository itself keeps bare `vX.Y.Z` tags), and a catalog entry whose `source.ref` names the tag (§2.2). Provider bundles carry calendar versions (`2026.9.1`: year, month, release within the month, no zero padding, because the resolver reads semver); plugins carry ordinary semver. A domain plugin raises its floor when it needs a newer bundle and never pins an exact version, so a bundle correction reaches every install that updates, without a plugin release. Precedence on conflict: the provider-bundle concept wins; `stable` outranks `draft`; between two human events the later wins. **The locality rule:** a local concept is one under the plugin's own knowledge/ (and, while the plugin still carries a snapshot, outside the manifest's scope). Local provider material (facts about a provider's products that belong in a provider bundle) carries `upstream: pending`, which the linter flags after 60 days; local domain material (the plugin's own recipes, computations and conventions) needs no key. Scientists may additionally point local.md's Knowledge block at any other installed bundle; those are consulted at query time alongside the declared ones.
+
+**Transitional: the pinned snapshot.** Before the dependency existed, each domain plugin shipped a **pinned snapshot** of the relevant provider concepts under its own knowledge/, declared in a manifest, `knowledge/snapshot.yaml`; a plugin that still carries one drops it in its next release, and this paragraph goes with the last of them:
 
 ```yaml
 source:
@@ -402,7 +424,7 @@ scope:                        # exactly one of include or exclude; the bundle's 
     - gotchas/grace-gia-correction.md    # a scope that omits one fails the check as dangling
 ```
 
-The copies are byte-identical to the canonical files at the pinned commit, every file type included, and the plugin's index.md repeats the pin for readers in its `Snapshot source commit:` and `Snapshot date:` lines. The canonical repository owns the check and the refresh, both offline: `tools/sync_check.py <plugin>/knowledge` (in nasa-daac-knowledge) verifies each copy against the canonical bundle at the pinned commit and fails on a stale, missing or extra file, a copied concept that links to a canonical file outside the scope, or a pin that differs between manifest and index, while reporting how far behind the pin sits as information; `--refresh <commit>` rewrites the in-scope files, prunes out-of-scope copies from a copy directory, and moves the manifest and index pin lines. The refresh is the documented step of the bundle release checklist, not a runtime dependency. **The pin rule:** a refresh pins a commit at which the canonical bundle owes no signatures (§5.4, as `signature_check.py --at <commit>` measures it), normally the steward's signing commit, so a snapshot never carries an edit its steward has not signed; `--refresh` refuses a commit that owes, listing the concepts, and the check reports PIN-OWED on a pin that does. Precedence on conflict: the provider-bundle concept wins. **The locality rule:** a local concept is one under the plugin's knowledge/ and outside the manifest's scope. Local provider material (facts about a provider's products that belong in a provider bundle) carries `upstream: pending`, which the linter flags after 60 days; local domain material (the plugin's own recipes, computations and conventions) needs no key. Scientists may additionally point local.md's Knowledge block at any installed standalone bundles; those are consulted at query time alongside the snapshot.
+The copies are byte-identical to the canonical files at the pinned commit, every file type included, and the plugin's index.md repeats the pin for readers in its `Snapshot source commit:` and `Snapshot date:` lines. The canonical repository owns the check and the refresh, both offline: `tools/sync_check.py <plugin>/knowledge` (in nasa-daac-knowledge) verifies each copy against the canonical bundle at the pinned commit and fails on a stale, missing or extra file, a copied concept that links to a canonical file outside the scope, or a pin that differs between manifest and index, while reporting how far behind the pin sits as information; `--refresh <commit>` rewrites the in-scope files, prunes out-of-scope copies from a copy directory, and moves the manifest and index pin lines. The refresh is a documented step of the bundle release checklist while any plugin carries a snapshot, not a runtime dependency. **The pin rule:** a refresh pins a commit at which the canonical bundle owes no signatures (§5.4, as `signature_check.py --at <commit>` measures it), normally the steward's signing commit, so a snapshot never carries an edit its steward has not signed; `--refresh` refuses a commit that owes, listing the concepts, and the check reports PIN-OWED on a pin that does. A snapshot copy is the provider's text and ranks as provider material under the precedence above; the installed dependency, when present, is the same text at a release, and the two never disagree at a correct pin.
 
 ### 5.8 Security posture: knowledge is declarative
 
@@ -640,8 +662,8 @@ Per-surface recording (Cd/Cw/Sc) for behavioral items in build-kit/PROGRESS.md.
 Spec detail added at v0.6. The bridge thesis: SWOT observes ocean and
 inland water from one instrument; this plugin serves the hydrology
 community from the same archive, knowledge discipline, and verification
-practice as ocean-science. Install core first; ocean-science is not a
-dependency.
+practice as ocean-science. It declares core and the provider bundle as
+dependencies (§5.7); ocean-science is not one.
 
 ### 10.1 Structure
 
@@ -653,7 +675,7 @@ hydrology/
 ├── skills/
 │   ├── swot-hydro/SKILL.md + references/swot-hydro-products.md
 │   │       # river reaches/nodes, lake products, the ocean/hydro product split
-│   ├── grace-groundwater/SKILL.md       # TWS anomaly to groundwater, reusing 8b concepts
+│   ├── grace-groundwater/SKILL.md       # TWS anomaly to groundwater, reusing the podaac GRACE-FO concepts
 │   ├── nwis/SKILL.md                    # USGS streamflow via dataretrieval; provisional data
 │   ├── smap/SKILL.md                    # soil moisture; radar-loss history
 │   ├── load-swot-hydro/ · load-nwis/ · load-grace-tws/ · load-smap/
@@ -661,7 +683,7 @@ hydrology/
 │   ├── drought-analysis/                # reads the drought recipe
 │   └── reservoir-analysis/              # the ARSET-anchored applied workflow
 ├── agents/hydro-scout/agent.md          # same contract as ecco-scout
-├── knowledge/                           # hydrology bundle (+ pinned podaac snapshot per §5.7)
+├── knowledge/                           # hydrology bundle (provider concepts arrive as the declared dependency, §5.7)
 │   ├── index.md · log.md
 │   ├── datasets/{swot-river-lake, nwis-streamflow, smap-l3, grace-fo-mascons-snapshot}.md
 │   ├── gotchas/{nwis-provisional-data, smap-radar-loss, swot-reach-node-scope, ...}.md
@@ -676,8 +698,8 @@ hydrology/
 Same rules as §4.6/§5: Uncertainty sections on all datasets (SWOT
 river/lake heights: node vs reach uncertainty variables; NWIS: rating
 curves and provisional-to-approved revisions; SMAP: retrieval quality
-flags and the radar loss; GRACE: snapshot of the 8b concepts per §5.7
-with source and commit recorded). Known high-severity candidates from
+flags and the radar loss; GRACE: the podaac bundle's GRACE-FO concepts,
+reached through the declared dependency per §5.7). Known high-severity candidates from
 the outline, each requiring evidence and an eval case: NWIS provisional
 data silently revised after approval; SMAP radar loss (2015) changing
 product lineage; SWOT reach-vs-node scope (statistics quoted at the

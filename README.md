@@ -8,21 +8,36 @@ Claude Code, Claude Cowork, and Claude Science.
 
 ```bash
 claude plugin marketplace add open-science-pillars/marketplace
-claude plugin install core@open-science-pillars
 claude plugin install ocean-science@open-science-pillars
 ```
 
-Cowork and Claude Science: add this marketplace and install from it
-(both surfaces accept a marketplace by GitHub repo). Per-surface steps:
-[docs/surface-testing-guide.md](docs/surface-testing-guide.md).
+A domain plugin declares what it depends on (`core` and the
+`nasa-daac-knowledge` provider bundle), and the installer brings those
+in with it. Cowork and Claude Science: add this marketplace and install
+from it (both surfaces accept a marketplace by GitHub repo). Per-surface
+steps: [docs/surface-testing-guide.md](docs/surface-testing-guide.md).
+
+## Update
+
+```bash
+claude plugin update ocean-science@open-science-pillars
+```
+
+This marketplace does not update installs on its own: an install keeps
+the release it was installed from until you update it by name (one
+command per plugin you installed; a plugin's dependencies come along
+within the range it declares) or enable auto-update for the marketplace
+in `/plugin`. The catalog names each plugin's current release, and
+`claude plugin list` shows which versions you have.
 
 ## What's available now
 
 | Plugin | What it does | Status |
 |---|---|---|
 | `core` | Foundation: data formats, statistics, uncertainty, cartography, quality control, reproducibility, review, and the start / discover-data / report workflows. | Available |
-| `ocean-science` | Physical oceanography: ECCO state estimate, SWOT sea surface height, meridional heat transport, budget closure, water masses. **Install core first.** | Available |
+| `ocean-science` | Physical oceanography: ECCO state estimate, SWOT sea surface height, meridional heat transport, budget closure, water masses. | Available |
 | `hydrology` | SWOT rivers and lakes, GRACE-FO groundwater, USGS streamflow, SMAP soil moisture, drought and reservoir analysis. | In development |
+| `nasa-daac-knowledge` | The provider knowledge bundles (PO.DAAC datasets, gotchas, recipes and attested computations; ESDIS metadata requirements), signed by their stewards. No skills; the domain plugins depend on it and install it for you. | Available |
 
 New to the terms used here (skill, knowledge bundle, golden notebook,
 surface, connector)? See the [glossary](GLOSSARY.md).

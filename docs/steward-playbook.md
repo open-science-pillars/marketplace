@@ -8,7 +8,7 @@ be confused:
 
 - The **canonical-home migration** (moving the PO.DAAC concepts into the
   standalone [nasa-daac-knowledge](https://github.com/open-science-pillars/nasa-daac-knowledge)
-  repo, with the plugins embedding pinned snapshots) is **done**.
+  repo, which the plugins declare as a dependency) is **done**.
 - The **provider-steward handoff** (a PO.DAAC or equivalent staffer taking
   over review authority for their bundle) is **pending**. Its trigger: a
   named provider steward accepts the CODEOWNERS entry and co-reviews three
@@ -58,7 +58,7 @@ be confused:
    to a concept you already signed owes you a new event (§5.4, merge
    then sign): `tools/signature_check.py <bundle> --diff` in the
    canonical repository lists the debt with the diff since your signing
-   commit, and a release or snapshot refresh waits until it is clear.
+   commit, and a release tag waits until it is clear.
 6. §5.8 sweep: declarative voice, no directives to the agent (the
    knowledge-linter's imperative-phrasing scan helps, but the steward is
    the control).

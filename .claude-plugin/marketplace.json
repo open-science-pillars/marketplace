@@ -1,6 +1,6 @@
 {
   "name": "open-science-pillars",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "AI-assisted open science for earth, planetary, and applied science: skills, knowledge bundles, verification notebooks, and connectors for Claude Code, Cowork, and Claude Science.",
   "owner": {
     "name": "Open Science Pillars Community"
@@ -27,12 +27,13 @@
       ],
       "source": {
         "source": "github",
-        "repo": "open-science-pillars/core"
+        "repo": "open-science-pillars/core",
+        "ref": "v0.3.0"
       }
     },
     {
       "name": "ocean-science",
-      "description": "Physical oceanography: ECCO state estimate, SWOT SSH, meridional transport, budget closure, water masses. Install core first.",
+      "description": "Physical oceanography: ECCO state estimate, SWOT SSH, meridional transport, budget closure, water masses.",
       "tags": [
         "oceanography",
         "ecco",
@@ -44,15 +45,17 @@
       ],
       "source": {
         "source": "github",
-        "repo": "open-science-pillars/ocean-science"
+        "repo": "open-science-pillars/ocean-science",
+        "ref": "ocean-science--v0.5.0"
       }
     },
     {
       "name": "hydrology",
-      "description": "Hydrology (Phase 2, in build): SWOT rivers and lakes, GRACE-FO groundwater, USGS NWIS streamflow, SMAP soil moisture. Install core first.",
+      "description": "Hydrology: SWOT river and lake products, GRACE-FO groundwater, USGS NWIS streamflow, SMAP soil moisture.",
       "source": {
         "source": "github",
-        "repo": "open-science-pillars/hydrology"
+        "repo": "open-science-pillars/hydrology",
+        "ref": "hydrology--v0.2.0"
       },
       "tags": [
         "hydrology",
@@ -66,6 +69,27 @@
         "smap",
         "soil-moisture"
       ]
+    },
+    {
+      "name": "nasa-daac-knowledge",
+      "description": "Provider knowledge bundles from NASA DAACs: PO.DAAC (ECCO, SWOT, GRACE-FO, MUR, NASA-SSH, RAPID) and the ESDIS metadata requirements. Facts about data, signed by their stewards; no skills. Installed automatically as a dependency of the domain plugins.",
+      "tags": [
+        "knowledge",
+        "okf",
+        "podaac",
+        "esdis",
+        "ecco",
+        "swot",
+        "grace",
+        "mur",
+        "nasa-ssh",
+        "metadata"
+      ],
+      "source": {
+        "source": "github",
+        "repo": "open-science-pillars/nasa-daac-knowledge",
+        "ref": "nasa-daac-knowledge--v2026.9.1"
+      }
     }
   ]
 }
