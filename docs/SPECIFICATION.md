@@ -1,11 +1,12 @@
 # Open Science Pillars: Specification
 
 **Organization:** Open Science Pillars (github.com/open-science-pillars)
-**Version:** 0.6.12 (the citation rule is gated)
+**Version:** 0.6.13 (negative knowledge is a candidate)
 **Date:** 2026-09-05
 **Scope:** Phase 1 (built; core + ocean-science + infrastructure + knowledge + verification + evals seed + stewardship) plus Phase 2 spec detail (hydrology bridge, §10)
 
 **Changelog:**
+- 0.6.13 (2026-09-05): two candidate concept types for negative knowledge, section 5.11 and two rows of the type table in 5.2. A `dead-end` records that a goal was attempted by a method and failed with a symptom for a cause, observed on dates by actors in cited sources, with the condition that would reopen it; a `field-state` records the positions a field holds on a question as of a date, without adjudicating. Attribution is the truth condition of both, neither is ever deleted (a dead-end is reopened, a field-state superseded), and both carry `load_bearing` on the gotcha severity rule, high requiring an eval case id. Checker support is `check_negative.py` in the nasa-daac-knowledge repository (its pull request #104), in that repository's check routine over both bundles, whose PO.DAAC index now carries `dead-ends` and `field-states` sections; tracked on marketplace issue #60. Candidate language; no normative rule changes.
 - 0.6.12 (2026-09-05): the citation rule of section 0.4 is now measured rather than swept: `tools/check_prose.py` in the nasa-daac-knowledge repository flags a specification rule cited by section number, program bookkeeping (kit, session or wave numbers) in anything a reader meets, and em or en dashes; it runs in that repository's routine and in every plugin gate. External standards cited by their own section numbers, this document, dated change logs and the vendored upstream text are not flagged. No rule changes.
 - 0.6.11 (2026-09-05): section 0.4 adds the citation rule for every document outside this one: name the rule, and where a pointer helps name this document; never cite a section number, which moves between revisions and cannot be resolved from inside an installed plugin or a repository README. The organization's guides, templates, workflow comments, agent and skill bodies, CODEOWNERS files and citation files were rewritten to it in the same change; this document's own cross-references, the vendored upstream OKF text, citations of external standards (CF, OKF v0.2) by their section numbers, and dated records are unchanged.
 - 0.6.10 (2026-09-05): two corrections to what a release and an update actually do. Zenodo archiving and the concept DOI move from every tagged release to each repository's 1.0.0 release (the calendar-versioned provider bundle deposits alongside the first dependent plugin's 1.0.0), tracked per repository on open-science-pillars/marketplace#55; until then a release is the version bump, the tag, the GitHub release and the catalog line, and every CITATION.cff says when its DOI arrives. And `claude plugin update <plugin>` moves only the plugin named: observed 2026-09-05 on the first floor move (ocean-science 0.8.2, floor >=2026.9.2), the update left nasa-daac-knowledge at 2026.9.1 and disabled ocean-science with `Requires nasa-daac-knowledge >=2026.9.2, installed 2026.9.1` until the bundle was updated by name; 2.3 and 5.7 drop the claim that an update carries dependencies along within their ranges, and a release that moves a floor says so in its notes.
@@ -359,6 +360,8 @@ Open Knowledge Format v0.2 (github.com/GoogleCloudPlatform/knowledge-catalog; th
 | computation | One attested computation: the sanctioned code identity, the manifested inputs, and the receipt of one run (OKF v0.2 §10) | code path with its sha; input manifest; receipt; the reference values and tolerances that recipes and findings quote |
 | convention | Cross-cutting practice | none |
 | finding | One falsifiable scientific claim, bound to the receipts, validity adjudication, and confrontation that support it (§5.10, v0.7 CANDIDATE) | question; claim with interval and receipt bindings; computations cited by receipt; validity adjudication; confrontation record; limitations; explicit status; `human:` signature and verdict IN before stable |
+| dead-end | One attempt that failed: the goal, the method, the failure, who observed it and when, and what would reopen it (§5.11, v0.7 CANDIDATE) | subject (concept paths); attempt with goal and method; failure with symptom and cause; observations each with date, actor and source; reopens_if; load_bearing, high requiring an eval case id; `human:` signature before stable; reopened by a `reopened` block, never deleted |
+| field-state | The positions a field holds on one question as of a date, without adjudicating (§5.11, v0.7 CANDIDATE) | question; as_of; state (disputed, open, converging); positions each with statement, holders and sources; stale_after; load_bearing, high requiring an eval case id; no claim, verdict, answer or resolution key or section; `human:` signature before stable; superseded, never deleted |
 
 **Ownership of numbers.** Where a recipe and an attested computation describe the same analysis, the computation owns the reference values and tolerances (its receipt is the evidence) and the recipe cites them by path, quoting at most the headline value with that path beside it, so a re-run changes one file. A recipe with no computation carries its own expected values with their provenance. Findings follow §5.10: every number resolves to a receipt.
 
@@ -554,6 +557,167 @@ Skills cite a finding by path, with its position and tier voiced the way §5.6 v
 #### 5.10.6 Verification, attestation, and signature
 
 Three different acts, kept apart. **Verification** is the checker: static, form and binding, runs in the gate, blocks the merge. **Attestation** is the receipt-level attester of each cited computation: deterministic, consumer-side, re-runnable, and the only thing that speaks to whether the receipt's numbers are what the sanctioned code produces. **Signature** is the steward's `human:` verified event, and it is the only thing that moves a finding to stable, because it attests what no tool can: that the claim is true in the stated scope and the limitations are the real ones. Two consequences follow. A finding cannot become stable until a signed validity domain admits its claim (the checker requires verdict IN, and an unsigned domain yields UNADJUDICATED), so the first stable finding in a bundle waits on the first signed domain that governs it. A stable finding may be unconfronted, with FW2 and a limitation that says so, because some claims have no independent record to confront; a confronted finding whose confrontation the steward has read is the stronger object, and briefings say which kind they cite. Any edit to a stable finding after signature obliges re-signature; the gate treats the signature as covering the text it was placed on.
+
+### 5.11 Negative knowledge (v0.7 CANDIDATE: dead-ends and field-states)
+
+> CANDIDATE language, drafted alongside the negative-knowledge work
+> (marketplace issue #60, 2026-09-05); it becomes normative when SPEC
+> v0.7 is cut. Checker support is `check_negative.py` in the
+> nasa-daac-knowledge repository (its tools directory, in that
+> repository's check routine since its pull request #104): it touches
+> only `type: dead-end` and `type: field-state` concepts, so a bundle
+> that carries neither is unchanged.
+
+A bundle that records only what works teaches an agent to retry what did not and to pick a side where the field has not. Two concept types carry the rest. A **dead-end** records that a goal was attempted by a method, that it failed with a symptom for a cause (or an unknown one), who observed the failure and when and in what source, and what would reopen it. A **field-state** records the positions a field holds on a question as of a date, who holds each and on what sources, what in the bundle the question bears on, and what would move the state. Three rules keep them honest. **Attribution is the truth condition:** a dead-end or a field-state is true when the attempts and positions it cites exist and say what the concept says they say, whether or not the approach later proves viable or the question is later settled; the steward's signature attests the record of the attempt or of the discourse, never the approach and never a side. **Neither type adjudicates:** a dead-end says what was tried and what happened, not that the goal is unreachable; a field-state says where the field stands, and a field-state that carries a verdict fails the checker outright. **Negative knowledge is never deleted:** a dead-end that reopens is deprecated with a `reopened` block naming the evidence and the human who read it, a field-state that moves is deprecated with `superseded_by` naming the later reading, and both stay in the bundle and its index for links and history.
+
+The load-bearing rule is the gotcha severity rule applied to negative knowledge. Every dead-end and field-state carries `load_bearing`, one of `high`, `medium`, `low`: how much in the bundle, and in the skills that consult it, depends on the entry being read. A high entry REQUIRES `eval_case`, the id of a case in the plugin's declared eval home, exactly as a high-severity gotcha does, so an agent that retries a high dead-end or takes a side in a high field-state is measured, not just told.
+
+In a bundle the two types live under `dead-ends/` and `field-states/` beside the other type directories, each with its own section in the bundle index, and the gate runs the checker over the bundle root. They arrive by the same intake channels as gotchas (§5.5): the retraction paragraph of a design note, the community-issue miner's dead-end-candidates bucket, and `check_negative.py --candidates` over any text, each producing a draft for a steward.
+
+#### 5.11.1 Two concepts, not annotations
+
+Addition to the §5.2 type table:
+
+| type | Purpose | Required extras |
+|---|---|---|
+| dead-end | One attempt that failed: the goal, the method, the failure, who observed it and when, and what would reopen it | subject (concept paths); attempt with goal and method; failure with symptom and cause; observations each with date, actor and source; reopens_if; load_bearing, high requiring an eval case id; `human:` signature before stable; reopened by a `reopened` block, never deleted |
+| field-state | The positions a field holds on one question as of a date, without adjudicating | question; as_of; state (disputed, open, converging); positions each with statement, holders and sources; stale_after; load_bearing, high requiring an eval case id; no claim, verdict, answer or resolution key or section; `human:` signature before stable; superseded, never deleted |
+
+A dead-end is not a gotcha and a field-state is not a finding. A gotcha names a trap in a product and the correct approach around it; it is knowledge about the product, and its severity measures the damage of falling in. A dead-end names an approach that was tried and failed, and its truth is the record of the attempt: the trap may be fixed tomorrow (a tool patched, a product reprocessed), which is why a dead-end SHOULD carry `stale_after` and is reopened rather than corrected in place. A finding makes one falsifiable claim and is signed as true in a scope; a field-state makes no claim, and its signature attests only that the positions listed are the positions held on the date given. The types have different lifecycles, which is why they are types: a dead-end can be reopened while every concept it names stays valid, and a field-state can be superseded by the next reading of the same question while the findings it bears on are unchanged.
+
+#### 5.11.2 The contract
+
+Both types carry the fields every concept carries (§5.1), an explicit `status`, and `load_bearing` with `eval_case` when high. Path-valued fields follow OKF v0.2 §6.2; a leading slash means bundle-relative, which is the form the bundles use. Every `sources` entry MUST be cited from the body by a `[^id]` footnote, and every footnote MUST name a source. All fields REQUIRED unless marked.
+
+A dead-end carries:
+
+- `subject`: a non-empty list of concept paths the attempt was made against (the computation, recipe or dataset it concerned). Each MUST resolve to a concept.
+- `attempt`: `goal` (what was being achieved) and `method` (how), each a sentence.
+- `failure`: `symptom` (what was observed) and `cause` (why, or the word `unknown`; an honest unknown is a valid dead-end, and `reopens_if` then says what would settle it).
+- `observations`: a non-empty list of `{at, by, source}`: the date the failure was observed, the actor who observed it (`human:`, `process:`, or `owner/tool` form), and the id of the source that records the observation. The key is `at`, never `on`, which YAML reads as a boolean.
+- `reopens_if`: a sentence naming the change that would make the attempt worth repeating. "Never as an oracle" is a valid answer when the failure is a matter of logic rather than of tooling, and it then says what a different method would be.
+- `stale_after` (SHOULD): tools get fixed; a dead-end carries the date of the sweep that rechecks it.
+- `reopened` (ladder key, §5.11.3): `{at, by: human:<id>, evidence}` on a deprecated dead-end.
+
+Body sections, in this order, after the title: `Attempted`, `Observed`, `Why it fails`, `Do instead` (optional; SHOULD be present on a high dead-end), `Reopens if`, and `Reopened` when the dead-end is deprecated by reopening.
+
+A field-state carries:
+
+- `question`: one sentence ending in a question mark. One field-state records one question.
+- `as_of`: the date the positions were read. The record is of the field on that date, not of the field.
+- `state`: `disputed` (positions conflict; at least two positions REQUIRED), `open` (the question is asked and no position is established), or `converging` (positions agree in direction and differ in detail or confidence).
+- `positions`: a non-empty list of `{id, statement, held_by, sources}`: a stable id, the position in one sentence written in the holders' own terms, the holders (people, groups or papers, as text), and the ids of the sources in which they hold it. A position with no source is an assertion, not a record.
+- `bears_on` (optional): the concepts in the bundle whose reading depends on the question (a computation whose trend the question interprets, a recipe that computes the quantity). Each MUST resolve to a concept.
+- `stale_after`: REQUIRED; a field-state is a reading of discourse, and discourse moves.
+- `superseded_by` (ladder key, §5.11.3): the field-state that records the later reading.
+
+A field-state MUST NOT carry `claim`, `verdict`, `answer`, `resolution`, `adjudication`, `winner` or `consensus`, and its body MUST NOT carry a section headed Verdict, Conclusion, Answer, Resolution, Adjudication, Our position or The answer. Body sections, in this order, after the title: `Question`, `Positions`, `Bearing`, `What would move this`.
+
+Illustrative frontmatter for a dead-end:
+
+```yaml
+type: dead-end
+title: "The discrete divergence identity was tried as the oracle for regional budget closure; it holds for any array"
+description: "Summing a box's pointwise convergence and comparing it to the flux through the rim was proposed as the evidence that a regional heat budget validates itself; the identity is algebra, returned exactly zero on random data, and was retracted in the design note that records it."
+tags: [ecco, v4r4, budgets, regional, oracle, dead-end]
+status: draft
+load_bearing: medium
+generated: {by: claude-code/fable-5, at: 2026-09-05T00:00:00Z}
+stale_after: 2027-03-05
+subject:
+  - /computations/ecco-regional-heat-budget.md
+attempt:
+  goal: "Validate a regional heat budget without an independent reference, so a box budget could certify itself"
+  method: "Show that the sum of pointwise convergence over the box equals the flux through the box rim and treat that agreement as the closure evidence"
+failure:
+  symptom: "The check passes bit for bit on any array, including random noise; it returned exactly zero on random data"
+  cause: "Each interior face is added once and subtracted once from the same stored number, so the identity is algebra about the arrays, not physics about the grid or the implementation"
+observations:
+  - {at: 2026-08-31, by: claude-code/fable-5, source: design-note}
+reopens_if: "Never as an oracle. A check that reads the rim from raw face flux variables is a different method, not this one reopened"
+sources:
+  - id: design-note
+    resource: ../../../docs/regional-budget-design.md
+    title: "The regional budget design note: the argument as first drafted, its retraction, the random-data check, and the requirements that replaced it"
+```
+
+Illustrative frontmatter for a field-state:
+
+```yaml
+type: field-state
+title: "Whether the Atlantic overturning has weakened over the observational era is disputed"
+description: "Positions on whether the Atlantic meridional overturning circulation has weakened since the mid twentieth century and where the direct record at 26.5N stands, read on 2026-09-05; the signature, when given, attests the state of discourse and takes no side."
+tags: [ecco, amoc, rapid, overturning, field-state]
+status: draft
+load_bearing: medium
+generated: {by: claude-code/fable-5, at: 2026-09-05T00:00:00Z}
+stale_after: 2027-03-05
+question: "Has the Atlantic meridional overturning circulation weakened over the observational era?"
+as_of: 2026-09-05
+state: disputed
+positions:
+  - id: fingerprint-weakening
+    statement: "A sea surface temperature fingerprint indicates the overturning has weakened by about fifteen percent since the mid twentieth century"
+    held_by: ["Caesar, Rahmstorf, Robinson, Feulner and Saba (2018)"]
+    sources: [caesar-2018]
+  - id: no-decline-at-26n
+    statement: "A reconstruction at 26.5N over 1981 to 2016 shows no decline, and the array record since 2004 is consistent with decadal variability rather than a trend"
+    held_by: ["Worthington and co-authors (2021)", "Moat and co-authors (2020)"]
+    sources: [worthington-2021, moat-2020]
+bears_on:
+  - /computations/ecco-amoc-26n.md
+  - /recipes/ecco-rapid-amoc-26n.md
+sources:
+  - id: caesar-2018
+    resource: https://doi.org/10.1038/s41586-018-0006-5
+    title: "Caesar, L., et al. (2018). Observed fingerprint of a weakening Atlantic Ocean overturning circulation. Nature 556, 191 to 196"
+  - id: worthington-2021
+    resource: https://doi.org/10.5194/os-17-285-2021
+    title: "Worthington, E. L., et al. (2021). A 30-year reconstruction of the Atlantic meridional overturning circulation shows no decline. Ocean Science 17, 285 to 299"
+  - id: moat-2020
+    resource: https://doi.org/10.5194/os-16-863-2020
+    title: "Moat, B. I., et al. (2020). Pending recovery in the strength of the meridional overturning circulation at 26N. Ocean Science 16, 863 to 874"
+```
+
+#### 5.11.3 The status ladder
+
+Derived, never declared, as for findings (§5.10.3): every position is an OKF v0.2 `status` value plus the extension keys beside it, so an OKF consumer that knows nothing of the two types still reads each one correctly.
+
+| position | frontmatter form | meaning |
+|---|---|---|
+| draft | `status: draft` | Recorded, checker-clean, unsigned. Consultable, voiced as an unverified record. |
+| under review | `status: draft` plus `review: <open review URL>` | A steward is checking the attribution: that the cited attempts or positions exist and say what the concept says. |
+| stable | `status: stable` plus a `verified: {by: human:<id>, at}` event | The steward has signed that the record is faithful: the attempt was made and failed as described, or the positions are held as described on the date given. Citable as a record. Nothing about viability, and nothing about which position is right, is attested. |
+| reopened (dead-end only) | `status: deprecated` plus `reopened: {at, by: human:<id>, evidence}` and a `# Reopened` section | The condition in `reopens_if` was met, or the cause was found to be wrong; the evidence is named. Kept for links; the attempt is open again, and the record of the new attempt is its own concept. |
+| superseded | `status: deprecated` plus `superseded_by: <concept path>` | A later reading of the same question (field-state) or a later record of the same attempt (dead-end) replaces this one. Kept for links; the replacement is cited. |
+
+`disputed: <open issue URL>` (§5.6) is a modifier on stable, not a position: it says a reader contests the record (an attribution is wrong, a position is missing), never that the field disagrees, which is what `state: disputed` says on a field-state. Transitions are one edit each: `review` places a draft under review; the `verified` event alone moves a concept to stable, and the checker rejects a stable one without a `human:` event; a dead-end reopens by the `reopened` block, which is a steward's act (`by` is a `human:` actor) and names the evidence; either type is superseded by landing the replacement and pointing `superseded_by` at it. There is no delete: a dead-end that turns out not to be one is reopened, and a field-state whose reading was wrong is superseded by a correct one that cites it.
+
+#### 5.11.4 What the checker enforces
+
+`check_negative.py ROOT [--bundle BUNDLE] [--explain]` scans a root for concepts of the two types and leaves every other concept alone; codes beginning `N` are errors and codes beginning `NW` are warnings, on the same footing as E and W. `--bundle` names the bundle root that leading-slash paths resolve against, so drafts kept outside a bundle can point into one. `--explain` prints, for every concept, how each subject, bearing and source resolved and which body sections were found. `--candidates PATH...` scans text for dead-end phrasings (retracted, does not work, gave up, proves nothing, workaround and the like) and, with `--out`, drafts one candidate stub per file in the form the community miner uses, status draft, generated by a process actor, for a steward to keep or discard.
+
+| code | rule |
+|---|---|
+| N1 | A required field is missing or malformed (both types: title, description, status, load_bearing, sources; dead-end: subject, attempt with goal and method, failure with symptom and cause, observations, reopens_if; field-state: question, as_of, state, positions, stale_after). |
+| N2 | Attribution is incomplete: an observation without a date, an actor in a recognized form, and a source id; a question that is not one sentence ending in a question mark; a position without a statement, holders and sources; `as_of` not a date. |
+| N3 | A citation is broken: an observation or position cites a source id that is not in `sources`; a source is never cited from the body; a footnote in the body names no source. |
+| N4 | `load_bearing` is not high, medium or low; high without `eval_case`. |
+| N5 | A field-state adjudicates: a claim, verdict, answer, resolution, adjudication, winner or consensus key, or a body section headed that way; `state: disputed` with fewer than two positions. |
+| N6 | A stable concept has no `human:` verified event, or the event is malformed. |
+| N7 | The ladder is inconsistent: deprecated without `superseded_by` or, on a dead-end, a `reopened` block with `at`, a `human:` `by` and `evidence`; `superseded_by` or `reopened` on a concept that is not deprecated; a reopened dead-end without a Reopened section; `reopened` on a field-state. |
+| N8 | Body sections are missing or out of order (dead-end: Attempted, Observed, Why it fails, Reopens if, with Do instead optional before Reopens if; field-state: Question, Positions, Bearing, What would move this). |
+| N9 | A `subject`, `bears_on` or `superseded_by` path resolves to no concept. |
+| NW1 | A dead-end has no `stale_after`. |
+| NW2 | The title or description is phrased as a universal (impossible, never works, cannot be done, no way to, will never) rather than as an attribution. |
+| NW3 | A high load-bearing dead-end has no Do instead section. |
+| NW4 | Every position of a field-state rests on the same single source. |
+
+**What the checker does not do.** It never judges whether the attempt was worth making, whether the cause given is the real one, whether the positions listed are the ones a specialist would list, or which position is right. It verifies attribution shape (every observation and position has a date, an actor or holder, and a source the body cites), resolution (every named concept exists) and the ladder. Whether the record is faithful to the cited sources is the steward's question, answered by signature; whether the attempt should be retried or the question is settled is nobody's question here, because the types do not ask it. Passing the checker is necessary for a dead-end or a field-state to be signed stable and is not evidence that it should be.
+
+#### 5.11.5 How a consumer uses negative knowledge (informative)
+
+A skill about to attempt a method consults the dead-ends whose `subject` names the concept it is working from, and voices a match as a record ("this was tried on 2026-08-31 and failed because ...; it reopens if ..."), never as a prohibition; a high dead-end's `Do instead` is the path the skill takes, and its eval case measures whether it did. A skill that quotes a quantity the field disputes consults the field-states that bear on the computation and voices the state with its date and its positions, taking no side, and says when the reading is older than its `stale_after`. Briefings cite a dead-end where they decline a method and a field-state where they place a number in a debate, and inherit the date of each. The signature on a stable dead-end or field-state is a credit-bearing event on the same footing as a signature on a gotcha: it attests a fact about the record, not a claim about the world.
 
 ---
 
