@@ -166,7 +166,7 @@ marketplace/
     {
       "name": "ocean-science",
       "description": "Physical oceanography: ECCO state estimate, SWOT SSH, meridional transport, budget closure, water masses.",
-      "source": { "source": "github", "repo": "open-science-pillars/ocean-science", "ref": "ocean-science--v0.7.1" },
+      "source": { "source": "github", "repo": "open-science-pillars/ocean-science", "ref": "ocean-science--v0.8.2" },
       "tags": ["oceanography", "ecco", "swot", "podaac", "amoc", "heat-transport", "sea-level"]
     },
     {
@@ -178,7 +178,7 @@ marketplace/
     {
       "name": "nasa-daac-knowledge",
       "description": "Provider knowledge bundles from NASA DAACs: PO.DAAC (ECCO, SWOT, GRACE-FO, MUR, NASA-SSH, RAPID) and the ESDIS metadata requirements. Facts about data, signed by their stewards; no skills. Installed automatically as a dependency of the domain plugins.",
-      "source": { "source": "github", "repo": "open-science-pillars/nasa-daac-knowledge", "ref": "nasa-daac-knowledge--v2026.9.1" },
+      "source": { "source": "github", "repo": "open-science-pillars/nasa-daac-knowledge", "ref": "nasa-daac-knowledge--v2026.9.2" },
       "tags": ["knowledge", "okf", "podaac", "esdis", "ecco", "swot", "grace", "mur", "nasa-ssh", "metadata"]
     }
   ]
