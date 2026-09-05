@@ -387,3 +387,16 @@ stand, against the catalog. SPECIFICATION §0.5 and §5.7 carry the
 rules; the pinned snapshots Part 2 described survived only as a
 transitional form, retired in ocean-science 0.7.0 and hydrology 0.4.0
 with the sync tooling that kept them honest.
+
+### 9.7 The partner's name (added 2026-09-04)
+
+Parts 1 and 3 call PO.DAAC's incoming partner teams the Science
+Enabling Teams. ESDIS is renaming them the Application Support and
+Science Enabling Teams (ASSETs): in the coming organization the
+enterprise services support data providers through data stewardship
+and end users through the ASSETs.
+The frozen parts keep the older name as written; every current
+artifact in the organization (the esdis requirement concepts, the
+observatory's register and policy) uses ASSET, and the reading of
+Part 3 is unchanged: the oceanography-to-hydrology transition those
+teams embody is the same transition, under the new name.
