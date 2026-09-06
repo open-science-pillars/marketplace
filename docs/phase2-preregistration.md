@@ -83,3 +83,37 @@ is already public and is not counted as a gotcha-avoidance case.
   run adopts the revised design with its own recorded rationale. Also noted:
   `ecco-release-mixing` failed in both arms (0/3), either a skill-routing gap
   or a too-strict grader, to check before the powered run.
+
+- 2026-09-05 (hydrology expansion): the hydrology plugin is expanded
+  from four dataset skills to basin-and-event investigations (a basin
+  water balance, event reconstruction, flood frequency, drought anatomy,
+  a reservoir ledger) with precipitation and evapotranspiration terms
+  and the USGS Water Data API migration. This entry records how that
+  work reads against the conditions above, before any of it is written,
+  so that the reading is on the record rather than inferred later.
+  First, the stop conditions trigger on a negative result (a null or
+  reversed ablation, zero engagement at thirty days, a failed handoff),
+  not on the absence of a result; the powered ablation has not run, so
+  no stop condition has fired, and the expansion does not wait on it.
+  Second, every workflow in the expansion is hydrology-domain work
+  inside the plugin the architecture's Phase 2 already names, and the
+  IMERG precipitation term and the GRACE-backed drought pack are named
+  there in so many words; nothing here is a new domain, and the go
+  condition that funds new domains is neither claimed nor needed.
+  Third, the first wave creates no provider bundle: facts about GES
+  DISC and LP DAAC products are held in the hydrology bundle with
+  `upstream: pending` naming their canonical provider directory, as the
+  locality rule provides, so the "provider expansion" the go conditions
+  govern is not reached. The linter's sixty-day flag on pending
+  material is expected and is answered on the expansion's tracking
+  issue with this entry. Whether gesdisc and lpdaac directories are
+  created, and whether the SWOT hydrology facts move to podaac, is
+  decided later under its own gate and its own dated entry. Fourth,
+  event reconstruction reads published OPERA surface-water products as
+  observations; it is not the model-backed flood slice the roadmap
+  holds blocked on the powered ablation, and that slice stays blocked.
+  The expansion adopts the pre-registration's own publication rule for
+  its water balance: on each fixture basin above the footprint floor
+  the residual publishes with its interval and both bars regardless of
+  whether it closes, and a basin below the floor publishes as a
+  refusal.
