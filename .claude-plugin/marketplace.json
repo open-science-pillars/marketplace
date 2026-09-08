@@ -28,7 +28,7 @@
       "source": {
         "source": "github",
         "repo": "open-science-pillars/core",
-        "ref": "core--v0.4.2"
+        "ref": "core--v0.5.0"
       }
     },
     {
