@@ -404,3 +404,57 @@ artifact in the organization (the esdis requirement concepts, the
 observatory's register and policy) uses ASSET, and the reading of
 Part 3 is unchanged: the oceanography-to-hydrology transition those
 teams embody is the same transition, under the new name.
+
+### 9.8 An attested computation left the provider bundle (added 2026-09-08)
+
+Part 4 places attested computations in the provider bundle, beside the
+product concepts they depend on, because that is where the first ones
+were built and where the ocean confrontations still live. That is no
+longer where they all are.
+
+The basin water balance is an attested computation in a **domain
+plugin's** bundle: a sanctioned executor, an attester that recomputes
+the whole identity, two bars, and a refusal the computation owns rather
+than inherits (it declines a storage term for a basin below the
+mascon footprint floor, which it derives from the product's own
+geometry rather than recalling). It sits in hydrology because the
+identity is a hydrological method over several providers' products, and
+no single provider bundle is its home: the precipitation is one data
+centre's, the evapotranspiration another's, the storage a third's, the
+discharge an agency's.
+
+The reading this changes: **a provider bundle is where product facts
+live, and a domain bundle is where methods over several products live.**
+An attested computation belongs with its method. Where a computation
+is about one provider's product, as the ocean ones are, the provider
+bundle remains its home and nothing here moves.
+
+What this does not change: the attestation machinery, the two-bar
+convention, the sanctioned-executor rule, and the requirement that a
+receipt cite frozen inputs by hash. Those are the same wherever the
+computation sits.
+
+### 9.9 An applications office is a steward type (added 2026-09-08)
+
+Parts 1 and 3 describe stewardship as data providers stewarding their
+own products, with the enterprise services supporting them. The
+hydrology work has a steward shape those parts do not cover: an
+applications office that does not produce the data at all.
+
+A water applications office is a consumer of several providers'
+products and an authority on the methods that combine them. It is the
+right steward for a recipe that spans providers, for the refusals such
+a recipe carries, and for the question of whether a method is being
+used inside its validity domain. It is not the right steward for a
+product concept, which belongs to whoever makes the product.
+
+So the stewardship map gains a third type beside the provider and the
+enterprise service: **a methods steward, scoped to recipes and
+computations rather than to products.** The hydrology bundle's
+CODEOWNERS now carries per-producer path scopes so a product steward
+can own their own rules alone; a methods steward's scope is the recipe
+and computation directories, and the two do not overlap.
+
+This is a description of a shape that exists, not a commitment that any
+particular office has agreed to anything. Outreach follows the
+evidence.
