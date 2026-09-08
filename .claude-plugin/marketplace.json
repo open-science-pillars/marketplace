@@ -55,7 +55,7 @@
       "source": {
         "source": "github",
         "repo": "open-science-pillars/hydrology",
-        "ref": "hydrology--v0.6.1"
+        "ref": "hydrology--v0.7.0"
       },
       "tags": [
         "hydrology",
