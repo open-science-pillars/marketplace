@@ -55,7 +55,8 @@ is a question about scientific community, not about layer.
    recipes and computations, not products) is a third steward type
    beside the provider and the enterprise service, not a sphere team.
 4. **Classification is canonical under `.osp/`, not inside a runtime
-   manifest.** Every non-archived repository declares its kind
+   manifest** (implemented 2026-09-12: schemas and `osp.py` in
+   build-kit, `build-kit/docs/osp-metadata.md`). Every non-archived repository declares its kind
    (foundation, provider, capability, composite, tooling), status
    (planned, scaffold, developing, available), spheres, primary sphere
    and discipline in `.osp/repository.yaml`. GitHub topics, the org
@@ -63,10 +64,16 @@ is a question about scientific community, not about layer.
    any runtime manifest are rendered from that file and validated
    against it.
 5. **Scientific concepts carry sphere tags.** A concept's frontmatter
-   gains `spheres` (one or more sphere values, required for scientific
-   concepts; the linter rejects an untagged one) and optional `gcmd`.
-   The tags state the scope of the claim; they do not move steward
-   authority.
+   gains `spheres` (one or more sphere values, required on every type
+   except `requirement` and `connector`; the checker rejects an untagged
+   one) and optional `gcmd`. The tags state the scope of the claim; they
+   do not move steward authority, and they sit outside the text a
+   steward's signature binds: the signature check ignores `spheres` and
+   `gcmd` the way it ignores the `verified` events, so tagging a signed
+   concept creates no signature debt. A foundation bundle whose
+   concepts serve every sphere (core's conventions) declares
+   `sphere_scope: cross-cutting` in its root index and its concepts
+   carry an empty list. Implemented 2026-09-12.
 6. **A composite is a capability whose evidence genuinely crosses
    spheres.** It stays a scaffold until it has its own steward, joint
    knowledge and sufficient validation. An interdisciplinary recipe
