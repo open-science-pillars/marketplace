@@ -1,11 +1,12 @@
 # Open Science Pillars: Specification
 
 **Organization:** Open Science Pillars (github.com/open-science-pillars)
-**Version:** 0.6.13 (negative knowledge is a candidate)
-**Date:** 2026-09-05
+**Version:** 0.6.14 (negative knowledge is a candidate)
+**Date:** 2026-09-12
 **Scope:** Phase 1 (built; core + ocean-science + infrastructure + knowledge + verification + evals seed + stewardship) plus Phase 2 spec detail (hydrology bridge, §10)
 
 **Changelog:**
+- 0.6.14 (2026-09-12): two repository rows follow the consolidation decided in ADR A (docs/decisions/adr-a-pillar-means-sphere.md). `ecco-agent-evals` is renamed `agent-evals`, the organization's one benchmark repository, its ECCO set under `ecco/` so a later product's cases join under the same charter (the old name redirects). `ecco-budget-badge` is retired and archived: its badge writer and adopter workflow moved beside the canonical attester in `nasa-daac-knowledge` (`tools/ecco_budget_badge.py`, `tools/templates/ecco-budget-badge-workflow.yml`), pinned by that repository's release tag. Section 8 Placement and the ocean-science tree note name the new home. No rule changes.
 - 0.6.13 (2026-09-05): two candidate concept types for negative knowledge, section 5.11 and two rows of the type table in 5.2. A `dead-end` records that a goal was attempted by a method and failed with a symptom for a cause, observed on dates by actors in cited sources, with the condition that would reopen it; a `field-state` records the positions a field holds on a question as of a date, without adjudicating. Attribution is the truth condition of both, neither is ever deleted (a dead-end is reopened, a field-state superseded), and both carry `load_bearing` on the gotcha severity rule, high requiring an eval case id. Checker support is `check_negative.py` in the nasa-daac-knowledge repository (its pull request #104), in that repository's check routine over both bundles, whose PO.DAAC index now carries `dead-ends` and `field-states` sections; tracked on marketplace issue #60. Candidate language; no normative rule changes.
 - 0.6.12 (2026-09-05): the citation rule of section 0.4 is now measured rather than swept: `tools/check_prose.py` in the nasa-daac-knowledge repository flags a specification rule cited by section number, program bookkeeping (kit, session or wave numbers) in anything a reader meets, and em or en dashes; it runs in that repository's routine and in every plugin gate. External standards cited by their own section numbers, this document, dated change logs and the vendored upstream text are not flagged. No rule changes.
 - 0.6.11 (2026-09-05): section 0.4 adds the citation rule for every document outside this one: name the rule, and where a pointer helps name this document; never cite a section number, which moves between revisions and cannot be resolved from inside an installed plugin or a repository README. The organization's guides, templates, workflow comments, agent and skill bodies, CODEOWNERS files and citation files were rewritten to it in the same change; this document's own cross-references, the vendored upstream OKF text, citations of external standards (CF, OKF v0.2) by their section numbers, and dated records are unchanged.
@@ -110,8 +111,8 @@ Plugins are cached and cannot reference files outside their own directory: no `.
 | `archive-observatory` | Cross-archive metadata compliance observatory: sweeper, pinned pyQuARC harness, attester, scheduled aggregate sweeps; publication policy binding (aggregate-public, detail-private, badges opt-in); credential-free by CI-enforced invariant | 2 |
 | `earthaccess-mcp` | SUPERSEDED: the planned wrapper is replaced by the upstream official server [nasa/earthdata-mcp](https://github.com/nasa/earthdata-mcp), already registered in ocean-science `.mcp.json`; its facts live in the podaac bundle as a connector concept (§5.9 candidate) | 2 |
 | `evals` | Eval runner, shared graders, suite manifests, published scoreboard | 2 |
-| `ecco-agent-evals` | Public, versioned eval cases derived from steward-signed ECCO knowledge, with transparent scoring and self-reported results; the one home of the ocean cases (ocean-science carries no copy) | 2 |
-| `ecco-budget-badge` | Checkable ECCO budget closure: the attested heat budget's portable attester, a pinned copy of the sanctioned computation, and a CI badge any repository can carry | 2 |
+| `agent-evals` | The one benchmark repository: public, versioned eval cases with transparent scoring and self-reported results, each product's set under its own directory and every set under one charter; the ECCO set (`ecco/`) is the one home of the ocean cases (ocean-science carries no copy). Renamed from `ecco-agent-evals` 2026-09-12 | 2 |
+| `ecco-budget-badge` | RETIRED 2026-09-12 (archived): the badge writer and adopter workflow moved beside the canonical attester in `nasa-daac-knowledge/tools`, pinned by that repository's release tag; a repository adopts the workflow rather than a copy of the attester | 2 |
 | `remote-sensing`, `models-and-reanalysis` | Measurement-layer plugins | 3 |
 | `applied-science` | Applications layer (ARSET-anchored packs) | 3 |
 | `planetary-science`, `pds-knowledge` | Planetary domain + PDS knowledge | 4 |
@@ -315,7 +316,7 @@ ocean-science/
 │   │            swot-calval-orbit-phases, grace-coastal-leakage,
 │   │            grace-gia-correction}.md
 │   └── recipes/{ecco-heat-budget, ecco-mht-26n}.md
-├── (no evals/: the ocean cases live in ecco-agent-evals, §8 Placement)
+├── (no evals/: the ocean cases live in agent-evals under ecco/, §8 Placement)
 ├── verification/
 │   ├── load_ecco.py · transport_analysis.py · ocean_budget.py · load_swot.py
 │   └── fixtures/
@@ -781,7 +782,7 @@ pass_threshold: 0.8
 
 **Grading:** programmatic checks on transcripts, produced code, and outputs wherever possible; rubric-based LLM judging (a port of the rubric-eval plugin) where judgment is required; periodic human calibration of the judge. **Stochasticity:** each case runs N trials and reports a pass rate with a binomial confidence interval; we apply our own uncertainty-reporting rule to ourselves.
 
-**Placement:** a plugin's cases have one home. By default that is the plugin's own `evals/` beside `verification/`, versioned with the skills and knowledge they test. A plugin may instead declare an eval repository as the home of its cases, as ocean-science does with `ecco-agent-evals`: the plugin then carries no copy, its README and its bundle index name the repository, each case there names the plugin skills it exercises in `targets`, and a release of the plugin is run against the tagged case set; the knowledge-linter's coverage rule (a high-severity gotcha needs a matching case) reads the cases from the declared home. The runner, shared graders, suite manifests, and the published scoreboard (versioned JSON plus a static page, scored by model and plugin version) live in the org `evals` repo (Phase 2).
+**Placement:** a plugin's cases have one home. By default that is the plugin's own `evals/` beside `verification/`, versioned with the skills and knowledge they test. A plugin may instead declare an eval repository as the home of its cases, as ocean-science does with `agent-evals` (its ECCO set, `ecco/cases/`): the plugin then carries no copy, its README and its bundle index name the repository, each case there names the plugin skills it exercises in `targets`, and a release of the plugin is run against the tagged case set; the knowledge-linter's coverage rule (a high-severity gotcha needs a matching case) reads the cases from the declared home. The runner, shared graders, suite manifests, and the published scoreboard (versioned JSON plus a static page, scored by model and plugin version) live in the org `evals` repo (Phase 2).
 
 **The ablation protocol (the headline experiment):** run the gotcha-avoidance suite with the knowledge bundle installed and with it removed, same model, same N; report the trap-hit-rate delta with intervals. This is the quantitative evidence for the knowledge-layer thesis, produced before outreach so the announcement carries numbers.
 

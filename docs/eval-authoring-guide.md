@@ -4,7 +4,7 @@ How to write eval cases per the specification's evals layer
 (docs/SPECIFICATION.md). A plugin's cases have one home: its own
 `evals/` beside `verification/`, versioned with the skills and
 knowledge they test, or an eval repository the plugin declares as
-their home (ocean-science's cases live in `ecco-agent-evals`; the
+their home (ocean-science's cases live in `agent-evals` under `ecco/`; the
 plugin carries no copy). This guide is the one place the case schema
 is documented, and each `evals/SCHEMA.md` points here. Manual seed
 grades are recorded beside the cases (`RESULTS-seed.md` in a plugin's
@@ -66,7 +66,7 @@ notes: >                       # grading guidance for the manual seed pass
 ## Where the ocean cases live
 
 Cases derived from steward-signed ECCO knowledge are authored in the
-`ecco-agent-evals` repository (`cases/`), their one home; ocean-science
+`agent-evals` repository (`ecco/cases/`), their one home; ocean-science
 carries no copy, and a case there names the ocean-science skills it
 exercises in `targets`. A regression fixture that guards a plugin's
 own artifact (a briefing's receipt values) stays with the plugin under
