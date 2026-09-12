@@ -31,6 +31,9 @@ Authoring guides (how to add each kind of thing):
 - [runtime-distribution.md](runtime-distribution.md): what "supported",
   "tested", "conformant" and "compatibility tested" each assert, and the
   status per runtime
+- [release-candidate-guide.md](release-candidate-guide.md): cutting a
+  release with build-kit's release tool: candidate, qualification, tag,
+  catalog line, GitHub release
 - [release-qualification-guide.md](release-qualification-guide.md): the
   maintainers' procedure for a release candidate: tickets per runtime,
   records, waivers, the gate

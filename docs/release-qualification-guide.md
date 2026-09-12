@@ -19,10 +19,12 @@ waived for that release, in writing, and is simply not advertised.
 
 ## The flow
 
-1. **Open the release pull request.** Bump `package.yaml` (the manifests
-   render from it: `uv run ../build-kit/scripts/osp.py render .`),
-   regenerate the lock (`osp.py lock .`), write the notes. The pull
-   request is the release candidate: CI notices the version change.
+1. **Open the release pull request** with build-kit's release tool
+   (`release.py candidate <capability> --version X --summary ... --pr`,
+   the release candidate guide), which bumps the version, re-renders,
+   re-locks, refreshes the runtime table, runs the checks and opens the
+   pull request. The pull request is the release candidate: CI notices
+   the version change.
 2. **CI opens one ticket per required surface** with no decision for
    that version: "Qualify core 0.5.1 on claude-cowork", labelled
    `qualification`, mentioning the runtime maintainer team, carrying the
