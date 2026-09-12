@@ -35,6 +35,14 @@ Authoring guides (how to add each kind of thing):
 - [design-knowledge-coupling.md](design-knowledge-coupling.md): ADOPTED
   design for how knowledge couples to skills and agents so the bundle
   augments behavior over time (with the measured proof-of-concept)
+- [design-sphere-alignment-multi-runtime.md](design-sphere-alignment-multi-runtime.md):
+  PROPOSED design for aligning the organization to the five Earth science
+  spheres (Pillar means sphere) and delivering each governed capability as
+  a Claude projection and an Agent Plugins 1.0 projection from one source
+- [decisions/](decisions/README.md): architecture decision records; ADR A
+  (sphere alignment) and ADR B (multi-runtime packaging) record the
+  decisions the design above proposes, and the roadmap initiative
+  `osp-architecture-alignment` in build-kit sequences the work
 
 ## Build record and development harness (now in build-kit)
 

@@ -117,3 +117,42 @@ is already public and is not counted as a gotcha-avoidance case.
   the residual publishes with its interval and both bars regardless of
   whether it closes, and a basin below the floor publishes as a
   refusal.
+
+- 2026-09-11 (sphere alignment and multi-runtime packaging): the
+  organization is adopting two linked decision records
+  (docs/decisions/adr-a-pillar-means-sphere.md and
+  docs/decisions/adr-b-multi-runtime-capability-packaging.md, with the
+  design in docs/design-sphere-alignment-multi-runtime.md). This entry
+  records, before any of that work is done, how it reads against the
+  conditions above. Four kinds of work are in scope: adding sphere
+  metadata to repositories and to scientific concepts; introducing
+  provider-neutral `.osp/` metadata (repository classification,
+  package and dependency declarations, runtime support policy, release
+  locks); creating runtime packaging scaffolding (a Claude projection
+  and an Agent Plugins 1.0 projection rendered from the same source);
+  and instantiating planned repositories that hold no capability. All
+  four are organizational and infrastructure work. None is a new
+  scientific domain shipping, so the go condition that funds new
+  domains is neither claimed nor needed, and none is a negative result,
+  so no stop condition fires. A planned repository named for a future
+  domain (precipitation, land-ice and the rest) contains no skill, no
+  concept, no manifest and no catalog entry, and its README says so;
+  it is a statement of intended shape, not a domain. The planned
+  `partner-knowledge` repository likewise contains no bundle, so the
+  provider expansion the go conditions govern is not reached by
+  creating it; a provider directory is still created only under its
+  own dated entry here, as the hydrology entry above provides. Runtime
+  packaging changes how a governed capability is delivered and does
+  not change what it claims: one signed concept feeds every projection,
+  the same deterministic verifier checks every runtime's result, and a
+  packaging-only change needs no scientific re-approval unless
+  semantics change. The powered ablation keeps its pre-registered
+  design and its place as the Phase-3 gate; the model-backed flood
+  slice stays blocked on it; and the cross-runtime eval dimension this
+  work adds (capability release, runtime, model, suite, trials, score,
+  interval) records runs against both runtimes without altering the
+  ablation's arms or metric. Sequencing: the decision records and this
+  entry merge now; every other step waits for the first tranche of the
+  hydrology investigations (the roadmap's P0 deliverables of
+  `hydrology-investigations`) to be recorded done, and that gate is
+  not removed silently.
