@@ -37,6 +37,10 @@ Authoring guides (how to add each kind of thing):
 - [release-qualification-guide.md](release-qualification-guide.md): the
   maintainers' procedure for a release candidate: tickets per runtime,
   records, waivers, the gate
+- [release-candidate-walkthrough.md](release-candidate-walkthrough.md):
+  checking a candidate by hand on your runtime: where to install it
+  from, the prompts to run, what a pass looks like, how to hand back
+  the record
 
 ## Design, strategy, and commitments
 

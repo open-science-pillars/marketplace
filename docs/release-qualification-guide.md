@@ -42,6 +42,10 @@ waived for that release, in writing, and is simply not advertised.
 
 ## Recording a run
 
+The hands-on version of this section, with the install path per
+runtime, every prompt and what a pass looks like, is
+docs/release-candidate-walkthrough.md.
+
 **Claude Code**, on your machine, with your own login, from a workspace
 that holds the release branch and build-kit side by side:
 
