@@ -153,9 +153,10 @@ when its proposal is accepted.
   spheres; the documentation milestone states where those rows go.
 - A snow concept tags both Hydrosphere and Cryosphere; a GRACE mass
   concept tags Hydrosphere and Geosphere; precipitation is Hydrosphere
-  primary with Atmosphere secondary. Multiple `osp-sphere-*` topics are
-  applied where a repository touches several spheres, and
-  `primary_sphere` stays canonical in the metadata file.
+  primary with Atmosphere secondary. The generated GitHub topics are
+  `osp` and each sphere as a plain word (decided 2026-09-12: kind and
+  status are not topics, since nobody searches for them and they live
+  in the metadata file); `primary_sphere` stays canonical there.
 - The roadmap's declared repository list does not yet include
   `archive-observatory`, `ecco-budget-badge` or `ecco-agent-evals`; the
   consolidation milestone's deliverables are therefore carried by the
