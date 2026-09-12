@@ -666,20 +666,20 @@ index declares `sphere_scope: cross-cutting` may leave the list empty.
 
 ## 20. Generated GitHub topics
 
-GitHub topics remain useful for discovery and API queries, but they
+GitHub topics remain useful for discovery, and the ones that serve it
 SHOULD be generated and validated from `.osp/repository.yaml`:
 
 ```text
 osp
-osp-sphere-<sphere>
-osp-kind-<foundation|provider|capability|composite|tooling>
-osp-status-<planned|scaffold|developing|available>
+<sphere>          the plain word: hydrosphere, cryosphere, ...
 ```
 
-For repositories touching multiple spheres, multiple `osp-sphere-*`
-topics may be applied. `primary_sphere` remains canonical in
-`.osp/repository.yaml`. This removes the need to reverse-engineer
-canonical state from GitHub topics.
+Decided 2026-09-12: kind and status are not topics. Nobody searches for
+them, they are read from `repository.yaml` and the sphere view, and a
+topic would be one more place for them to go stale. The hand-curated
+science and tool topics a repository carries are kept as they are. A
+repository touching several spheres carries each; `primary_sphere`
+remains canonical in `.osp/repository.yaml`.
 
 ## 21. Generated runtime metadata
 
