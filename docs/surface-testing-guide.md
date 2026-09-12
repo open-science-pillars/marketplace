@@ -72,7 +72,7 @@ Install: claude.com/plugins (directory) or unlisted marketplace / upload, same p
 
 ### OpenAI Codex: Tier-1 runtime, planned
 
-Codex consumes the Agent Plugins 1.0 projection of the capability, not a hand-written manifest. The projection is not built yet; when it is, the tests above run against it and the surfaces file's `status` moves from `planned`. No Codex support is claimed until then.
+Codex consumes the Agent Plugins 1.0 projection of the capability, not a hand-written manifest. The projection is rendered by build-kit at each package repository's root (`plugin.json`, `skills/`, `mcp.json`) and conformance-checked in the gate; the tests above have not yet run against it, and the surfaces file's `status` stays `planned` until they do. No Codex support is claimed until then.
 
 ### Gemini CLI and Goose: Tier-2 compatibility
 
