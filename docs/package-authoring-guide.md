@@ -24,8 +24,9 @@ classification:
 ```
 
 `.osp/package.yaml` says what it publishes. The Claude manifest
-(`.claude-plugin/plugin.json`) must repeat the name, version and
-dependencies exactly; it is a projection:
+(`.claude-plugin/plugin.json`) and the Agent Plugins `plugin.json` are
+rendered from it by build-kit's `osp.py render`, and the gate fails
+when either differs from what the file renders:
 
 ```yaml
 schema_version: 1
@@ -40,7 +41,16 @@ content:
 dependencies:
   capabilities: []
   knowledge: []
+metadata:
+  description: "Physical oceanography: ECCO state estimate, SWOT SSH, ..."
+  keywords: [oceanography, ecco, swot]
 ```
+
+`metadata` is what every manifest repeats: the description and keywords,
+and, unless overridden, the organization's author, the GitHub homepage
+and repository, and the Apache 2.0 license. After an edit, run
+`uv run ../build-kit/scripts/osp.py render .` and commit the four
+rendered files with it.
 
 ## A capability dependency
 
@@ -70,11 +80,30 @@ convention finds every installed bundle through the installer's record.
 
 ## A connector
 
-A connector is REACH: the registration wire in `.mcp.json` and nothing
-more. Its facts (endpoint, transport, tool surface, auth boundary,
-deprecation) are KNOW, a `connector` concept in the bundle; when to
-reach for it is ACT, in the skills; gates never depend on one. Declare
-the directory in `content.connectors` when the repository carries one.
+A connector is REACH: a registration and nothing more. It is declared
+once, in `package.yaml`, in the portable form of the Agent Plugins
+specification, and both wires are rendered from it: Claude's
+`.mcp.json` (with `${CLAUDE_PLUGIN_ROOT}` and `http`) and the portable
+`mcp.json` (with `${PLUGIN_ROOT}` and `streamable-http`):
+
+```yaml
+reach:
+  servers:
+    earthdata:
+      type: streamable-http
+      url: https://cmr.earthdata.nasa.gov/mcp/v1
+    observations:
+      type: stdio
+      command: uv
+      args: [run, "${PLUGIN_ROOT}/connectors/observations_mcp.py"]
+```
+
+A server that only a Claude runtime can use carries `portable: false`
+and is left out of the portable file. Its facts (endpoint, transport,
+tool surface, auth boundary, deprecation) are KNOW, a `connector`
+concept in the bundle; when to reach for it is ACT, in the skills;
+gates never depend on one. Declare the directory in `content.connectors`
+when the repository carries one.
 
 ## A PROVE requirement
 
@@ -103,10 +132,31 @@ qualification:
 surface; `status` is the evidence today, with an `evidence` string
 saying where it is recorded.
 
+## The portable package
+
+The repository root is itself the Agent Plugins package: `plugin.json`
+rendered beside the canonical `skills/`, and `mcp.json` when there is
+portable REACH. `osp.py plugin-check` validates it against the
+specification pinned at 1.0.0 (the closed manifest, the executable-token
+rule, the URL rules, skill discovery and the Agent Skills frontmatter
+rules) in every package gate. Conformance is a package property; it
+says nothing about qualification on a runtime. A client extension
+(an OpenAI or Codex namespace, when one is documented) is declared under
+`extensions` in `package.yaml` and copied through.
+
+## The release lock
+
+`osp.py lock` writes `.osp/release-lock.json`: digests of the
+classification, each content tree and each projection, the declared
+dependency constraints and the Agent Plugins version. It is reported on
+a pull request and enforced on a release tag, so a release commit
+re-runs `lock` after its version bump.
+
 ## A runtime adapter
 
 The Claude package files are the Cowork projection and are owned by the
-runtime maintainers (CODEOWNERS). A runtime-specific agent under
+runtime maintainers (CODEOWNERS); the portable files and the lock belong
+to the Agent Plugins runtime maintainers. A runtime-specific agent under
 `agents/` may orchestrate skills; it never holds the only implementation
 of scientific behavior, which lives in `skills/` as a `SKILL.md`. No
 `skills/claude/` or `skills/openai/` trees.

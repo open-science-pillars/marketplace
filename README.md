@@ -64,7 +64,7 @@ golden notebook, runtime, connector)? See the [glossary](GLOSSARY.md).
 |---|---|
 | Claude Code | supported; the development environment |
 | Claude Cowork | tested: installs from this marketplace; per-release qualification pending |
-| OpenAI Codex | planned: through the Agent Plugins projection, not yet built |
+| OpenAI Codex | planned: the Agent Plugins projection is rendered and conformance-checked; no release is qualified on Codex yet |
 | Claude Science | future runtime |
 | Gemini CLI, Goose | compatibility targets, not yet probed |
 

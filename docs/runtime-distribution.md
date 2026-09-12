@@ -20,8 +20,11 @@ round:
   (`plugin.json`, `skills/`, `mcp.json`) per the open specification at
   github.com/agentplugins/agent-plugins-spec, consumed by OpenAI Codex
   and by other conforming clients (Cursor, GitHub Copilot and VS Code,
-  Kiro). It is the runtime track of the architecture alignment
-  initiative and is not built yet.
+  Kiro). It is rendered by build-kit's `osp.py render` from the same
+  `.osp/package.yaml`, at the repository root (`plugin.json`, the
+  canonical `skills/`, `mcp.json`), and checked for conformance by
+  `osp.py plugin-check` in every package gate. Rendered is not
+  qualified: no runtime has yet passed the qualification matrix on it.
 
 No client gets a dedicated adapter when the portable package serves it
 without semantic loss; a new adapter needs a demonstrated host-specific
@@ -33,7 +36,7 @@ need.
 |---|---|---|
 | Development environment | Where the capabilities are authored and tested | Claude Code |
 | Qualified runtime (Tier 1) | A release passed the qualification matrix on it: install, skill discovery and invocation, knowledge and dependency resolution, connector invocation where applicable, golden computation, deterministic PROVE, receipt generation, side-effect confirmation, release-lock match | Recorded per release once the qualification harness lands |
-| Package conformance | The portable package validates against the pinned Agent Plugins specification | `osp plugin-check`, when it lands |
+| Package conformance | The portable package validates against the pinned Agent Plugins specification | `osp.py plugin-check`, pinned at Agent Plugins 1.0.0, in every package gate |
 | Compatibility tested (Tier 2) | The canonical skills and connectors were probed on a harness; failures are reported and do not block a release | `osp compat`, when it lands |
 
 A schema-valid package is not a qualified runtime. A release stays valid
@@ -46,10 +49,10 @@ advertised for it.
 |---|---|---|
 | Claude Code | development environment and runtime | supported: every release is exercised on it |
 | Claude Cowork | runtime | tested: marketplace install verified 2026-07-04 (surface testing guide); per-release qualification pending the harness |
-| OpenAI Codex | runtime, through the Agent Plugins projection | planned: no projection yet |
+| OpenAI Codex | runtime, through the Agent Plugins projection | planned: the projection is rendered and conformance-checked; no release has been qualified on Codex |
 | Claude Science | future runtime | limited release; install path observed 2026-07-04; excluded from the required matrix until broadly available |
 | Gemini CLI, Goose | compatibility targets | not yet probed |
-| Cursor, GitHub Copilot and VS Code, Kiro | portable consumers | no dedicated adapter; served by the Agent Plugins projection when it exists |
+| Cursor, GitHub Copilot and VS Code, Kiro | portable consumers | no dedicated adapter; served by the Agent Plugins projection, as standards compatibility, not as qualified runtimes |
 
 Each installable repository declares this policy in
 `.osp/surfaces.yaml`: `required` is what a release must qualify on before
