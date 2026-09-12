@@ -658,7 +658,11 @@ PO.DAAC GRACE mass concept   spheres: [hydrosphere, geosphere]
 ```
 
 Concept sphere tags represent the scope of the scientific claim. They do
-not transfer steward authority to sphere teams.
+not transfer steward authority to sphere teams, and they are outside
+the text a signature binds: the signature check ignores `spheres` and
+`gcmd`, so tagging a signed concept owes no re-sign. The `requirement`
+and `connector` types are exempt, and a foundation bundle whose root
+index declares `sphere_scope: cross-cutting` may leave the list empty.
 
 ## 20. Generated GitHub topics
 
