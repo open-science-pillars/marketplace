@@ -73,18 +73,22 @@ is a question about scientific community, not about layer.
    whose governing evidence stays in one sphere is not a composite: the
    basin water balance is Hydrosphere, and coastal compound flooding is
    Hydrosphere while its evidence stays there.
-7. **The target repository map is 24 non-archived repositories.** Ten
-   foundation and tooling (`marketplace`, `core`, `plugin-template`,
-   `knowledge-template`, `build-kit`, `evals`, `tutorials`, `.github`,
-   `archive-observatory`, and `badges` renamed from `ecco-budget-badge`);
+7. **The target repository map.** Foundation and tooling
+   (`marketplace`, `core`, `plugin-template`, `knowledge-template`,
+   `build-kit`, `evals`, `tutorials`, `.github`, `archive-observatory`);
    two provider (`nasa-daac-knowledge`, `partner-knowledge`); eleven
    domain capabilities (`ocean-science`, `hydrology`, `precipitation`
    in Hydrosphere; `land-ice`, `sea-ice` in Cryosphere; `solid-earth`,
    `land-surface` in Geosphere; `atmospheric-composition`,
    `atmospheric-physics` in Atmosphere; `land-ecosystems`,
-   `ocean-biology` in Biosphere); one cross-sphere `composites`.
-   `ecco-agent-evals` is archived after its cases move to
-   `evals/products/ecco/` and stays visible with a pointer.
+   `ocean-biology` in Biosphere); one cross-sphere `composites`. That
+   is 23 non-archived repositories, 24 if the badge repository is kept
+   in generalized form; the disposition of `ecco-budget-badge` and of
+   `ecco-agent-evals` is an open item below. `archive-observatory` is
+   in the tooling group but is classified on its own terms, not by
+   sphere: it is an instrument for data engineers and archive
+   operators (the architecture document's second audience), and its
+   `repository.yaml` carries kind tooling with no sphere.
 8. **Planned repositories are honest and never installable.** A planned
    repository holds a README with an explicit banner, LICENSE,
    `.osp/repository.yaml`, `.osp/governance.yaml`, CODEOWNERS and
@@ -92,11 +96,11 @@ is a question about scientific community, not about layer.
    surfaces manifest, no runtime manifest, no catalog entry, no
    release, no CITATION.cff. Creating one is administrative; promoting
    one out of planned is governed work.
-9. **Per-product tooling is consolidated before it multiplies.**
-   `ecco-budget-badge` becomes `badges`, an attestation service that
-   takes a product workflow as input; `ecco-agent-evals` moves into
-   `evals/products/ecco/` preserving concept basis, expected behavior,
-   deterministic checks and historical result equivalence.
+9. **Per-product tooling does not grow one repository per product.**
+   The two existing per-product repositories are resolved before a
+   third appears; the form of that resolution (generalize, fold in, or
+   retire) is the open item below, and the design document's rename
+   and move are one option, not the decision.
 10. **Governance gains sphere teams, provider steward teams and runtime
     maintainer teams.** CODEOWNERS moves from individuals to teams. One
     person may occupy several teams during the interim solo period, and
@@ -108,14 +112,16 @@ is a question about scientific community, not about layer.
 ## Sequencing
 
 The decision records and the dated Phase-2 pre-registration amendment
-merge now. Every other step (canonical metadata, consolidation, teams,
-documentation alignment, planned repositories) begins after the first
-tranche of the roadmap's `hydrology-investigations` initiative lands.
-This record reads that tranche as the initiative's P0 deliverables
-(`hydro-usgs-waterdata-migration`, `hydro-basin-unit`,
-`hydro-p-et-connectors`, `hydro-w1-basin-balance`) recorded done in
-the roadmap with evidence. The gate is not removed silently: a later
-dated record must say so if it moves.
+merge first. Every other step (canonical metadata, consolidation,
+teams, documentation alignment, planned repositories) was gated on the
+first tranche of the roadmap's `hydrology-investigations` initiative:
+its P0 deliverables (`hydro-usgs-waterdata-migration`,
+`hydro-basin-unit`, `hydro-p-et-connectors`, `hydro-w1-basin-balance`).
+**The gate was met on 2026-09-12:** the owner confirmed it against the
+sphere alignment plan the tranche was built from, and the roadmap
+records the four deliverables done with their release tags as
+evidence. Implementation of the canonical metadata milestone may begin
+when its proposal is accepted.
 
 ## Consequences
 
@@ -126,12 +132,11 @@ dated record must say so if it moves.
 - The specification's repository table currently lists `remote-sensing`,
   `models-and-reanalysis`, `applied-science`, `planetary-science` and
   `pds-knowledge` as later phases. The five spheres are an Earth
-  science taxonomy: planetary work has no sphere, and the measurement
-  and applications layers of the architecture document are layers, not
-  spheres. The documentation milestone must state where each of those
-  rows goes (a sixth organizational group outside the spheres, a
-  composite, or a retirement) rather than drop them; this record does
-  not decide it.
+  science taxonomy. Planetary work is pushed off and may belong in a
+  separate organization; that question is held on marketplace issue
+  #80 so the rows are neither dropped silently nor left implying a
+  plan. The measurement and applications layers are layers, not
+  spheres; the documentation milestone states where those rows go.
 - A snow concept tags both Hydrosphere and Cryosphere; a GRACE mass
   concept tags Hydrosphere and Geosphere; precipitation is Hydrosphere
   primary with Atmosphere secondary. Multiple `osp-sphere-*` topics are
@@ -141,6 +146,36 @@ dated record must say so if it moves.
   `archive-observatory`, `ecco-budget-badge` or `ecco-agent-evals`; the
   consolidation milestone's deliverables are therefore carried by the
   `marketplace` and `evals` entries until the list is reconciled.
+
+## Open items
+
+Two per-product repositories need a decision, recorded here with the
+recommendation put to the owner; the roadmap's `m2` deliverables are
+the decisions, not the moves.
+
+- **`ecco-budget-badge`.** The repository carries verbatim copies of the
+  sanctioned computation and attester that live in the provider bundle,
+  a badge writer, and a reusable workflow. The copies exist so an
+  adopter can pin the attester by tag; that is the vendored-copy form
+  the organization retired elsewhere in favor of declarations, and a
+  badge is only the attester's verdict rendered by shields.io.
+  Recommendation: retire it. The reusable workflow moves beside the
+  attester it calls (the provider bundle's tools, pinned by that
+  repository's release tag) and the badge writer with it; the
+  repository is archived with a pointer. The basin water balance then
+  needs no second badge repository either.
+- **`ecco-agent-evals`.** A benchmark with its own charter: cases cite
+  signed concepts by path and commit, releases are tagged sets, results
+  are self-reported with transcripts, and the core linter reads ocean
+  eval coverage from it. It is not redistributed as a package. Folding
+  it into the `evals` repository would tie a benchmark's version
+  history and citation to the runner's release cadence and put
+  published results beside tooling. Recommendation: it stands alone,
+  but as the organization's one benchmark repository rather than one
+  per product: rename to a product-neutral name (`agent-evals`), keep
+  the charter, and give the ECCO cases a product subtree so the
+  hydrology cases can join under the same charter when they are ready
+  to publish results. `evals` stays the runner, graders and scoreboard.
 
 ## Not decided here
 

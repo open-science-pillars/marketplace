@@ -1601,11 +1601,21 @@ count toward the 24 non-archived target repositories.
 
 The specification's repository table lists `remote-sensing`,
 `models-and-reanalysis`, `applied-science`, `planetary-science` and
-`pds-knowledge` for later phases. The measurement and applications
-layers of the architecture document are layers rather than spheres, and
-planetary science has no Earth sphere. The documentation milestone
-states where each row goes (an organizational group outside the five
-spheres, a composite, or a retirement); this design does not decide it.
+`pds-knowledge` for later phases. Planetary science has no Earth
+sphere; it is pushed off and may belong in another organization, held
+on marketplace issue #80. The measurement and applications layers of
+the architecture document are layers rather than spheres; the
+documentation milestone states where those rows go.
+
+`archive-observatory` sits in the tooling group but is classified on
+its own terms rather than by sphere: it serves data engineers and
+archive operators, the architecture document's second audience.
+
+The badge repository rename and the eval move described in this
+document are options. ADR A records both as open items with a
+recommendation (retire the badge repository; keep the benchmark
+standalone under a product-neutral name); the count in Appendix A is
+24 only if the badge repository is kept.
 
 ## 45. Current-to-target repository mapping
 
@@ -2023,7 +2033,8 @@ M1 and later organization changes begin after the first tranche of the
 hydrology investigations lands: the roadmap's `hydrology-investigations`
 P0 deliverables (`hydro-usgs-waterdata-migration`, `hydro-basin-unit`,
 `hydro-p-et-connectors`, `hydro-w1-basin-balance`) recorded done with
-evidence. Do not silently remove that sequencing constraint.
+evidence. Met 2026-09-12, confirmed by the owner and recorded in the
+roadmap; ADR A carries the record.
 
 ### M1: canonical metadata schema
 
