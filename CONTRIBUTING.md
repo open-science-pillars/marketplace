@@ -15,7 +15,10 @@ authoring guides in [docs/](docs/) expand them with worked detail:
 
 ## Ground rules
 
-1. Everything behavioral is a skill or an agent. No `commands/` directories.
+1. Everything behavioral is a skill or an agent, and portable scientific
+   behavior MUST have a skill representation: a runtime-specific agent may
+   orchestrate skills, never hold the only implementation. No `commands/`
+   directories.
 2. Every SKILL.md starts with frontmatter: `name`, and a `description` of 200
    characters or fewer, keyword-first. Knowledge skills set
    `user-invocable: false` (the specification, docs/SPECIFICATION.md, lists
@@ -38,11 +41,26 @@ authoring guides in [docs/](docs/) expand them with worked detail:
    decision aid in [docs/knowledge-vs-skills.md](docs/knowledge-vs-skills.md).
 7. Prose style: no em dashes; use commas, colons, parentheses, or semicolons.
 
+## Where a contribution goes
+
+| You have | It is | It lives in |
+|---|---|---|
+| a fact about data (a trap, an uncertainty, a validated number) | KNOW | a concept in the provider or domain bundle, signed by its steward |
+| a procedure an agent follows | ACT | a `SKILL.md` under `skills/` |
+| a deterministic check with a receipt | PROVE | a golden notebook under `verification/`, or an attester beside its computation |
+| a way to reach an external service | REACH | a connector in `.mcp.json`, with its facts as a `connector` concept |
+| a Claude-only wrapper (a subagent, presentation metadata) | an adapter | `agents/` or the Claude package files, never the only home of behavior |
+
+Which sphere a capability serves, and who signs its knowledge, are two
+different questions (the glossary's organization section); a sphere tag on
+a concept moves no authority.
+
 ## Mechanics
 
 - Sign off every commit (DCO): `git commit -s`.
-- One domain-maintainer review merges an ordinary PR; two for cross-cutting
-  changes and high-severity knowledge edits (see org GOVERNANCE.md).
+- One review from the owning team merges an ordinary PR; two for
+  cross-cutting changes and high-severity knowledge edits (see org
+  GOVERNANCE.md, which names the teams).
 - Adding one skill to an existing plugin: open the new_skill issue template
   and follow [docs/skill-authoring-guide.md](docs/skill-authoring-guide.md).
 - Proposing a knowledge concept: use the new_knowledge_concept issue template

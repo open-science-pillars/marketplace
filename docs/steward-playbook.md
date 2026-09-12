@@ -12,7 +12,8 @@ be confused:
   repo, which the plugins declare as a dependency) is **done**.
 - The **provider-steward handoff** (a PO.DAAC or equivalent staffer taking
   over review authority for their bundle) is **pending**. Its trigger: a
-  named provider steward accepts the CODEOWNERS entry and co-reviews three
+  named provider steward joins the bundle's steward team (`podaac-stewards`,
+  `esdis-stewards`; CODEOWNERS already names the team) and co-reviews three
   PRs per "Onboarding a new steward" below. Until then the pro-tem steward
   holds review authority, and the provider-second-review rule (Duties, below)
   is deferred (see the note there).
@@ -91,10 +92,27 @@ the bundle's `log.md` history: the decision chains teach the standards
 faster than rules do. (Older log entries use build-era shorthand for the
 linter's checks and lint severities; the current checks are documented in
 `core/agents/knowledge-linter`.) Then co-review three PRs: one clean
-concept, one with an evidence problem, one high-severity gotcha. Grant
-CODEOWNERS on the bundle paths after the third. ARSET's train-the-trainer
+concept, one with an evidence problem, one high-severity gotcha. Add them
+to the bundle's steward team after the third; CODEOWNERS names the team,
+so no file changes. ARSET's train-the-trainer
 pattern applies: the outgoing steward observes the incoming one running a
 review, not the reverse.
+
+## Spheres and runtimes
+
+- A steward's approval is runtime-independent. One signed concept feeds
+  every projection (the Claude plugin today, the Agent Plugins package
+  for Codex and other clients later); nothing is re-approved per runtime.
+- A packaging-only change (a manifest, a projection, a release lock)
+  needs no scientific re-approval unless the concept's semantics change.
+- A concept's `spheres` tags state the scope of the claim; they move no
+  authority. Sphere maintainers coordinate capabilities; they do not
+  override a provider steward on a fact, and a methods steward
+  (`hydrosphere-methods-stewards`) owns recipes and computations that
+  combine several providers' products without owning any product.
+- `spheres` and `gcmd` sit outside the text a signature binds, so adding
+  or correcting a tag owes no re-sign; a steward may still re-sign to put
+  the tags on their signature.
 
 ## Credit
 

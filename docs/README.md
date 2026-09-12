@@ -24,7 +24,13 @@ Authoring guides (how to add each kind of thing):
 - [connector-guide.md](connector-guide.md): MCP connectors
 - [testing-guide.md](testing-guide.md): how the test layers relate
 - [steward-playbook.md](steward-playbook.md): owning a knowledge bundle
-- [surface-testing-guide.md](surface-testing-guide.md): Code / Cowork / Science
+- [package-authoring-guide.md](package-authoring-guide.md): the `.osp/`
+  files a repository declares itself with, by example
+- [surface-testing-guide.md](surface-testing-guide.md): the runtime
+  testing guide: qualification tests and the install path per runtime
+- [runtime-distribution.md](runtime-distribution.md): what "supported",
+  "tested", "conformant" and "compatibility tested" each assert, and the
+  status per runtime
 
 ## Design, strategy, and commitments
 

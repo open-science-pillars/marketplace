@@ -458,3 +458,26 @@ and computation directories, and the two do not overlap.
 This is a description of a shape that exists, not a commitment that any
 particular office has agreed to anything. Outreach follows the
 evidence.
+
+### 9.10 Pillar means sphere, and the runtime is a dimension (added 2026-09-12)
+
+Part 2 answers which domain a capability serves with a flat list of
+domains under five layers. Two decision records replace that reading
+(docs/decisions, ADR A and ADR B): the organization's primary taxonomy
+is the five Earth science spheres of NASA's Earth System Science
+Research Program, a domain capability is a discipline inside a sphere,
+and provider knowledge is a separate authority axis that serves every
+sphere. The four planes of 9.1 are the components of a capability; the
+runtime it runs on is a third, orthogonal dimension, delivered as a
+projection (the Claude plugin today, an Agent Plugins package for Codex
+and other clients later) rendered from canonical metadata under `.osp/`
+in each repository.
+
+What this changes about Part 2: the measurement and applications
+layers are layers, not spheres. If a measurement capability is built,
+it is foundation-kind, serving every sphere as core does; the same for
+an applications pack. Neither is in the 24-repository target map, and
+no planned repository is created for them until the Phase-3 gate
+decides. Planetary science has no Earth sphere and is pushed off,
+possibly to another organization (marketplace issue #80). The frozen
+parts keep their lists as written.

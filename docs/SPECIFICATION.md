@@ -1,11 +1,12 @@
 # Open Science Pillars: Specification
 
 **Organization:** Open Science Pillars (github.com/open-science-pillars)
-**Version:** 0.6.14 (negative knowledge is a candidate)
+**Version:** 0.6.15 (negative knowledge is a candidate)
 **Date:** 2026-09-12
 **Scope:** Phase 1 (built; core + ocean-science + infrastructure + knowledge + verification + evals seed + stewardship) plus Phase 2 spec detail (hydrology bridge, §10)
 
 **Changelog:**
+- 0.6.15 (2026-09-12): the documentation milestone of the architecture alignment (ADR A and ADR B, docs/decisions). Section 0 opens with the organization and runtime model instead of three equal Claude surfaces: Pillar means sphere, a domain capability is a discipline inside a sphere, provider bundles are a separate authority axis, KNOW, ACT, PROVE and REACH are the canonical components, `.osp/` is the canonical metadata and every runtime manifest is a projection of it, and runtime support is stated in four distinct words (development environment, qualified runtime, package conformance, compatibility tested), with Claude Science a future runtime rather than a required surface. New subsections 0.6 to 0.8 carry the vocabulary, the metadata and the runtime tiers; the packaging matrix in 0.1 records the status per runtime; section 1.1 says where the measurement, applications and planetary rows go under the sphere taxonomy. No installation or knowledge rule changes.
 - 0.6.14 (2026-09-12): two repository rows follow the consolidation decided in ADR A (docs/decisions/adr-a-pillar-means-sphere.md). `ecco-agent-evals` is renamed `agent-evals`, the organization's one benchmark repository, its ECCO set under `ecco/` so a later product's cases join under the same charter (the old name redirects). `ecco-budget-badge` is retired and archived: its badge writer and adopter workflow moved beside the canonical attester in `nasa-daac-knowledge` (`tools/ecco_budget_badge.py`, `tools/templates/ecco-budget-badge-workflow.yml`), pinned by that repository's release tag. Section 8 Placement and the ocean-science tree note name the new home. No rule changes.
 - 0.6.13 (2026-09-05): two candidate concept types for negative knowledge, section 5.11 and two rows of the type table in 5.2. A `dead-end` records that a goal was attempted by a method and failed with a symptom for a cause, observed on dates by actors in cited sources, with the condition that would reopen it; a `field-state` records the positions a field holds on a question as of a date, without adjudicating. Attribution is the truth condition of both, neither is ever deleted (a dead-end is reopened, a field-state superseded), and both carry `load_bearing` on the gotcha severity rule, high requiring an eval case id. Checker support is `check_negative.py` in the nasa-daac-knowledge repository (its pull request #104), in that repository's check routine over both bundles, whose PO.DAAC index now carries `dead-ends` and `field-states` sections; tracked on marketplace issue #60. Candidate language; no normative rule changes.
 - 0.6.12 (2026-09-05): the citation rule of section 0.4 is now measured rather than swept: `tools/check_prose.py` in the nasa-daac-knowledge repository flags a specification rule cited by section number, program bookkeeping (kit, session or wave numbers) in anything a reader meets, and em or en dashes; it runs in that repository's routine and in every plugin gate. External standards cited by their own section numbers, this document, dated change logs and the vendored upstream text are not flagged. No rule changes.
@@ -31,22 +32,18 @@
 
 ---
 
-## 0. Surface Parity Requirements
+## 0. Organization, Capability and Runtime Model
 
-Everything targets three surfaces equally: **Claude Code**, **Claude Cowork**, and **Claude Science**. One markdown source, three packagings.
-
-**Codex status (2026-07-15):** native Codex distribution is a roadmap proposal,
-not a current plugin-support claim. The organization maintenance harness runs
-on Claude Code and Codex, while plugin manifests, clean-install verification,
-and activation evals remain acceptance criteria for the proposed Codex surface.
+One markdown source, packaged per runtime. A capability is authored once (its skills, the knowledge it consults, its deterministic verification, its connectors) and delivered as a projection to each runtime; the runtimes and what may be claimed for each are in 0.8, the organization by sphere in 0.6, and the canonical metadata every projection is rendered from in 0.7. The decisions are ADR A and ADR B (docs/decisions); the earlier reading of this section, three Claude surfaces targeted equally, is superseded by 0.8 as of 0.6.15.
 
 ### 0.1 Packaging matrix
 
-| Surface | Packaging | Install | Invocation |
-|---|---|---|---|
-| Claude Code | Plugin via marketplace | `claude plugin install <name>@open-science-pillars` | `/plugin-name:skill-name` or conversational |
-| Claude Cowork | Same plugin format | claude.com/plugins or upload | Conversational |
-| Claude Science | Same plugin format via marketplace install (observed 2026-07-04; the workspace skill-import path exists but is not required); connectors per session | Marketplace add + install / connector config | Conversational |
+| Runtime | Packaging | Install | Invocation | Status (2026-09-12) |
+|---|---|---|---|---|
+| Claude Code | The Claude projection: plugin via marketplace | `claude plugin install <name>@open-science-pillars` | `/plugin-name:skill-name` or conversational | supported; the development environment |
+| Claude Cowork | Same plugin format | claude.com/plugins or an unlisted marketplace by GitHub repo | Conversational | tested (install verified 2026-07-04); per-release qualification pending the harness |
+| OpenAI Codex | The Agent Plugins 1.0 projection | Codex's plugin install of the portable package | Conversational | planned; the projection is not built yet |
+| Claude Science | Same plugin format via marketplace install (observed 2026-07-04; the workspace skill-import path exists but is not required); connectors per session | Marketplace add + install / connector config | Conversational | future runtime; excluded from the required matrix while in limited release |
 
 ### 0.2 Skill invocation rules
 
@@ -86,7 +83,21 @@ frontmatter.
 
 ### 0.5 Self-containment and declared dependencies
 
-Plugins are cached and cannot reference files outside their own directory: no `../` paths between plugins; cross-plugin references are conceptual, never by path. What a plugin needs from another plugin it declares in plugin.json's `dependencies` (core for every domain plugin; the provider bundle plugin, with a version floor, for a plugin that builds on provider knowledge; §5.7), and the installer installs and enables the declared plugins with it. A README states the dependencies and the one install command; "install core first" is no longer a reader's step.
+Plugins are cached and cannot reference files outside their own directory: no `../` paths between plugins; cross-plugin references are conceptual, never by path. What a plugin needs from another plugin it declares in plugin.json's `dependencies` (core for every domain plugin; the provider bundle plugin, with a version floor, for a plugin that builds on provider knowledge; §5.7), and the installer installs and enables the declared plugins with it. A README states the dependencies and the one install command; "install core first" is no longer a reader's step. The declaration's canonical form is `.osp/package.yaml` (0.7); plugin.json repeats it and the gate fails when they disagree.
+
+### 0.6 Pillar means sphere
+
+A Pillar is one of the five Earth science spheres of NASA's Earth System Science Research Program: Atmosphere, Biosphere, Cryosphere, Geosphere, Hydrosphere. The spheres are the primary scientific taxonomy: a **discipline** is a research area inside a sphere (Ocean Physics, Terrestrial Hydrology, Precipitation Science inside Hydrosphere), and a **domain capability** is the installable unit organized around a discipline (`ocean-science`, `hydrology`). In this document a "domain plugin" is a domain capability delivered as a Claude plugin; the capability is the logical unit, the plugin one of its projections. Provider knowledge is a separate authority axis: a **provider bundle** is keyed by the organization that signs its facts (PO.DAAC, ESDIS) and may serve several spheres; sphere classification answers who asks, provider stewardship answers who signs, and neither overrides the other. A **composite** is a capability whose evidence genuinely crosses spheres; it stays a scaffold until it has its own steward, joint knowledge and validation, and an interdisciplinary recipe whose governing evidence stays in one sphere (the basin water balance) is not a composite. A **planned** repository makes the intended shape visible and holds nothing installable: no skills, package or surfaces file, runtime manifest, catalog entry, release or CITATION.cff; creating one is administrative, promoting it out of planned is governed work. Every scientific concept names the spheres its claim spans in `spheres` (0.6 of the knowledge layer's checker, E10), outside the text a signature binds.
+
+The canonical components of a capability are the four planes the architecture document records: **KNOW** (concepts: claims with evidence, a signature and a staleness date), **ACT** (skills: portable procedures, one canonical `SKILL.md` per workflow), **PROVE** (golden notebooks and attesters: deterministic checks that emit receipts, no language model in the path) and **REACH** (connectors: controlled execution surfaces). Portable scientific behavior must have a skill representation; a runtime-specific agent may orchestrate skills and never holds the only implementation. Knowledge is approved once and reused by every runtime, never copied into runtime-specific content or into a skill to solve packaging.
+
+### 0.7 Canonical metadata and projections
+
+Every non-archived repository carries `.osp/repository.yaml` (kind, status, spheres, primary sphere, discipline); a repository that publishes a package carries `.osp/package.yaml` (name, version, type, content, capability and knowledge dependencies); one that exposes runtime capabilities carries `.osp/surfaces.yaml` (runtime policy and the qualification a release must pass); every repository carries `.osp/governance.yaml` (owning team, runtime maintainer teams, review policy, from the team registry in build-kit). The Claude package files, the Agent Plugins manifest, GitHub topics, the catalog's classification and the organization profile's sphere view are rendered from these files and checked against them; none is a source of truth. build-kit's `osp.py` validates, renders the sphere view and computes the topics (build-kit `docs/osp-metadata.md`; the package authoring guide in this repository has the worked examples).
+
+### 0.8 Runtimes: four words, four claims
+
+Claude Code is both the primary development environment and a supported runtime. The required end-user qualification targets are Claude Cowork and OpenAI Codex (Tier 1): a runtime is advertised as supported for a release only when it passes install, skill discovery and invocation, knowledge and dependency resolution, connector invocation where applicable, golden computation, deterministic PROVE, receipt generation, side-effect confirmation and release-lock match. Agent Plugins 1.0 package conformance is a gate on the portable package, not proof of any client's behavior. Gemini CLI and Goose are compatibility tested (Tier 2): probed and reported, never release-blocking. Cursor, GitHub Copilot and VS Code, Kiro and other conforming clients consume the portable package with no dedicated adapter. Claude Science is a future Claude runtime, added when broadly available. No runtime support claim without qualification evidence; a release stays valid when a runtime fails and that runtime is not advertised. Install flow, UI, connector authentication, approval dialogs, subagent implementation and presentation may differ per runtime; scientific facts, attribution, methodology, uncertainty rules, deterministic checks, dependency versions and safety requirements may not (docs/runtime-distribution.md).
 
 ---
 
@@ -113,9 +124,9 @@ Plugins are cached and cannot reference files outside their own directory: no `.
 | `evals` | Eval runner, shared graders, suite manifests, published scoreboard | 2 |
 | `agent-evals` | The one benchmark repository: public, versioned eval cases with transparent scoring and self-reported results, each product's set under its own directory and every set under one charter; the ECCO set (`ecco/`) is the one home of the ocean cases (ocean-science carries no copy). Renamed from `ecco-agent-evals` 2026-09-12 | 2 |
 | `ecco-budget-badge` | RETIRED 2026-09-12 (archived): the badge writer and adopter workflow moved beside the canonical attester in `nasa-daac-knowledge/tools`, pinned by that repository's release tag; a repository adopts the workflow rather than a copy of the attester | 2 |
-| `remote-sensing`, `models-and-reanalysis` | Measurement-layer plugins | 3 |
-| `applied-science` | Applications layer (ARSET-anchored packs) | 3 |
-| `planetary-science`, `pds-knowledge` | Planetary domain + PDS knowledge | 4 |
+| `remote-sensing`, `models-and-reanalysis` | Measurement-layer capabilities: the architecture document's Phase-3 hypothesis. Under the sphere taxonomy (0.6) a measurement capability is foundation-kind, serving every sphere like core, not a sphere's discipline; the rows are not in the 24-repository target map and no planned repository is created for them until the Phase-3 gate decides | 3 |
+| `applied-science` | Applications layer (ARSET-anchored packs): the same reading as the measurement rows, foundation-kind if built, outside the target map until the Phase-3 gate | 3 |
+| `planetary-science`, `pds-knowledge` | DEFERRED: planetary science has no Earth sphere; pushed off and possibly to another organization, held on open-science-pillars/marketplace#80 | 4 |
 
 ### 1.2 `.github` repo
 
@@ -202,7 +213,7 @@ claude plugin install ocean-science@open-science-pillars
 
 One install brings the plugin's declared dependencies with it (core and the provider bundle, §0.5). An install keeps the release it was installed from: it moves when the user updates the plugin by name (`claude plugin update ocean-science@open-science-pillars`) or enables auto-update for the marketplace in `/plugin`. An update moves only the plugin named, observed on the first update after the dependencies were declared (2026-09-04) and again on the first floor move (2026-09-05): it does not install a dependency the new release declares for the first time (the plugin is then disabled with an error naming the `claude plugin install` command to run, and `/reload-plugins` in a session installs it), and it does not move an installed dependency, with or without a range (ocean-science 0.8.2 raised its floor to >=2026.9.2 and the update left the bundle at 2026.9.1, disabling the plugin with `Requires nasa-daac-knowledge >=2026.9.2, installed 2026.9.1` until `claude plugin update nasa-daac-knowledge@open-science-pillars` ran). A release that adds a dependency or moves a floor says so in its notes, naming the update command. `claude plugin list --json` reports each installed plugin's version and any dependency error, and is the check that a machine has what the repositories say it has.
 
-Cowork: claude.com/plugins, or an unlisted marketplace by GitHub repo. Claude Science: add the marketplace and install, same as Cowork (observed 2026-07-04); connectors per session (surface-testing-guide.md documents the tested paths).
+Cowork: claude.com/plugins, or an unlisted marketplace by GitHub repo. Claude Science: add the marketplace and install, same as Cowork (observed 2026-07-04); connectors per session (surface-testing-guide.md documents the tested paths). What each runtime's status means is stated in 0.8; the install boundary is the domain capability, whose declared dependencies come with it.
 
 **Releases:** a release is the version bump, the tag, the GitHub release with derived credit, and the catalog line (§5.7). Plugin release tags take the `{plugin-name}--v{version}` form; the marketplace repository keeps bare `vX.Y.Z` tags. Zenodo archiving and the concept DOI begin at each repository's 1.0.0 release, when CITATION.cff gains the DOI and the steward and provider authors (steward-playbook, Credit), so contributions are citable in the literature from the first release worth citing; the calendar-versioned provider bundle deposits alongside the first dependent plugin's 1.0.0, because a citable plugin needs a citable bundle. Each releasing repository carries a tracking issue for its deposit, indexed on open-science-pillars/marketplace#55; until then every CITATION.cff says when its DOI arrives.
 
