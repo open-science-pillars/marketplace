@@ -74,14 +74,29 @@ simply not advertised for it.
 
 ## Planned
 
-Eleven repositories are decided and not yet created (ADR A, target
-map): `precipitation` (Hydrosphere), `land-ice` and `sea-ice`
-(Cryosphere), `solid-earth` and `land-surface` (Geosphere),
-`atmospheric-composition` and `atmospheric-physics` (Atmosphere),
-`land-ecosystems` and `ocean-biology` (Biosphere), `composites`
-(cross-sphere) and `partner-knowledge` (provider knowledge from non-NASA
-stewards). A planned repository is visible and never installable; none
-appears in this catalog until it has a release.
+Eleven repositories exist with the planned status (ADR A, target map):
+[precipitation](https://github.com/open-science-pillars/precipitation)
+(Hydrosphere, also Atmosphere),
+[land-ice](https://github.com/open-science-pillars/land-ice) and
+[sea-ice](https://github.com/open-science-pillars/sea-ice) (Cryosphere),
+[solid-earth](https://github.com/open-science-pillars/solid-earth) and
+[land-surface](https://github.com/open-science-pillars/land-surface)
+(Geosphere),
+[atmospheric-composition](https://github.com/open-science-pillars/atmospheric-composition)
+and
+[atmospheric-physics](https://github.com/open-science-pillars/atmospheric-physics)
+(Atmosphere),
+[land-ecosystems](https://github.com/open-science-pillars/land-ecosystems)
+and [ocean-biology](https://github.com/open-science-pillars/ocean-biology)
+(Biosphere),
+[composites](https://github.com/open-science-pillars/composites)
+(cross-sphere) and
+[partner-knowledge](https://github.com/open-science-pillars/partner-knowledge)
+(provider knowledge from non-NASA stewards). Each holds a banner, its
+classification and governance metadata, team ownership and a gate that
+refuses anything installable; promotion out of planned is governed work
+under a dated pre-registration entry. None appears in this catalog until
+it has a release.
 
 ## Learn it in under an hour
 
