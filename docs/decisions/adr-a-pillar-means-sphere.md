@@ -119,7 +119,12 @@ is a question about scientific community, not about layer.
     maintainer teams.** CODEOWNERS moves from individuals to teams. One
     person may occupy several teams during the interim solo period, and
     review-enforcing rulesets stay off until the governance
-    preconditions already recorded are met.
+    preconditions already recorded are met. Implemented 2026-09-12: the
+    registry is `osp/teams.yaml` in build-kit (a methods steward team
+    for the Hydrosphere recipes and computations joins the provider
+    steward teams, per consequence below); every CODEOWNERS names
+    teams only and the validator enforces it; GOVERNANCE.md in the
+    org repository documents the four kinds and the composite rule.
 11. **The polyrepo organization remains.** No monorepo, no rename of the
     organization, and no upstream or vendoring tree.
 
