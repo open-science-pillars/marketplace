@@ -72,7 +72,9 @@ records) current; `osp.py publish` refuses an unclean release and emits
 the Agent Plugins package only when a runtime that consumes it is
 qualified, with the honest status per runtime beside it in
 `release.json`. A release stays valid when a runtime is not qualified;
-that runtime is simply not advertised.
+that runtime is simply not advertised. On a release candidate every
+required surface needs a decision, a record or a waiver, and the
+maintainers' procedure is docs/release-qualification-guide.md.
 
 ## Semantic parity, not host parity
 

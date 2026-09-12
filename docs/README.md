@@ -31,6 +31,9 @@ Authoring guides (how to add each kind of thing):
 - [runtime-distribution.md](runtime-distribution.md): what "supported",
   "tested", "conformant" and "compatibility tested" each assert, and the
   status per runtime
+- [release-qualification-guide.md](release-qualification-guide.md): the
+  maintainers' procedure for a release candidate: tickets per runtime,
+  records, waivers, the gate
 
 ## Design, strategy, and commitments
 
