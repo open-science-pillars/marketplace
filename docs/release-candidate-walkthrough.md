@@ -111,13 +111,22 @@ Cowork's plugin settings add that repository as a marketplace, install
 `core` from it, and note the version Cowork shows. Afterwards, uninstall
 it and reinstall from `open-science-pillars/marketplace`.
 
-Cowork has no shell of its own. The tests that run a script
-(golden-computation, the attester half of prove) run on your machine
-from the installed tree if Cowork exposes it, otherwise from the
-checkout at the candidate commit; say which in the evidence. If Cowork
-cannot run the executor at all, prove and receipt are `blocked` with
-that reason, and the surface is not qualified this release (a waiver is
-the honest answer, see below).
+Two things about Cowork to know before you start (Anthropic's Cowork
+documentation). A plugin's local MCP servers run on your computer, as
+any program you run does, so the observations connector starts on the
+host and needs `uv` reachable from the app. Shell commands and code,
+by contrast, run in an isolated virtual machine on your computer that
+sees only the folders you connect, so a prompt that asks Cowork to run
+the executor from the installed tree may not reach it. Record what
+happened either way: the tests that run a script (golden-computation,
+the attester half of prove) run on your machine from the installed
+tree if you can find it, otherwise from the checkout at the candidate
+commit; say which in the evidence. If Cowork cannot run the executor
+at all, prove and receipt are `blocked` with that reason, and the
+surface is not qualified this release (a waiver is the honest answer,
+see below). Skills are also offered by name in Cowork (type `/`), so
+note whether `core:start` appears, though only the conversational form
+counts for the test.
 
 ### OpenAI Codex
 
