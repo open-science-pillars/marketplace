@@ -1,8 +1,15 @@
 # Open Science Pillars: Marketplace
 
-The plugin catalog and canonical documentation for Open Science Pillars:
-AI-assisted open science for earth, planetary, and applied science across
-Claude Code, Claude Cowork, and Claude Science.
+The catalog and canonical documentation for Open Science Pillars:
+governed, portable scientific capabilities for AI agents, organized by the
+five Earth science spheres (a Pillar is a sphere). A capability is skills,
+the knowledge they consult (signed by the people who steward the data),
+deterministic verification and connectors, authored once and delivered to
+each runtime as a package: the Claude plugin here for Claude Code and
+Cowork, and the Agent Plugins package for OpenAI Codex and other clients
+when that projection lands. The organization by sphere is rendered from
+each repository's own metadata on the
+[organization profile](https://github.com/open-science-pillars).
 
 ## Install
 
@@ -48,8 +55,33 @@ shows which versions you have and whether every dependency resolved.
 | `hydrology` | SWOT rivers and lakes, GRACE-FO groundwater, USGS streamflow, SMAP soil moisture, drought and reservoir analysis. | In development |
 | `nasa-daac-knowledge` | The provider knowledge bundles (PO.DAAC datasets, gotchas, recipes and attested computations; ESDIS metadata requirements), signed by their stewards. No skills; the domain plugins depend on it and install it for you. | Available |
 
-New to the terms used here (skill, knowledge bundle, golden notebook,
-surface, connector)? See the [glossary](GLOSSARY.md).
+New to the terms used here (sphere, capability, skill, knowledge bundle,
+golden notebook, runtime, connector)? See the [glossary](GLOSSARY.md).
+
+## Runtimes
+
+| Runtime | Status (2026-09-12) |
+|---|---|
+| Claude Code | supported; the development environment |
+| Claude Cowork | tested: installs from this marketplace; per-release qualification pending |
+| OpenAI Codex | planned: through the Agent Plugins projection, not yet built |
+| Claude Science | future runtime |
+| Gemini CLI, Goose | compatibility targets, not yet probed |
+
+What each word asserts is in [docs/runtime-distribution.md](docs/runtime-distribution.md).
+A release stays valid when a runtime fails qualification; that runtime is
+simply not advertised for it.
+
+## Planned
+
+Eleven repositories are decided and not yet created (ADR A, target
+map): `precipitation` (Hydrosphere), `land-ice` and `sea-ice`
+(Cryosphere), `solid-earth` and `land-surface` (Geosphere),
+`atmospheric-composition` and `atmospheric-physics` (Atmosphere),
+`land-ecosystems` and `ocean-biology` (Biosphere), `composites`
+(cross-sphere) and `partner-knowledge` (provider knowledge from non-NASA
+stewards). A planned repository is visible and never installable; none
+appears in this catalog until it has a release.
 
 ## Learn it in under an hour
 
@@ -68,8 +100,10 @@ the [glossary](GLOSSARY.md), and [known limitations](docs/known-limitations.md).
 guides in [docs/](docs/) (knowledge, skill, agent, eval, verification,
 connector, and testing guides), plus the [steward playbook](docs/steward-playbook.md).
 
-**Design and strategy:** [ARCHITECTURE.md](docs/ARCHITECTURE.md) (why) and
-[SPECIFICATION.md](docs/SPECIFICATION.md) (what). The build record and the
+**Design and strategy:** [ARCHITECTURE.md](docs/ARCHITECTURE.md) (why),
+[SPECIFICATION.md](docs/SPECIFICATION.md) (what) and the
+[decision records](docs/decisions/README.md) (the sphere alignment and the
+multi-runtime packaging). The build record and the
 development harness (IMPLEMENTATION-GUIDE, PROGRESS, BUILD-HARNESS) now live in
 the [build-kit](https://github.com/open-science-pillars/build-kit) repo; see
 [docs/README.md](docs/README.md) for the map.

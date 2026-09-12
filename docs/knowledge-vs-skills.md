@@ -14,7 +14,7 @@ concept states something about the world that a steward can sign as true,
 the world can later falsify, and time can make stale. A skill directs an
 agent's behavior, which can only be good or bad at a task: measurable by
 evals, never signable as true. Everything below is that one asymmetry
-applied. It is also why only KNOW can be a pillar: signatures attach to
+applied. It is also why only KNOW is signed: signatures attach to
 claims; evals attach to conduct.
 
 Consequences you can lean on. Accountability: concepts get `verified`

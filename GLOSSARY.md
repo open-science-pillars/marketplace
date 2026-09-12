@@ -3,13 +3,41 @@
 Plain-language definitions of the terms used across Open Science Pillars.
 If a plugin README or tutorial uses a word you don't recognize, it's here.
 
+## The organization
+
+- **Sphere (Pillar)**: one of the five Earth science spheres of NASA's
+  Earth System Science Research Program: Atmosphere, Biosphere,
+  Cryosphere, Geosphere, Hydrosphere. "Pillar" in this project's name
+  means a sphere.
+- **Discipline**: a research area inside a sphere (Ocean Physics and
+  Terrestrial Hydrology inside Hydrosphere).
+- **Domain capability**: the thing you install, organized around a
+  discipline: `ocean-science`, `hydrology`. It is skills, the knowledge
+  they consult, verification and connectors, authored once and delivered
+  to each runtime as a package.
+- **Provider bundle**: a knowledge bundle keyed by the organization that
+  signs its facts (PO.DAAC, ESDIS). It serves every sphere that uses
+  those products; who signs a fact is separate from which sphere asks
+  for it.
+- **Composite**: a capability whose evidence genuinely crosses spheres
+  (a sea-level budget joining several authorities). None exists yet.
+- **Planned**: a repository that shows where a capability will go and
+  holds nothing installable.
+- **KNOW, ACT, PROVE, REACH**: the four kinds of thing in a capability.
+  KNOW is concepts (claims with evidence, a steward's signature and a
+  staleness date); ACT is skills (portable procedures); PROVE is golden
+  notebooks and attesters (deterministic checks that emit receipts);
+  REACH is connectors (controlled execution surfaces).
+
 ## The pieces you install
 
-- **Plugin**: an installable package for Claude (Code, Cowork, or Science)
-  that adds skills, knowledge, and connectors for a topic. `core` is the
-  foundation; `ocean-science` and `hydrology` are domain plugins;
-  `nasa-daac-knowledge` is a knowledge-only plugin (no skills) that the
-  domain plugins depend on, so installing a domain plugin installs it and
+- **Plugin**: the package a runtime installs; the domain capability's
+  projection for that runtime. On Claude Code and Cowork it is a Claude
+  plugin from this marketplace; for Codex and other standards-compliant
+  clients it will be an Agent Plugins package. `core` is the foundation;
+  `ocean-science` and `hydrology` are domain capabilities;
+  `nasa-daac-knowledge` is the provider knowledge (no skills) that the
+  domain capabilities depend on, so installing one installs it and
   `core` for you.
 - **Skill**: a unit of expertise or a workflow that Claude loads and uses.
   Two kinds: *knowledge skills* (background expertise Claude consults
@@ -56,11 +84,15 @@ If a plugin README or tutorial uses a word you don't recognize, it's here.
   request, report uncertainty? The **seed** set is the hand-graded baseline;
   an automated runner with many trials supersedes it.
 
-## Surfaces and connectors
+## Runtimes and connectors
 
-- **Surface**: one of the three products this ships to: **Claude Code** (the
-  terminal/IDE tool), **Claude Cowork**, and **Claude Science**. The same
-  plugin installs on all three.
+- **Runtime**: where a capability runs. Claude Code is the development
+  environment and a supported runtime; Claude Cowork is tested; OpenAI
+  Codex arrives through the portable Agent Plugins projection (planned);
+  Claude Science is a future runtime. "Supported" means a release passed
+  qualification on that runtime; "tested" means an install was verified;
+  the full meaning of each word is in docs/runtime-distribution.md. The
+  older word "surface" meant the same thing.
 - **Connector (MCP)**: a link from Claude to an external data service (for
   example NASA Earthdata). The connector object is the REACH plane: the
   registration wire in a plugin's `.mcp.json`, and nothing more. Its facts
@@ -72,7 +104,7 @@ If a plugin README or tutorial uses a word you don't recognize, it's here.
 
 ## Prerequisites at a glance
 
-- **Claude Code** (or Cowork / Science) with the plugin installed.
+- **Claude Code** (or Cowork) with the capability installed.
 - For real analyses: a **Python environment** with the scientific stack
   (xarray, netCDF4, matplotlib; ocean work adds earthaccess, xgcm, and the
   ECCO libraries; the tutorials list exact packages).

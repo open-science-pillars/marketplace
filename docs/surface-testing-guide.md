@@ -1,8 +1,23 @@
-# Surface Testing Guide
+# Runtime Testing Guide
 
-**Created:** 2026-07-04
+**Created:** 2026-07-04 as the surface testing guide; reframed 2026-09-12 for the runtime model (ADR B).
 
-Everything in Open Science Pillars targets three surfaces equally: Claude Code (Cd), Claude Cowork (Cw), and Claude Science (Sc). This guide is the harness for proving that: the assumption record below, the standard prompt set, the per-surface install steps, and the convention for recording results in build-kit/PROGRESS.md.
+Development happens on Claude Code. The runtimes a release must qualify on are Claude Cowork and OpenAI Codex (Tier 1); Claude Code is a supported runtime as well; Gemini CLI and Goose are compatibility targets (Tier 2); Claude Science is a future runtime. What each of those words asserts, and the status per runtime today, is in docs/runtime-distribution.md. This guide is the harness: the assumption record below (kept as the dated record it is), the standard prompt set, the per-runtime install steps, the qualification tests, and the recording convention. The abbreviations Cd, Cw and Sc in the record stand for Claude Code, Cowork and Claude Science.
+
+## The qualification tests
+
+A runtime is advertised as supported for a release only when every applicable test passes on it (the specification's runtime section):
+
+1. **Install**: the capability installs by one action after marketplace or source setup and its declared dependencies resolve (`claude plugin list --json` shows every plugin with no `errors` field on Claude Code).
+2. **Skill discovery and invocation**: every workflow skill is discovered and invoked conversationally from the standard prompt set; the slash form as well on Claude Code.
+3. **Knowledge resolution**: a skill consults the installed bundles and cites a concept by bundle path.
+4. **Dependency validation**: a missing or under-floor dependency fails explicitly, naming the floor.
+5. **Connector invocation**, where the capability registers one.
+6. **Golden computation and deterministic PROVE**: the verification notebook or attester runs on the runtime's output and the receipt names the release.
+7. **Side-effect confirmation**: the download and file-write gates appear conversationally.
+8. **Release-lock match**: the installed release identity is the one the catalog names.
+
+Until the qualification harness lands (the runtime track of the architecture alignment initiative), passes are recorded by hand as below and a runtime's status stays at "tested", never "supported", on that evidence alone.
 
 ---
 
@@ -34,11 +49,11 @@ Environment provenance: the `osp` conda env was created this session exactly per
 
 ---
 
-## The three surfaces
+## The runtimes
 
-Packaging matrix per the specification (docs/SPECIFICATION.md): one markdown source, three packagings.
+Packaging matrix per the specification (docs/SPECIFICATION.md): one markdown source, a projection per runtime.
 
-### Claude Code (Cd)
+### Claude Code (Cd): development environment and supported runtime
 
 Install (per the specification's install rules):
 
@@ -51,11 +66,19 @@ The one install resolves the plugin's declared dependencies (core and the `nasa-
 
 Invocation: both paths, `/plugin-name:skill-name` (for example `/core:start`) and conversational. Every prompt file's slash form is tested here in addition to the conversational form. Run `/doctor` after install to confirm no skill descriptions are truncated or dropped (the specification's description budget rule).
 
-### Claude Cowork (Cw)
+### Claude Cowork (Cw): Tier-1 runtime, tested
 
-Install: claude.com/plugins (directory) or unlisted marketplace / upload, same plugin format as Code. Invocation: conversational only; slash forms are not tested here. Confirmation gates must appear conversationally (the specification's skill invocation rules: never `disable-model-invocation: true` on workflow skills).
+Install: claude.com/plugins (directory) or unlisted marketplace / upload, same plugin format as Code. Invocation: conversational only; slash forms are not tested here. Confirmation gates must appear conversationally (the specification's skill invocation rules: never `disable-model-invocation: true` on workflow skills). Status: install verified 2026-07-04 (assumption b); per-release qualification pending the harness.
 
-### Claude Science (Sc)
+### OpenAI Codex: Tier-1 runtime, planned
+
+Codex consumes the Agent Plugins 1.0 projection of the capability, not a hand-written manifest. The projection is not built yet; when it is, the tests above run against it and the surfaces file's `status` moves from `planned`. No Codex support is claimed until then.
+
+### Gemini CLI and Goose: Tier-2 compatibility
+
+Probed with the canonical skills and connectors through each harness's native mechanism once the compatibility command lands; results recorded separately from qualification and never release-blocking.
+
+### Claude Science (Sc): future runtime
 
 Install (observed 2026-07-04, assumption a): add the marketplace, including unlisted ones by GitHub repo, and install the plugin, the same path as Cowork. The specification's packaging matrix and install section describe a workspace skill import instead; discrepancy parked as PARKING.md item 5, and this guide records the observed path. Connectors (MCP servers) are configured per session. Invocation: conversational only. Whether agents and `.mcp.json` travel with a marketplace install on Science is unverified; check during the Session 5 three-surface pass and record it in Known Differences.
 
@@ -66,7 +89,7 @@ Install (observed 2026-07-04, assumption a): add the marketplace, including unli
 One file per workflow skill in `prompts/`. Each file fixes:
 
 1. **Slash form** (Claude Code only), `/plugin:skill`.
-2. **Conversational form**, one phrasing, used **verbatim on all three surfaces**. Do not localize or improve it per surface; drift in phrasing invalidates cross-surface comparison.
+2. **Conversational form**, one phrasing, used **verbatim on every runtime**. Do not localize or improve it per runtime; drift in phrasing invalidates cross-runtime comparison.
 3. **Expected behavior**, a summary of what a pass looks like, citing the skill's spec section.
 4. **Pass criteria per surface.**
 
