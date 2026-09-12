@@ -17,7 +17,7 @@ A runtime is advertised as supported for a release only when every applicable te
 7. **Side-effect confirmation**: the download and file-write gates appear conversationally.
 8. **Release-lock match**: the installed release identity is the one the catalog names.
 
-Until the qualification harness lands (the runtime track of the architecture alignment initiative), passes are recorded by hand as below and a runtime's status stays at "tested", never "supported", on that evidence alone.
+The harness is build-kit's `scripts/qualify.py` (documented in build-kit's `docs/osp-metadata.md`). It runs the matrix headlessly on Claude Code (install from the marketplace, the dependency check from the installer's record, skill discovery against the runtime's inventory, the conversational tests with their transcripts kept, connector health, the verification scripts on the installed tree, the release-lock match) and writes one record per runtime under the capability's `.osp/qualification/`. A runtime it cannot drive (Cowork; Codex until its leg is exercised) gets a checklist with the same prompts verbatim and the pass criteria, and the filled checklist becomes the record. A capability is qualified on a runtime when every test its surfaces file requires is pass or skip; the record names the blockers otherwise, and a runtime's status in `surfaces.yaml` moves to "supported" only on a qualified record (the release-blocking qualification deliverable). The hand-recorded passes below predate the harness and stand as the dated record they are.
 
 ---
 
