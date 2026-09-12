@@ -58,6 +58,22 @@ Each installable repository declares this policy in
 `.osp/surfaces.yaml`: `required` is what a release must qualify on before
 it advertises the surface; `status` is the evidence today.
 
+## How a status is decided
+
+A surface may say `supported` only on a qualified record for the exact
+version and release lock, written by build-kit's qualification harness
+(`scripts/qualify.py`) under the repository's `.osp/qualification/`.
+Claude Code, the development environment, is supported by construction
+and its record is evidence when present; a future or compatibility
+runtime is outside the required matrix. Every package gate runs
+`osp.py advertise --check`, which fails a support claim without such a
+record and keeps the README's runtime table (rendered from the same
+records) current; `osp.py publish` refuses an unclean release and emits
+the Agent Plugins package only when a runtime that consumes it is
+qualified, with the honest status per runtime beside it in
+`release.json`. A release stays valid when a runtime is not qualified;
+that runtime is simply not advertised.
+
 ## Semantic parity, not host parity
 
 Install flow, marketplace UI, connector authentication, approval
