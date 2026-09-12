@@ -1541,7 +1541,7 @@ After M5, many of the 24 will still have status planned.
 7. tutorials
 8. .github
 9. archive-observatory
-10. badges, renamed from ecco-budget-badge
+10. agent-evals, renamed from ecco-agent-evals
 
 ### 44.2 Provider knowledge (2)
 
@@ -1593,9 +1593,12 @@ Initial scaffold candidates: sea-level-budget; carbon-cycle.
 
 ### 44.9 Archived but visible
 
-`ecco-agent-evals`: its cases move into `evals/products/ecco/`; the
-repository is archived with a pointer to the new location. It does not
-count toward the 24 non-archived target repositories.
+`ecco-budget-badge`: retired. Its reusable workflow and badge writer
+move beside the canonical attester in the provider bundle, and the
+repository is archived with a pointer. It does not count toward the 24
+non-archived target repositories. (The draft of this document instead
+archived `ecco-agent-evals` and kept a generalized `badges`; ADR A
+records the decision of 2026-09-12 that reversed both.)
 
 ### 44.10 Rows the sphere map does not yet place
 
@@ -1611,11 +1614,11 @@ documentation milestone states where those rows go.
 its own terms rather than by sphere: it serves data engineers and
 archive operators, the architecture document's second audience.
 
-The badge repository rename and the eval move described in this
-document are options. ADR A records both as open items with a
-recommendation (retire the badge repository; keep the benchmark
-standalone under a product-neutral name); the count in Appendix A is
-24 only if the badge repository is kept.
+The badge repository rename and the eval move the draft described were
+decided otherwise on 2026-09-12 (ADR A): the badge repository is
+retired, and the benchmark stands alone as `agent-evals`. Where this
+document still names `badges` or `evals/products/ecco/`, the decision
+record governs.
 
 ## 45. Current-to-target repository mapping
 
@@ -1633,8 +1636,8 @@ standalone under a product-neutral name); the count in Appendix A is
 | `nasa-daac-knowledge` | `nasa-daac-knowledge` | Keep | provider | Canonical NASA KNOW |
 | `ocean-science` | `ocean-science` | Keep | Hydrosphere capability | Add canonical package and surfaces; generate Cowork and Codex |
 | `hydrology` | `hydrology` | Keep | Hydrosphere capability | Same model |
-| `ecco-budget-badge` | `badges` | Rename and generalize | tooling, PROVE | Product-neutral attestation service |
-| `ecco-agent-evals` | `evals/products/ecco/` | Move cases, archive repo | tooling | Runtime-aware evals live centrally |
+| `ecco-budget-badge` | (archived) | Retire; workflow and badge writer move beside the canonical attester | tooling, PROVE | None |
+| `ecco-agent-evals` | `agent-evals` | Rename; ECCO cases in a product subtree; charter kept | tooling, benchmark | Cross-runtime results recorded per tagged set |
 | (none) | `partner-knowledge` | Create planned | provider | No runtime package while planned |
 | (none) | `precipitation` | Create planned | Hydrosphere capability | No runtime package while planned |
 | (none) | `land-ice` | Create planned | Cryosphere capability | No runtime package while planned |
@@ -1657,8 +1660,8 @@ standalone under a product-neutral name); the count in Appendix A is
 | Scientific knowledge concepts | Remain in provider or domain KNOW homes | Yes, KNOW |
 | Knowledge evidence and provenance | Remain | Yes |
 | Verification notebooks and scripts | Remain or consolidate into PROVE packages | Yes, PROVE |
-| `ecco-budget-badge` implementation | Generalize under `badges` | Yes, PROVE |
-| `ecco-agent-evals` cases | Move to `evals/products/ecco/` | Yes, eval contract |
+| `ecco-budget-badge` workflow and badge writer | Move beside the canonical attester in the provider bundle; repository archived | Yes, PROVE |
+| `ecco-agent-evals` cases | Remain in the repository, renamed `agent-evals`, under a product subtree | Yes, eval contract |
 | Claude agents | Runtime orchestration only | No |
 | `.claude-plugin/plugin.json` | Generated or validated Cowork projection | No |
 | root `plugin.json` | Generated or validated Agent Plugins 1.0 projection | No |
@@ -1677,17 +1680,22 @@ standalone under a product-neutral name); the count in Appendix A is
 The per-product repository pattern should be retired before new
 datasets multiply it.
 
-**Badges.** Rename `ecco-budget-badge` to `badges`. Generalize the
-attestation service so a product or workflow is input to the service
-rather than encoded in the repository identity. The ECCO heat budget
-remains the first implementation. The hydrology basin-balance badge may
-become a later product workflow.
+**Badges.** Retire `ecco-budget-badge` (decided 2026-09-12, ADR A). A
+badge is the canonical attester's verdict rendered by shields.io, and
+the repository's verbatim copies of the attester are the vendored form
+the organization retired elsewhere. The reusable workflow and badge
+writer move beside the attester they call, pinned by the provider
+bundle's release tag; the repository is archived with a pointer. A
+basin-balance badge is the same workflow against hydrology's attester,
+not a second repository.
 
-**Evals.** Move `ecco-agent-evals` to `evals/products/ecco/`. Preserve
-`concept_basis`, expected behavior, deterministic checks, and historical
-result equivalence. Archive `ecco-agent-evals` with a pointer. The same
-evals repository then becomes the natural home for cross-runtime
-capability evaluation.
+**Evals.** Rename `ecco-agent-evals` to `agent-evals` (decided
+2026-09-12, ADR A): the organization's one benchmark repository, its
+charter kept, the ECCO cases in a product subtree so later products'
+cases join under the same charter. Preserve `concept_basis`, expected
+behavior, deterministic checks, and historical result equivalence. The
+`evals` repository stays the runner, graders and scoreboard, and gains
+the cross-runtime result dimensions.
 
 ## 48. Planned repository convention
 
@@ -1999,7 +2007,7 @@ in `docs/decisions/`.
 | `hydrology` | Hydrosphere identity, secondary Cryosphere tagging guidance for snow, dependency and runtime docs |
 | `nasa-daac-knowledge` | Provider-authority model, sphere-tagged concepts, runtime-independent stewardship |
 | `evals` | Product subtrees; runtime, model and release-lock dimensions |
-| `badges` | Product-neutral PROVE model, preserved ECCO behavior, receipt and version semantics |
+| `agent-evals` | Benchmark charter, product subtrees, tagged-set result semantics, the pointer from the old name |
 | `archive-observatory` | Clarify application and PROVE role and any optional runtime wrappers |
 | `build-kit` | Metadata schemas, renderer, Cowork ZIP and package output, Agent Plugin conformance, compatibility probes, topic generation, qualification, release tooling |
 | `plugin-template` | Domain capability scaffold, sphere selection, provider dependencies, runtime adapters |
@@ -2052,12 +2060,15 @@ sphere truth.
 
 ### M2: housekeeping consolidation
 
-Rename `ecco-budget-badge` to `badges` and generalize the attester. Move
-`ecco-agent-evals` to `evals/products/ecco/` and archive the old eval
-repository with a pointer.
+Retire `ecco-budget-badge`, moving its workflow and badge writer beside
+the canonical attester, and archive it with a pointer. Rename
+`ecco-agent-evals` to `agent-evals` with the ECCO cases in a product
+subtree.
 
-Acceptance: the existing ECCO badge still resolves and cannot be
-hand-set; moved eval cases produce identical results; historical links
+Acceptance: an adopter's badge still resolves from the attester's
+verdict and cannot be hand-set; the renamed benchmark's cases produce
+identical results against the last published tagged set and the core
+linter reads ocean coverage from the new name; historical links
 redirect or clearly resolve.
 
 ### M3: governance and teams
@@ -2125,8 +2136,8 @@ duplication; a missing dependency fails explicitly.
 
 ### R4: shared PROVE
 
-Use badges or another deterministic attester as a cross-runtime proof
-case. Acceptance: Cowork and Codex results feed the same verifier; the
+Use the ECCO heat budget attester in the provider bundle as the
+cross-runtime proof case. Acceptance: Cowork and Codex results feed the same verifier; the
 receipt format identifies the capability release.
 
 ### R5: cross-runtime evals
@@ -2200,8 +2211,8 @@ independently.
 classification; the sphere view renders from data; no CODEOWNERS
 entries name individuals once team migration is complete; eleven
 planned repositories are visible with honest status; no planned
-repository is installable; badges and centralized evals work without
-changing ECCO results.
+repository is installable; the retired badge repository and the renamed
+benchmark leave ECCO results unchanged.
 
 **Scientific governance:** every scientific concept has one or more
 sphere tags; provider authority remains path-specific; composite review
@@ -2413,7 +2424,7 @@ Cross-sphere composites   1
 Non-archived total       24
 
 Archived:
-ecco-agent-evals          1
+ecco-budget-badge         1
 
 GitHub-visible total     25
 ```

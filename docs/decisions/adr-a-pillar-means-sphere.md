@@ -73,22 +73,22 @@ is a question about scientific community, not about layer.
    whose governing evidence stays in one sphere is not a composite: the
    basin water balance is Hydrosphere, and coastal compound flooding is
    Hydrosphere while its evidence stays there.
-7. **The target repository map.** Foundation and tooling
-   (`marketplace`, `core`, `plugin-template`, `knowledge-template`,
-   `build-kit`, `evals`, `tutorials`, `.github`, `archive-observatory`);
-   two provider (`nasa-daac-knowledge`, `partner-knowledge`); eleven
-   domain capabilities (`ocean-science`, `hydrology`, `precipitation`
-   in Hydrosphere; `land-ice`, `sea-ice` in Cryosphere; `solid-earth`,
-   `land-surface` in Geosphere; `atmospheric-composition`,
-   `atmospheric-physics` in Atmosphere; `land-ecosystems`,
-   `ocean-biology` in Biosphere); one cross-sphere `composites`. That
-   is 23 non-archived repositories, 24 if the badge repository is kept
-   in generalized form; the disposition of `ecco-budget-badge` and of
-   `ecco-agent-evals` is an open item below. `archive-observatory` is
-   in the tooling group but is classified on its own terms, not by
-   sphere: it is an instrument for data engineers and archive
-   operators (the architecture document's second audience), and its
-   `repository.yaml` carries kind tooling with no sphere.
+7. **The target repository map is 24 non-archived repositories.** Ten
+   foundation and tooling (`marketplace`, `core`, `plugin-template`,
+   `knowledge-template`, `build-kit`, `evals`, `tutorials`, `.github`,
+   `archive-observatory`, and `agent-evals` renamed from
+   `ecco-agent-evals`); two provider (`nasa-daac-knowledge`,
+   `partner-knowledge`); eleven domain capabilities (`ocean-science`,
+   `hydrology`, `precipitation` in Hydrosphere; `land-ice`, `sea-ice`
+   in Cryosphere; `solid-earth`, `land-surface` in Geosphere;
+   `atmospheric-composition`, `atmospheric-physics` in Atmosphere;
+   `land-ecosystems`, `ocean-biology` in Biosphere); one cross-sphere
+   `composites`. `ecco-budget-badge` is retired and archived with a
+   pointer. `archive-observatory` is in the tooling group but is
+   classified on its own terms, not by sphere: it is an instrument for
+   data engineers and archive operators (the architecture document's
+   second audience), and its `repository.yaml` carries kind tooling
+   with no sphere.
 8. **Planned repositories are honest and never installable.** A planned
    repository holds a README with an explicit banner, LICENSE,
    `.osp/repository.yaml`, `.osp/governance.yaml`, CODEOWNERS and
@@ -97,10 +97,17 @@ is a question about scientific community, not about layer.
    release, no CITATION.cff. Creating one is administrative; promoting
    one out of planned is governed work.
 9. **Per-product tooling does not grow one repository per product.**
-   The two existing per-product repositories are resolved before a
-   third appears; the form of that resolution (generalize, fold in, or
-   retire) is the open item below, and the design document's rename
-   and move are one option, not the decision.
+   Decided 2026-09-12 (the rationale is under Open items, kept as the
+   record of the choice). `ecco-budget-badge` is retired: its reusable
+   workflow and badge writer move beside the canonical attester in the
+   provider bundle, pinned by that repository's release tag, and the
+   repository is archived with a pointer. `ecco-agent-evals` stands
+   alone as the organization's one benchmark repository, renamed
+   `agent-evals`, with its charter kept and the ECCO cases in a
+   product subtree so later products' cases join under the same
+   charter; `evals` stays the runner, graders and scoreboard. The
+   design document's `badges` rename and `evals/products/ecco/` move
+   are superseded by this.
 10. **Governance gains sphere teams, provider steward teams and runtime
     maintainer teams.** CODEOWNERS moves from individuals to teams. One
     person may occupy several teams during the interim solo period, and
@@ -149,9 +156,10 @@ when its proposal is accepted.
 
 ## Open items
 
-Two per-product repositories need a decision, recorded here with the
-recommendation put to the owner; the roadmap's `m2` deliverables are
-the decisions, not the moves.
+Two per-product repositories needed a decision. Both were put to the
+owner with the recommendation below and decided as recommended on
+2026-09-12; the roadmap's `m2` deliverables carry the moves. The
+reasoning stays here as the record of why.
 
 - **`ecco-budget-badge`.** The repository carries verbatim copies of the
   sanctioned computation and attester that live in the provider bundle,
@@ -159,7 +167,7 @@ the decisions, not the moves.
   adopter can pin the attester by tag; that is the vendored-copy form
   the organization retired elsewhere in favor of declarations, and a
   badge is only the attester's verdict rendered by shields.io.
-  Recommendation: retire it. The reusable workflow moves beside the
+  Decision: retire it. The reusable workflow moves beside the
   attester it calls (the provider bundle's tools, pinned by that
   repository's release tag) and the badge writer with it; the
   repository is archived with a pointer. The basin water balance then
@@ -170,9 +178,9 @@ the decisions, not the moves.
   eval coverage from it. It is not redistributed as a package. Folding
   it into the `evals` repository would tie a benchmark's version
   history and citation to the runner's release cadence and put
-  published results beside tooling. Recommendation: it stands alone,
-  but as the organization's one benchmark repository rather than one
-  per product: rename to a product-neutral name (`agent-evals`), keep
+  published results beside tooling. Decision: it stands alone, but as
+  the organization's one benchmark repository rather than one per
+  product: renamed to a product-neutral name (`agent-evals`), keep
   the charter, and give the ECCO cases a product subtree so the
   hydrology cases can join under the same charter when they are ready
   to publish results. `evals` stays the runner, graders and scoreboard.
