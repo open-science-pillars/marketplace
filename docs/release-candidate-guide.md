@@ -61,7 +61,8 @@ uv run build-kit/scripts/qualify.py --capability core --surface claude-code --ca
 
 The other runtimes are the checklists in their tickets, or a waiver.
 Details, statuses and who owns which ticket:
-docs/release-qualification-guide.md.
+docs/release-qualification-guide.md; the install path per runtime and
+the prompts, step by step: docs/release-candidate-walkthrough.md.
 
 ## 3. The tag
 
