@@ -156,3 +156,25 @@ is already public and is not counted as a gotcha-avoidance case.
   hydrology investigations (the roadmap's P0 deliverables of
   `hydrology-investigations`) to be recorded done, and that gate is
   not removed silently.
+
+- 2026-09-13 (provider engagement is measured on the ladder): the third
+  stop condition, "steward handoff fails", was written when a provider
+  steward who signs was the only form of provider engagement the
+  organization knew how to record. The stewardship rules now state a
+  ladder of involvement for a person at a data center (consulted:
+  confirms or corrects a concept on an issue and the maintainer records
+  the event on their behalf; reviewer: reviews knowledge pull requests
+  for their products; steward: joins the steward team and signs), with
+  nothing above the first rung required of anyone and a signature no
+  longer the gate for a concept, a release or a promotion. From this
+  date the condition is measured as provider engagement at any rung of
+  the ladder: a concept confirmed or corrected by a provider contact
+  counts, a review counts, and a steward counts. The condition still
+  fires on no engagement at all by the end of Phase 2, and the
+  consequence is unchanged (the federated-knowledge claim is downgraded
+  to single-steward wording everywhere it appears). The reason for the
+  re-reading: measuring engagement only as ownership would report a
+  failure while people who are only getting accustomed to AI were in
+  fact reading the digest and confirming claims, which is the
+  engagement the claim was always about; nothing else in this document
+  changes, and the text above is not edited.

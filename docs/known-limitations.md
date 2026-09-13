@@ -34,6 +34,10 @@ a gate presenting a download it cannot perform is designed behavior.
 - **Non-author validation.** At least one non-author scientist
   completing Tutorial 2 unaided, friction notes recorded here verbatim.
   Until then, every timing and walkthrough claim carries author bias.
+- **Provider confirmation.** Every concept is human-reviewed by its
+  maintainer; a data provider's confirmation is invited at every rung
+  of the ladder (consulted, reviewer, steward) and none is recorded
+  yet, so no concept is voiced as provider-confirmed.
 - **The powered knowledge-bundle ablation.** The pilot was underpowered
   and exposed a confound; one eval seed failure (a headline number
   without an uncertainty statement, on an uncoached prompt) is kept on
