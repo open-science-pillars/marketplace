@@ -1,76 +1,85 @@
 # Documentation map
 
-This folder holds three kinds of document. Use this map so you land in the
-right one; a newcomer never needs the build record.
+The canonical documentation, by audience. Start in the section that
+matches what you came for; nothing here assumes you know how the
+project was built.
 
-## For users
+**Maintainers: read these first.** [MODEL.md](MODEL.md),
+[runtime-distribution.md](runtime-distribution.md),
+[knowledge-vs-skills.md](knowledge-vs-skills.md), the organization's
+[GOVERNANCE.md](https://github.com/open-science-pillars/.github/blob/main/GOVERNANCE.md),
+and the Decision sections of [ADR A](decisions/adr-a-pillar-means-sphere.md)
+and [ADR B](decisions/adr-b-multi-runtime-capability-packaging.md).
 
-- [known-limitations.md](known-limitations.md): what is verified where, and
-  the honest caveats we ship with.
+## Users
 
-(The main user path is elsewhere: the
-[tutorials](https://github.com/open-science-pillars/tutorials) and the
-[glossary](../GLOSSARY.md).)
+- the [tutorials](https://github.com/open-science-pillars/tutorials):
+  timed, fresh-install-tested walkthroughs and a browser demo
+- the [glossary](../GLOSSARY.md): every term, in plain language
+- [known-limitations.md](known-limitations.md): what is verified where,
+  and the caveats we ship with
 
-## For contributors and maintainers
+## Contributors
 
-Authoring guides (how to add each kind of thing):
+- [contributing-a-skill.md](contributing-a-skill.md): a skill, from the
+  issue to the merged pull request
+- [contributing-knowledge.md](contributing-knowledge.md): a concept,
+  type by type
+- [knowledge-vs-skills.md](knowledge-vs-skills.md): the layer decision,
+  with the five-question aid
+- [testing.md](testing.md): goldens, evals and runtime qualification,
+  and which of them a contribution owes
+- [package-authoring-guide.md](package-authoring-guide.md): a new
+  capability's `.osp/` files, by example
 
-- [knowledge-authoring-guide.md](knowledge-authoring-guide.md): concepts
-- [skill-authoring-guide.md](skill-authoring-guide.md): skills
-- [agent-authoring-guide.md](agent-authoring-guide.md): agents
-- [eval-authoring-guide.md](eval-authoring-guide.md): eval cases
-- [verification-guide.md](verification-guide.md): golden notebooks
-- [connector-guide.md](connector-guide.md): MCP connectors
-- [testing-guide.md](testing-guide.md): how the test layers relate
-- [steward-playbook.md](steward-playbook.md): owning a knowledge bundle
-- [package-authoring-guide.md](package-authoring-guide.md): the `.osp/`
-  files a repository declares itself with, by example
-- [surface-testing-guide.md](surface-testing-guide.md): the runtime
-  testing guide: qualification tests and the install path per runtime
-- [runtime-distribution.md](runtime-distribution.md): what "supported",
-  "tested", "conformant" and "compatibility tested" each assert, and the
-  status per runtime
+## Capability authors
+
+- [package-authoring-guide.md](package-authoring-guide.md), with
+  [plugin-template](https://github.com/open-science-pillars/plugin-template)
+  as the starting point (a bundle starts from
+  [knowledge-template](https://github.com/open-science-pillars/knowledge-template))
+- [okf-conformance.md](okf-conformance.md): the OKF version the bundles
+  target and the extension keys they add
+
+## Stewards
+
+- [steward-playbook.md](steward-playbook.md): duties, the review
+  checklist, the elicitation script, onboarding, credit
+- [contributing-knowledge.md](contributing-knowledge.md) and
+  [okf-conformance.md](okf-conformance.md), the standards a review
+  holds a concept to
+
+## Maintainers
+
+- [runtime-distribution.md](runtime-distribution.md): what supported,
+  tested, planned, future runtime and compatibility target each assert,
+  and the status per runtime today
 - [release-candidate-guide.md](release-candidate-guide.md): cutting a
-  release with build-kit's release tool: candidate, qualification, tag,
-  catalog line, GitHub release
-- [release-qualification-guide.md](release-qualification-guide.md): the
-  maintainers' procedure for a release candidate: tickets per runtime,
-  records, waivers, the gate
-- [release-candidate-walkthrough.md](release-candidate-walkthrough.md):
-  checking a candidate by hand on your runtime: where to install it
-  from, the prompts to run, what a pass looks like, how to hand back
-  the record
+  release with build-kit's release tool
+- [release-qualification-guide.md](release-qualification-guide.md):
+  taking the candidate through its runtimes, by harness and by hand
 
-## Design, strategy, and commitments
+## Design and commitments
 
-- [ARCHITECTURE.md](ARCHITECTURE.md): why the project is shaped this way
-- [SPECIFICATION.md](SPECIFICATION.md): what to build (the authoritative spec)
-- [phase2-preregistration.md](phase2-preregistration.md): the pre-registered
-  success/stop conditions for the Phase-2 evaluation
-- [design-knowledge-coupling.md](design-knowledge-coupling.md): ADOPTED
-  design for how knowledge couples to skills and agents so the bundle
-  augments behavior over time (with the measured proof-of-concept)
-- [design-sphere-alignment-multi-runtime.md](design-sphere-alignment-multi-runtime.md):
-  PROPOSED design for aligning the organization to the five Earth science
-  spheres (Pillar means sphere) and delivering each governed capability as
-  a Claude projection and an Agent Plugins 1.0 projection from one source
-- [decisions/](decisions/README.md): architecture decision records; ADR A
-  (sphere alignment) and ADR B (multi-runtime packaging) record the
-  decisions the design above proposes, and the roadmap initiative
-  `osp-architecture-alignment` in build-kit sequences the work
+- [MODEL.md](MODEL.md): the current model on one page; read this first
+- [SPECIFICATION.md](SPECIFICATION.md): the authoritative specification
+- [SPECIFICATION-CHANGELOG.md](SPECIFICATION-CHANGELOG.md): its dated
+  revisions
+- [decisions/](decisions/README.md): the architecture decision records;
+  ADR A (Pillar means sphere) and ADR B (multi-runtime capability
+  packaging), accepted 2026-09-12
+- [phase2-preregistration.md](phase2-preregistration.md): the
+  pre-registered success and stop conditions, kept verbatim by rule
+- [third-party-findings.md](third-party-findings.md): the rules for
+  publishing findings about third parties (a provider, an archive, a
+  tool), candidate doctrine
 
-## Build record and development harness (now in build-kit)
+Build history (how the project was built, the parking lot, the harness
+rationale) lives in build-kit's `build-record/` directory, not here.
 
-How the project was built, and how to continue developing it, now live in the
-[build-kit](https://github.com/open-science-pillars/build-kit) repo, not here:
-the initiative/session plan (`IMPLEMENTATION-GUIDE.md`), the development status
-tracker (`PROGRESS.md`), the parking lot (`build-record/PARKING.md`), the
-harness design rationale (`build-record/BUILD-HARNESS.md`), the original
-bootstrap orientation (`build-record/README-START-HERE.md`), and the
-knowledge-coupling migration record
-(`build-record/knowledge-coupling-migration.md`). Start at
-`build-kit/DEVELOPING.md` and `build-kit/docs/development-model.md`.
+## Also here
 
-Still here (launch comms, not build machinery):
-[announcement-draft.md](announcement-draft.md), a launch announcement draft.
+- [prompts/](prompts/README.md): the verbatim prompt sets, one file per
+  workflow skill, and the behavior-test prompts
+- [upstream/](upstream/): the vendored OKF specification text the
+  bundles conform to, pinned by commit

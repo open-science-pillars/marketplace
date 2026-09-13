@@ -1,17 +1,20 @@
 # Contributing
 
-Thank you for considering it. New to the project's vocabulary? Start with the
-[glossary](GLOSSARY.md). The ground rules below are the load-bearing ones; the
-authoring guides in [docs/](docs/) expand them with worked detail:
+Thank you for considering it. New to the project's vocabulary? Start
+with the [glossary](GLOSSARY.md). The ground rules below are the
+load-bearing ones; the guides in [docs/](docs/README.md) expand them by
+persona:
 
-- [knowledge-authoring-guide](docs/knowledge-authoring-guide.md) (concepts)
-- [skill-authoring-guide](docs/skill-authoring-guide.md) and
-  [agent-authoring-guide](docs/agent-authoring-guide.md)
-- [eval-authoring-guide](docs/eval-authoring-guide.md) and
-  [verification-guide](docs/verification-guide.md)
-- [connector-guide](docs/connector-guide.md) and
-  [testing-guide](docs/testing-guide.md)
-- [steward-playbook](docs/steward-playbook.md) (owning a knowledge bundle)
+- adding a skill: [contributing-a-skill.md](docs/contributing-a-skill.md)
+- adding a concept: [contributing-knowledge.md](docs/contributing-knowledge.md)
+- deciding which of the two you have: [knowledge-vs-skills.md](docs/knowledge-vs-skills.md)
+- the tests you may owe: [testing.md](docs/testing.md)
+- a whole new capability: [package-authoring-guide.md](docs/package-authoring-guide.md)
+  and [plugin-template](https://github.com/open-science-pillars/plugin-template)
+  (a bundle starts from [knowledge-template](https://github.com/open-science-pillars/knowledge-template))
+- stewards: [steward-playbook.md](docs/steward-playbook.md)
+- maintainers releasing: [release-candidate-guide.md](docs/release-candidate-guide.md)
+  and [release-qualification-guide.md](docs/release-qualification-guide.md)
 
 ## Ground rules
 
@@ -30,15 +33,12 @@ authoring guides in [docs/](docs/) expand them with worked detail:
    notebook in `verification/` that runs green headless.
 6. Knowledge concepts follow the specification's knowledge layer and OKF
    v0.2 (the exact OKF text is vendored under docs/upstream, pinned by
-   commit): `type` plus the v0.2 families in frontmatter (`status` in
-   draft | stable | deprecated; `generated: {by, at}`; steward approval
-   recorded as a `verified: {by: human:<id>, at}` event; `sources` entries
-   with stable ids that body claims join via `[^id]` footnotes;
-   `stale_after`); datasets carry an `## Uncertainty` section; gotchas
-   link their dataset and carry at least one source; update the bundle's
-   `log.md`. Concepts state facts about data; they never instruct the
-   agent. Unsure whether something is knowledge or a skill? Run the
-   decision aid in [docs/knowledge-vs-skills.md](docs/knowledge-vs-skills.md).
+   commit): a `type` from the specification's list, sourced claims, a
+   status, and a steward's `verified` event at approval. Concepts state
+   facts about data; they never instruct the agent. The fields and the
+   types are in [docs/contributing-knowledge.md](docs/contributing-knowledge.md);
+   unsure whether something is knowledge or a skill? Run the decision aid
+   in [docs/knowledge-vs-skills.md](docs/knowledge-vs-skills.md).
 7. Prose style: no em dashes; use commas, colons, parentheses, or semicolons.
 
 ## Where a contribution goes
@@ -48,7 +48,7 @@ authoring guides in [docs/](docs/) expand them with worked detail:
 | a fact about data (a trap, an uncertainty, a validated number) | KNOW | a concept in the provider or domain bundle, signed by its steward |
 | a procedure an agent follows | ACT | a `SKILL.md` under `skills/` |
 | a deterministic check with a receipt | PROVE | a golden notebook under `verification/`, or an attester beside its computation |
-| a way to reach an external service | REACH | a connector in `.mcp.json`, with its facts as a `connector` concept |
+| a way to reach an external service | REACH | a connector declared in `.osp/package.yaml`, with its facts as a `connector` concept |
 | a Claude-only wrapper (a subagent, presentation metadata) | an adapter | `agents/` or the Claude package files, never the only home of behavior |
 
 Which sphere a capability serves, and who signs its knowledge, are two
@@ -59,12 +59,11 @@ a concept moves no authority.
 
 - Sign off every commit (DCO): `git commit -s`.
 - One review from the owning team merges an ordinary PR; two for
-  cross-cutting changes and high-severity knowledge edits (see org
-  GOVERNANCE.md, which names the teams).
-- Adding one skill to an existing plugin: open the new_skill issue template
-  and follow [docs/skill-authoring-guide.md](docs/skill-authoring-guide.md).
-- Proposing a knowledge concept: use the new_knowledge_concept issue template
-  and [docs/knowledge-authoring-guide.md](docs/knowledge-authoring-guide.md).
-- A whole new plugin starts from plugin-template; a new bundle from
-  knowledge-template.
+  cross-cutting changes and high-severity knowledge edits. The teams and
+  the rules are in the organization's
+  [GOVERNANCE.md](https://github.com/open-science-pillars/.github/blob/main/GOVERNANCE.md).
+- Issues start from the templates in the organization's
+  [.github repository](https://github.com/open-science-pillars/.github/tree/main/.github/ISSUE_TEMPLATE):
+  a new skill, a new knowledge concept, a new domain capability, a bug,
+  a feature. Each template links the guide for its path.
 - Questions go to Discussions on this repo.

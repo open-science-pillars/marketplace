@@ -1,104 +1,63 @@
 # Open Science Pillars: Marketplace
 
-The catalog and canonical documentation for Open Science Pillars:
-governed, portable scientific capabilities for AI agents, organized by the
-five Earth science spheres (a Pillar is a sphere). A capability is skills,
-the knowledge they consult (signed by the people who steward the data),
-deterministic verification and connectors, authored once and delivered to
-each runtime as a package: the Claude plugin here for Claude Code and
-Cowork, and the Agent Plugins package for OpenAI Codex and other clients
-when that projection lands. The organization by sphere is rendered from
-each repository's own metadata on the
-[organization profile](https://github.com/open-science-pillars).
+The plugin catalog for Open Science Pillars, and the home of its
+canonical documentation. What you install is a capability: skills an
+agent runs for one discipline of Earth science, the knowledge those
+skills consult (facts about real datasets, signed by the people who
+steward the data), deterministic checks that emit receipts, and
+connectors to the archives. With one installed, the agent knows the
+traps in the products you use, asks before a large download, and cites
+the concept behind every number it reports. Capabilities are organized
+by Earth science sphere on the
+[organization profile](https://github.com/open-science-pillars). New to
+a term? See the [glossary](GLOSSARY.md).
 
 ## Install
+
+Claude Code:
 
 ```bash
 claude plugin marketplace add open-science-pillars/marketplace
 claude plugin install ocean-science@open-science-pillars
 ```
 
-A domain plugin declares what it depends on (`core` and the
-`nasa-daac-knowledge` provider bundle), and the installer brings those
-in with it. Cowork and Claude Science: add this marketplace and install
-from it (both surfaces accept a marketplace by GitHub repo). Per-surface
-steps: [docs/surface-testing-guide.md](docs/surface-testing-guide.md).
+Claude Cowork: from Customize > Plugins > Add marketplace, add this
+marketplace by repository, `open-science-pillars/marketplace`; then
+install the capability from it. It is the same plugin.
 
-## Update
+A domain capability declares what it depends on, and the installer
+brings it along: `core` (the foundation) and `nasa-daac-knowledge` (the
+provider knowledge bundle) arrive with `ocean-science` or `hydrology`.
 
-```bash
-claude plugin update ocean-science@open-science-pillars
-```
+Local requirements: `uv` (the connectors and the verification scripts
+run with `uv run`), and an Earthdata Login for the ocean and hydrology
+data loads.
 
-This marketplace does not update installs on its own: an install keeps
-the release it was installed from until you update it by name (one
-command per plugin you installed) or enable auto-update for the
-marketplace in `/plugin`. An update moves only the plugin you name.
-It does not move that plugin's installed dependencies: when a release
-raises its floor past the version you have, `claude plugin list` shows
-the plugin disabled with an error naming the floor and the installed
-version (`Requires nasa-daac-knowledge >=2026.9.2, installed 2026.9.1`
-after the ocean-science 0.8.2 update), and `claude plugin update
-nasa-daac-knowledge@open-science-pillars` (or `core@...`) resolves it.
-A dependency the new release declares for the first time is not
-installed by the update either; the error then names the install
-command to run, or `/reload-plugins` in a session installs it. The
-catalog names each plugin's current release, and `claude plugin list`
-shows which versions you have and whether every dependency resolved.
+## What's available
 
-## What's available now
-
-| Plugin | What it does | Status |
+| Capability | What it does | Status |
 |---|---|---|
-| `core` | Foundation: data formats, statistics, uncertainty, cartography, quality control, reproducibility, review, and the start / discover-data / report workflows. | Available |
+| `core` | Foundation: data formats, statistics, uncertainty, cartography, quality control, reproducibility, review, and the start, discover-data and report workflows. | Available |
 | `ocean-science` | Physical oceanography: ECCO state estimate, SWOT sea surface height, meridional heat transport, budget closure, water masses. | Available |
-| `hydrology` | SWOT rivers and lakes, GRACE-FO groundwater, USGS streamflow, SMAP soil moisture, drought and reservoir analysis. | In development |
-| `nasa-daac-knowledge` | The provider knowledge bundles (PO.DAAC datasets, gotchas, recipes and attested computations; ESDIS metadata requirements), signed by their stewards. No skills; the domain plugins depend on it and install it for you. | Available |
+| `hydrology` | SWOT rivers and lakes, GRACE-FO groundwater, USGS streamflow, SMAP soil moisture, drought and reservoir analysis. | Developing |
+| `nasa-daac-knowledge` | The provider knowledge bundles (PO.DAAC datasets, gotchas, recipes and attested computations; ESDIS metadata requirements), signed by their stewards. No skills; the domain capabilities depend on it. | Available |
 
-New to the terms used here (sphere, capability, skill, knowledge bundle,
-golden notebook, runtime, connector)? See the [glossary](GLOSSARY.md).
+The catalog, [.claude-plugin/marketplace.json](.claude-plugin/marketplace.json),
+names each capability's current release.
 
 ## Runtimes
 
-| Runtime | Status (2026-09-12) |
+| Runtime | Status |
 |---|---|
 | Claude Code | supported; the development environment |
-| Claude Cowork | tested: installs from this marketplace; per-release qualification pending |
-| OpenAI Codex | planned: the Agent Plugins projection is rendered and conformance-checked; no release is qualified on Codex yet |
+| Claude Cowork | tested; qualified per release |
+| OpenAI Codex | planned, through the Agent Plugins package |
 | Claude Science | future runtime |
-| Gemini CLI, Goose | compatibility targets, not yet probed |
+| Gemini CLI, Goose | compatibility targets |
 
-What each word asserts is in [docs/runtime-distribution.md](docs/runtime-distribution.md).
-A release stays valid when a runtime fails qualification; that runtime is
-simply not advertised for it.
+What each word asserts: [docs/runtime-distribution.md](docs/runtime-distribution.md).
 
-## Planned
-
-Eleven repositories exist with the planned status (ADR A, target map):
-[precipitation](https://github.com/open-science-pillars/precipitation)
-(Hydrosphere, also Atmosphere),
-[land-ice](https://github.com/open-science-pillars/land-ice) and
-[sea-ice](https://github.com/open-science-pillars/sea-ice) (Cryosphere),
-[solid-earth](https://github.com/open-science-pillars/solid-earth) and
-[land-surface](https://github.com/open-science-pillars/land-surface)
-(Geosphere),
-[atmospheric-composition](https://github.com/open-science-pillars/atmospheric-composition)
-and
-[atmospheric-physics](https://github.com/open-science-pillars/atmospheric-physics)
-(Atmosphere),
-[land-ecosystems](https://github.com/open-science-pillars/land-ecosystems)
-and [ocean-biology](https://github.com/open-science-pillars/ocean-biology)
-(Biosphere),
-[composites](https://github.com/open-science-pillars/composites)
-(cross-sphere) and
-[partner-knowledge](https://github.com/open-science-pillars/partner-knowledge)
-(provider knowledge from non-NASA stewards). Each holds a banner, its
-classification and governance metadata, team ownership and a gate that
-refuses anything installable; promotion out of planned is governed work
-under a dated pre-registration entry. None appears in this catalog until
-it has a release.
-
-## Learn it in under an hour
+## Learn
 
 Three timed tutorials and a no-install demo:
 [Getting Started (~10 min)](https://github.com/open-science-pillars/tutorials/blob/main/tutorial-1-getting-started.qmd),
@@ -106,27 +65,45 @@ Three timed tutorials and a no-install demo:
 [Build a Domain Plugin (~30 min)](https://github.com/open-science-pillars/tutorials/blob/main/tutorial-3-build-a-plugin.qmd),
 and the [browser-runnable MHT demo](https://github.com/open-science-pillars/tutorials/tree/main/demo).
 
+## Update
+
+An install stays at the release it was installed from.
+`claude plugin update <name>@open-science-pillars` moves one plugin.
+Dependencies update by name (`claude plugin update
+nasa-daac-knowledge@open-science-pillars`); when a release raises a
+dependency floor, `claude plugin list` names the floor and the version
+you have. The full rule is the install-and-update section of the
+[specification](docs/SPECIFICATION.md).
+
+## Planned
+
+Eleven repositories hold the planned status: each shows where a
+capability will go under its sphere and holds nothing installable
+until it has a release. They are listed in the sphere view on the
+[organization profile](https://github.com/open-science-pillars).
+
 ## Documentation
 
-**For users:** the [tutorials](https://github.com/open-science-pillars/tutorials),
-the [glossary](GLOSSARY.md), and [known limitations](docs/known-limitations.md).
+**Users:** the [tutorials](https://github.com/open-science-pillars/tutorials),
+the [glossary](GLOSSARY.md) and [known limitations](docs/known-limitations.md).
 
-**For contributors:** [CONTRIBUTING.md](CONTRIBUTING.md) and the authoring
-guides in [docs/](docs/) (knowledge, skill, agent, eval, verification,
-connector, and testing guides), plus the [steward playbook](docs/steward-playbook.md).
+**Contributors:** [CONTRIBUTING.md](CONTRIBUTING.md), then the guide for
+what you are adding: a skill, a concept, a whole capability; the steward
+playbook; the release guides.
 
-**Design and strategy:** [ARCHITECTURE.md](docs/ARCHITECTURE.md) (why),
-[SPECIFICATION.md](docs/SPECIFICATION.md) (what) and the
-[decision records](docs/decisions/README.md) (the sphere alignment and the
-multi-runtime packaging). The build record and the
-development harness (IMPLEMENTATION-GUIDE, PROGRESS, BUILD-HARNESS) now live in
-the [build-kit](https://github.com/open-science-pillars/build-kit) repo; see
-[docs/README.md](docs/README.md) for the map.
+**Design:** [docs/MODEL.md](docs/MODEL.md) (the current model on one
+page), the [specification](docs/SPECIFICATION.md) and the
+[decision records](docs/decisions/README.md).
+
+The map of all of it, by audience: [docs/README.md](docs/README.md).
 
 ## Community
 
 Questions: [Discussions](https://github.com/open-science-pillars/marketplace/discussions).
 Contributions: [CONTRIBUTING.md](CONTRIBUTING.md); governance and review
-rules live in the org [.github repo](https://github.com/open-science-pillars/.github).
+rules are in the organization's
+[GOVERNANCE.md](https://github.com/open-science-pillars/.github/blob/main/GOVERNANCE.md).
 Releases are tags with GitHub releases; Zenodo archiving and DOIs begin
-at each repository's 1.0.0 release (tracked on issue #55). See CITATION.cff.
+at each repository's 1.0.0 release (tracked on
+[issue #55](https://github.com/open-science-pillars/marketplace/issues/55)).
+See [CITATION.cff](CITATION.cff).

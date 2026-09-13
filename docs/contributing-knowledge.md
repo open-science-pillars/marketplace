@@ -1,10 +1,16 @@
-# Knowledge authoring guide
+# Contributing knowledge
 
-How to write OKF concepts for Open Science Pillars bundles.
-Conformance: OKF v0.2 (vendored under docs/upstream, pinned by
-commit) plus the specification's knowledge layer
-(docs/SPECIFICATION.md); the knowledge-template repo carries one
-annotated example per type.
+How to write a concept for an Open Science Pillars bundle, from the
+new_knowledge_concept issue to a signed concept. Conformance: OKF v0.2
+(vendored under docs/upstream, pinned by commit) plus the
+specification's knowledge layer (docs/SPECIFICATION.md). The
+[knowledge-template](https://github.com/open-science-pillars/knowledge-template)
+repository carries annotated examples of four types (dataset, gotcha,
+recipe, convention); the provider bundles in nasa-daac-knowledge carry
+live examples of every type. A concept is KNOW: a fact about data a
+steward can sign as true and the world can falsify. If what you have
+directs the agent instead, it is a skill:
+[knowledge-vs-skills.md](knowledge-vs-skills.md) has the decision aid.
 
 ## The concept types and their required extras
 
@@ -23,6 +29,14 @@ annotated example per type.
   bar, OKF v0.2 §10); validation provenance in `sources`. Skills read
   recipes; recipes never live in skill bodies.
 - **convention**: the org-wide fields only.
+- **connector**: the facts about an external service the plugin
+  reaches (endpoint, transport, tool surface, auth boundary,
+  deprecation status), with sources, verification dates and a
+  `stale_after` matched to the service's announced flux. The wire
+  itself is REACH (declared in the capability's `.osp/package.yaml`);
+  this concept is where its facts live, and any endpoint, transport or
+  tool-surface change opens an issue before any doc changes. A
+  connector concept needs no `spheres`.
 - **computation**: the sanctioned code path with its sha, the input
   manifest, and the receipt of one run (OKF v0.2 §10). The reference
   values and tolerances that recipes and findings quote live here, and
@@ -66,8 +80,8 @@ annotated example per type.
 The two negative-knowledge types live under `dead-ends/` and
 `field-states/` in a bundle and are gated by
 `uv run tools/check_negative.py knowledge/<bundle>` in
-nasa-daac-knowledge (in its check routine; `--explain` shows how every
-path and source resolved). Their truth condition is attribution: the
+nasa-daac-knowledge (part of its check routine, `tools/run_checks.sh`;
+`--explain` shows how every path and source resolved). Their truth condition is attribution: the
 cited attempts and positions exist and say what the concept says they
 say, whether or not the approach later works or the question is later
 settled.
@@ -76,18 +90,25 @@ Org-wide on every concept: `title`, `description`, `tags`,
 `generated: {by, at}` (who wrote it, in the actor convention, and the
 last meaningful change), `status` (lifecycle: draft, stable,
 deprecated), a `verified: {by: human:<id>, at}` event once a steward
-signs (never self-added by a drafting agent), `sources:` entries with
-stable ids for what the concept derives from (body claims join them
-with `[^id]` footnotes, OKF v0.2 §5.1), and `stale_after:` (the sweep
-date; staleness is now >= stale_after). Optional `trainings:` lists
-ARSET or equivalent training URLs on datasets and recipes.
+signs (never self-added by a drafting agent; the steward writes it with
+`tools/sign.py` in nasa-daac-knowledge), `sources:` entries with stable
+ids for what the concept derives from (body claims join them with
+`[^id]` footnotes, OKF v0.2 §5.1), and `stale_after:` (the sweep date;
+staleness is now >= stale_after). Two OSP tags sit outside the text a
+signature binds: `spheres`, required on every scientific concept (the
+checker's E10), lists the Earth science spheres the claim spans
+(`[hydrosphere]`, `[hydrosphere, cryosphere]`; only a bundle whose root
+index declares `sphere_scope: cross-cutting`, as core's conventions do,
+may leave it empty), and `gcmd`, optional, lists GCMD keywords as
+strings. A sphere tag moves no authority; who signs is the bundle's
+steward regardless. Optional `trainings:` lists ARSET or equivalent
+training URLs on datasets and recipes.
 
-## Hard-won rules from this build
+## Rules learned the hard way
 
 1. **Quote YAML values containing colons.** Claude Code's own parser
-   is lenient; the bundle standard is strict YAML, and the linter
-   red-flags unquoted `title: Something: subtitle` (it caught three on
-   day one).
+   is lenient; the bundle standard is strict YAML, and the checker
+   red-flags unquoted `title: Something: subtitle`.
 2. **Sources or nothing.** Every gotcha and recipe claim carries a
    resolving `sources` entry, joined to the claim with a `[^id]`
    footnote (OKF v0.2 §5.1); a source-free concept is worse than a gap.
@@ -103,16 +124,17 @@ ARSET or equivalent training URLs on datasets and recipes.
    "always check which family you loaded". The knowledge-linter's
    imperative-phrasing scan (documented in
    `core/agents/knowledge-linter`) enforces this.
-4. **Record scopes and dates on numbers.** The build's costliest
-   correction was a heat-transport anchor recorded without its basin
+4. **Record scopes and dates on numbers.** The costliest correction so
+   far was a heat-transport anchor recorded without its basin
    scope (a full-circle value that read as if it were the Atlantic),
    which nearly produced a wrong comparison against Atlantic-only
    observations; expected values carry the exact scope, method, and
    the date verified.
 5. **Tolerances are measured, not assumed.** A closure or comparison
    criterion states what was measured, on what, and the headroom
-   (see ocean-science/knowledge/recipes/ecco-heat-budget.md for the pattern: float32
-   quantization made a relative criterion meaningless).
+   (see `knowledge/podaac/recipes/ecco-heat-budget.md` in
+   nasa-daac-knowledge for the pattern: float32 quantization made a
+   relative criterion meaningless).
 
 ## Ingest etiquette
 
@@ -120,15 +142,26 @@ A peculiarity discovered during ANY analysis is drafted immediately
 (correct type, frontmatter, links), queued for steward approval, and
 logged in the bundle's log.md with its discovery chain; a method
 that was tried and failed is drafted the same way, as a dead-end.
-Never deferred, never buried in a comparison note. The rapid-mocha concept and the
-SWOT crossover-calibration known issue are live examples, each ingested
-the session it was found.
+Never deferred, never buried in a comparison note. The rapid-mocha
+concept and the SWOT crossover-calibration known issue are live
+examples, each ingested the day it was found.
+
+## Before the pull request
+
+Run the bundle's check routine locally: `tools/run_checks.sh` in
+nasa-daac-knowledge runs the OKF v0.2 checker (`check_okf_v02.py`, with
+`--findings` for the PO.DAAC bundle), the negative-knowledge checker,
+the signature debt, the field and citation checks and every tool's
+selftest, all offline; a plugin's own bundle is checked by its plugin
+gate with the same tools. Then fill the pull request template: sources
+resolve, the gotcha links its dataset, `log.md` is updated, the layer
+check is done, and a high-severity gotcha has its eval case.
 
 ## Review path
 
 Draft (yours or the knowledge-seeder's) → steward review per the
-playbook checklist → `status: stable` with a
-`verified: {by: human:<id>, at}` event added at approval → log
-entry. High-severity gotchas and Uncertainty-section edits take two
-reviews (a provider steward on provider bundles) per the specification's
-stewardship and review rules.
+[steward playbook](steward-playbook.md) checklist → `status: stable`
+with a `verified: {by: human:<id>, at}` event added at approval
+(`tools/sign.py`) → log entry. High-severity gotchas and
+Uncertainty-section edits take two reviews (a provider steward on
+provider bundles) per the specification's stewardship and review rules.
