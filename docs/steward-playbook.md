@@ -34,6 +34,73 @@ Recruiting is sending the digest, not sending this playbook; the
 confirm links on it open a prefilled confirm-a-concept issue, so the
 first rung is one click and one sentence away.
 
+## Soliciting confirmation
+
+The digest's confirm links wait for a person to open an issue. Do not
+wait: the maintainer opens the issue, in their own name, and the
+person only replies. `tools/solicit.py` in nasa-daac-knowledge does
+that, one issue per concept, the concept rendered inline so the reply
+needs no repository visit.
+
+**Whom to ask.** The product's known contact first: the person named
+on the dataset concept's provider page, the author of the user guide
+or the release notes, the ECCO or SWOT team member who answered the
+forum thread the concept cites. Failing a name, the data center's user
+services desk (PO.DAAC's, for the podaac bundle), asking them to route
+the issue to whoever holds the product; their reply naming that
+person is itself worth recording on the issue. Ask by GitHub handle;
+a person with no handle can answer by email and the maintainer quotes
+the answer on the issue, with the date, so `source` has a URL.
+
+**How.** From the repository root, pick the concepts from the digest
+and dry-run first; every issue is printed in full and nothing is
+written until `--apply`:
+
+```bash
+uv run tools/solicit.py knowledge/podaac --product "GHRSST MUR Level 4 SST" --to @their-handle --mark
+uv run tools/solicit.py knowledge/podaac --product "GHRSST MUR Level 4 SST" --to @their-handle --mark --apply
+```
+
+`--concept <path>` (repeatable) asks about named concepts,
+`--unconfirmed` about every stable concept with no provider event yet
+(with `--product` it narrows to that product's). `--mark` writes
+`review: <issue url>` on each concept and re-renders the digest, whose
+row then reads Asked; commit those files. A concept with an open
+confirm issue is skipped, so running the command again after a new
+concept lands asks only about that one. Ask about a handful at a
+time, the high-severity gotchas first; a person who receives thirty
+issues answers none.
+
+**What to say in person.** Two sentences, in an email or a message,
+pointing at the issue: "We wrote down what our tools assume about
+<product> and would rather have your word than ours on it: the issue
+at <url> shows one claim, and a one-word reply there (confirmed,
+correction, or not my product) is everything we ask. Your reply is
+recorded on the concept in your name, with a link back to it, so the
+people using the data see who stands behind the statement."
+
+**What happens on each answer.** `uv run tools/record.py <issue
+number>` reads the issue and its comments (dry run; `--apply` writes):
+
+- **confirmed**: the event `{ by: human:<their login>, at: <the
+  reply's time>, role: provider, source: <the reply's URL> }` is
+  appended to the concept, `review:` is removed, the bundle log gains
+  the entry, and the commit message to use is printed: `Confirm <path>
+  (closes #N)`. Re-render the digest, open the pull request; its merge
+  closes the issue and the concept becomes provider-confirmed.
+- **correction**: the text of the correction and the concept path are
+  printed and nothing is edited. A correction is a fix by the
+  maintainer followed by a fresh ask: correct the concept in its own
+  pull request (the source the reply names, reviewed under the
+  checklist), then ask on the same issue whether the corrected text is
+  right, and run `record.py` again once they say confirmed. The event
+  binds the text they confirmed, never the text they corrected.
+- **not** (not my product, not my call): printed; `--apply` thanks
+  them on the issue and asks who would know, and removes `review:`.
+  Close the issue when you have a name, and ask that person.
+- no recognizable reply yet: the tool says so and exits 1; wait, or
+  nudge on the issue.
+
 ## Recording a confirmation on someone's behalf
 
 When a consulted person replies on a confirm-a-concept issue:
@@ -44,8 +111,10 @@ When a consulted person replies on a confirm-a-concept issue:
    the event lands on the corrected text. "Not my product or not my
    call" closes the issue with thanks and a question: who would know?
 2. Record the event in their name, with the reply as its source:
-   `uv run tools/sign.py <concept> --by human:<their id> --role provider --source <url>`
-   (`--log` adds the log entry). The event keeps the OKF shape
+   `uv run tools/record.py <issue number> --apply` reads the reply and
+   writes it (the same edit as
+   `uv run tools/sign.py <concept> --by human:<their id> --role provider --source <url> --log ...`,
+   which still works by hand). The event keeps the OKF shape
    `{by: human:<id>, at}` and gains `role: provider` and the reply's
    URL as `source`; from the next release, consumers voice the concept
    as provider-confirmed.

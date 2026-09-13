@@ -177,4 +177,7 @@ second, never required. A data provider's confirmation is additive: a
 concept becomes stable without it, and when a provider contact confirms
 a concept (on a confirm-a-concept issue, recorded on their behalf with
 `role: provider` and the reply as `source`) the concept is voiced as
-provider-confirmed rather than human-reviewed.
+provider-confirmed rather than human-reviewed. The maintainer can open
+that issue for them (`tools/solicit.py`, the concept inline, a
+one-word reply asked) and record the reply (`tools/record.py`); the
+playbook's "Soliciting confirmation" section has the loop.
