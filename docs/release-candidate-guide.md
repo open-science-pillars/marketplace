@@ -53,7 +53,12 @@ touches nothing.
 The pull request is the candidate. CI opens one ticket per required
 runtime surface; each closes on a qualification record or a waiver
 committed to the branch; the merge waits on every required surface
-having one. The Claude Code record is one command on your machine:
+having one. That first CI run also creates the release milestone
+`<capability> <version>` (when it does not exist yet) and sets it on
+every ticket and on the pull request, so the release's issues are one
+list; `release.py tag` never closes the milestone, close it yourself
+when its issues are done. The Claude Code record is one command on
+your machine:
 
 ```sh
 uv run build-kit/scripts/qualify.py --capability core --surface claude-code --candidate --evidence /tmp/core-qualification
