@@ -2,18 +2,70 @@
 
 Stewards own the trustworthiness of a knowledge bundle. Per the
 specification's stewardship and review rules (docs/SPECIFICATION.md).
+The maintainer who holds a bundle is its steward. A data provider's
+confirmation is invited at every step and required at none; when it
+comes it raises a concept's trust tier (provider-confirmed) and changes
+nothing about what the concept needed in order to become stable.
+
+## The ladder
+
+Provenance is a ladder. A person at a data center may stand on any
+rung of it, and nothing above the first is asked of anyone:
+
+- **Consulted.** They answer a "confirm this concept" issue (the
+  organization's confirm-a-concept template, in the
+  [.github](https://github.com/open-science-pillars/.github) repository)
+  with confirmed as written, a correction, or not my product. No git,
+  no tooling: a reply is the whole task, and the maintainer records
+  the event on their behalf (the next section).
+- **Reviewer.** They review knowledge pull requests for their products
+  on GitHub. CODEOWNERS does not change; the maintainer requests the
+  review, and their approval is a human review of any role under the
+  merge rules below.
+- **Steward.** They join the bundle's steward team in CODEOWNERS (a
+  membership change, no file edit), review under the checklist below
+  and sign with `tools/sign.py` in their own name.
+
+What a person reads to decide what they could take on is the
+knowledge digest: `tools/digest.py` in nasa-daac-knowledge renders
+`knowledge/<bundle>/DIGEST.md`, what the bundle claims about each
+product, with status, tier, evidence and a confirm link per claim.
+Recruiting is sending the digest, not sending this playbook; the
+confirm links on it open a prefilled confirm-a-concept issue, so the
+first rung is one click and one sentence away.
+
+## Recording a confirmation on someone's behalf
+
+When a consulted person replies on a confirm-a-concept issue:
+
+1. Read the reply against the concept. "Confirmed as written" adds an
+   event. "Needs a correction" is a pull request first (the correction,
+   with the source the reply names, reviewed under the checklist), and
+   the event lands on the corrected text. "Not my product or not my
+   call" closes the issue with thanks and a question: who would know?
+2. Record the event in their name, with the reply as its source:
+   `uv run tools/sign.py <concept> --by human:<their id> --role provider --source <url>`
+   (`--log` adds the log entry). The event keeps the OKF shape
+   `{by: human:<id>, at}` and gains `role: provider` and the reply's
+   URL as `source`; from the next release, consumers voice the concept
+   as provider-confirmed.
+3. Thank them on the issue and close it. The digest picks the new tier
+   up on its next render.
+
+An event you record for someone else is their confirmation, not your
+review: it counts toward the merge rules only when they also reviewed
+the pull request.
 
 ## Duties
 
-- Review every concept PR (one steward review to merge; two reviews,
-  including a provider steward on provider bundles, for high-severity
-  gotchas and any edit changing severity, status, or an Uncertainty
-  section). While a bundle has no provider steward (the interim period
-  in the organization's GOVERNANCE.md), the provider second review is
-  deferred until handoff and the interim steward's single review merges
-  in the meantime; the high-severity gotchas verified in that period
-  are re-reviewed by the incoming provider steward when they accept the
-  bundle.
+- Review every concept PR under the merge rules: one human review of
+  any role merges an ordinary concept and lets it become `stable`; two
+  human reviews of any role for high-severity gotchas and for any edit
+  changing severity, status, or an Uncertainty section. A provider
+  review is preferred and invited for the second (request the review
+  on the pull request, or open a confirm-a-concept issue), never
+  required; a second maintainer or a community reviewer satisfies the
+  rule.
 - Approve the drafts that analyses and the knowledge-seeder produce;
   promote a draft from `draft` to `stable` only after the checklist
   below; add a `verified: {by: human:<id>, at}` event at approval
@@ -22,6 +74,7 @@ specification's stewardship and review rules (docs/SPECIFICATION.md).
   drafting agent). `tools/sign.py` in nasa-daac-knowledge writes
   exactly that edit, one command for a handful of concepts, and with
   `--log` adds the log entry; the signature is pending until committed.
+  Your own signature carries no `role` (absent means `maintainer`).
 - Run the bundle's check routine (`tools/run_checks.sh` in
   nasa-daac-knowledge: OKF conformance, negative knowledge, signature
   debt, fields, citations, every tool's selftest, all offline) and the
@@ -32,6 +85,9 @@ specification's stewardship and review rules (docs/SPECIFICATION.md).
   mark the sweep, then re-verify and set the next date).
 - Keep index.md and log.md honest; the log records decision chains,
   not just edits (see the existing entries for the pattern).
+- Keep the digest current: render it before a release and whenever you
+  send it to someone, so its confirm links point at what the bundle
+  says now.
 
 ## The review checklist
 
@@ -86,8 +142,11 @@ checks and severities; the current checks are documented in
 concept, one with an evidence problem, one high-severity gotcha. Add them
 to the bundle's steward team after the third; CODEOWNERS names the team,
 so no file changes. ARSET's train-the-trainer
-pattern applies: the outgoing steward observes the incoming one running a
-review, not the reverse.
+pattern applies: the steward already on the team observes the incoming
+one running a review, not the reverse. A person who has been consulted
+on a few concepts and has reviewed a few pull requests has already
+walked the first two rungs; the third is the checklist and the signing
+tool, nothing more.
 
 ## Spheres and runtimes
 
@@ -98,7 +157,7 @@ review, not the reverse.
   needs no scientific re-approval unless the concept's semantics change.
 - A concept's `spheres` tags state the scope of the claim; they move no
   authority. Sphere maintainers coordinate capabilities; they do not
-  override a provider steward on a fact, and a methods steward
+  override a bundle's steward on a fact, and a methods steward
   (`hydrosphere-methods-stewards`) owns recipes and computations that
   combine several providers' products without owning any product.
 - `spheres` and `gcmd` sit outside the text a signature binds, so adding
@@ -126,5 +185,9 @@ authors:
 
 The knowledge repo carries one repo-level `CITATION.cff`; a provider's
 authorship on it is scoped to their bundle's concepts (a per-bundle citation
-file can be added if a provider prefers a distinct DOI). Provider stewards
-(per the org's GOVERNANCE.md) own their bundle's review authority outright.
+file can be added if a provider prefers a distinct DOI). Credit follows
+the events: a confirmation recorded on someone's behalf names them in
+`by`, so the derived credit list counts a consulted person from the
+first rung. Provider staff who join the steward team (per the org's
+GOVERNANCE.md) hold the bundle's review authority alongside the
+maintainer who holds it.

@@ -89,9 +89,16 @@ settled.
 Org-wide on every concept: `title`, `description`, `tags`,
 `generated: {by, at}` (who wrote it, in the actor convention, and the
 last meaningful change), `status` (lifecycle: draft, stable,
-deprecated), a `verified: {by: human:<id>, at}` event once a steward
-signs (never self-added by a drafting agent; the steward writes it with
-`tools/sign.py` in nasa-daac-knowledge), `sources:` entries with stable
+deprecated), a `verified: {by: human:<id>, at}` event once a human
+reviewer signs (never self-added by a drafting agent; the steward writes
+it with `tools/sign.py` in nasa-daac-knowledge, in their own name or,
+for a confirmation given on an issue, in the confirming person's name
+with `--by`, `--role` and `--source`), carrying two OSP keys inside the
+event: `role` (`maintainer`, `provider` or `community`; absent means
+`maintainer`, and `role: provider` on a `human:` event yields the
+provider-confirmed tier) and `source` (the URL of the issue reply,
+review comment or message where the confirmation was given, when it was
+given somewhere other than the commit itself), `sources:` entries with stable
 ids for what the concept derives from (body claims join them with
 `[^id]` footnotes, OKF v0.2 §5.1), and `stale_after:` (the sweep date;
 staleness is now >= stale_after). Two OSP tags sit outside the text a
@@ -159,9 +166,15 @@ check is done, and a high-severity gotcha has its eval case.
 
 ## Review path
 
-Draft (yours or the knowledge-seeder's) → steward review per the
-[steward playbook](steward-playbook.md) checklist → `status: stable`
-with a `verified: {by: human:<id>, at}` event added at approval
-(`tools/sign.py`) → log entry. High-severity gotchas and
-Uncertainty-section edits take two reviews (a provider steward on
-provider bundles) per the specification's stewardship and review rules.
+Draft (yours or the knowledge-seeder's) → one human review of any
+role per the [steward playbook](steward-playbook.md) checklist →
+`status: stable` with a `verified: {by: human:<id>, at}` event added at
+approval (`tools/sign.py`) → log entry. High-severity gotchas and any
+edit that changes severity, status or an Uncertainty section take two
+human reviews of any role, per the specification's stewardship and
+review rules; a provider review is preferred and invited for the
+second, never required. A data provider's confirmation is additive: a
+concept becomes stable without it, and when a provider contact confirms
+a concept (on a confirm-a-concept issue, recorded on their behalf with
+`role: provider` and the reply as `source`) the concept is voiced as
+provider-confirmed rather than human-reviewed.

@@ -26,8 +26,9 @@ product facts live; a domain bundle is where methods over several
 products live, and an attested computation belongs with its method.
 
 A composite is a capability whose evidence genuinely crosses spheres.
-It stays a scaffold until it has its own steward, joint knowledge and
-validation; an interdisciplinary recipe whose governing evidence stays
+It stays a scaffold until it has a maintainer, a reviewer from each
+sphere it touches, joint knowledge and validation, and it needs no
+steward of its own; an interdisciplinary recipe whose governing evidence stays
 in one sphere (the basin water balance) is not a composite. A planned
 repository makes the intended shape visible and holds nothing
 installable: no skills, package or surfaces file, runtime manifest,
@@ -74,12 +75,15 @@ packaging. Knowledge has a truth condition and skills have a quality
 condition, which is why only KNOW is signed and only ACT is evaluated
 ([knowledge-vs-skills.md](knowledge-vs-skills.md)).
 
-Stewardship follows the planes. Provider stewards own the product facts
-in their bundle. Methods stewards own the recipes and attested
-computations that combine several providers' products without owning
-any product. The archive observatory serves a second audience, data
-producers, whose requirements bundle is stewarded by the provider's own
-people and whose findings are published under the policy in
+Stewardship follows the planes. The maintainer who holds a bundle is
+its steward; a provider's people are invited at every rung of the
+ladder (consulted, reviewer, steward) and required at none, and their
+confirmation raises a concept's tier without gating it. Methods
+stewards own the recipes and attested computations that combine
+several providers' products without owning any product. The archive
+observatory serves a second audience, data producers, whose
+requirements bundle is held the same way and whose findings are
+published under the policy in
 [third-party-findings.md](third-party-findings.md).
 
 ## One capability, two projections
@@ -153,6 +157,6 @@ Four kinds of team hold four responsibilities: repository and sphere
 maintainers, knowledge stewards, runtime maintainers (one team per
 projection, who may reject a package that does not resolve on their
 runtime and may never approve a scientific claim) and composites
-maintainers. The rules, the review counts and the interim period are
+maintainers. The rules, the review counts and the ladder are
 in GOVERNANCE.md in the organization's
 [.github repository](https://github.com/open-science-pillars/.github/blob/main/GOVERNANCE.md).

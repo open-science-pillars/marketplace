@@ -39,6 +39,15 @@ list for proposing upstream (the spec invites ecosystem conventions):
 | `upstream` | plugin-local concepts | `pending` marks material not yet moved to its canonical bundle |
 | `spheres` | every scientific concept | the Earth science spheres the claim spans; required (the checker's E10) except on `requirement` and `connector` concepts; moves no authority |
 | `gcmd` | any concept | GCMD keywords for the claim, as a list of strings; optional |
+| `role` | `verified` events | inside the event, beside `by` and `at`: `maintainer`, `provider` or `community`; absent means `maintainer`. A `human:` event with `role: provider` yields the provider-confirmed tier; consumers that classify trust still key on the `human:` prefix |
+| `source` | `verified` events | inside the event: the URL of the issue reply, review comment or message where the confirmation was given, present when it was given somewhere other than the commit itself |
+
+The last two are extension keys inside an OKF event rather than at the
+top level of the frontmatter. OKF's extensions rule (producers may
+include any additional keys; consumers preserve unknown keys and never
+reject a document for them) covers them, and the event keeps its spec
+shape: `by` and `at` mean what they mean in OKF, so a generic v0.2
+consumer reads the same actor and date and ignores the tier.
 
 Rule of thumb for new keys: an extension must never change the meaning of a
 spec field, and anything a generic v0.2 consumer needs in order to trust or

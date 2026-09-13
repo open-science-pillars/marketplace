@@ -28,7 +28,8 @@ this one.
   a fact is separate from which sphere asks for it. The domain
   capabilities depend on it, so installing one installs it.
 - **Composite**: a capability whose evidence genuinely crosses spheres.
-  None exists yet.
+  It needs a maintainer plus a reviewer from each sphere it touches,
+  not a steward of its own. None exists yet.
 - **Planned**: a repository that shows where a capability will go and
   holds nothing installable. The other status words in a repository's
   metadata are **developing** and **available**.
@@ -76,9 +77,26 @@ skill (ACT)".
 - **Spheres tag**: the `spheres` list on a scientific concept names the
   spheres its claim spans; it moves no authority. `gcmd` optionally
   lists GCMD keywords.
-- **Steward**: the person accountable for a bundle's correctness.
-  Approval is a `verified` event with a `human:` actor, added by the
-  steward's own hand (`tools/sign.py` in nasa-daac-knowledge).
+- **Steward**: the person accountable for a bundle's correctness: the
+  maintainer who holds the bundle, joined by anyone who takes the top
+  rung of the ladder. The ladder for a person at a data center is
+  **consulted**, **reviewer**, **steward**; nothing above the first
+  rung is required of anyone, and none of it is required for a concept
+  to be stable. Approval is a `verified` event with a `human:` actor,
+  added by a steward's own hand (`tools/sign.py` in
+  nasa-daac-knowledge), or recorded by the maintainer on a consulted
+  person's behalf with `role: provider` and the reply's URL as
+  `source`.
+- **Consulted**: a person at a data center who answered a
+  confirm-a-concept issue (confirmed, a correction, or not my product);
+  no git or tooling is asked of them.
+- **Reviewer**: a person who reviews knowledge pull requests for their
+  products on GitHub without joining the steward team.
+- **Trust tier**: what a skill voices when it cites a concept, derived
+  from its `verified` events: unverified (no event), machine-confirmed
+  (process events only), human-reviewed (a `human:` event) and
+  provider-confirmed (a `human:` event with `role: provider`).
+  Provider-confirmed is a badge, never a precondition.
 - **Merge then sign**: a signature binds a concept's text as of the
   signing commit. An edit merged afterwards owes a new signature; a
   release tag lands only on a commit that owes none.
