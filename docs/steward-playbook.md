@@ -3,39 +3,30 @@
 Stewards own the trustworthiness of a knowledge bundle. Per the
 specification's stewardship and review rules (docs/SPECIFICATION.md).
 
-**Current stewardship.** The bundles are held by an interim (pro tem)
-steward while the project is young. Two things are distinct and should not
-be confused:
-
-- The **canonical-home migration** (moving the PO.DAAC concepts into the
-  standalone [nasa-daac-knowledge](https://github.com/open-science-pillars/nasa-daac-knowledge)
-  repo, which the plugins declare as a dependency) is **done**.
-- The **provider-steward handoff** (a PO.DAAC or equivalent staffer taking
-  over review authority for their bundle) is **pending**. Its trigger: a
-  named provider steward joins the bundle's steward team (`podaac-stewards`,
-  `esdis-stewards`; CODEOWNERS already names the team) and co-reviews three
-  PRs per "Onboarding a new steward" below. Until then the pro-tem steward
-  holds review authority, and the provider-second-review rule (Duties, below)
-  is deferred (see the note there).
-
 ## Duties
 
 - Review every concept PR (one steward review to merge; two reviews,
   including a provider steward on provider bundles, for high-severity
   gotchas and any edit changing severity, status, or an Uncertainty
-  section). **Pro-tem note:** while a bundle has no provider steward, the
-  provider second review is deferred until handoff and the interim steward's
-  single review merges in the meantime; the existing high-severity gotchas
-  verified by the interim steward are re-reviewed by the incoming provider
-  steward at handoff (this is part of accepting the bundle).
-- Approve ingest-loop drafts the sessions produce; promote
-  seeder/assistant drafts from `draft` to `stable` only after the
-  checklist below; add a `verified: {by: human:<id>, at}` event at
-  approval (OKF v0.2 §5.2; the `human:` prefix is what yields the
-  human-reviewed trust tier, and the event is added by your hands,
-  never by the drafting agent).
-- Run (or receive) the knowledge-linter before releases and act on its
-  findings; recorded acceptances of 🟡 findings go in log.md.
+  section). While a bundle has no provider steward (the interim period
+  in the organization's GOVERNANCE.md), the provider second review is
+  deferred until handoff and the interim steward's single review merges
+  in the meantime; the high-severity gotchas verified in that period
+  are re-reviewed by the incoming provider steward when they accept the
+  bundle.
+- Approve the drafts that analyses and the knowledge-seeder produce;
+  promote a draft from `draft` to `stable` only after the checklist
+  below; add a `verified: {by: human:<id>, at}` event at approval
+  (OKF v0.2 §5.2; the `human:` prefix is what yields the human-reviewed
+  trust tier, and the event is added by your hands, never by the
+  drafting agent). `tools/sign.py` in nasa-daac-knowledge writes
+  exactly that edit, one command for a handful of concepts, and with
+  `--log` adds the log entry; the signature is pending until committed.
+- Run the bundle's check routine (`tools/run_checks.sh` in
+  nasa-daac-knowledge: OKF conformance, negative knowledge, signature
+  debt, fields, citations, every tool's selftest, all offline) and the
+  knowledge-linter before releases and act on their findings; recorded
+  acceptances of warnings go in log.md.
 - Sweep a dataset's concepts when its product baseline changes
   (staleness is a date comparison in v0.2: pull `stale_after` up to
   mark the sweep, then re-verify and set the next date).
@@ -60,7 +51,7 @@ be confused:
    to a concept you already signed owes you a new event (merge then
    sign): `tools/signature_check.py <bundle> --diff` in the canonical
    repository lists the debt with the diff since your signing commit,
-   and a release tag waits until it is clear.
+   `tools/sign.py` pays it, and a release tag waits until it is clear.
 6. Security-posture sweep: declarative voice, no directives to the
    agent (the knowledge-linter's imperative-phrasing scan helps, but the
    steward is the control).
@@ -86,11 +77,11 @@ evidence pointers, confirm links afterward.
 
 ## Onboarding a new steward
 
-Read this playbook and the
-[knowledge-authoring guide](knowledge-authoring-guide.md) first, then walk
+Read this playbook and
+[contributing-knowledge.md](contributing-knowledge.md) first, then walk
 the bundle's `log.md` history: the decision chains teach the standards
-faster than rules do. (Older log entries use build-era shorthand for the
-linter's checks and lint severities; the current checks are documented in
+faster than rules do. (Older log entries use shorthand for the linter's
+checks and severities; the current checks are documented in
 `core/agents/knowledge-linter`.) Then co-review three PRs: one clean
 concept, one with an evidence problem, one high-severity gotcha. Add them
 to the bundle's steward team after the third; CODEOWNERS names the team,
@@ -119,8 +110,9 @@ review, not the reverse.
 Stewards earn authorship on the bundle's Zenodo releases, which begin at
 1.0.0 (per the specification's release rule; the provider bundle deposits
 alongside the first dependent plugin's 1.0.0). Until then the derived
-credit list (`tools/derive_credit.py`) travels with each GitHub release
-and is the record of who did what. At that release, the bundle's
+credit list (`tools/derive_credit.py` in the marketplace repository,
+run over the bundle's signature events, CODEOWNERS and log) travels
+with each GitHub release and is the record of who did what. At that release, the bundle's
 `CITATION.cff` gains its concept DOI and adds the steward (and, for a
 provider bundle, the provider organization) as authors, for example:
 

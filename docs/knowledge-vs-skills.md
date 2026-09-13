@@ -3,9 +3,10 @@
 Contributors regularly face the question: does this belong in a knowledge
 bundle or in a skill? This doc is the org's line in the sand, the tests
 that make it usable, and what to do when a case is genuinely unclear. It
-sits on top of the coupling decision adopted 2026-07-05
-(docs/design-knowledge-coupling.md) and OSP's four-plane anatomy: REACH
-(connectors), ACT (skills), KNOW (concepts), PROVE (guards).
+sits on top of the coupling model the specification adopts (skills
+consult knowledge, discovered rather than hardcoded) and the four
+planes of a capability: KNOW (concepts), ACT (skills), PROVE (golden
+notebooks and attesters), REACH (connectors).
 
 ## The principle
 
@@ -87,9 +88,10 @@ concept, the second to a skill:
 5. Is it a number, tolerance, name, or caveat that must live exactly once? (yes: concept, and skills cite it / no)
 
 Four or five first-column answers: author a concept using
-docs/knowledge-authoring-guide.md. Four or five second-column answers:
-author a skill using docs/skill-authoring-guide.md, and make sure any facts
-it leans on already exist as concepts it can cite. A genuine split (an
+[contributing-knowledge.md](contributing-knowledge.md). Four or five
+second-column answers: author a skill using
+[contributing-a-skill.md](contributing-a-skill.md), and make sure any
+facts it leans on already exist as concepts it can cite. A genuine split (an
 Attested Computation, a refusal plus its underlying fact) is usually two
 small contributions, one per plane, cross-linked.
 
@@ -104,13 +106,3 @@ Orientation to keep: **knowledge compounds, skills converge.** The bundle
 grows monotonically and improves behavior with no code change; skills trend
 thinner as models improve, asymptoting toward the refusal floor plus
 procedure shape. When in doubt, put the durable thing where it compounds.
-
-## PR template addition
-
-One checklist line for the pull request template:
-
-```
-- [ ] Layer check: I ran the five-question decision aid in
-      docs/knowledge-vs-skills.md; facts live in concepts, behavior lives
-      in skills, and nothing is mirrored between them.
-```

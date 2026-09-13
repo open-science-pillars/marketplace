@@ -1,13 +1,13 @@
 # ADR A: Pillar means sphere
 
-**Status:** proposed 2026-09-11; accepted when this record merges to main
-after the cross-cutting review window (GOVERNANCE.md in the org `.github`
-repository). Organizational implementation is sequenced behind a gate
-stated below; nothing in this record starts that implementation.
-**Decision owner:** Paul Ramirez (steward, pro tem). Personal-hat work:
+**Status:** Accepted 2026-09-12 (merged to main); implemented 2026-09-12.
+Proposed 2026-09-11; accepted on merge to main after the cross-cutting
+review window (GOVERNANCE.md in the org `.github` repository).
+**Decision owner:** Paul Ramirez (interim steward). Personal-hat work:
 Open Science Pillars is a personal open-source project, not a JPL or
 PO.DAAC product.
-**Design document:** [design-sphere-alignment-multi-runtime.md](../design-sphere-alignment-multi-runtime.md).
+**Design document:** the design proposal that led to this record has
+been retired; this record is the decision.
 **Companion record:** [ADR B](adr-b-multi-runtime-capability-packaging.md),
 which shares the canonical metadata this record introduces.
 **Roadmap:** initiative `osp-architecture-alignment` in build-kit.
@@ -113,7 +113,7 @@ is a question about scientific community, not about layer.
    `agent-evals`, with its charter kept and the ECCO cases in a
    product subtree so later products' cases join under the same
    charter; `evals` stays the runner, graders and scoreboard. The
-   design document's `badges` rename and `evals/products/ecco/` move
+   design proposal's `badges` rename and `evals/products/ecco/` move
    are superseded by this.
 10. **Governance gains sphere teams, provider steward teams and runtime
     maintainer teams.** CODEOWNERS moves from individuals to teams. One

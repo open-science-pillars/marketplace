@@ -1,61 +1,41 @@
 # Known limitations
 
-An honest summary of what is verified where, and the caveats we ship with.
+What is verified where, as of 2026-09-13, and the caveats we ship with.
+The words used here are defined in
+[runtime-distribution.md](runtime-distribution.md).
 
-## Surface deltas
+## Verified where
 
-- **Code-verified vs conversational surfaces.** Every behavioral claim
-  is test-backed on Claude Code. Cowork and
-  Claude Science verification is in progress: the surface-parity
-  prompts (docs/prompts/) define the tests, and tutorial headers
-  record per-surface status. Until those columns fill, treat
-  Cowork/Science behavior as expected-but-unverified.
-- **Computation lives Code-side.** Downloads (the only step needing
-  an Earthdata Login) and heavy computation run where your Python
-  environment
-  is. On Cowork and Science the workflows exercise planning, gates,
-  discovery, and reporting; the gate presenting a download it cannot
-  perform is designed behavior.
-- **Connectors are per-session on Claude Science**, and plugin agents
-  travel with Code installs; Science parity for agents is unverified
-  (PROGRESS notes).
+- **Claude Code** is the development environment. Every release is
+  exercised on it, and core 0.5.1 carries a qualified record (all
+  eleven tests pass). Every behavioral claim in the tutorials and the
+  eval seed grades is Claude Code evidence.
+- **Claude Cowork** installs from this marketplace (verified 2026-07-04)
+  and is not yet qualified for any release. Cowork runs a plugin's
+  local MCP servers on your computer, as any program you run does, so
+  the observations connector needs `uv` reachable from the app; its
+  shell commands and code run in an isolated virtual machine that sees
+  only the folders you connect, so the golden scripts and the attested
+  computation may not run from the installed tree. Until a capability
+  exposes its computation through a connector, those tests are blocked
+  on Cowork and the honest outcome is a waiver.
+- **OpenAI Codex** is planned: the Agent Plugins package is rendered and
+  conformance-checked, and no release has been qualified on it.
 
-## Code-verified only, explicitly
+## Where computation runs
 
-- The ocean end-to-end (plan, gated load, MHT vs RAPID, gated report).
-- All four golden notebooks (they require the cached PO.DAAC subset).
-- The eval seed grades (model claude-fable-5, dates recorded in each
-  seed record: core's RESULTS-seed.md, the ocean seed entry under
-  ecco/results/ in agent-evals).
-- Tutorial timings (fresh-install measured on Code, 2026-07-05).
+Downloads (the only step needing an Earthdata Login) and heavy
+computation run where your Python environment is. On a runtime with no
+shell, the workflows exercise planning, gates, discovery and reporting;
+a gate presenting a download it cannot perform is designed behavior.
 
-## Honest findings we ship with
+## Not yet done
 
-- **One eval seed failure, kept on purpose:** on an uncoached
-  computation prompt, the headline number arrived without an
-  uncertainty statement (core RESULTS-seed.md). The house rule is
-  enforced in the report workflow and checked by analysis-review; the
-  ambient behavior is the first Phase-2 tuning target.
-- **Discovery names its source.** The hosted Earthdata MCP endpoint was
-  unreachable at build time and is reachable again as of 2026-08-31,
-  verified by listing its tools and running an unauthenticated probe.
-  Discovery uses it when available and the documented knowledge-based
-  fallback when not, naming which one it used either way.
-- **Ecosystem wrinkles** (also noted in the tutorials):
-  plugin updates are version-gated (same-version refreshes need
-  uninstall/reinstall); marketplace plugin sources must live at or
-  below the marketplace directory; `ecco_access` statics need
-  earthaccess; bare variable-name queries hang scripted use.
-- **The powered knowledge-bundle ablation is not complete.** The N=3 pilot was
-  underpowered and exposed a confound; the roadmap requires a pre-registered
-  amendment, calibrated non-obvious probes, and a published powered run before
-  the Phase-3 gate can clear.
-- **Codex distribution is proposed, not yet a supported plugin surface.** The
-  roadmap tracks native manifests, catalog packaging, and activation tests.
-  The roadmap maintenance harness itself supports both Claude Code and Codex.
-
-## Non-author validation
-
-Pending: at least one non-author scientist completing Tutorial 2
-unaided, friction notes to be recorded here verbatim. Until then,
-every timing and walkthrough claim carries author bias.
+- **Non-author validation.** At least one non-author scientist
+  completing Tutorial 2 unaided, friction notes recorded here verbatim.
+  Until then, every timing and walkthrough claim carries author bias.
+- **The powered knowledge-bundle ablation.** The pilot was underpowered
+  and exposed a confound; one eval seed failure (a headline number
+  without an uncertainty statement, on an uncoached prompt) is kept on
+  record. The pre-registered claims and their stop conditions are in
+  [phase2-preregistration.md](phase2-preregistration.md).

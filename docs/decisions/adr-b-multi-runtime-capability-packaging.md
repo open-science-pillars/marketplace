@@ -1,11 +1,13 @@
 # ADR B: Multi-runtime capability packaging
 
-**Status:** proposed 2026-09-11; accepted when this record merges to main
-after the cross-cutting review window (GOVERNANCE.md in the org `.github`
-repository). Runtime implementation begins after the canonical metadata
-milestone that [ADR A](adr-a-pillar-means-sphere.md) sequences.
-**Decision owner:** Paul Ramirez (steward, pro tem). Personal-hat work.
-**Design document:** [design-sphere-alignment-multi-runtime.md](../design-sphere-alignment-multi-runtime.md).
+**Status:** Accepted 2026-09-12 (merged to main); implemented 2026-09-12.
+Proposed 2026-09-11; accepted on merge to main after the cross-cutting
+review window (GOVERNANCE.md in the org `.github` repository). Runtime
+implementation follows the canonical metadata milestone that
+[ADR A](adr-a-pillar-means-sphere.md) sequences.
+**Decision owner:** Paul Ramirez (interim steward). Personal-hat work.
+**Design document:** the design proposal that led to this record has
+been retired; this record is the decision.
 **Roadmap:** initiative `osp-architecture-alignment` in build-kit; the
 runtime track is its R deliverables.
 

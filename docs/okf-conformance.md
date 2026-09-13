@@ -16,10 +16,7 @@ linter rules, and `tools/check_okf_v02.py` all reference the vendored copy,
 never upstream main. Upstream lives at
 `GoogleCloudPlatform/knowledge-catalog`, path `okf/SPEC.md`.
 
-Current target: **OKF v0.2**. The migration from v0.1 plus our SPEC v0.6
-trust extensions is recorded in the marketplace tracking issue labeled
-`okf-v0.2`; the v0.6-to-v0.2 status mapping lives in the specification's
-lifecycle and status section (docs/SPECIFICATION.md).
+Current target: **OKF v0.2**.
 
 ## OSP extension keys (and why they are extensions)
 
@@ -40,6 +37,8 @@ list for proposing upstream (the spec invites ecosystem conventions):
 | `superseded_by` | any deprecated concept | forward link to the replacement |
 | `disputed` | any concept | link to the open issue; skills state the dispute when citing |
 | `upstream` | plugin-local concepts | `pending` marks material not yet moved to its canonical bundle |
+| `spheres` | every scientific concept | the Earth science spheres the claim spans; required (the checker's E10) except on `requirement` and `connector` concepts; moves no authority |
+| `gcmd` | any concept | GCMD keywords for the claim, as a list of strings; optional |
 
 Rule of thumb for new keys: an extension must never change the meaning of a
 spec field, and anything a generic v0.2 consumer needs in order to trust or
@@ -49,15 +48,10 @@ date a concept belongs in the spec families (`sources`, `generated`,
 ## Watching the spec
 
 The watch is a diff between upstream and the vendored copy:
-
-```bash
-# tools/okf_spec_watch.sh <vendored-spec-path>
-curl -sfL https://raw.githubusercontent.com/GoogleCloudPlatform/knowledge-catalog/main/okf/SPEC.md \
-  -o /tmp/okf-upstream.md && diff -u "$1" /tmp/okf-upstream.md \
-  && echo "spec unchanged" || echo "SPEC CHANGED: open an adoption issue"
-```
-
-Run it weekly as a standing habit, or wire it as a scheduled GitHub Action
+`tools/okf_spec_watch.sh docs/upstream/<vendored-spec>.md` in this
+repository fetches upstream `okf/SPEC.md` and reports "spec unchanged"
+or "SPEC CHANGED: open an adoption issue". Run it weekly as a standing
+habit, or wire it as a scheduled GitHub Action
 that opens or updates an issue titled `OKF spec change detected: review for
 adoption` when the diff is nonzero. A spec change never modifies a bundle by
 itself.
@@ -70,14 +64,14 @@ itself.
 2. Decide adopt, defer, or reject per change, under lazy consensus with the
    bundle stewards. The spec's versioning rules shape the default: minor
    bumps are additive by definition and adoptable incrementally; a major
-   bump gets a migration window like the v0.2 one, declared in a tracking
-   issue with the checks-override protocol from that migration's runbook.
-3. Update the tooling first (`migrate_okf_v02.py` successor and
+   bump gets a migration window declared in a tracking issue, with
+   every check override naming the pull request that removes it.
+3. Update the tooling first (a migration script and the
    `check_okf_v02.py` rules tables), then migrate the canonical bundles and
-   release the provider plugin, then raise each domain plugin's dependency
+   release the provider plugin, then raise each domain capability's dependency
    floor to that release and migrate its local bundle (the last plugin
-   release closes the window), then update CONTRIBUTING, the authoring
-   guides, and SPECIFICATION.
+   release closes the window), then update CONTRIBUTING,
+   contributing-knowledge.md and SPECIFICATION.
 4. Vendor the new spec text, bump `okf_version` in bundle root indexes, and
    record the adoption in each bundle's `log.md`.
 

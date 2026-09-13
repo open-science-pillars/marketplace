@@ -1,35 +1,11 @@
 # Open Science Pillars: Specification
 
 **Organization:** Open Science Pillars (github.com/open-science-pillars)
-**Version:** 0.6.16 (negative knowledge is a candidate)
-**Date:** 2026-09-12
-**Scope:** Phase 1 (built; core + ocean-science + infrastructure + knowledge + verification + evals seed + stewardship) plus Phase 2 spec detail (hydrology bridge, §10)
+**Version:** 0.6.17 (documentation restructure; negative knowledge is a candidate)
+**Date:** 2026-09-13
+**Scope:** the foundation, ocean-science, the infrastructure, the knowledge, verification and evals layers and stewardship (built), plus the hydrology capability (§10)
 
-**Changelog:**
-- 0.6.16 (2026-09-12): the runtime renderer exists. build-kit's `osp.py render` writes the Claude package files and the Agent Plugins 1.0.0 package (`plugin.json`, `mcp.json` beside the canonical `skills/`) from `.osp/package.yaml`, which gains `metadata` (presentation), `reach` (the MCP servers declared once, in the portable form) and `extensions` (client namespaces, copied through); `render --check` fails a gate on a hand edit, `plugin-check` validates the portable package against the specification pinned at 1.0.0, and `lock` writes `.osp/release-lock.json`. The packaging matrix in 0.1 and the runtime distribution note record that the projection is rendered and conformance-checked while Codex remains unqualified. No installation or knowledge rule changes.
-- 0.6.15 (2026-09-12): the documentation milestone of the architecture alignment (ADR A and ADR B, docs/decisions). Section 0 opens with the organization and runtime model instead of three equal Claude surfaces: Pillar means sphere, a domain capability is a discipline inside a sphere, provider bundles are a separate authority axis, KNOW, ACT, PROVE and REACH are the canonical components, `.osp/` is the canonical metadata and every runtime manifest is a projection of it, and runtime support is stated in four distinct words (development environment, qualified runtime, package conformance, compatibility tested), with Claude Science a future runtime rather than a required surface. New subsections 0.6 to 0.8 carry the vocabulary, the metadata and the runtime tiers; the packaging matrix in 0.1 records the status per runtime; section 1.1 says where the measurement, applications and planetary rows go under the sphere taxonomy. No installation or knowledge rule changes.
-- 0.6.14 (2026-09-12): two repository rows follow the consolidation decided in ADR A (docs/decisions/adr-a-pillar-means-sphere.md). `ecco-agent-evals` is renamed `agent-evals`, the organization's one benchmark repository, its ECCO set under `ecco/` so a later product's cases join under the same charter (the old name redirects). `ecco-budget-badge` is retired and archived: its badge writer and adopter workflow moved beside the canonical attester in `nasa-daac-knowledge` (`tools/ecco_budget_badge.py`, `tools/templates/ecco-budget-badge-workflow.yml`), pinned by that repository's release tag. Section 8 Placement and the ocean-science tree note name the new home. No rule changes.
-- 0.6.13 (2026-09-05): two candidate concept types for negative knowledge, section 5.11 and two rows of the type table in 5.2. A `dead-end` records that a goal was attempted by a method and failed with a symptom for a cause, observed on dates by actors in cited sources, with the condition that would reopen it; a `field-state` records the positions a field holds on a question as of a date, without adjudicating. Attribution is the truth condition of both, neither is ever deleted (a dead-end is reopened, a field-state superseded), and both carry `load_bearing` on the gotcha severity rule, high requiring an eval case id. Checker support is `check_negative.py` in the nasa-daac-knowledge repository (its pull request #104), in that repository's check routine over both bundles, whose PO.DAAC index now carries `dead-ends` and `field-states` sections; tracked on marketplace issue #60. Candidate language; no normative rule changes.
-- 0.6.12 (2026-09-05): the citation rule of section 0.4 is now measured rather than swept: `tools/check_prose.py` in the nasa-daac-knowledge repository flags a specification rule cited by section number, program bookkeeping (kit, session or wave numbers) in anything a reader meets, and em or en dashes; it runs in that repository's routine and in every plugin gate. External standards cited by their own section numbers, this document, dated change logs and the vendored upstream text are not flagged. No rule changes.
-- 0.6.11 (2026-09-05): section 0.4 adds the citation rule for every document outside this one: name the rule, and where a pointer helps name this document; never cite a section number, which moves between revisions and cannot be resolved from inside an installed plugin or a repository README. The organization's guides, templates, workflow comments, agent and skill bodies, CODEOWNERS files and citation files were rewritten to it in the same change; this document's own cross-references, the vendored upstream OKF text, citations of external standards (CF, OKF v0.2) by their section numbers, and dated records are unchanged.
-- 0.6.10 (2026-09-05): two corrections to what a release and an update actually do. Zenodo archiving and the concept DOI move from every tagged release to each repository's 1.0.0 release (the calendar-versioned provider bundle deposits alongside the first dependent plugin's 1.0.0), tracked per repository on open-science-pillars/marketplace#55; until then a release is the version bump, the tag, the GitHub release and the catalog line, and every CITATION.cff says when its DOI arrives. And `claude plugin update <plugin>` moves only the plugin named: observed 2026-09-05 on the first floor move (ocean-science 0.8.2, floor >=2026.9.2), the update left nasa-daac-knowledge at 2026.9.1 and disabled ocean-science with `Requires nasa-daac-knowledge >=2026.9.2, installed 2026.9.1` until the bundle was updated by name; 2.3 and 5.7 drop the claim that an update carries dependencies along within their ranges, and a release that moves a floor says so in its notes.
-- 0.6.9 (2026-09-04): the ocean eval cases have one home. The `ecco-agent-evals` repository, already the declared authority for the cases derived from steward-signed ECCO knowledge, is now their only location: its case headers carry both `concept_basis` (the signed concepts a case is graded against, by bundle path) and `targets` (the plugin skills a case exercises), and ocean-science 0.7.1 deleted its `evals/` copy, keeping only the regression fixture for its own briefing under `verification/fixtures/`. Section 8 Placement now admits a declared eval repository as a plugin's case home (the plugin's README and bundle index say so; the knowledge-linter's coverage rule reads cases from there), and the eval authoring guide drops the port. Plugins that author cases for their own material (core, hydrology) keep `evals/` as before.
-- 0.6.8 (2026-09-04): the transitional pinned snapshot is gone. Every domain plugin now reaches provider knowledge only as the declared dependency (ocean-science 0.7.0 and hydrology 0.4.0 deleted their copies and `knowledge/snapshot.yaml`; `sync_check.py` retired with them), so section 5.7 loses its transitional paragraph and the pin rule, as that paragraph said it would, and the locality rule loses its snapshot clause. A plugin cites a provider concept by bundle path (`knowledge/podaac/<type>/<concept>.md`), which core's consult-knowledge convention resolves through the installer's record; a concept body that needs another bundle's concept names it the same way, in text, never by a relative link (§0.5).
-- 0.6.7 (2026-09-04): provider knowledge reaches a plugin as a declared dependency, not a copy. The provider repository `nasa-daac-knowledge` is a catalog plugin (its bundles and tools, no skills) with calendar versions; a domain plugin declares `dependencies` in plugin.json (core, and the provider bundle with a version floor), and the installer installs, enables and updates the declared plugins with it. Section 0.5 replaces "install core first" with the declaration; section 2.2 shows the catalog with every entry's `ref` pinned to a release tag; section 2.3 states the one-command install and the by-name update; section 5.7 is retitled "Precedence, canonical home, and distribution" and states the release rule (bump, `{plugin-name}--v{version}` tag on a commit that owes no signatures, catalog ref move), keeps the locality rule, and carries the pinned snapshot as a transitional form until each plugin's next release drops it (marketplace issue #45). Amended the same day after the first real update: section 2.3 records what an update does not do (install a first-time dependency, move a rangeless one).
-- 0.6.6 (2026-09-04): section 5.4 states the merge-then-sign rule: a steward's signature binds a concept's text as of the signing commit; an edit to signed text may merge before the re-sign, so that merges never wait on a signing calendar, and from that merge the concept owes a signature until a new `human:` event follows. The canonical repository's `tools/signature_check.py` measures the debt by the signing commit (not by dates), lists what is owed, and gates `run_checks.sh`; section 5.7's pin rule gains the same measure (`sync_check.py --refresh` refuses a commit at which the canonical bundle owes signatures, and the check reports PIN-OWED on a pin that does). The rule had been practised since 2026-09-02 and is now written (marketplace issue #41).
-- 0.6.5 (2026-09-04): section 5.7 specifies the snapshot manifest (`knowledge/snapshot.yaml`: source repository, bundle path at the pinned commit, commit, date, copy directory, include or exclude scope), the check and refresh commands the canonical repository provides, the pin rule (a refresh pins a commit at which the canonical bundle owes no signatures, normally the steward's signing commit), and the locality rule (a local concept is one under `knowledge/` and outside the manifest's scope; local provider material carries `upstream: pending`, local domain material needs no key). Section 5.2 gains the `computation` row and the ownership rule for reference numbers (the attested computation owns them; the recipe cites). Section 1.1 gains the `ecco-agent-evals` and `ecco-budget-badge` rows. The eval case schema is documented once in the eval authoring guide and each plugin's `evals/SCHEMA.md` points there (section 8). Build-program labels leave the current text of sections 8 and 10; this changelog stays as written (marketplace issue #41).
-- 0.6.4 (2026-09-03): the knowledge layer's remaining OKF v0.1 vocabulary is rewritten in the v0.2 form the bundles already carry (marketplace issue #6): section 5.1 names OKF v0.2, the `knowledge/` root, the root index `okf_version`, the `generated` event in place of `timestamp`, and `sources` cited by footnote in place of `evidence` links; sections 3.5, 5.2, 5.4, 5.5, 9 and 10.4 follow (approval adds the `verified` event; `status: stable` replaces `status: verified`). Section 5.6 stays CANDIDATE until v0.7 is cut but is now the vocabulary the rest of section 5 uses. Section 5.7 states that every repository keeping a bundle keeps it under `knowledge/`.
-- 0.6.3 (2026-08-30): section 1.1 gains the `archive-observatory` row (tracking issue #22): structural sweeper, pyQuARC harness with pinned-tag receipts, deterministic attester, scheduled aggregate sweeps under the publication policy (aggregate-public, provider-detail private, badges opt-in). Repo-table addition only, per the 0.6.1 build-kit precedent; freeze intact, no other change.
-- 0.6.2 (2026-07-06, development-model pass): the build record and development harness (IMPLEMENTATION-GUIDE, PROGRESS, PARKING, BUILD-HARNESS, README-START-HERE, and the knowledge-coupling migration record) relocated from `marketplace/docs` to the `build-kit` repo, co-locating them with the harness skills that read them; the §1.1 `build-kit` row and the §2.1 tree updated accordingly. `marketplace/docs` now holds only public-facing canonical docs, guides, and commitments. No Phase-1 scope change (freeze intact). Companion: `build-kit/docs/development-model.md` reframes future work as spec-anchored initiatives plus standing processes, retiring the single linear session sequence.
-- 0.6.1 (2026-07-05, documentation and continuity pass): added the `build-kit` repo to the §1.1 table (the development harness, so the session protocol is no longer a personal-workspace single point of failure). Non-spec companion work in the same pass (not changing this spec's requirements): build-era artifact references removed from public-facing content; a user glossary and a docs map added; the newcomer and contributor doc paths repaired; broken cross-repo evidence links in the canonical knowledge bundle fixed. Driven by a five-persona documentation review.
-- 0.6.0 (2026-07-05, written by the build per harness rule 11 after the post-Session-10 PARKING triage): §0.1/§2.3 Claude Science install corrected to observed marketplace-install behavior (PARKING #5); §0.3 description-budget verification instrument corrected from /doctor to the /skills panel (PARKING #7); §2.2 marketplace.json verbatim block replaced with the CLI-validated working schema (owner object, source objects; PARKING #6); §9 non-author acceptance criterion restored and launch success criteria referenced (PARKING #1, #3); new §10 Hydrology Plugin (Phase 2 spec detail) including the v0.6 ocean-bundle completion list scheduled into Session 18 (PARKING #8, #9, #11, #12, #13). Phase-2 go/stop pre-registration published separately (docs/phase2-preregistration.md, PARKING #2).
-- 0.5.1 erratum (same date, no version bump, freeze intact): PARKING.md added to the §2.1 docs listing for consistency with harness rule 11; title punctuation normalized. No scope change.
-- 0.5.1 (same date): security and launch hygiene: knowledge-is-declarative rule and linter imperative scan (§5.8); CI-without-secrets and fixture-license notes (§6); DCO sign-off and GitHub Discussions (§1.2); model-version recording in eval results; official-directory submission at launch.
-- 0.5.0 (same date): knowledge population and stewardship: four intake channels and the knowledge-seeder agent (§5.5); status lifecycle and mandatory evidence links (§5.6); steward playbook, CODEOWNERS, and review rules (§5.4); canonical-home plus pinned-snapshot precedence resolving the §0.5 self-containment contradiction with bundle promotion (§5.7); linter checks extended accordingly.
-- 0.4.0 (same date): evals layer added as new §8 (Acceptance renumbered to §9): per-plugin `evals/` case directories, case schema, grading and N-trial CI reporting, the bundle-ablation protocol, org `evals` repo (Phase 2 runner/graders/scoreboard), and the linter rule that a high-severity gotcha requires a matching eval case.
-- 0.3.1 (review pass, same date): golden-notebook scope rule (deterministic recipes only; core ships analysis_pipeline.py); duplicate ocean start skill removed (core's start covers listing); pointwise budget-closure testing valid on subsets; fixtures policy and CI workflow added; PROGRESS.md consolidated under marketplace/docs/; Zenodo release DOIs; environment fix (xesmf/esmpy via conda).
-- 0.3.0: merged the UQ/marimo/ARSET integration round: new uncertainty-quantification core skill; analysis-review UQ checks; cartography uncertainty visualization; required Uncertainty section on dataset concepts; expected-uncertainty in recipes; optional `trainings:` frontmatter; new §6 Verification Layer (marimo golden notebooks); ARSET-style applied tutorial template; report uncertainty rule.
-- 0.2.0: org renamed Open Science Pillars; commands eliminated (skills unification of 2026-01-24); §0 surface parity; §5 knowledge layer; SWOT added; plugin self-containment; ECCO velocity ShortName fix; description budget rule.
+**Changelog:** [SPECIFICATION-CHANGELOG.md](SPECIFICATION-CHANGELOG.md) (dated revisions, newest first).
 
 ---
 
@@ -42,9 +18,9 @@ One markdown source, packaged per runtime. A capability is authored once (its sk
 | Runtime | Packaging | Install | Invocation | Status (2026-09-12) |
 |---|---|---|---|---|
 | Claude Code | The Claude projection: plugin via marketplace | `claude plugin install <name>@open-science-pillars` | `/plugin-name:skill-name` or conversational | supported; the development environment |
-| Claude Cowork | Same plugin format | claude.com/plugins or an unlisted marketplace by GitHub repo | Conversational | tested (install verified 2026-07-04); per-release qualification pending the harness |
+| Claude Cowork | Same plugin format | A marketplace added by GitHub repository (Customize > Plugins > Add marketplace), then install | Conversational | tested (install verified 2026-07-04); qualification is decided per release, and no release has yet been qualified on it |
 | OpenAI Codex | The Agent Plugins 1.0 projection | Codex's plugin install of the portable package | Conversational | planned; the projection is rendered and conformance-checked in every package gate, and no release has been qualified on Codex |
-| Claude Science | Same plugin format via marketplace install (observed 2026-07-04; the workspace skill-import path exists but is not required); connectors per session | Marketplace add + install / connector config | Conversational | future runtime; excluded from the required matrix while in limited release |
+| Claude Science | Same plugin format | Not documented while a future runtime | Conversational | future runtime; excluded from the required matrix while in limited release |
 
 ### 0.2 Skill invocation rules
 
@@ -90,7 +66,7 @@ Plugins are cached and cannot reference files outside their own directory: no `.
 
 A Pillar is one of the five Earth science spheres of NASA's Earth System Science Research Program: Atmosphere, Biosphere, Cryosphere, Geosphere, Hydrosphere. The spheres are the primary scientific taxonomy: a **discipline** is a research area inside a sphere (Ocean Physics, Terrestrial Hydrology, Precipitation Science inside Hydrosphere), and a **domain capability** is the installable unit organized around a discipline (`ocean-science`, `hydrology`). In this document a "domain plugin" is a domain capability delivered as a Claude plugin; the capability is the logical unit, the plugin one of its projections. Provider knowledge is a separate authority axis: a **provider bundle** is keyed by the organization that signs its facts (PO.DAAC, ESDIS) and may serve several spheres; sphere classification answers who asks, provider stewardship answers who signs, and neither overrides the other. A **composite** is a capability whose evidence genuinely crosses spheres; it stays a scaffold until it has its own steward, joint knowledge and validation, and an interdisciplinary recipe whose governing evidence stays in one sphere (the basin water balance) is not a composite. A **planned** repository makes the intended shape visible and holds nothing installable: no skills, package or surfaces file, runtime manifest, catalog entry, release or CITATION.cff; creating one is administrative, promoting it out of planned is governed work. Every scientific concept names the spheres its claim spans in `spheres` (0.6 of the knowledge layer's checker, E10), outside the text a signature binds.
 
-The canonical components of a capability are the four planes the architecture document records: **KNOW** (concepts: claims with evidence, a signature and a staleness date), **ACT** (skills: portable procedures, one canonical `SKILL.md` per workflow), **PROVE** (golden notebooks and attesters: deterministic checks that emit receipts, no language model in the path) and **REACH** (connectors: controlled execution surfaces). Portable scientific behavior must have a skill representation; a runtime-specific agent may orchestrate skills and never holds the only implementation. Knowledge is approved once and reused by every runtime, never copied into runtime-specific content or into a skill to solve packaging.
+The canonical components of a capability are the four planes the model document (docs/MODEL.md) records: **KNOW** (concepts: claims with evidence, a signature and a staleness date), **ACT** (skills: portable procedures, one canonical `SKILL.md` per workflow), **PROVE** (golden notebooks and attesters: deterministic checks that emit receipts, no language model in the path) and **REACH** (connectors: controlled execution surfaces). Portable scientific behavior must have a skill representation; a runtime-specific agent may orchestrate skills and never holds the only implementation. Knowledge is approved once and reused by every runtime, never copied into runtime-specific content or into a skill to solve packaging.
 
 ### 0.7 Canonical metadata and projections
 
@@ -98,7 +74,7 @@ Every non-archived repository carries `.osp/repository.yaml` (kind, status, sphe
 
 ### 0.8 Runtimes: four words, four claims
 
-Claude Code is both the primary development environment and a supported runtime. The required end-user qualification targets are Claude Cowork and OpenAI Codex (Tier 1): a runtime is advertised as supported for a release only when it passes install, skill discovery and invocation, knowledge and dependency resolution, connector invocation where applicable, golden computation, deterministic PROVE, receipt generation, side-effect confirmation and release-lock match. Agent Plugins 1.0 package conformance is a gate on the portable package, not proof of any client's behavior. Gemini CLI and Goose are compatibility tested (Tier 2): probed and reported, never release-blocking. Cursor, GitHub Copilot and VS Code, Kiro and other conforming clients consume the portable package with no dedicated adapter. Claude Science is a future Claude runtime, added when broadly available. No runtime support claim without qualification evidence; a release stays valid when a runtime fails and that runtime is not advertised. Install flow, UI, connector authentication, approval dialogs, subagent implementation and presentation may differ per runtime; scientific facts, attribution, methodology, uncertainty rules, deterministic checks, dependency versions and safety requirements may not (docs/runtime-distribution.md).
+Claude Code is both the primary development environment and a supported runtime. The required runtimes, the end-user qualification targets, are Claude Cowork and OpenAI Codex: a runtime is advertised as supported for a release only when it passes install, skill discovery and invocation, knowledge and dependency resolution, connector invocation where applicable, golden computation, deterministic PROVE, receipt generation, side-effect confirmation and release-lock match. Agent Plugins 1.0 package conformance is a gate on the portable package, not proof of any client's behavior. Gemini CLI and Goose are compatibility targets: probed and reported, never release-blocking. Cursor, GitHub Copilot and VS Code, Kiro and other conforming clients consume the portable package with no dedicated adapter. Claude Science is a future Claude runtime, added when broadly available. No runtime support claim without qualification evidence; a release stays valid when a runtime fails and that runtime is not advertised. Install flow, UI, connector authentication, approval dialogs, subagent implementation and presentation may differ per runtime; scientific facts, attribution, methodology, uncertainty rules, deterministic checks, dependency versions and safety requirements may not (docs/runtime-distribution.md).
 
 ---
 
@@ -108,30 +84,30 @@ Claude Code is both the primary development environment and a supported runtime.
 
 **Org:** `open-science-pillars`
 
-| Repository | Purpose | Phase |
-|---|---|---|
-| `marketplace` | Plugin catalog, governance, canonical docs (spec, architecture, guides) | 1 |
-| `core` | Foundation plugin | 1 |
-| `ocean-science` | Ocean domain plugin (ECCO + SWOT SSH; the PO.DAAC arc) | 1 |
-| `tutorials` | Quarto tutorials, templates, demos | 1 |
-| `plugin-template` | Scaffold for new domain plugins | 1 |
-| `knowledge-template` | Scaffold for new OKF knowledge bundles | 1 |
-| `.github` | Org profile, issue templates, CoC, governance | 1 |
-| `build-kit` | Development harness: session/initiative skills, workspace-law template, bootstrap, DEVELOPING guide, workflows, and the build record (IMPLEMENTATION-GUIDE, PROGRESS, PARKING, BUILD-HARNESS) | 1 (infra) |
-| `hydrology` | SWOT rivers/lakes, GRACE-FO, NWIS, SMAP | 2 |
-| `nasa-daac-knowledge` | Per-DAAC provider bundles (podaac, esdis) and the bundle tools, shipped as one catalog plugin the domain plugins declare as a dependency (§5.7) | 2 |
-| `archive-observatory` | Cross-archive metadata compliance observatory: sweeper, pinned pyQuARC harness, attester, scheduled aggregate sweeps; publication policy binding (aggregate-public, detail-private, badges opt-in); credential-free by CI-enforced invariant | 2 |
-| `earthaccess-mcp` | SUPERSEDED: the planned wrapper is replaced by the upstream official server [nasa/earthdata-mcp](https://github.com/nasa/earthdata-mcp), already registered in ocean-science `.mcp.json`; its facts live in the podaac bundle as a connector concept (§5.9 candidate) | 2 |
-| `evals` | Eval runner, shared graders, suite manifests, published scoreboard | 2 |
-| `agent-evals` | The one benchmark repository: public, versioned eval cases with transparent scoring and self-reported results, each product's set under its own directory and every set under one charter; the ECCO set (`ecco/`) is the one home of the ocean cases (ocean-science carries no copy). Renamed from `ecco-agent-evals` 2026-09-12 | 2 |
-| `ecco-budget-badge` | RETIRED 2026-09-12 (archived): the badge writer and adopter workflow moved beside the canonical attester in `nasa-daac-knowledge/tools`, pinned by that repository's release tag; a repository adopts the workflow rather than a copy of the attester | 2 |
-| `remote-sensing`, `models-and-reanalysis` | Measurement-layer capabilities: the architecture document's Phase-3 hypothesis. Under the sphere taxonomy (0.6) a measurement capability is foundation-kind, serving every sphere like core, not a sphere's discipline; the rows are not in the 24-repository target map and no planned repository is created for them until the Phase-3 gate decides | 3 |
-| `applied-science` | Applications layer (ARSET-anchored packs): the same reading as the measurement rows, foundation-kind if built, outside the target map until the Phase-3 gate | 3 |
-| `planetary-science`, `pds-knowledge` | DEFERRED: planetary science has no Earth sphere; pushed off and possibly to another organization, held on open-science-pillars/marketplace#80 | 4 |
+| Repository | Purpose |
+|---|---|
+| `marketplace` | Plugin catalog, governance, canonical docs (the specification, the model, the guides) |
+| `core` | Foundation plugin |
+| `ocean-science` | Ocean domain plugin (ECCO + SWOT SSH; the PO.DAAC arc) |
+| `tutorials` | Quarto tutorials, templates, demos |
+| `plugin-template` | Scaffold for new domain plugins |
+| `knowledge-template` | Scaffold for new OKF knowledge bundles |
+| `.github` | Org profile, issue templates, CoC, governance |
+| `build-kit` | Development harness: the metadata tooling (`osp.py`, `qualify.py`, `release.py`), the roadmap, the workflows, the DEVELOPING guide and the build record |
+| `hydrology` | SWOT rivers/lakes, GRACE-FO, NWIS, SMAP |
+| `nasa-daac-knowledge` | Per-DAAC provider bundles (podaac, esdis) and the bundle tools, shipped as one catalog plugin the domain plugins declare as a dependency (§5.7) |
+| `archive-observatory` | Cross-archive metadata compliance observatory: sweeper, pinned pyQuARC harness, attester, scheduled aggregate sweeps; publication policy binding (aggregate-public, detail-private, badges opt-in); credential-free by CI-enforced invariant |
+| `earthaccess-mcp` | SUPERSEDED: the planned wrapper is replaced by the upstream official server [nasa/earthdata-mcp](https://github.com/nasa/earthdata-mcp), already registered in ocean-science `.mcp.json`; its facts live in the podaac bundle as a connector concept (§5.9 candidate) |
+| `evals` | Eval runner, shared graders, suite manifests, published scoreboard |
+| `agent-evals` | The one benchmark repository: public, versioned eval cases with transparent scoring and self-reported results, each product's set under its own directory and every set under one charter; the ECCO set (`ecco/`) is the one home of the ocean cases (ocean-science carries no copy). Renamed from `ecco-agent-evals` 2026-09-12 |
+| `ecco-budget-badge` | RETIRED 2026-09-12 (archived): the badge writer and adopter workflow moved beside the canonical attester in `nasa-daac-knowledge/tools`, pinned by that repository's release tag; a repository adopts the workflow rather than a copy of the attester |
+| `remote-sensing`, `models-and-reanalysis` | Measurement-layer capabilities: the untested hypothesis that measurement is a horizontal every domain consumes (docs/MODEL.md). Under the sphere taxonomy (0.6) a measurement capability is foundation-kind, serving every sphere like core, not a sphere's discipline; the rows are not in the 24-repository target map and no planned repository is created for them until the gate the pre-registration sets decides |
+| `applied-science` | Applications layer (ARSET-anchored packs): the same reading as the measurement rows, foundation-kind if built, outside the target map until the same gate |
+| `planetary-science`, `pds-knowledge` | DEFERRED: planetary science has no Earth sphere; pushed off and possibly to another organization, held on open-science-pillars/marketplace#80 |
 
 ### 1.2 `.github` repo
 
-Profile README, five issue templates (bug, feature, new skill, new domain plugin, new knowledge concept), PR template, Contributor Covenant v2.1, SECURITY.md, FUNDING.yml, and GOVERNANCE.md (lazy consensus; one domain-maintainer review per PR, two for cross-cutting changes; knowledge bundles may be maintained by data-provider staff as domain maintainers for their bundle; high-severity gotchas require a second reviewer). PRs use DCO sign-off; GitHub Discussions is enabled on the marketplace repo as the user Q&A channel.
+Profile README, five issue templates (bug, feature, new skill, new domain capability, new knowledge concept), PR template, Contributor Covenant v2.1, SECURITY.md, FUNDING.yml, and GOVERNANCE.md (lazy consensus; one domain-maintainer review per PR, two for cross-cutting changes; knowledge bundles may be maintained by data-provider staff as domain maintainers for their bundle; high-severity gotchas require a second reviewer). PRs use DCO sign-off; GitHub Discussions is enabled on the marketplace repo as the user Q&A channel.
 
 ---
 
@@ -141,69 +117,39 @@ Profile README, five issue templates (bug, feature, new skill, new domain plugin
 
 ```
 marketplace/
-├── .claude-plugin/marketplace.json
-├── README.md
+├── .claude-plugin/marketplace.json  # the catalog
+├── README.md                        # the catalog page: install, what's available, runtimes
 ├── CONTRIBUTING.md
-├── LICENSE                      # Apache 2.0
+├── GLOSSARY.md                      # the vocabulary; every other document defers to it
+├── LICENSE                          # Apache 2.0
 ├── CITATION.cff
+├── tools/                           # derive_credit.py, okf_spec_watch.sh
 └── docs/
-    ├── ARCHITECTURE.md              # canonical strategy doc
+    ├── README.md                    # the documentation map, by audience
+    ├── MODEL.md                     # the current model on one page
     ├── SPECIFICATION.md             # this document
-    ├── design-knowledge-coupling.md # ADOPTED coupling design (feeds §5)
-    ├── phase2-preregistration.md    # pre-registered go/stop conditions (public)
-    ├── skill-authoring-guide.md     # frontmatter standard + budget rule
-    ├── agent-authoring-guide.md
-    ├── knowledge-authoring-guide.md # OKF concepts incl. Uncertainty sections, trainings links
-    ├── eval-authoring-guide.md      # case schema, graders, trials and CI reporting (§8)
+    ├── SPECIFICATION-CHANGELOG.md   # its dated revisions
+    ├── decisions/                   # ADR A (Pillar means sphere), ADR B (multi-runtime packaging)
+    ├── phase2-preregistration.md    # pre-registered success and stop conditions (kept verbatim)
+    ├── third-party-findings.md      # publication policy for findings about third parties' records
+    ├── known-limitations.md         # what is verified where
+    ├── runtime-distribution.md      # what each runtime word asserts; status per runtime
+    ├── contributing-a-skill.md      # a skill, from issue to merged pull request
+    ├── contributing-knowledge.md    # a concept, type by type (§5)
+    ├── knowledge-vs-skills.md       # the layer decision
+    ├── testing.md                   # goldens, evals, runtime qualification (§6, §8)
+    ├── package-authoring-guide.md   # the .osp/ files by example (0.7)
     ├── steward-playbook.md          # steward duties, review checklist, onboarding (§5.4)
-    ├── verification-guide.md        # golden-notebook practice (§6)
-    ├── connector-guide.md
-    ├── surface-testing-guide.md     # three-surface harness + prompts/
-    └── testing-guide.md
-# The build record (IMPLEMENTATION-GUIDE, PROGRESS, PARKING, BUILD-HARNESS)
-# now lives in the build-kit repo, not here.
+    ├── okf-conformance.md           # the OKF version targeted and the extension keys
+    ├── release-candidate-guide.md   # cutting a release with build-kit's release tool
+    ├── release-qualification-guide.md  # taking a candidate through its runtimes
+    ├── prompts/                     # the verbatim prompt sets
+    └── upstream/                    # the vendored OKF specification text
 ```
 
 ### 2.2 marketplace.json
 
-```json
-{
-  "name": "open-science-pillars",
-  "version": "0.4.0",
-  "description": "AI-assisted open science for earth, planetary, and applied science: skills, knowledge bundles, verification notebooks, and connectors for Claude Code, Cowork, and Claude Science.",
-  "owner": { "name": "Open Science Pillars Community" },
-  "author": { "name": "Open Science Pillars Community" },
-  "homepage": "https://github.com/open-science-pillars",
-  "plugins": [
-    {
-      "name": "core",
-      "description": "Foundation: earth science data formats, statistics, uncertainty quantification, cartography, quality control, reproducibility, analysis review.",
-      "source": { "source": "github", "repo": "open-science-pillars/core", "ref": "core--v0.4.1" },
-      "tags": ["netcdf", "xarray", "cartopy", "geotiff", "zarr", "climate", "geospatial", "qc", "uncertainty", "reproducibility"]
-    },
-    {
-      "name": "ocean-science",
-      "description": "Physical oceanography: ECCO state estimate, SWOT SSH, meridional transport, budget closure, water masses.",
-      "source": { "source": "github", "repo": "open-science-pillars/ocean-science", "ref": "ocean-science--v0.8.2" },
-      "tags": ["oceanography", "ecco", "swot", "podaac", "amoc", "heat-transport", "sea-level"]
-    },
-    {
-      "name": "hydrology",
-      "description": "Hydrology: SWOT river and lake products, GRACE-FO groundwater, USGS NWIS streamflow, SMAP soil moisture.",
-      "source": { "source": "github", "repo": "open-science-pillars/hydrology", "ref": "hydrology--v0.4.0" },
-      "tags": ["hydrology", "swot", "rivers", "lakes", "nwis", "streamflow", "grace", "groundwater", "smap", "soil-moisture"]
-    },
-    {
-      "name": "nasa-daac-knowledge",
-      "description": "Provider knowledge bundles from NASA DAACs: PO.DAAC (ECCO, SWOT, GRACE-FO, MUR, NASA-SSH, RAPID) and the ESDIS metadata requirements. Facts about data, signed by their stewards; no skills. Installed automatically as a dependency of the domain plugins.",
-      "source": { "source": "github", "repo": "open-science-pillars/nasa-daac-knowledge", "ref": "nasa-daac-knowledge--v2026.9.2" },
-      "tags": ["knowledge", "okf", "podaac", "esdis", "ecco", "swot", "grace", "mur", "nasa-ssh", "metadata"]
-    }
-  ]
-}
-```
-
-Every entry's `source.ref` names a release tag (§5.7), so an install resolves a release and never a moving branch; a release moves its entry's `ref` in a one-line catalog change. The `dependencies` field lives in each plugin's own plugin.json, where the plugin author owns it, not in the catalog. The catalog's refs shown here are the ones the entries carry once each plugin's first release under this rule is tagged; until then an entry names the latest existing tag. (v0.6 note: the `owner` object is required by the CLI's marketplace schema, and plugin entries use the `source` object form; a bare `repository: "owner/repo"` string is not an installable source type. Both were discovered during install testing.)
+The catalog is `.claude-plugin/marketplace.json` in this repository: it names each plugin's current release and no snapshot of it is kept here. Every entry's `source.ref` names a release tag (§5.7), so an install resolves a release and never a moving branch; a release moves its entry's `ref` in a one-line catalog change. The `dependencies` field lives in each plugin's own plugin.json, where the plugin author owns it, not in the catalog. The `owner` object is required by the CLI's marketplace schema, and plugin entries use the `source` object form; a bare `repository: "owner/repo"` string is not an installable source type.
 
 ### 2.3 Install and update experience
 
@@ -214,7 +160,7 @@ claude plugin install ocean-science@open-science-pillars
 
 One install brings the plugin's declared dependencies with it (core and the provider bundle, §0.5). An install keeps the release it was installed from: it moves when the user updates the plugin by name (`claude plugin update ocean-science@open-science-pillars`) or enables auto-update for the marketplace in `/plugin`. An update moves only the plugin named, observed on the first update after the dependencies were declared (2026-09-04) and again on the first floor move (2026-09-05): it does not install a dependency the new release declares for the first time (the plugin is then disabled with an error naming the `claude plugin install` command to run, and `/reload-plugins` in a session installs it), and it does not move an installed dependency, with or without a range (ocean-science 0.8.2 raised its floor to >=2026.9.2 and the update left the bundle at 2026.9.1, disabling the plugin with `Requires nasa-daac-knowledge >=2026.9.2, installed 2026.9.1` until `claude plugin update nasa-daac-knowledge@open-science-pillars` ran). A release that adds a dependency or moves a floor says so in its notes, naming the update command. `claude plugin list --json` reports each installed plugin's version and any dependency error, and is the check that a machine has what the repositories say it has.
 
-Cowork: claude.com/plugins, or an unlisted marketplace by GitHub repo. Claude Science: add the marketplace and install, same as Cowork (observed 2026-07-04); connectors per session (surface-testing-guide.md documents the tested paths). What each runtime's status means is stated in 0.8; the install boundary is the domain capability, whose declared dependencies come with it.
+Cowork: add the marketplace by GitHub repository (`open-science-pillars/marketplace`, from Customize > Plugins > Add marketplace) and install the capability from it; the same plugin, with its declared dependencies. A plugin's local MCP servers run on the user's computer with the permissions of any program they run, so a stdio server launched with `uv` needs `uv` reachable from the app; shell commands and code Cowork writes run in an isolated virtual machine on the user's computer that sees only the folders they connect. Claude Science is a future runtime (0.8) and no install path is documented for it. What each runtime's status means is stated in 0.8; the install boundary is the domain capability, whose declared dependencies come with it.
 
 **Releases:** a release is the version bump, the tag, the GitHub release with derived credit, and the catalog line (§5.7). Plugin release tags take the `{plugin-name}--v{version}` form; the marketplace repository keeps bare `vX.Y.Z` tags. Zenodo archiving and the concept DOI begin at each repository's 1.0.0 release, when CITATION.cff gains the DOI and the steward and provider authors (steward-playbook, Credit), so contributions are citable in the literature from the first release worth citing; the calendar-versioned provider bundle deposits alongside the first dependent plugin's 1.0.0, because a citable plugin needs a citable bundle. Each releasing repository carries a tracking issue for its deposit, indexed on open-science-pillars/marketplace#55; until then every CITATION.cff says when its DOI arrives.
 
@@ -736,11 +682,11 @@ A skill about to attempt a method consults the dead-ends whose `subject` names t
 
 ## 6. Verification Layer (Golden Notebooks)
 
-**Purpose:** executable regression tests for the computational recipes that workflow skills encode. They test the code paths and expected results, not LLM behavior (the three-surface harness tests behavior); together they are the safety net that lets build sessions run with a longer leash. **Scope rule:** golden notebooks cover workflow skills that encode a deterministic computational recipe (loaders, analyses, budgets, transport, and the report pipeline); pure-orchestration skills (start, discover-data) are exercised by the three-surface harness instead.
+**Purpose:** executable regression tests for the computational recipes that workflow skills encode. They test the code paths and expected results, not LLM behavior (runtime qualification and the evals test behavior); together they are the safety net. **Scope rule:** golden notebooks cover workflow skills that encode a deterministic computational recipe (loaders, analyses, budgets, transport, and the report pipeline); pure-orchestration skills (start, discover-data) are exercised by the conversational tests of runtime qualification (0.8) instead.
 
 **Form:** marimo notebooks (pure Python, dataflow-deterministic, no hidden state) at `<plugin>/verification/<workflow_skill>.py`, one per workflow skill. Each: runs the skill's canonical computation against small fixed inputs (vendored under `verification/fixtures/` or synthesized in-notebook); asserts expected outputs including expected-uncertainty ranges where the matching recipe concept defines them; declares dependencies inline (marimo sandbox serialization) so `uv run verification/x.py` or plain `python verification/x.py` executes headless with a nonzero exit on assertion failure.
 
-**Gates:** a workflow skill is not done until its golden notebook is green headless. CI runs all golden notebooks per plugin on PRs; the build harness runs the touched ones at session close.
+**Gates:** a workflow skill is not done until its golden notebook is green headless. CI runs all golden notebooks per plugin on PRs.
 
 ```yaml
 # .github/workflows/goldens.yml (per plugin)
@@ -764,13 +710,13 @@ jobs:
 
 ## 7. Tutorials
 
-As previously specified, plus: authored in Quarto rendering to the tutorials site; each tutorial header records surfaces verified (target all three, minimum Code plus one conversational); Tutorial 2 includes the SWOT section; `tutorials/templates/arset-style.md` provides the applied-tutorial template (objectives, intended audience, prerequisites linking ARSET Fundamentals where apt, 2-4 part session structure with per-part materials, a hands-on exercise, a completion checklist); Persona-6 tutorials use it. ARSET materials are linked with credit, never vendored; ARSET exercise code informs recipes and golden notebooks as an attributed source.
+As previously specified, plus: authored in Quarto rendering to the tutorials site; each tutorial header records the runtimes verified (Claude Code at minimum, plus one conversational runtime); Tutorial 2 includes the SWOT section; `tutorials/templates/arset-style.md` provides the applied-tutorial template (objectives, intended audience, prerequisites linking ARSET Fundamentals where apt, 2-4 part session structure with per-part materials, a hands-on exercise, a completion checklist); Persona-6 tutorials use it. ARSET materials are linked with credit, never vendored; ARSET exercise code informs recipes and golden notebooks as an attributed source.
 
 ---
 
 ## 8. Evals Layer
 
-**Purpose:** the third leg of testing. Golden notebooks (§6) verify code; the surface harness verifies packaging; evals verify **agent scientific judgment**: with the plugin and knowledge installed, does Claude apply area weighting, refuse budgets on regridded data, surface the SWOT cal/val gotcha, and report uncertainty? Evals are a quality and regression instrument for this system (skill edits, knowledge updates, model versions), not a model leaderboard: community benchmarks such as CBGB and TerraBench evaluate models on generic geospatial tasks, while these cases are derived from our own knowledge bundles and rules, which no external benchmark can cover.
+**Purpose:** the third leg of testing. Golden notebooks (§6) verify code; runtime qualification (0.8) verifies packaging; evals verify **agent scientific judgment**: with the plugin and knowledge installed, does Claude apply area weighting, refuse budgets on regridded data, surface the SWOT cal/val gotcha, and report uncertainty? Evals are a quality and regression instrument for this system (skill edits, knowledge updates, model versions), not a model leaderboard: community benchmarks such as CBGB and TerraBench evaluate models on generic geospatial tasks, while these cases are derived from our own knowledge bundles and rules, which no external benchmark can cover.
 
 **Case types:** gotcha-avoidance (one per high-severity gotcha, mandatory); rejection (the 🔴 rules and gates: native-grid refusal, volume gate); methodology (area weighting, trend-method choice, uncertainty statement present); recipe-fidelity (end-to-end result inside the recipe's expected range and spread).
 
@@ -788,41 +734,41 @@ fixtures: [verification/fixtures/ecco_05deg_stub.nc]
 graders:
   - programmatic: transcript_refuses_and_offers_native_grid
   - rubric: refusal-quality.md        # rubric-eval judge
-trials: 5                             # 20 under the Phase-2 runner
+trials: 5                             # 20 under the shared runner
 pass_threshold: 0.8
 ```
 
 **Grading:** programmatic checks on transcripts, produced code, and outputs wherever possible; rubric-based LLM judging (a port of the rubric-eval plugin) where judgment is required; periodic human calibration of the judge. **Stochasticity:** each case runs N trials and reports a pass rate with a binomial confidence interval; we apply our own uncertainty-reporting rule to ourselves.
 
-**Placement:** a plugin's cases have one home. By default that is the plugin's own `evals/` beside `verification/`, versioned with the skills and knowledge they test. A plugin may instead declare an eval repository as the home of its cases, as ocean-science does with `agent-evals` (its ECCO set, `ecco/cases/`): the plugin then carries no copy, its README and its bundle index name the repository, each case there names the plugin skills it exercises in `targets`, and a release of the plugin is run against the tagged case set; the knowledge-linter's coverage rule (a high-severity gotcha needs a matching case) reads the cases from the declared home. The runner, shared graders, suite manifests, and the published scoreboard (versioned JSON plus a static page, scored by model and plugin version) live in the org `evals` repo (Phase 2).
+**Placement:** a plugin's cases have one home. By default that is the plugin's own `evals/` beside `verification/`, versioned with the skills and knowledge they test. A plugin may instead declare an eval repository as the home of its cases, as ocean-science does with `agent-evals` (its ECCO set, `ecco/cases/`): the plugin then carries no copy, its README and its bundle index name the repository, each case there names the plugin skills it exercises in `targets`, and a release of the plugin is run against the tagged case set; the knowledge-linter's coverage rule (a high-severity gotcha needs a matching case) reads the cases from the declared home. The runner, shared graders, suite manifests, and the published scoreboard (versioned JSON plus a static page, scored by model and plugin version) live in the org `evals` repo.
 
 **The ablation protocol (the headline experiment):** run the gotcha-avoidance suite with the knowledge bundle installed and with it removed, same model, same N; report the trap-hit-rate delta with intervals. This is the quantitative evidence for the knowledge-layer thesis, produced before outreach so the announcement carries numbers.
 
-**Phase 1 vs Phase 2:** Phase 1 seeds the schema and eight cases (five ocean, three core) and records one manually graded trial per case in each plugin's `evals/RESULTS-seed.md`; Phase 2 delivers the runner, N-trial statistics, per-PR CI alongside the goldens, and the ablation.
+**Seed and runner:** the seed is the schema and eight cases (five ocean, three core) with one manually graded trial per case recorded in each plugin's `evals/RESULTS-seed.md`; the shared runner delivers N-trial statistics, per-PR CI alongside the goldens, and the ablation.
 
 ---
 
 ## 9. Acceptance Criteria
 
-Per-surface recording (Cd/Cw/Sc) for behavioral items in build-kit/PROGRESS.md.
+Per-runtime evidence for behavioral items is the qualification record under each capability's `.osp/qualification/` (0.8).
 
-**Infrastructure:** org and all Phase-1 repos live with LICENSE/README/CITATION.cff; marketplace add and both installs work; zero `commands/` directories anywhere.
+**Infrastructure:** org and every built repository live with LICENSE/README/CITATION.cff; marketplace add and both installs work; zero `commands/` directories anywhere.
 
-**Core:** 11 skills with conformant frontmatter, all descriptions ≤200 chars, `/doctor` clean; knowledge skills auto-load, the three user-invocable exceptions appear in the menu; start/discover-data/report pass slash (Code) and conversational (all three); report gate fires and Provenance cites concepts; report Results carry uncertainty statements or waivers; discover-data surfaces gotchas; knowledge-linter lints correctly and proposes-only; the core golden notebook (analysis_pipeline) passes headless; v0.1 behavioral criteria retained (area weighting, stated baselines, Mann-Kendall default, projection/colormap rules, six QC checks, CF metadata and DOI citations on outputs).
+**Core:** 11 skills with conformant frontmatter, all descriptions ≤200 chars, none truncated in the `/skills` panel (0.3); knowledge skills auto-load, the three user-invocable exceptions appear in the menu; start/discover-data/report pass slash (Claude Code) and conversational (every required runtime); report gate fires and Provenance cites concepts; report Results carry uncertainty statements or waivers; discover-data surfaces gotchas; knowledge-linter lints correctly and proposes-only; the core golden notebook (analysis_pipeline) passes headless; v0.1 behavioral criteria retained (area weighting, stated baselines, Mann-Kendall default, projection/colormap rules, six QC checks, CF metadata and DOI citations on outputs).
 
-**Ocean:** ECCO grid auto-merge; native-grid refusal 🔴 intact; MHT at 26.5N within the recipe concept's expected range and spread; global heat budget residual at machine precision; geothermal omission caught via the gotcha; ShortNames verified (OCEAN_VEL); SWOT regional load with flag decoding and orbit-phase context, cal/val gotcha surfaced when the range spans it; volume gates fire on multi-GB requests; ecco-scout cites concepts; podaac-arc bundle lint-clean with Uncertainty sections on all four datasets and every gotcha linked; all four ocean golden notebooks green headless; end-to-end on each surface (question → scout → load → MHT → RAPID → report).
+**Ocean:** ECCO grid auto-merge; native-grid refusal 🔴 intact; MHT at 26.5N within the recipe concept's expected range and spread; global heat budget residual at machine precision; geothermal omission caught via the gotcha; ShortNames verified (OCEAN_VEL); SWOT regional load with flag decoding and orbit-phase context, cal/val gotcha surfaced when the range spans it; volume gates fire on multi-GB requests; ecco-scout cites concepts; podaac-arc bundle lint-clean with Uncertainty sections on all four datasets and every gotcha linked; all four ocean golden notebooks green headless; end-to-end on each required runtime (question → scout → load → MHT → RAPID → report).
 
-**Tutorials:** three tutorials complete in stated times on fresh installs with surfaces recorded; arset-style template exists and Tutorial 3 uses it for its applied variant; at least one live-ingested concept appears in a bundle log.md; WASM demo runs in a browser with no install.
+**Tutorials:** three tutorials complete in stated times on fresh installs with runtimes recorded; arset-style template exists and Tutorial 3 uses it for its applied variant; at least one live-ingested concept appears in a bundle log.md; WASM demo runs in a browser with no install.
 
 **Evals (seed):** SCHEMA.md exists; core ships its 3 methodology cases and ocean its 5 cases covering every 🔴 rule and each high-severity gotcha; knowledge-linter flags a high-severity gotcha lacking a case; a manual grading pass (one trial per case, rubric-scored) is recorded in each plugin's evals/RESULTS-seed.md.
 
-**Knowledge population and stewardship:** knowledge-seeder drafts a dataset-plus-gotchas set from supplied seed URLs with per-claim cited sources and `status: draft`, and refuses to merge; every Phase-1 gotcha carries at least one resolving source and `status: stable` with a `verified` event; steward-playbook.md and CODEOWNERS exist; the ocean bundle's index.md carries the snapshot source-metadata fields (placeholders until the snapshot pass); the linter flags a gotcha lacking sources and an `upstream: pending` concept older than 60 days; the imperative-phrasing scan runs clean on all Phase-1 concepts.
+**Knowledge population and stewardship:** knowledge-seeder drafts a dataset-plus-gotchas set from supplied seed URLs with per-claim cited sources and `status: draft`, and refuses to merge; every gotcha carries at least one resolving source and `status: stable` with a `verified` event; steward-playbook.md and CODEOWNERS exist; the ocean bundle's index.md carries the snapshot source-metadata fields (placeholders until the snapshot pass); the linter flags a gotcha lacking sources and an `upstream: pending` concept older than 60 days; the imperative-phrasing scan runs clean on every concept.
 
-**External validation (restored in v0.6 per PARKING #3):** at least one non-author scientist completes the end-to-end workflow (Tutorial 2) unaided, with friction notes captured in known-limitations.md. The launch announcement states its success criteria before posting (PARKING #1; the criteria live in docs/announcement-draft.md and the Phase-2 pre-registration).
+**External validation:** at least one non-author scientist completes the end-to-end workflow (Tutorial 2) unaided, with friction notes captured in known-limitations.md. The success and stop conditions of the launch are pre-registered in docs/phase2-preregistration.md.
 
 ---
 
-## 10. Hydrology Plugin (Phase 2)
+## 10. Hydrology Plugin
 
 Spec detail added at v0.6. The bridge thesis: SWOT observes ocean and
 inland water from one instrument; this plugin serves the hydrology
@@ -880,20 +826,19 @@ change against a published record); pointwise assertions with measured
 tolerances per the verification guide. Eval seed: one case per
 high-severity gotcha plus a volume-gate rejection and one
 recipe-fidelity case; manually graded into RESULTS-seed.md exactly as
-Phase 1.
+the seed pass.
 
-### 10.4 Acceptance (Phase 2, hydrology)
+### 10.4 Acceptance (hydrology)
 
 Loaders gate and restate gotchas; provisional-data caveat surfaces on
 any recent NWIS window; drought and reservoir analyses read recipes and
-report uncertainty per the house rule; three-surface end-to-end
-(question → scout → load → analysis → report) recorded per surface;
+report uncertainty per the house rule; end-to-end
+(question → scout → load → analysis → report) recorded per required runtime;
 bundle lint-clean with `verified` events set; goldens green headless.
 
 ### 10.5 Ocean-bundle v0.6 completion
 
-Per the PARKING triage: promote to severity-high gotchas WITH matching
-eval cases: V4R4B release mixing (#9), MHT basin scope (#11), SWOT
-crossover calibration unapplied (#13); author core's fill-value
-detection eval case (#8); author the salt and volume budget recipes
-with measured residual expectations (#12).
+Promote to severity-high gotchas WITH matching eval cases: V4R4B
+release mixing, MHT basin scope, SWOT crossover calibration unapplied;
+author core's fill-value detection eval case; author the salt and
+volume budget recipes with measured residual expectations.
