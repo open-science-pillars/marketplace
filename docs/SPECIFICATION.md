@@ -1,7 +1,7 @@
 # Open Science Pillars: Specification
 
 **Organization:** Open Science Pillars (github.com/open-science-pillars)
-**Version:** 0.6.18 (provenance is a ladder; provider confirmation is invited, never required)
+**Version:** 0.6.19 (code has one home per plane; run instructions are skills; the placement gate)
 **Date:** 2026-09-13
 **Scope:** the foundation, ocean-science, the infrastructure, the knowledge, verification and evals layers and stewardship (built), plus the hydrology capability (§10)
 
@@ -844,3 +844,53 @@ Promote to severity-high gotchas WITH matching eval cases: V4R4B
 release mixing, MHT basin scope, SWOT crossover calibration unapplied;
 author core's fill-value detection eval case; author the salt and
 volume budget recipes with measured residual expectations.
+
+## 11. Code Placement (v0.7 CANDIDATE: one home per plane)
+
+The four planes of 0.6 decide where every file of code lives. A contribution that puts code in the wrong tree is not wrong science, but it is undiscoverable (a procedure filed as knowledge fires for no runtime), unsignable (a procedure signed as a fact), or fragile (a runtime helper filed with the goldens is run by the goldens workflow). This section fixes the homes and the gate that measures them. It changes no interface of OKF v0.2, which fixes the interface and not the packaging (docs/upstream); it fixes the packaging for this organization.
+
+### 11.1 The placement rule
+
+Every file of code in a capability or knowledge package has exactly one home, chosen by the plane the file serves:
+
+| Plane | What the file is | Home |
+|---|---|---|
+| KNOW | Sanctioned code whose identity is part of a signed contract: the executor an Attested Computation names in `computation`, its attester, the loaders that build its stamped data root, derivations a concept cites, the data roots and receipts themselves | `knowledge/<bundle>/references/{computations,attesters,loaders,derivations,retrieval}/` |
+| ACT | A procedure: the walkthrough an agent follows, including the run instructions of an Attested Computation | `skills/<name>/SKILL.md` in the capability that owns the workflow |
+| ACT | A script a skill invokes at runtime that is not sanctioned code (a renderer, a citation writer, a loader that only serves the skill) | `skills/<name>/scripts/` beside that `SKILL.md` |
+| PROVE | A golden notebook | `verification/<workflow>.py` |
+| PROVE | A fixture builder or a frozen input the goldens read | `verification/fixtures/` |
+| gates | A repository check or ritual | `tools/` in a knowledge package; `scripts/` in build-kit |
+| REACH | A connector server and its capture tools | `connectors/` |
+
+Three consequences follow. Sanctioned code stays in the bundle even though its executor is ACT and its attester is PROVE, because the concept names it by path, the attester hashes it on disk, receipts record its path and digest, and the reattest ritual and the check chains key on the bundle tree; the code identity is the contract, and the contract is KNOW. The `references/skills/` directory is retired: run instructions are a procedure, and a procedure is a skill, evaluated and never signed. Nothing under `verification/` is invoked by a skill at runtime, because the goldens workflow runs that tree and a helper filed there is either run as a golden by mistake or excluded by hand.
+
+### 11.2 The wrapping rule
+
+Every Attested Computation is wrapped by at least one skill. The wrapping skill lives in the capability whose sphere the concept's `spheres` names and which declares the bundle as a dependency (a podaac ECCO computation is wrapped in ocean-science; an asdc energy budget in the atmospheric physics capability; an nsidc ice sheet balance in the land ice capability). The skill invokes the executor by the installed bundle's path (`${CLAUDE_PLUGIN_ROOT}` for the capability's own bundle; the installer's record or the checkout named by the bundle's environment variable for a provider bundle, as the receipt-figures skill in ocean-science already does), states the parameters it binds and the runtime name it passes, and tells the agent to run the attester on the receipt before quoting a number from it.
+
+The concept declares its wrap. `executor.resource` names the executor script itself, whose usage text is the contract; the organization extension `executor.skill` names the wrapping skill as `<capability>/<skill-name>`. A computation whose sphere capability does not yet exist as a package is unwrapped: the placement audit reports it, and the roadmap carries the wrap as a deliverable of that capability's first release. An unwrapped computation is reachable through consult-knowledge and its concept, which is the floor, not the goal.
+
+### 11.3 The placement gate
+
+`osp.py placement-check <repository>` in build-kit measures the rule and runs in every plugin gate beside `validate`, `render --check` and `plugin-check`. It reports, as errors unless marked:
+
+- **P1, orphan sanctioned code**: a `.py` under `knowledge/**/references/` that no concept frontmatter (`computation`, `attester.resource`, `sources[].resource`), no `RECORD.json` or `SOURCES.json` in a data root, no registry entry and no check chain names.
+- **P2, run instructions filed as knowledge**: a `knowledge/**/references/skills/` directory.
+- **P3, a skill script outside `scripts/`**: a `.py` under `skills/<name>/` that is not under `skills/<name>/scripts/`.
+- **P4, a skill that runs the goldens tree**: a `SKILL.md` whose text names a path under `verification/`.
+- **P5, a golden the workflow does not run**: a `.py` at the top of `verification/` that the goldens workflow neither globs nor lists; and, the reverse, a script under `verification/fixtures/` that a `SKILL.md` names.
+- **P6, an unwrapped computation** (warning): an Attested Computation without `executor.skill`; `osp.py audit` resolves the named skill across the catalog and reports a name that resolves to nothing.
+- **P7, a copied script** (warning): two byte-identical `.py` files in one repository, unless the copy's header carries a `pinned_from:` line naming its source.
+
+The gate never runs a computation, an attester or a golden; those are PROVE. It measures paths and names, exits nonzero on an error, and prints each finding with its code so a contributor can cite it.
+
+### 11.4 Templates and seeds
+
+plugin-template ships one skill with a `scripts/` directory and a golden that reads `verification/fixtures/`, so a new capability starts in the shape the gate expects; knowledge-template ships no `references/skills/`. build-kit's seed brief renderer applies the rule to every computation seed: the deliverables name the wrapping skill in the sphere capability (or the roadmap line recording that the capability does not yet exist), the run instructions are written into that skill and not into the bundle, and the brief's rules forbid `references/skills/`. A seed that spans a bundle and a capability is one seed with two branches, reviewed together.
+
+### 11.5 Migration
+
+The one-time moves that bring the repositories to this rule are recorded in ADR C (docs/decisions). Until they land, P2, P3, P4 and P5 report as warnings in the gate; the record names the date they become errors.
+
+---
