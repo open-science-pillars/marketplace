@@ -6,8 +6,8 @@ requests 63 and 64; the migrations are ocean-science 63, hydrology 73,
 nasa-daac-knowledge 183, plugin-template 21 and knowledge-template 12.
 The energy budget and ice sheet balance computations stay unwrapped
 until the atmospheric-physics and land-ice packages exist (roadmap
-c6-unwrapped-computations); core's gate step waits on its open release
-pull request.
+c6-unwrapped-computations); core's gate step and the wrap of its
+reference computation in basic-statistics are core pull request 45.
 **Decision owner:** Paul Ramirez (interim steward). Personal-hat work:
 Open Science Pillars is a personal open-source project, not a JPL or
 PO.DAAC product.
