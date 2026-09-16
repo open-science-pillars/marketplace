@@ -1,8 +1,13 @@
 # ADR C: Code placement by plane
 
 **Status:** Accepted 2026-09-16 (merged to main) by the decision
-owner; implementation follows in build-kit and the per-repository
-migrations below.
+owner; implemented 2026-09-16. The placement gate is build-kit pull
+requests 63 and 64; the migrations are ocean-science 63, hydrology 73,
+nasa-daac-knowledge 183, plugin-template 21 and knowledge-template 12.
+The energy budget and ice sheet balance computations stay unwrapped
+until the atmospheric-physics and land-ice packages exist (roadmap
+c6-unwrapped-computations); core's gate step waits on its open release
+pull request.
 **Decision owner:** Paul Ramirez (interim steward). Personal-hat work:
 Open Science Pillars is a personal open-source project, not a JPL or
 PO.DAAC product.
