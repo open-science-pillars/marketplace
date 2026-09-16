@@ -22,7 +22,12 @@ plan is what the pull request is checked against.
 
 `skills/<name>/SKILL.md` in the capability's repository, with optional
 `references/`, `scripts/` and `assets/` beside it. One directory per
-skill, and the directory name is the skill's `name`. There are no
+skill, and the directory name is the skill's `name`. A script the
+skill runs at runtime lives in its `scripts/` directory, never at the
+skill's root and never under `verification/`, which is the goldens'
+tree; the run instructions of an attested computation are a skill in
+the capability that owns the workflow, not a concept in the bundle
+(the placement rule and the wrapping rule in the specification). There are no
 `commands/` directories and no runtime-named trees (`skills/claude/`):
 the `SKILL.md` is the canonical, portable representation, and every
 runtime package is rendered around the same directory.
