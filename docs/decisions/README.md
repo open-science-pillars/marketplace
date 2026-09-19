@@ -14,7 +14,7 @@ GOVERNANCE.md in the org `.github` repository sets.
 | [adr-a-pillar-means-sphere.md](adr-a-pillar-means-sphere.md) | Pillar means sphere: organization, vocabulary and repository map | Accepted 2026-09-12 (merged to main); implemented 2026-09-12 |
 | [adr-b-multi-runtime-capability-packaging.md](adr-b-multi-runtime-capability-packaging.md) | Multi-runtime capability packaging: one governed capability, projected to runtimes | Accepted 2026-09-12 (merged to main); implemented 2026-09-12 |
 | [adr-c-code-placement-by-plane.md](adr-c-code-placement-by-plane.md) | Code placement by plane: one home per file, run instructions are skills, the placement gate | Accepted 2026-09-16 (merged to main); implemented 2026-09-16 (build-kit pull requests 63 and 64; ocean-science 63; hydrology 73; nasa-daac-knowledge 183; plugin-template 21; knowledge-template 12; core 45) |
-| [adr-d-promotion-to-host-a-wrap.md](adr-d-promotion-to-host-a-wrap.md) | Promotion to host a wrap: a planned capability may promote to wrap computations already signed in a provider bundle | Proposed 2026-09-19 |
+| [adr-d-promotion-to-host-a-wrap.md](adr-d-promotion-to-host-a-wrap.md) | Promotion to host a wrap: a planned capability may promote to wrap computations already signed in a provider bundle | Accepted 2026-09-19 (merged to main); implementation in progress |
 
 The design proposal that led to these records has been retired; each
 record is the decision. The two share one roadmap initiative

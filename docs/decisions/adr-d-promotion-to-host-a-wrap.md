@@ -1,7 +1,8 @@
 # ADR D: Promotion to host a wrap
 
-**Status:** Proposed 2026-09-19 by the decision owner; accepted when
-this record merges to main.
+**Status:** Accepted 2026-09-19 (merged to main) by the decision owner;
+implementation is the round four seeds in build-kit and the two
+wrap-only releases they produce.
 **Decision owner:** Paul Ramirez (interim steward). Personal-hat work:
 Open Science Pillars is a personal open-source project, not a JPL or
 PO.DAAC product.
