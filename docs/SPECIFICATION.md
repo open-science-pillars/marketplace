@@ -1,7 +1,7 @@
 # Open Science Pillars: Specification
 
 **Organization:** Open Science Pillars (github.com/open-science-pillars)
-**Version:** 0.6.19 (code has one home per plane; run instructions are skills; the placement gate)
+**Version:** 0.6.20 (a planned capability may promote to host a wrap; the first wrap-only releases)
 **Date:** 2026-09-13
 **Scope:** the foundation, ocean-science, the infrastructure, the knowledge, verification and evals layers and stewardship (built), plus the hydrology capability (§10)
 
@@ -892,5 +892,31 @@ plugin-template ships one skill with a `scripts/` directory and a golden that re
 ### 11.5 Migration
 
 The one-time moves that bring the repositories to this rule are recorded in ADR C (docs/decisions). Until they land, P2, P3, P4 and P5 report as warnings in the gate; the record names the date they become errors.
+
+---
+
+## 12. Atmospheric Physics and Land Ice (v0.7 CANDIDATE: the first wrap-only releases)
+
+Two Attested Computations reached stable in the provider bundles without a capability in their sphere to wrap them: the energy budget closure in the asdc bundle, whose sphere is the atmosphere, and the ice sheet mass balance closure in the nsidc bundle, whose sphere is the cryosphere. The wrapping rule requires a wrap; the promotion rule sends a planned repository through the domain-expansion gate. ADR D (docs/decisions) resolves the two: a planned capability may promote to host a wrap, because a wrapping skill computes nothing and every number it reports is owned by a signed concept. This section states what those two first releases contain.
+
+### 12.1 What a wrap-only release is
+
+A wrap-only release carries the wrapping skills, the goldens that exercise them, the eval cases the high-severity gotchas it relies on require, and the package, surfaces, governance and projection metadata every capability carries. It carries no skill that computes a number of its own. Its own knowledge bundle holds the index and log every bundle holds and, where a convention belongs to the capability rather than to a provider, the concepts that state it; the scientific concepts it consults live in the provider bundles and arrive as the declared dependency, never as a copy. The README says in its first paragraph that the capability wraps computations signed in a provider bundle and computes nothing of its own, so that a reader cannot mistake reachability for breadth.
+
+The rule that makes this honest is the one a wrapping skill already follows: it names the concept and the executor, invokes that executor at the path the installed bundle puts it, states every parameter it binds and the runtime name it passes, runs the attester on the receipt before any number is quoted, and reports the verdict, the run identifier, the runtime and the caveats the concept states. A skill that would report a number the attester did not pass, or a number no concept owns, is not a wrap.
+
+### 12.2 atmospheric-physics
+
+Discipline Atmospheric Physics inside the Atmosphere sphere. It wraps the asdc bundle's computations: the energy budget closure, which sets the CERES EBAF net top-of-atmosphere flux against the ocean heat content change read from the ocean-science Argo computation's receipt with the published deep and non-ocean terms, and every further asdc computation signed when the release is cut. The skills are named for the workflow, not the product: `energy-budget-closure` wraps the energy budget. The ocean side of that computation is a receipt produced by a computation in another bundle and wrapped by another capability, so the skill states where that receipt comes from and never recomputes it.
+
+### 12.3 land-ice
+
+Discipline Land Ice inside the Cryosphere sphere. It wraps the nsidc bundle's computations: the ice sheet mass balance closure, which sets the gravimetric mass rate from the mascon solutions against the altimetric volume change less the firn air content change times a stated ice density, and every further nsidc computation signed when the release is cut. The skill is `ice-mass-change`. The sea level contribution of an ice sheet mass rate is a conversion the podaac bundle's recipe owns and the ocean-science sea level budget skill already reports, so land-ice cites that route and does not re-wrap the sea level budget computation; two capabilities never both quote the same number.
+
+The ice sheet balance concept states its own boundaries, and the wrapping skill reports them rather than smoothing them: the closure is window dependent on the committed root, the altimetry term is the suspect where it drifts, an ice sheet with no grounded firn term refuses, and a window that crosses the gap between the gravimetry missions needs a bridge citation.
+
+### 12.4 Acceptance
+
+A wrap-only release is accepted when the package, surfaces and governance metadata render and validate with status developing and the catalog lists the release; when each wrapping skill names its concept, binds every declared parameter, reaches the executor by the installed bundle's path and runs the attester before quoting a number; when a golden at the top of the verification tree exercises each wrapping skill's chain offline on committed fixtures; when every high-severity gotcha the release relies on has an eval case; when the placement gate passes in strict mode and reports no unwrapped computation in that sphere's bundles; and when the promotion rule is satisfied in full, including a named provider contact who has been invited. A release that would need a new number is not this release.
 
 ---
