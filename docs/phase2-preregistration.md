@@ -178,3 +178,37 @@ is already public and is not counted as a gotcha-avoidance case.
   fact reading the digest and confirming claims, which is the
   engagement the claim was always about; nothing else in this document
   changes, and the text above is not edited.
+
+- 2026-09-19 (promotion to host a wrap): two capabilities,
+  `atmospheric-physics` and `land-ice`, promote out of planned to host
+  the skills that wrap attested computations already signed stable in
+  the provider bundles (the asdc energy budget closure, the nsidc ice
+  sheet mass balance closure, and whichever further computations in
+  those bundles are signed when each release is cut). This entry
+  records how that work reads against the conditions above, before the
+  capabilities are built, so that the reading is on the record rather
+  than inferred later. First, the domain-expansion gate asks whether
+  the organization should open a new scientific domain before the
+  ablation says whether the knowledge layer works. A wrapping skill
+  opens no domain: it computes nothing, and every number it can report
+  is owned by a concept that was reviewed, run on a stamped data root,
+  attested and signed. What promotion buys here is reachability, that
+  an agent which installed a capability can run a signed computation
+  rather than a reader having to find a concept, and reachability is
+  not the breadth the gate protects. Second, the stop conditions
+  trigger on a negative result, not on the absence of one; the powered
+  ablation has not run, so no stop condition has fired. Third, the
+  capabilities are bounded to the wrap in this entry: a skill in either
+  repository that computes a number of its own is domain expansion,
+  waits on the ablation, and takes its own dated entry here. Fourth,
+  the effect on the experiment is to strengthen it rather than
+  prejudge it: wrapping puts the signed computations in the same path
+  an agent takes for every other capability, so a later ablation can
+  exercise them the way a user would. Fifth, the rest of the promotion
+  rule is satisfied in full and not waived: a maintainer, sources on
+  every claim, an eval case for each high-severity gotcha the release
+  relies on, and a named provider contact invited (ASDC for the
+  radiation products, NSIDC for the ice elevation and velocity
+  products, PO.DAAC for the mass change products). The architectural
+  form of this decision is ADR D in docs/decisions; nothing above is
+  edited.
