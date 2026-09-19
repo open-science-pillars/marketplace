@@ -1,8 +1,16 @@
 # ADR D: Promotion to host a wrap
 
-**Status:** Accepted 2026-09-19 (merged to main) by the decision owner;
-implementation is the round four seeds in build-kit and the two
-wrap-only releases they produce.
+**Status:** Accepted 2026-09-19 (merged to main) by the decision owner
+and implemented the same day: atmospheric-physics 0.1.0 and land-ice
+0.1.0 are the two wrap-only releases, each promoted from planned to
+developing to host a wrap, each carrying a skill for every attested
+computation its sphere's bundle had signed, each qualified on Claude
+Code, and each in the catalog. The measure the record was written
+against is met: `osp.py placement-check --strict --workspace` over
+nasa-daac-knowledge with both capabilities beside it reports no
+unwrapped attested computation in any bundle. Neither release computes
+a number of its own, so the domain-expansion gate is untouched and
+still stands in front of anything that would.
 **Decision owner:** Paul Ramirez (interim steward). Personal-hat work:
 Open Science Pillars is a personal open-source project, not a JPL or
 PO.DAAC product.

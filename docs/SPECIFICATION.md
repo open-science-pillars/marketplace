@@ -1,7 +1,7 @@
 # Open Science Pillars: Specification
 
 **Organization:** Open Science Pillars (github.com/open-science-pillars)
-**Version:** 0.6.20 (a planned capability may promote to host a wrap; the first wrap-only releases)
+**Version:** 0.6.21 (a planned capability may promote to host a wrap; the first two wrap-only releases are cut and qualified)
 **Date:** 2026-09-13
 **Scope:** the foundation, ocean-science, the infrastructure, the knowledge, verification and evals layers and stewardship (built), plus the hydrology capability (§10)
 
@@ -918,5 +918,11 @@ The ice sheet balance concept states its own boundaries, and the wrapping skill 
 ### 12.4 Acceptance
 
 A wrap-only release is accepted when the package, surfaces and governance metadata render and validate with status developing and the catalog lists the release; when each wrapping skill names its concept, binds every declared parameter, reaches the executor by the installed bundle's path and runs the attester before quoting a number; when a golden at the top of the verification tree exercises each wrapping skill's chain offline on committed fixtures; when every high-severity gotcha the release relies on has an eval case; when the placement gate passes in strict mode and reports no unwrapped computation in that sphere's bundles; and when the promotion rule is satisfied in full, including a named provider contact who has been invited. A release that would need a new number is not this release.
+
+Two rules for a wrapping skill, learned from the first two releases rather than reasoned out in advance, because both were found by qualifying them.
+
+A wrapping skill names the concept it wraps by bundle path, first and before the gotchas, in the first thing it says back. The instruction "consult the concept and the gotchas and cite each by bundle path" is not enough: both first releases wrote it and then spelled out only the gotcha paths as examples, and runs of both duly cited the gotchas and left the concept unnamed. The concept is the one that owns every number the run can report, so it is the one citation a reader most needs to follow back, and it is the one a list of examples will lose.
+
+A skill-invocation probe for a wrap-only capability does not expect the package's own name. That is the right expectation for a capability whose skills compute something, because such a skill says whose computation it is, and it is the wrong expectation here: a wrapping skill is built never to claim a number as its own. Expect instead what the skill must state before any run, the concept's bundle path and the parameter the answer turns on.
 
 ---

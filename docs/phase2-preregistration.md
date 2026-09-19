@@ -212,3 +212,25 @@ is already public and is not counted as a gotcha-avoidance case.
   products, PO.DAAC for the mass change products). The architectural
   form of this decision is ADR D in docs/decisions; nothing above is
   edited.
+
+- 2026-09-19 (promotion to host a wrap: what was built, recorded the
+  same day): both releases are cut, and this entry closes the one
+  above by saying what they carry rather than leaving the reading
+  against a plan. atmospheric-physics 0.1.0 wraps two asdc
+  computations, the energy budget closure and the cloud radiative
+  effect; land-ice 0.1.0 wraps two nsidc computations, the ice sheet
+  mass balance closure and the input-output balance. Four rather than
+  the two the entry above names, because the round signed two more
+  while the capabilities were being built and a wrap-only release
+  carries every computation its bundle has signed when it is cut. The
+  bound held: neither release computes a number of its own, and the
+  placement gate in strict mode reports no unwrapped attested
+  computation in any bundle. Both are qualified on Claude Code for
+  their exact version and release lock, with Claude Cowork and OpenAI
+  Codex waived in writing and not advertised. One thing to hold
+  against the experiment rather than for it: three defects in the
+  qualification tooling's candidate path had to be fixed before either
+  release could be qualified at all, so the qualification step is
+  newer and less exercised than the rest of the pipeline, and the next
+  release is the one that tells us whether it is now reliable.
+  Nothing above is edited.
