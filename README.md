@@ -27,8 +27,8 @@ install the capability from it. It is the same plugin.
 
 A domain capability declares what it depends on, and the installer
 brings it along: `core` (the foundation) and `nasa-daac-knowledge` (the
-provider knowledge bundle) arrive with `ocean-science`, `hydrology` or
-`atmospheric-physics`.
+provider knowledge bundle) arrive with `ocean-science`, `hydrology`,
+`atmospheric-physics` or `land-ice`.
 
 Local requirements: `uv` (the connectors and the verification scripts
 run with `uv run`), and an Earthdata Login for the ocean and hydrology
@@ -42,6 +42,7 @@ data loads.
 | `ocean-science` | Physical oceanography: ECCO state estimate, SWOT sea surface height, meridional heat transport, budget closure, water masses. | Available |
 | `hydrology` | SWOT rivers and lakes, GRACE-FO groundwater, USGS streamflow, SMAP soil moisture, drought and reservoir analysis. | Developing |
 | `atmospheric-physics` | Atmospheric physics: the run instructions for the attested radiation budget computations signed in the ASDC bundle, the CERES EBAF energy budget closure and the cloud radiative effect at the top of the atmosphere. | Developing |
+| `land-ice` | Land ice: the run instructions for the attested ice sheet mass balance computations signed in the NSIDC bundle, the gravimetry against altimetry closure and the input-output balance through a flux gate set. | Developing |
 | `nasa-daac-knowledge` | The provider knowledge bundles, one per archive (PO.DAAC, ASDC, NSIDC, GES DISC, LP DAAC, OB.DAAC, ORNL DAAC datasets, gotchas, recipes and attested computations; ESDIS metadata requirements), signed by their stewards. No skills; the domain capabilities depend on it. | Available |
 
 The catalog, [.claude-plugin/marketplace.json](.claude-plugin/marketplace.json),
