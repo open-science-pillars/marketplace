@@ -256,3 +256,32 @@ is already public and is not counted as a gotcha-avoidance case.
   layer helps. Fifth, the first receipt skill is built in ocean-science,
   which is not under the wrap-only bound, so the pattern is proven before
   the amendment is exercised. Nothing above is edited.
+
+- 2026-09-20 (a computation is a skill: the computations move into the
+  capabilities that already reached them): ADR E in docs/decisions
+  re-homes every attested computation into the capability that runs it,
+  with its code in the scripts of the skill that runs it, its concept
+  beside it in that package under `knowledge/computations/`, and the
+  stamped data root it reads committed there as data. This entry reads
+  that against the conditions above. First, the domain-expansion gate
+  asks whether the organization should compute a new number before the
+  ablation says whether the knowledge layer works, and the move computes
+  none: every number is the same signed number, re-homed and re-run at
+  its new path, with the receipt regenerated and attested and the
+  concept re-signed on the new digests, so no new domain opens. Second,
+  no stop condition has fired. Third, the bound the 2026-09-19 entry set
+  is re-read rather than lifted: where its third point said that a skill
+  in either repository that computes a number of its own is domain
+  expansion, it now reads that the skills carry the same signed
+  computations they reached before, and a new computation in a sphere
+  that has none still waits on the ablation and takes its own dated
+  entry here. Fourth, the effect on the experiment is to strengthen it
+  rather than prejudge it: the concept, the code, the data the code
+  reads and the golden that proves it sit in one repository on the path
+  an agent already takes, so a later ablation exercises them the way a
+  user would, and the re-run at the new paths is itself a reproduction
+  of every reference value. Fifth, the move signs nothing by itself: the
+  re-signs are the maintainer's, every reference run is reproduced
+  before its pull request merges, and a value that failed to reproduce
+  would be a finding recorded here rather than a number adjusted
+  quietly. Nothing above is edited.

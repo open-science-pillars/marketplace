@@ -1,13 +1,13 @@
 # Contributing a skill
 
-The path from a new_skill issue to a merged pull request. A skill is
-ACT: a procedure the agent follows, evaluated for how well it works and
+The path from a new_skill issue to a merged pull request. A skill is a
+procedure the agent follows, evaluated for how well it works and
 never signed as true. If what you have is a fact about data (a trap, a
 tolerance, a variable list), it is a concept instead:
 [knowledge-vs-skills.md](knowledge-vs-skills.md) has the five-question
 decision aid, and [contributing-knowledge.md](contributing-knowledge.md)
 is the concept path. A genuine split (a refusal plus the fact it rests
-on) is two small contributions, one per plane, cross-linked.
+on) is two small contributions, one of each kind, cross-linked.
 
 ## 1. Open the issue
 
@@ -25,9 +25,11 @@ plan is what the pull request is checked against.
 skill, and the directory name is the skill's `name`. A script the
 skill runs at runtime lives in its `scripts/` directory, never at the
 skill's root and never under `verification/`, which is the goldens'
-tree; the run instructions of an attested computation are a skill in
-the capability that owns the workflow, not a concept in the bundle
-(the placement rule and the wrapping rule in the specification). There are no
+tree. Where every file goes is one sentence in the specification: what
+a steward signs is under `knowledge/`, what an agent runs is under
+`skills/<name>/` with its scripts beside it, what proves a script is
+under `verification/`, and what reaches a service is under
+`connectors/`. There are no
 `commands/` directories and no runtime-named trees (`skills/claude/`):
 the `SKILL.md` is the canonical, portable representation, and every
 runtime package is rendered around the same directory.
@@ -97,6 +99,20 @@ invent, and its tolerances are measured, never assumed. Pure
 orchestration skills (start, discover-data) owe no golden; they are
 exercised by the conversational tests of runtime qualification.
 [testing.md](testing.md) has the practice and the fixture rules.
+
+A skill that is an attested computation carries its concept beside it.
+The executor and the attester are scripts in that skill's `scripts/`
+directory, and the Attested Computation concept lives under the same
+package's `knowledge/computations/`. The concept names the executor in
+`computation` and the attester in `attester.resource`, by paths that
+resolve inside this package, with the digest of each, the parameters a
+run binds, the verdict thresholds, and the stamped data root the
+executor reads, which is committed under the package's
+`knowledge/references/retrieval/` as data. A golden under
+`verification/` names each of the two scripts. The concept is the part
+a steward signs and the scripts are the part evals and goldens judge,
+so moving either file changes a digest the signature covers and owes a
+re-sign.
 
 ## 6. What an eval it may owe
 

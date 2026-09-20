@@ -11,6 +11,7 @@ nasa-daac-knowledge with both capabilities beside it reports no
 unwrapped attested computation in any bundle. Neither release computes
 a number of its own, so the domain-expansion gate is untouched and
 still stands in front of anything that would.
+Superseded 2026-09-20 by ADR E.
 **Decision owner:** Paul Ramirez (interim steward). Personal-hat work:
 Open Science Pillars is a personal open-source project, not a JPL or
 PO.DAAC product.

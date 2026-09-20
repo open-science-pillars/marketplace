@@ -5,6 +5,10 @@ Proposed 2026-09-11; accepted on merge to main after the cross-cutting
 review window (GOVERNANCE.md in the org `.github` repository). Runtime
 implementation follows the canonical metadata milestone that
 [ADR A](adr-a-pillar-means-sphere.md) sequences.
+
+*Amended 2026-09-20:* the plane vocabulary this record uses is retired
+by ADR E; the decision stands.
+
 **Decision owner:** Paul Ramirez (interim steward). Personal-hat work.
 **Design document:** the design proposal that led to this record has
 been retired; this record is the decision.

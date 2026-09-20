@@ -1,8 +1,8 @@
 # Open Science Pillars: Specification
 
 **Organization:** Open Science Pillars (github.com/open-science-pillars)
-**Version:** 0.6.22 (receipt skills: the third shape of skill, admitted to a wrap-only capability by the test its script enforces)
-**Date:** 2026-09-13
+**Version:** 0.7.0 (a computation is a skill: the planes, the placement gate, the wrapping rule and the wrap-only release retired)
+**Date:** 2026-09-20
 **Scope:** the foundation, ocean-science, the infrastructure, the knowledge, verification and evals layers and stewardship (built), plus the hydrology capability (§10)
 
 **Changelog:** [SPECIFICATION-CHANGELOG.md](SPECIFICATION-CHANGELOG.md) (dated revisions, newest first).
@@ -66,7 +66,7 @@ Plugins are cached and cannot reference files outside their own directory: no `.
 
 A Pillar is one of the five Earth science spheres of NASA's Earth System Science Research Program: Atmosphere, Biosphere, Cryosphere, Geosphere, Hydrosphere. The spheres are the primary scientific taxonomy: a **discipline** is a research area inside a sphere (Ocean Physics, Terrestrial Hydrology, Precipitation Science inside Hydrosphere), and a **domain capability** is the installable unit organized around a discipline (`ocean-science`, `hydrology`). In this document a "domain plugin" is a domain capability delivered as a Claude plugin; the capability is the logical unit, the plugin one of its projections. Provider knowledge is a separate authority axis: a **provider bundle** is keyed by the organization that signs its facts (PO.DAAC, ESDIS) and may serve several spheres; sphere classification answers who asks, provider stewardship answers who signs, and neither overrides the other. A **composite** is a capability whose evidence genuinely crosses spheres; it stays a scaffold until it has a maintainer, a reviewer from each sphere it touches, joint knowledge and validation (it needs no steward of its own: the maintainer who holds it is its steward, §5.4), and an interdisciplinary recipe whose governing evidence stays in one sphere (the basin water balance) is not a composite. A **planned** repository makes the intended shape visible and holds nothing installable: no skills, package or surfaces file, runtime manifest, catalog entry, release or CITATION.cff; creating one is administrative, promoting it out of planned is governed work that needs a maintainer, sources on every claim, evals for high-severity gotchas and a named provider contact who has been invited, not a signature (§5.4). Every scientific concept names the spheres its claim spans in `spheres` (0.6 of the knowledge layer's checker, E10), outside the text a signature binds.
 
-The canonical components of a capability are the four planes the model document (docs/MODEL.md) records: **KNOW** (concepts: claims with evidence, a signature and a staleness date), **ACT** (skills: portable procedures, one canonical `SKILL.md` per workflow), **PROVE** (golden notebooks and attesters: deterministic checks that emit receipts, no language model in the path) and **REACH** (connectors: controlled execution surfaces). Portable scientific behavior must have a skill representation; a runtime-specific agent may orchestrate skills and never holds the only implementation. Knowledge is approved once and reused by every runtime, never copied into runtime-specific content or into a skill to solve packaging.
+A capability holds four kinds of thing, which the model document (docs/MODEL.md) describes: **knowledge**, the concepts a steward signs, each a claim with evidence and a staleness date; **skills**, the portable procedures an agent runs, one canonical `SKILL.md` per workflow with the scripts it runs beside it; **goldens**, the deterministic checks under `verification/` that prove those scripts, and the attesters that verify a run from its receipt, with no language model in the path; and **connectors**, the registration wires that reach an external service. Portable scientific behavior must have a skill representation; a runtime-specific agent may orchestrate skills and never holds the only implementation. Knowledge is approved once and reused by every runtime, never copied into runtime-specific content or into a skill to solve packaging.
 
 ### 0.7 Canonical metadata and projections
 
@@ -74,7 +74,7 @@ Every non-archived repository carries `.osp/repository.yaml` (kind, status, sphe
 
 ### 0.8 Runtimes: four words, four claims
 
-Claude Code is both the primary development environment and a supported runtime. The required runtimes, the end-user qualification targets, are Claude Cowork and OpenAI Codex: a runtime is advertised as supported for a release only when it passes install, skill discovery and invocation, knowledge and dependency resolution, connector invocation where applicable, golden computation, deterministic PROVE, receipt generation, side-effect confirmation and release-lock match. Agent Plugins 1.0 package conformance is a gate on the portable package, not proof of any client's behavior. Gemini CLI and Goose are compatibility targets: probed and reported, never release-blocking. Cursor, GitHub Copilot and VS Code, Kiro and other conforming clients consume the portable package with no dedicated adapter. Claude Science is a future Claude runtime, added when broadly available. No runtime support claim without qualification evidence; a release stays valid when a runtime fails and that runtime is not advertised. Install flow, UI, connector authentication, approval dialogs, subagent implementation and presentation may differ per runtime; scientific facts, attribution, methodology, uncertainty rules, deterministic checks, dependency versions and safety requirements may not (docs/runtime-distribution.md).
+Claude Code is both the primary development environment and a supported runtime. The required runtimes, the end-user qualification targets, are Claude Cowork and OpenAI Codex: a runtime is advertised as supported for a release only when it passes install, skill discovery and invocation, knowledge and dependency resolution, connector invocation where applicable, golden computation, deterministic attestation, receipt generation, side-effect confirmation and release-lock match. Agent Plugins 1.0 package conformance is a gate on the portable package, not proof of any client's behavior. Gemini CLI and Goose are compatibility targets: probed and reported, never release-blocking. Cursor, GitHub Copilot and VS Code, Kiro and other conforming clients consume the portable package with no dedicated adapter. Claude Science is a future Claude runtime, added when broadly available. No runtime support claim without qualification evidence; a release stays valid when a runtime fails and that runtime is not advertised. Install flow, UI, connector authentication, approval dialogs, subagent implementation and presentation may differ per runtime; scientific facts, attribution, methodology, uncertainty rules, deterministic checks, dependency versions and safety requirements may not (docs/runtime-distribution.md).
 
 ---
 
@@ -129,7 +129,7 @@ marketplace/
     ├── MODEL.md                     # the current model on one page
     ├── SPECIFICATION.md             # this document
     ├── SPECIFICATION-CHANGELOG.md   # its dated revisions
-    ├── decisions/                   # ADR A (Pillar means sphere), ADR B (multi-runtime packaging)
+    ├── decisions/                   # the architecture decision records, indexed by their README
     ├── phase2-preregistration.md    # pre-registered success and stop conditions (kept verbatim)
     ├── third-party-findings.md      # publication policy for findings about third parties' records
     ├── known-limitations.md         # what is verified where
@@ -381,13 +381,13 @@ The installer resolves the declaration: installing the domain plugin installs an
 
 Installed skills and knowledge bundles are an instruction supply chain into every user's agent, which makes a malicious or careless PR a prompt-injection vector. The rule: **concepts state facts about data; they never instruct the agent.** No imperatives directed at Claude, no tool-invocation directives, no meta-instructions inside concept bodies; skills treat concept content strictly as data to reason over. The knowledge-linter scans concepts for instruction-like phrasing and flags hits for steward review, and steward review of knowledge and skill PRs is understood as a security control, not only a quality control. Credentials never appear in any repo (an Earthdata Login lives in the environment, in ~/.netrc, or in connector configuration, and is needed only for downloads).
 
-### 5.9 Connectors (v0.7 CANDIDATE: the REACH plane)
+### 5.9 Connectors (v0.7 CANDIDATE: the registration wire)
 
 > CANDIDATE language, drafted alongside the connector work
 > (marketplace issue #20,
 > 2026-08-30); it becomes normative when SPEC v0.7 is cut.
 
-A connector is the REACH plane only: the registration wire (`.mcp.json`) that gives an agent an interactive path to an external service. Three rules keep it in its plane. **Connector facts live in the bundle:** endpoint, transport, tool surface, auth boundary, and deprecation status are world-falsifiable claims, so they are recorded as a `connector` concept (an addition to the §5.2 type table) with sources, verification dates, and a `stale_after` matched to the service's announced flux; re-verification is a smoke run recorded at each steward sweep, and any endpoint, transport, or tool-surface change opens an issue before any doc changes. **Gates never depend on connectors:** verification tooling and attesters (verify_cmr, check_fields, the OKF v0.2 §10 attesters) call provider REST APIs directly, because deterministic receipt-producing checks cannot inherit an interactive service's availability or evolution. **Discovery never outranks signed knowledge:** an interactive catalog result may inform drafting and cross-checks, but a bundle claim (a Schema row, a ShortName, a caveat) changes only through the concept lifecycle (§5.6) with its own verification; UMM variable records describe intent, granules are ground truth. Skills state the graceful-degradation posture: when a connector is unavailable, knowledge-based discovery with archive URLs, said out loud.
+A connector is the registration wire and nothing more: the `.mcp.json` that gives an agent an interactive path to an external service. Three rules keep it to that. **Connector facts live in the bundle:** endpoint, transport, tool surface, auth boundary, and deprecation status are world-falsifiable claims, so they are recorded as a `connector` concept (an addition to the §5.2 type table) with sources, verification dates, and a `stale_after` matched to the service's announced flux; re-verification is a smoke run recorded at each steward sweep, and any endpoint, transport, or tool-surface change opens an issue before any doc changes. **Gates never depend on connectors:** verification tooling and attesters (verify_cmr, check_fields, the OKF v0.2 §10 attesters) call provider REST APIs directly, because deterministic receipt-producing checks cannot inherit an interactive service's availability or evolution. **Discovery never outranks signed knowledge:** an interactive catalog result may inform drafting and cross-checks, but a bundle claim (a Schema row, a ShortName, a caveat) changes only through the concept lifecycle (§5.6) with its own verification; UMM variable records describe intent, granules are ground truth. Skills state the graceful-degradation posture: when a connector is unavailable, knowledge-based discovery with archive URLs, said out loud.
 
 ### 5.10 Findings (v0.7 CANDIDATE: the unit of science)
 
@@ -840,91 +840,30 @@ bundle lint-clean with `verified` events set; goldens green headless.
 
 ### 10.5 Ocean-bundle v0.6 completion
 
+As of 0.7.0 the ocean bundle's attested computations live in the
+capability that runs each of them, with their code in that skill's
+`scripts/` and their stamped roots under that package's
+`knowledge/references/retrieval/` (section 11); the bundle paths this
+section and 10.1 to 10.4 use record where those files were when the
+text was written.
+
 Promote to severity-high gotchas WITH matching eval cases: V4R4B
 release mixing, MHT basin scope, SWOT crossover calibration unapplied;
 author core's fill-value detection eval case; author the salt and
 volume budget recipes with measured residual expectations.
 
-## 11. Code Placement (v0.7 CANDIDATE: one home per plane)
+## 11. A computation is a skill (v0.7 CANDIDATE)
 
-The four planes of 0.6 decide where every file of code lives. A contribution that puts code in the wrong tree is not wrong science, but it is undiscoverable (a procedure filed as knowledge fires for no runtime), unsignable (a procedure signed as a fact), or fragile (a runtime helper filed with the goldens is run by the goldens workflow). This section fixes the homes and the gate that measures them. It changes no interface of OKF v0.2, which fixes the interface and not the packaging (docs/upstream); it fixes the packaging for this organization.
+The decision is ADR E (docs/decisions/adr-e-a-computation-is-a-skill.md). It replaces the code placement section and the wrap-only release section that stood here at 0.6, and with them the plane vocabulary of 0.6, the placement gate and its seven codes, the wrapping rule, the organization extension `executor.skill` and the receipt-skill category. It changes no interface of OKF v0.2, which fixes the interface of an Attested Computation and not its packaging (docs/upstream); it fixes the packaging for this organization.
 
-### 11.1 The placement rule
+**Where files go.** One sentence covers it: what a steward signs is under `knowledge/`, what an agent runs is under `skills/<name>/` with its scripts beside it, what proves a script is under `verification/`, and what reaches a service is under `connectors/`. A knowledge bundle holds knowledge and evidence and no runnable code: concepts, their sources, mirrored external material, data files such as masks and calibration tables, and the stamped inputs and receipts that evidence a signed number. A repository's own checks and rituals are not knowledge and stay in `tools/`.
 
-Every file of code in a capability or knowledge package has exactly one home, chosen by the plane the file serves:
+**A computation is a skill.** An Attested Computation concept lives in the capability that runs it, under that package's `knowledge/computations/`, which the locality rule (§5.7) already calls domain material. Its `computation` and `attester.resource` name files under `skills/<skill>/scripts/` in the same package; the `SKILL.md` beside them is the run procedure; a golden under `verification/` proves each of those scripts; and the stamped data root the executor reads lives under the package's `knowledge/references/retrieval/` as data. How computations group into skills is the capability's call: one skill may carry the scripts of several computations that one workflow runs together. The organization extension `executor.skill` is retired, because the concept names the file and the skill is beside it.
 
-| Plane | What the file is | Home |
-|---|---|---|
-| KNOW | Sanctioned code whose identity is part of a signed contract: the executor an Attested Computation names in `computation`, its attester, the loaders that build its stamped data root, derivations a concept cites, the data roots and receipts themselves | `knowledge/<bundle>/references/{computations,attesters,loaders,derivations,retrieval}/` |
-| ACT | A procedure: the walkthrough an agent follows, including the run instructions of an Attested Computation | `skills/<name>/SKILL.md` in the capability that owns the workflow |
-| ACT | A script a skill invokes at runtime that is not sanctioned code (a renderer, a citation writer, a loader that only serves the skill) | `skills/<name>/scripts/` beside that `SKILL.md` |
-| PROVE | A golden notebook | `verification/<workflow>.py` |
-| PROVE | A fixture builder or a frozen input the goldens read | `verification/fixtures/` |
-| gates | A repository check or ritual | `tools/` in a knowledge package; `scripts/` in build-kit |
-| REACH | A connector server and its capture tools | `connectors/` |
+**Two findings measure it.** `osp.py validate` in build-kit runs in every package gate and reports two findings: an executable file under `knowledge/` is an error; and, for every Attested Computation concept, `computation` and `attester.resource` must resolve inside the same package and a golden under `verification/` must name each.
 
-Three consequences follow. Sanctioned code stays in the bundle even though its executor is ACT and its attester is PROVE, because the concept names it by path, the attester hashes it on disk, receipts record its path and digest, and the reattest ritual and the check chains key on the bundle tree; the code identity is the contract, and the contract is KNOW. The `references/skills/` directory is retired: run instructions are a procedure, and a procedure is a skill, evaluated and never signed. Nothing under `verification/` is invoked by a skill at runtime, because the goldens workflow runs that tree and a helper filed there is either run as a golden by mistake or excluded by hand.
+**Who is the authority.** The provider bundle is the authority on products; the capability is the authority on methods. Dataset, gotcha, convention and reference concepts stay in the provider bundle and a computation cites them by bundle path, with the precedence rule (§5.7) unchanged for any fact about a product. A method's reference values are owned by the capability's computation concept and signed by the capability's maintainer, who is the person who ran it. A capability that reads another capability's receipt commits that receipt in its own data root as evidence and declares no install dependency for it.
 
-### 11.2 The wrapping rule
-
-Every Attested Computation is wrapped by at least one skill. The wrapping skill lives in the capability whose sphere the concept's `spheres` names and which declares the bundle as a dependency (a podaac ECCO computation is wrapped in ocean-science; an asdc energy budget in the atmospheric physics capability; an nsidc ice sheet balance in the land ice capability). The skill invokes the executor by the installed bundle's path (`${CLAUDE_PLUGIN_ROOT}` for the capability's own bundle; the installer's record or the checkout named by the bundle's environment variable for a provider bundle, as the receipt-figures skill in ocean-science already does), states the parameters it binds and the runtime name it passes, and tells the agent to run the attester on the receipt before quoting a number from it.
-
-The concept declares its wrap. `executor.resource` names the executor script itself, whose usage text is the contract; the organization extension `executor.skill` names the wrapping skill as `<capability>/<skill-name>`. A computation whose sphere capability does not yet exist as a package is unwrapped: the placement audit reports it, and the roadmap carries the wrap as a deliverable of that capability's first release. An unwrapped computation is reachable through consult-knowledge and its concept, which is the floor, not the goal.
-
-### 11.3 The placement gate
-
-`osp.py placement-check <repository>` in build-kit measures the rule and runs in every plugin gate beside `validate`, `render --check` and `plugin-check`. It reports, as errors unless marked:
-
-- **P1, orphan sanctioned code**: a `.py` under `knowledge/**/references/` that no concept frontmatter (`computation`, `attester.resource`, `sources[].resource`), no `RECORD.json` or `SOURCES.json` in a data root, no registry entry and no check chain names.
-- **P2, run instructions filed as knowledge**: a `knowledge/**/references/skills/` directory.
-- **P3, a skill script outside `scripts/`**: a `.py` under `skills/<name>/` that is not under `skills/<name>/scripts/`.
-- **P4, a skill that runs the goldens tree**: a `SKILL.md` whose text names a path under `verification/`.
-- **P5, a golden the workflow does not run**: a `.py` at the top of `verification/` that the goldens workflow neither globs nor lists; and, the reverse, a script under `verification/fixtures/` that a `SKILL.md` names.
-- **P6, an unwrapped computation** (warning): an Attested Computation without `executor.skill`; `osp.py audit` resolves the named skill across the catalog and reports a name that resolves to nothing.
-- **P7, a copied script** (warning): two byte-identical `.py` files in one repository, unless the copy's header carries a `pinned_from:` line naming its source.
-
-The gate never runs a computation, an attester or a golden; those are PROVE. It measures paths and names, exits nonzero on an error, and prints each finding with its code so a contributor can cite it.
-
-### 11.4 Templates and seeds
-
-plugin-template ships one skill with a `scripts/` directory and a golden that reads `verification/fixtures/`, so a new capability starts in the shape the gate expects; knowledge-template ships no `references/skills/`. build-kit's seed brief renderer applies the rule to every computation seed: the deliverables name the wrapping skill in the sphere capability (or the roadmap line recording that the capability does not yet exist), the run instructions are written into that skill and not into the bundle, and the brief's rules forbid `references/skills/`. A seed that spans a bundle and a capability is one seed with two branches, reviewed together.
-
-### 11.5 Migration
-
-The one-time moves that bring the repositories to this rule are recorded in ADR C (docs/decisions). Until they land, P2, P3, P4 and P5 report as warnings in the gate; the record names the date they become errors.
-
----
-
-## 12. Atmospheric Physics and Land Ice (v0.7 CANDIDATE: the first wrap-only releases)
-
-Two Attested Computations reached stable in the provider bundles without a capability in their sphere to wrap them: the energy budget closure in the asdc bundle, whose sphere is the atmosphere, and the ice sheet mass balance closure in the nsidc bundle, whose sphere is the cryosphere. The wrapping rule requires a wrap; the promotion rule sends a planned repository through the domain-expansion gate. ADR D (docs/decisions) resolves the two: a planned capability may promote to host a wrap, because a wrapping skill computes nothing and every number it reports is owned by a signed concept. This section states what those two first releases contain.
-
-### 12.1 What a wrap-only release is
-
-A wrap-only release carries the wrapping skills, the goldens that exercise them, the eval cases the high-severity gotchas it relies on require, and the package, surfaces, governance and projection metadata every capability carries. It carries no skill that computes a number of its own. Its own knowledge bundle holds the index and log every bundle holds and, where a convention belongs to the capability rather than to a provider, the concepts that state it; the scientific concepts it consults live in the provider bundles and arrive as the declared dependency, never as a copy. The README says in its first paragraph that the capability wraps computations signed in a provider bundle and computes nothing of its own, so that a reader cannot mistake reachability for breadth.
-
-The rule that makes this honest is the one a wrapping skill already follows: it names the concept and the executor, invokes that executor at the path the installed bundle puts it, states every parameter it binds and the runtime name it passes, runs the attester on the receipt before any number is quoted, and reports the verdict, the run identifier, the runtime and the caveats the concept states. A skill that would report a number the attester did not pass, or a number no concept owns, is not a wrap.
-
-A wrap-only capability may also carry **receipt skills**, the third shape of skill beside the wrapping skill and the workflow skill. A receipt skill computes nothing of its own: every number it emits is a field of a receipt the attester passed, or a table, figure or paragraph made of such fields, and it combines no two receipts into a value no receipt carries. Its script enforces that test rather than its prose: it runs the attester on every receipt before reading one and records a receipt that did not pass as a failed row and never as a number; it refuses any aggregate across rows; it refuses to mix receipts whose executor digest or data root manifest differ; and it refuses a parameter the concept does not declare. A sweep over a computation's declared parameters that tabulates the executor's own fields per receipt, a figure drawn from a receipt and verified against the hashes it records, and a methods paragraph written from a receipt's bookkeeping and the concept's sources are receipt skills. A sweep that averages its rows into a rate is not a receipt skill: that rate is a number no concept owns, which is the number of the capability's own that the domain-expansion gate governs, and the script refuses to produce it. The postdoc's test is the plain one: a receipt skill turns the crank on a method the concept already trusts and brings back the table without smoothing it.
-
-### 12.2 atmospheric-physics
-
-Discipline Atmospheric Physics inside the Atmosphere sphere. It wraps the asdc bundle's computations: the energy budget closure, which sets the CERES EBAF net top-of-atmosphere flux against the ocean heat content change read from the ocean-science Argo computation's receipt with the published deep and non-ocean terms, and every further asdc computation signed when the release is cut. The skills are named for the workflow, not the product: `energy-budget-closure` wraps the energy budget. The ocean side of that computation is a receipt produced by a computation in another bundle and wrapped by another capability, so the skill states where that receipt comes from and never recomputes it.
-
-### 12.3 land-ice
-
-Discipline Land Ice inside the Cryosphere sphere. It wraps the nsidc bundle's computations: the ice sheet mass balance closure, which sets the gravimetric mass rate from the mascon solutions against the altimetric volume change less the firn air content change times a stated ice density, and every further nsidc computation signed when the release is cut. The skill is `ice-mass-change`. The sea level contribution of an ice sheet mass rate is a conversion the podaac bundle's recipe owns and the ocean-science sea level budget skill already reports, so land-ice cites that route and does not re-wrap the sea level budget computation; two capabilities never both quote the same number.
-
-The ice sheet balance concept states its own boundaries, and the wrapping skill reports them rather than smoothing them: the closure is window dependent on the committed root, the altimetry term is the suspect where it drifts, an ice sheet with no grounded firn term refuses, and a window that crosses the gap between the gravimetry missions needs a bridge citation.
-
-### 12.4 Acceptance
-
-A wrap-only release is accepted when the package, surfaces and governance metadata render and validate with status developing and the catalog lists the release; when each wrapping skill names its concept, binds every declared parameter, reaches the executor by the installed bundle's path and runs the attester before quoting a number; when a golden at the top of the verification tree exercises each wrapping skill's chain offline on committed fixtures; when every high-severity gotcha the release relies on has an eval case; when the placement gate passes in strict mode and reports no unwrapped computation in that sphere's bundles; and when the promotion rule is satisfied in full, including a named provider contact who has been invited. A release that would need a new number is not this release.
-
-Two rules for a wrapping skill, learned from the first two releases rather than reasoned out in advance, because both were found by qualifying them.
-
-A wrapping skill names the concept it wraps by bundle path, first and before the gotchas, in the first thing it says back. The instruction "consult the concept and the gotchas and cite each by bundle path" is not enough: both first releases wrote it and then spelled out only the gotcha paths as examples, and runs of both duly cited the gotchas and left the concept unnamed. The concept is the one that owns every number the run can report, so it is the one citation a reader most needs to follow back, and it is the one a list of examples will lose.
-
-A skill-invocation probe for a wrap-only capability does not expect the package's own name. That is the right expectation for a capability whose skills compute something, because such a skill says whose computation it is, and it is the wrong expectation here: a wrapping skill is built never to claim a number as its own. Expect instead what the skill must state before any run, the concept's bundle path and the parameter the answer turns on.
+**A signature covers the digests.** A steward's signature binds a concept's text as of the signing commit, and the digests that text names are part of it: a computation whose executor, attester or data root moves to a new path owes a re-sign, and the merge-then-sign rule (§5.4) governs the interval exactly as it does any other edit to signed text.
 
 ---

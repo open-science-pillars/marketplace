@@ -5,8 +5,9 @@ bundle or in a skill? This doc is the org's line in the sand, the tests
 that make it usable, and what to do when a case is genuinely unclear. It
 sits on top of the coupling model the specification adopts (skills
 consult knowledge, discovered rather than hardcoded) and the four
-planes of a capability: KNOW (concepts), ACT (skills), PROVE (golden
-notebooks and attesters), REACH (connectors).
+things a capability holds: knowledge (concepts), skills (procedures,
+with the scripts they run beside them), goldens (the deterministic
+checks and attesters that prove those scripts) and connectors.
 
 ## The principle
 
@@ -15,7 +16,7 @@ concept states something about the world that a steward can sign as true,
 the world can later falsify, and time can make stale. A skill directs an
 agent's behavior, which can only be good or bad at a task: measurable by
 evals, never signable as true. Everything below is that one asymmetry
-applied. It is also why only KNOW is signed: signatures attach to
+applied. It is also why only knowledge is signed: signatures attach to
 claims; evals attach to conduct.
 
 Consequences you can lean on. Accountability: concepts get `verified`
@@ -61,20 +62,21 @@ bundle behaviorally inert.
 Skills defer to knowledge, discovered rather than hardcoded, per the
 adopted coupling model. The one sanctioned exception: **hard refusals stay
 in skills** (refuse a regridded budget, stop at the volume gate). Safety
-must not be probabilistic, so the deterministic floor lives in ACT even
-though the fact behind each refusal lives in KNOW and is cited by it.
+must not be probabilistic, so the deterministic floor lives in the
+skill even though the fact behind each refusal is a concept the skill
+cites.
 
 ## Boundary cases, resolved
 
 | Case | Where it goes | Why |
 |---|---|---|
-| A validated method with measured numbers (a recipe) | KNOW | it is a falsifiable claim about a method, with evidence and a signature; the imperative walkthrough of it is the skill |
-| An Attested Computation (OKF v0.2 §10) | split | the contract (parameters, sanctioned code identity, verdict thresholds) is KNOW; the executor is ACT; the attester is PROVE. The spec says it itself: it fixes the interface, not the packaging |
-| An observed tool quirk, dated | KNOW | "ecco_access 0.3.1 synthesizes nonexistent filenames for static collections (observed 2026-07-04)" is a fact; "use earthaccess for static collections" is the skill's conclusion, citing it |
-| A rule that must fire every time | ACT (hard refusal) | the deterministic floor; the fact it rests on is still a concept |
-| A community definition or index convention | KNOW (convention) | citable, signable, world-invalidated |
-| A connector (an MCP server registration) | split | the wire is REACH (`.mcp.json`, not signable); its facts (endpoint, tool surface, auth boundary, deprecation) are KNOW as a connector concept; when to reach for it is ACT; PROVE stays direct, gates never depend on a connector |
-| Worked examples, prompts, workflow discipline, diagnosis order | ACT | behavior shaping; evaluated, not verified |
+| A validated method with measured numbers (a recipe) | knowledge | it is a falsifiable claim about a method, with evidence and a signature; the imperative walkthrough of it is the skill |
+| An Attested Computation (OKF v0.2 §10) | a skill, with a signed concept beside it | the computation is a skill in the capability that runs it: the executor and the attester are that skill's scripts, a golden proves them, and the concept that names them, with its parameters, digests and verdict thresholds, is knowledge under the same package's `knowledge/computations/`, signed by the person who ran it. The upstream spec says it itself: it fixes the interface, not the packaging |
+| An observed tool quirk, dated | knowledge | "ecco_access 0.3.1 synthesizes nonexistent filenames for static collections (observed 2026-07-04)" is a fact; "use earthaccess for static collections" is the skill's conclusion, citing it |
+| A rule that must fire every time | a skill (hard refusal) | the deterministic floor; the fact it rests on is still a concept |
+| A community definition or index convention | knowledge (convention) | citable, signable, world-invalidated |
+| A connector (an MCP server registration) | split | the wire is a registration and nothing more (`.mcp.json`, not signable); its facts (endpoint, tool surface, auth boundary, deprecation) are a connector concept; when to reach for it is the skill's judgment; the goldens and attesters stay direct, and gates never depend on a connector |
+| Worked examples, prompts, workflow discipline, diagnosis order | a skill | behavior shaping; evaluated, not verified |
 
 ## The contributor decision aid
 
@@ -93,7 +95,7 @@ second-column answers: author a skill using
 [contributing-a-skill.md](contributing-a-skill.md), and make sure any
 facts it leans on already exist as concepts it can cite. A genuine split (an
 Attested Computation, a refusal plus its underlying fact) is usually two
-small contributions, one per plane, cross-linked.
+small contributions, one of each kind, cross-linked.
 
 **When it is still unclear:** open an issue with the `layer-decision`
 label describing the artifact and your answers to the five questions. The

@@ -89,7 +89,7 @@ convention finds every installed bundle through the installer's record.
 
 ## A connector
 
-A connector is REACH: a registration and nothing more. It is declared
+A connector is a registration and nothing more. It is declared
 once, in `package.yaml`, in the portable form of the Agent Plugins
 specification, and both wires are rendered from it: Claude's
 `.mcp.json` (with `${CLAUDE_PLUGIN_ROOT}` and `http`) and the portable
@@ -109,10 +109,10 @@ reach:
 
 A server that only a Claude runtime can use carries `portable: false`
 and is left out of the portable file. Its facts (endpoint, transport,
-tool surface, auth boundary, deprecation) are KNOW, a `connector`
+tool surface, auth boundary, deprecation) are knowledge, a `connector`
 concept in the bundle, verified against the provider's live repository
 at authoring time and re-verified at each steward sweep; when to reach
-for it is ACT, in the skills; gates never depend on one. Declare the
+for it is the skill's judgment; gates never depend on one. Declare the
 directory in `content.connectors` when the repository carries a server
 of its own.
 
@@ -126,7 +126,7 @@ appear in any repository: an Earthdata Login lives in the environment,
 in `~/.netrc` or in connector configuration, and is needed only for
 downloads.
 
-## A PROVE requirement
+## A verification requirement
 
 Golden notebooks under `verification/` test the repository's own
 computations in CI; an attested computation's attester verifies anyone's
@@ -191,8 +191,8 @@ build-kit's `scripts/qualify.py`; a record never edits `surfaces.yaml`.
 | `mcp.json` | Agent Plugins 1.0.0: the portable servers only; absent when there are none |
 
 The repository root is therefore itself the Agent Plugins package:
-`plugin.json` beside the canonical `skills/`, and `mcp.json` when there
-is portable REACH. `osp.py plugin-check` validates it against the
+`plugin.json` beside the canonical `skills/`, and `mcp.json` when a
+connector is declared in the portable form. `osp.py plugin-check` validates it against the
 specification pinned at 1.0.0 (the closed manifest, the
 executable-token rule, the URL rules, skill discovery and the Agent
 Skills frontmatter rules) in every package gate. Conformance is a
