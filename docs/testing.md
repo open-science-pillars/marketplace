@@ -11,7 +11,7 @@ the specification's verification and evals layers
 |---|---|---|---|
 | Golden notebooks (`verification/`) | code paths and expected results | marimo, headless, nonzero exit on failure | every pull request (CI) |
 | Evals (`evals/`, or the capability's declared eval repository) | agent scientific judgment | cases in the schema below; seed-graded by hand, then the shared runner in the `evals` repository at N=20 | the seed pass on each new case; the runner per release |
-| Runtime qualification (`.osp/qualification/`) | install, discovery, invocation, resolution, gates and PROVE on each runtime | build-kit's `scripts/qualify.py`: headless on Claude Code, by checklist elsewhere | every release candidate |
+| Runtime qualification (`.osp/qualification/`) | install, discovery, invocation, resolution, gates and attestation on each runtime | build-kit's `scripts/qualify.py`: headless on Claude Code, by checklist elsewhere | every release candidate |
 
 Behavior prompts (`docs/prompts/behavior/`) are the bridge: acceptance
 tests captured verbatim, rerunnable after any skill edit, and the seed

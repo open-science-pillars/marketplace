@@ -7,10 +7,21 @@ specification's knowledge layer (docs/SPECIFICATION.md). The
 [knowledge-template](https://github.com/open-science-pillars/knowledge-template)
 repository carries annotated examples of four types (dataset, gotcha,
 recipe, convention); the provider bundles in nasa-daac-knowledge carry
-live examples of every type. A concept is KNOW: a fact about data a
-steward can sign as true and the world can falsify. If what you have
-directs the agent instead, it is a skill:
+live examples of every type. A concept is a fact about data a steward
+can sign as true and the world can falsify. If what you have directs
+the agent instead, it is a skill:
 [knowledge-vs-skills.md](knowledge-vs-skills.md) has the decision aid.
+
+A bundle carries knowledge and evidence and no runnable code. Concepts,
+their sources, the external material mirrored under `references/`, data
+files such as masks and calibration tables, and the stamped inputs and
+receipts that evidence a signed number belong in a bundle; nothing
+under `knowledge/` is executable. The code of an attested computation
+is not an exception: it lives in the capability that runs it, as the
+scripts of the skill that runs it, with the concept beside it under
+that package's `knowledge/computations/` and a golden under its
+`verification/` proving the scripts. A repository's own checks and
+rituals are not knowledge either and live in `tools/`.
 
 ## The concept types and their required extras
 
@@ -33,15 +44,19 @@ directs the agent instead, it is a skill:
   reaches (endpoint, transport, tool surface, auth boundary,
   deprecation status), with sources, verification dates and a
   `stale_after` matched to the service's announced flux. The wire
-  itself is REACH (declared in the capability's `.osp/package.yaml`);
-  this concept is where its facts live, and any endpoint, transport or
+  itself is a registration and nothing more (declared in the
+  capability's `.osp/package.yaml`); this concept is where its facts
+  live, and any endpoint, transport or
   tool-surface change opens an issue before any doc changes. A
   connector concept needs no `spheres`.
-- **computation**: the sanctioned code path with its sha, the input
-  manifest, and the receipt of one run (OKF v0.2 §10). The reference
-  values and tolerances that recipes and findings quote live here, and
-  a recipe cites them by path rather than copying them (the
-  specification's ownership-of-numbers rule).
+- **computation**: the executor and attester paths with their digests,
+  the input manifest, and the receipt of one run (OKF v0.2 §10). It
+  lives in the capability that runs the computation, under that
+  package's `knowledge/computations/`, and the two paths it names
+  resolve inside the same package, in the scripts of the skill that
+  runs it. The reference values and tolerances that recipes and
+  findings quote live here, and a recipe cites them by path rather
+  than copying them (the specification's ownership-of-numbers rule).
 - **finding** (a candidate type in the specification): one falsifiable
   claim. `question`, `claim` bound field by field to a cited receipt,
   `computations` cited by receipt, `validity` adjudication,

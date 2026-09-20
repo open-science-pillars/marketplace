@@ -2,7 +2,7 @@
 
 The current shape of Open Science Pillars on one page. The normative
 text is the specification ([SPECIFICATION.md](SPECIFICATION.md)); the
-decisions behind this shape are ADR A and ADR B in
+decisions behind this shape are the records in
 [decisions/](decisions/README.md). This page describes; it adds no
 rules.
 
@@ -44,44 +44,53 @@ topics, the sphere view on the organization profile and the catalog's
 classification are rendered from those files, never the other way
 round.
 
-## The four planes
+## What a capability holds
 
-A capability is made of four kinds of thing, and every contribution
-finds its home in one of them:
+A capability holds four kinds of thing, and every contribution finds
+its home in one of them:
 
-- **KNOW**: knowledge bundles. Concepts: claims about the world with a
-  truth condition, evidence, a steward's signature and a staleness date.
-  Falsifiable by the world.
-- **ACT**: skills. Portable procedures an agent runs, one canonical
-  `SKILL.md` per workflow. Evaluated, never signed: good or bad at a
-  task, never true or false.
-- **PROVE**: golden notebooks and attesters. Deterministic checks that
-  emit receipts, with no language model anywhere in the path. A golden
-  notebook tests the organization's own code in its own CI; an attester
-  verifies anyone's run from the receipt they hand over, which is what
-  makes a claim checkable by someone who does not trust the author.
-- **REACH**: connectors. The registration wire to an external service,
-  and nothing more. A connector's facts are KNOW (a dated `connector`
-  concept); when to reach for it is ACT; gates never depend on one,
-  because a deterministic check cannot inherit an interactive service's
-  availability.
+- **Knowledge**, under `knowledge/`. Concepts: claims about the world
+  with a truth condition, evidence, a steward's signature and a
+  staleness date. Falsifiable by the world, and never runnable: a
+  bundle carries knowledge and evidence, and no code.
+- **Skills**, under `skills/<name>/`. Portable procedures an agent
+  runs, one canonical `SKILL.md` per workflow, with the scripts that
+  skill runs beside it. Evaluated, never signed: good or bad at a task,
+  never true or false.
+- **Goldens**, under `verification/`. Deterministic checks that prove
+  those scripts and emit receipts, with no language model anywhere in
+  the path. A golden tests the organization's own code in its own CI;
+  the attester beside it verifies anyone's run from the receipt they
+  hand over, which is what makes a claim checkable by someone who does
+  not trust the author.
+- **Connectors**, under `connectors/`. The registration wire to an
+  external service, and nothing more. A connector's facts are a dated
+  `connector` concept in the bundle; when to reach for it is the
+  skill's judgment; gates never depend on one, because a deterministic
+  check cannot inherit an interactive service's availability.
 
-The planes are orthogonal to the spheres: every sphere contains all
-four. Portable scientific behavior must have a skill representation; a
-runtime-specific agent may orchestrate skills and never holds the only
-implementation. Knowledge is approved once and reused by every runtime,
-never copied into runtime-specific content or into a skill to solve
-packaging. Knowledge has a truth condition and skills have a quality
-condition, which is why only KNOW is signed and only ACT is evaluated
+The four are orthogonal to the spheres: every sphere contains all of
+them. An attested computation is a skill: its concept lives in the
+capability that runs it, its executor and attester are that skill's
+scripts, a golden proves them, and the stamped data root the executor
+reads is data in the same package. Portable scientific behavior must
+have a skill representation; a runtime-specific agent may orchestrate
+skills and never holds the only implementation. Knowledge is approved
+once and reused by every runtime, never copied into runtime-specific
+content or into a skill to solve packaging. Knowledge has a truth
+condition and skills have a quality condition, which is why knowledge
+is signed and skills are evaluated
 ([knowledge-vs-skills.md](knowledge-vs-skills.md)).
 
-Stewardship follows the planes. The maintainer who holds a bundle is
-its steward; a provider's people are invited at every rung of the
-ladder (consulted, reviewer, steward) and required at none, and their
-confirmation raises a concept's tier without gating it. Methods
-stewards own the recipes and attested computations that combine
-several providers' products without owning any product. The archive
-observatory serves a second audience, data producers, whose
+A steward signs knowledge and no one signs a skill, which is
+evaluated by its goldens and its eval cases instead. The maintainer
+who holds a bundle is its steward; a provider's people are invited at
+every rung of the ladder (consulted, reviewer, steward) and required
+at none, and their confirmation raises a concept's tier without gating
+it. A capability's maintainer owns the methods it runs: the recipes
+and attested computations that combine several providers' products
+without owning any product, signed by the person who ran them. The
+archive observatory serves a second audience, data producers, whose
 requirements bundle is held the same way and whose findings are
 published under the policy in
 [third-party-findings.md](third-party-findings.md).
