@@ -88,8 +88,24 @@ concept already owns.
    the provider bundles do not carry, is domain expansion and waits on
    the ablation and its own dated pre-registration entry. A wrap is not
    a workflow: a release under this record may carry the wrapping
-   skills, the goldens that exercise them and the metadata a package
-   needs, and nothing else.
+   skills, the goldens that exercise them, the metadata a package
+   needs, and receipt skills, and nothing else.
+
+   *Amended 2026-09-20.* As first written this point ended at "and
+   nothing else", a fence drawn so that promotion could not become a
+   back door for workflow skills. The fence conflated the gate (no
+   number of the capability's own) with the shape of a skill (wrap or
+   not), and a third shape falls in the gap: the postdoc's work, which
+   computes nothing and is not a wrap. A **receipt skill** is one whose
+   every number is a field of a receipt the attester passed, or a
+   table, figure or paragraph made of such fields, and which combines
+   no two receipts into a value no receipt carries; its script enforces
+   the test rather than its prose. A sweep over a computation's declared
+   parameters that tabulates each receipt, a figure drawn from a
+   receipt, and a methods paragraph written from a receipt's bookkeeping
+   are receipt skills. A sweep that averages its rows into a rate is
+   not: that rate is the number of its own that waits on the ablation,
+   and the script refuses to produce it.
 
 4. **Provider-bundle work is not domain expansion.** Building a new
    attested computation in an existing provider bundle, and signing it

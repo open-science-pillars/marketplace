@@ -234,3 +234,25 @@ is already public and is not counted as a gotcha-avoidance case.
   newer and less exercised than the rest of the pipeline, and the next
   release is the one that tells us whether it is now reliable.
   Nothing above is edited.
+
+- 2026-09-20 (receipt skills admitted to a wrap-only capability): the
+  promotion-to-host-a-wrap decision's third point is amended to admit a
+  third shape of skill, one whose every number is a field of an attested
+  receipt or a table, figure or paragraph of such fields, combining
+  nothing across receipts, with a script that enforces the test. This
+  entry reads that against the conditions above. First, the
+  domain-expansion gate asks whether the organization should compute a
+  new number before the ablation says whether the knowledge layer works;
+  a receipt skill computes no number, and the one it would be most
+  tempted to compute, the average of a sweep, is the one its script
+  refuses, so the gate is untouched and the refusal is mechanical rather
+  than promised. Second, no stop condition has fired. Third, the
+  amendment is bounded to the test: a skill that fails it is a workflow
+  skill and waits on the ablation as before. Fourth, the effect on the
+  experiment is to strengthen it: the concepts already state that a
+  closure's verdict is window dependent, from windows someone ran by
+  hand, and a sweep turns that statement into a measured table the
+  ablation can read, prejudging nothing about whether the knowledge
+  layer helps. Fifth, the first receipt skill is built in ocean-science,
+  which is not under the wrap-only bound, so the pattern is proven before
+  the amendment is exercised. Nothing above is edited.
