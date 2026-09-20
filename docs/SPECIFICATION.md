@@ -1,7 +1,7 @@
 # Open Science Pillars: Specification
 
 **Organization:** Open Science Pillars (github.com/open-science-pillars)
-**Version:** 0.6.21 (a planned capability may promote to host a wrap; the first two wrap-only releases are cut and qualified)
+**Version:** 0.6.22 (receipt skills: the third shape of skill, admitted to a wrap-only capability by the test its script enforces)
 **Date:** 2026-09-13
 **Scope:** the foundation, ocean-science, the infrastructure, the knowledge, verification and evals layers and stewardship (built), plus the hydrology capability (§10)
 
@@ -904,6 +904,8 @@ Two Attested Computations reached stable in the provider bundles without a capab
 A wrap-only release carries the wrapping skills, the goldens that exercise them, the eval cases the high-severity gotchas it relies on require, and the package, surfaces, governance and projection metadata every capability carries. It carries no skill that computes a number of its own. Its own knowledge bundle holds the index and log every bundle holds and, where a convention belongs to the capability rather than to a provider, the concepts that state it; the scientific concepts it consults live in the provider bundles and arrive as the declared dependency, never as a copy. The README says in its first paragraph that the capability wraps computations signed in a provider bundle and computes nothing of its own, so that a reader cannot mistake reachability for breadth.
 
 The rule that makes this honest is the one a wrapping skill already follows: it names the concept and the executor, invokes that executor at the path the installed bundle puts it, states every parameter it binds and the runtime name it passes, runs the attester on the receipt before any number is quoted, and reports the verdict, the run identifier, the runtime and the caveats the concept states. A skill that would report a number the attester did not pass, or a number no concept owns, is not a wrap.
+
+A wrap-only capability may also carry **receipt skills**, the third shape of skill beside the wrapping skill and the workflow skill. A receipt skill computes nothing of its own: every number it emits is a field of a receipt the attester passed, or a table, figure or paragraph made of such fields, and it combines no two receipts into a value no receipt carries. Its script enforces that test rather than its prose: it runs the attester on every receipt before reading one and records a receipt that did not pass as a failed row and never as a number; it refuses any aggregate across rows; it refuses to mix receipts whose executor digest or data root manifest differ; and it refuses a parameter the concept does not declare. A sweep over a computation's declared parameters that tabulates the executor's own fields per receipt, a figure drawn from a receipt and verified against the hashes it records, and a methods paragraph written from a receipt's bookkeeping and the concept's sources are receipt skills. A sweep that averages its rows into a rate is not a receipt skill: that rate is a number no concept owns, which is the number of the capability's own that the domain-expansion gate governs, and the script refuses to produce it. The postdoc's test is the plain one: a receipt skill turns the crank on a method the concept already trusts and brings back the table without smoothing it.
 
 ### 12.2 atmospheric-physics
 
