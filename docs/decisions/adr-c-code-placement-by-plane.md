@@ -8,6 +8,8 @@ The energy budget and ice sheet balance computations stay unwrapped
 until the atmospheric-physics and land-ice packages exist (roadmap
 c6-unwrapped-computations); core's gate step and the wrap of its
 reference computation in basic-statistics are core pull request 45.
+Superseded 2026-09-20 by ADR E, except for the retirement of
+`references/skills/`, which stands.
 **Decision owner:** Paul Ramirez (interim steward). Personal-hat work:
 Open Science Pillars is a personal open-source project, not a JPL or
 PO.DAAC product.

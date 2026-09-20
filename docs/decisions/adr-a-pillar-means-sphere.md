@@ -3,6 +3,10 @@
 **Status:** Accepted 2026-09-12 (merged to main); implemented 2026-09-12.
 Proposed 2026-09-11; accepted on merge to main after the cross-cutting
 review window (GOVERNANCE.md in the org `.github` repository).
+
+*Amended 2026-09-20:* the plane vocabulary this record uses is retired
+by ADR E; the decision stands.
+
 **Decision owner:** Paul Ramirez (interim steward). Personal-hat work:
 Open Science Pillars is a personal open-source project, not a JPL or
 PO.DAAC product.
