@@ -1,7 +1,8 @@
 # ADR E: A computation is a skill
 
-**Status:** Proposed 2026-09-20, awaiting the decision owner. Drafted by
-the coordinator session at the decision owner's request after the
+**Status:** Accepted 2026-09-20 (merged to main) by the decision owner,
+the merge carried by the coordinator on the owner's instruction. Drafted
+by the coordinator session at the decision owner's request after the
 round five review, with the inventory below measured on the same day.
 **Decision owner:** Paul Ramirez (interim steward). Personal-hat work:
 Open Science Pillars is a personal open-source project, not a JPL or
