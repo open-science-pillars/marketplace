@@ -34,19 +34,30 @@ this one.
   holds nothing installable. The other status words in a repository's
   metadata are **developing** and **available**.
 
-## The four planes
+## The four kinds of thing
 
-Every capability is made of four kinds of thing, always in this order:
+Every capability is made of four kinds of thing, and where each one
+goes is one sentence of the specification: what a steward signs is
+under `knowledge/`, what an agent runs is under `skills/<name>/` with
+its scripts beside it, what proves a script is under `verification/`,
+and what reaches a service is under `connectors/`.
 
-- **KNOW**: knowledge bundles (concepts with evidence, signed by
-  stewards).
-- **ACT**: skills.
-- **PROVE**: golden notebooks and attesters (deterministic checks that
-  emit receipts, no language model in the path).
-- **REACH**: connectors.
+- **Knowledge**: concepts with evidence, signed by stewards.
+- **Skills**: the portable procedures an agent runs, one canonical
+  `SKILL.md` per workflow with its scripts beside it.
+- **Goldens and attesters**: the deterministic checks that prove those
+  scripts and verify a run from its receipt, no language model in the
+  path.
+- **Connectors**: the registration wires that reach an external
+  service.
 
-Other documents use the plain word with the tag in parentheses: "a
-skill (ACT)".
+Each is called by its plain name. The tags KNOW, ACT, PROVE and REACH
+that earlier documents used were retired in specification 0.7.0: they
+read as a taxonomy that files a thing, and an attested computation is
+all four at once, which is how a contract, an executor, an attester and
+a stamped data root came to be filed apart from the skill that runs
+them. Documents dated before that release, and the decision records,
+still use them and are history.
 
 ## The knowledge layer
 
@@ -157,9 +168,9 @@ skill (ACT)".
   one governed release.
 - **Connector (MCP)**: a link from the agent to an external service (for
   example NASA Earthdata): the registration wire, and nothing more. Its
-  facts live in a `connector` concept (KNOW); when to reach for it is
-  in the skills (ACT); the deterministic checks never depend on one
-  (PROVE). When a connector isn't available, the skills fall back to
+  facts live in a `connector` concept; when to reach for it is in the
+  skills; the deterministic checks never depend on one. When a
+  connector isn't available, the skills fall back to
   knowledge-based discovery and say so.
 
 ## Prerequisites at a glance

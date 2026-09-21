@@ -45,11 +45,15 @@ persona:
 
 | You have | It is | It lives in |
 |---|---|---|
-| a fact about data (a trap, an uncertainty, a validated number) | KNOW | a concept in the provider or domain bundle, signed by its steward |
-| a procedure an agent follows | ACT | a `SKILL.md` under `skills/` |
-| a deterministic check with a receipt | PROVE | a golden notebook under `verification/`, or an attester beside its computation |
-| a way to reach an external service | REACH | a connector declared in `.osp/package.yaml`, with its facts as a `connector` concept |
+| a fact about data (a trap, an uncertainty, a validated number) | knowledge | a concept in the provider or domain bundle, signed by its steward |
+| a procedure an agent follows | a skill | a `SKILL.md` under `skills/<name>/` |
+| a script that skill runs | a skill's script | `skills/<name>/scripts/`, beside the `SKILL.md` |
+| a deterministic check with a receipt | a golden or an attester | `verification/` |
+| an attested computation (a contract, its executor, its attester and its stamped inputs) | a skill, with its concept beside it | the concept under `knowledge/computations/` in the capability that runs it; the executor and attester under `skills/<name>/scripts/`; a golden per script under `verification/`; the stamped root under `knowledge/references/retrieval/` as data |
+| a way to reach an external service | a connector | `connectors/`, declared in `.osp/package.yaml`, with its facts as a `connector` concept |
 | a Claude-only wrapper (a subagent, presentation metadata) | an adapter | `agents/` or the Claude package files, never the only home of behavior |
+
+A knowledge bundle holds knowledge and evidence and no runnable code.
 
 Which sphere a capability serves, and who signs its knowledge, are two
 different questions (the glossary's organization section); a sphere tag on

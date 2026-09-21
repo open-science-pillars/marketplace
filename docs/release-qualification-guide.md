@@ -118,6 +118,90 @@ release pull request and re-render the README table
 (`osp.py advertise . --into README.md`). Claude Code, the development
 environment, is supported by construction; its record is the evidence.
 
+## Writing a capability's probes
+
+A capability declares under `probes:` in `.osp/surfaces.yaml` what
+three of the tests ask of it: `skill-invocation`, `prove` and
+`golden-computation`. The harness fills the rest from organization
+defaults. What goes in `probes.skill-invocation` is the part worth
+thinking about, because it is the only test whose pass bar the
+capability writes itself.
+
+A `skill-invocation` probe names a reference `skill`, a `prompt` that
+reaches it without coaching, an `expect` list of regular expressions
+the reply must all match, and a `criteria` line a human reads when
+judging the same run by checklist. Optional `arguments` are what the
+slash form carries when the prompt would not survive being sent as
+arguments.
+
+**An expectation is worth running only when it is something the skill
+has a reason to state.** For a `start`-like reference skill, whose
+whole job is to tell a reader which capabilities are installed, that is
+the package's own name, and the harness defaults to it. For every other
+skill it is not. A sea level analysis, a basin water balance or an
+energy budget closure has no reason to write its package name in output
+a scientist reads, and a package cannot honestly satisfy the
+expectation without putting noise there. So a domain skill gets no
+default expectation: the capability declares one, and until it does the
+harness states the debt and blocks the test, which no release can
+advertise past.
+
+The failure this rule came from is worth keeping in mind, because it
+does not look like a failure. ocean-science's probe expected the string
+`ocean-science` from its briefing skill. It failed a run that had done
+eleven turns of real work, which is the visible half. The invisible
+half is that a headless check found the same expectation matching a
+reply from an environment where the capability was not installed at
+all, because that reply named the command it could not find. An
+expectation that a missing capability satisfies is not testing the
+capability.
+
+**Name what the skill must state to have done the work.** The four
+computational capabilities all land in the same place: the computation
+concept, cited by its package path, together with something the prompt
+bound.
+
+- hydrology expects `knowledge/computations/basin-water-balance[.]md`
+  and `2023`. The skill carries no number of its own, so it has to read
+  the concept before it answers anything, and showing the basin and the
+  window back is its first behavior; a plan that dropped the window is
+  the failure worth catching.
+- land-ice expects `knowledge/computations/ice-sheet-balance[.]md` and
+  `2003`, for the same reason: every number it can report is owned by
+  the concept, and the verdict belongs to the window.
+- atmospheric-physics expects
+  `knowledge/computations/energy-budget[.]md` and `receipt`, the
+  concept here and the ocean side's provenance, both of which the skill
+  states before any run.
+- ocean-science expects the sanctioned regional partition computation
+  and `attester`: no briefing without a PASS attested receipt. It
+  matches the computation by name rather than by concept path, and
+  across the separators the skill uses, because a run names it by
+  concept path, by concept name, in prose and by the executor's file
+  name about as readily.
+
+Two details that repay attention. Match loosely enough that the
+expectation survives the several honest ways a runtime writes the same
+thing; ocean-science's `ecco[ _-]regional[ _-]sea[ _-]level` is that
+rule applied. And leave a bound value off the list when the harness
+cannot deliver it: the slash form carries no arguments today unless the
+probe states them, so an expectation on a region the prompt bound would
+fail the slash leg for a reason that belongs to the harness rather than
+to the package.
+
+**Measure the probe before you trust it.** Run it headlessly enough
+times to see both invocation forms, and run it once with the capability
+uninstalled. ocean-science's replacement was checked over nineteen
+runs, eleven in the slash form and eight conversational: both
+expectations matched every one, and neither matched the uninstalled
+run, where the model wrote a full briefing with no receipt behind its
+numbers. That negative control is the half that catches an invertible
+expectation, and it is cheap.
+
+Leave the reasoning in the file as a comment beside the probe. The
+next person to read a failing run needs to know what the expectation
+was meant to catch.
+
 ## Who does what
 
 The runtime maintainer teams in `governance.yaml` own their runtime's
@@ -294,14 +378,31 @@ the skills directory of the capability at the candidate commit (one
 directory per skill under `skills/`). Name each in the evidence, and
 any that is missing.
 
-**skill-invocation.** In a fresh conversation:
+**skill-invocation.** The prompt and what counts as a pass come from
+the capability's own `probes.skill-invocation` in `.osp/surfaces.yaml`,
+because what a skill must state to have done the work is the
+capability's to say. The checklist carries both verbatim; "Writing a
+capability's probes" below is how they are chosen. Run the prompt in a
+fresh conversation, with no coaching, and judge the reply against the
+probe's expectations and its criteria line.
+
+For a capability whose reference skill is `start`, that is the
+organization default. In a fresh conversation:
 
 > What science tools do I have set up here, and what should I do next?
 
 Pass: the `start` skill's screen appears without you naming it: the
 capability is named, the installed plugins and connector status are
-listed, and one next step is suggested. On Claude Code the slash form
-`/core:start` is tested as well; on Cowork and Codex only the
+listed, and one next step is suggested.
+
+For a capability whose reference skill computes something, the prompt
+is a real request and the expectations are what the skill must state
+before it answers. core is the `start` case; hydrology, land-ice,
+atmospheric-physics and ocean-science are the other one.
+
+On Claude Code the slash form is tested as well, carrying the probe's
+`arguments` when it states them and its prompt otherwise, so both forms
+are judged on the same expectations; on Cowork and Codex only the
 conversational form counts.
 
 **knowledge-resolution.** In a fresh conversation:
@@ -334,7 +435,15 @@ uv run <installed core>/verification/analysis_pipeline.py
 ```
 
 Pass: exit 0. The scripts to run are the `golden-computation` list in
-`.osp/surfaces.yaml`.
+`.osp/surfaces.yaml`. When the list is not declared, the harness runs
+every script under `verification/` except the executor and the attester
+that the `prove` probe names, which are run by that test instead. It
+recognises them by path. Recognising them by file name looked
+equivalent and was not: after a computation became a skill, an
+executor and the golden that proves it routinely share a file name,
+and hydrology's `basin_water_balance.py` is both. Matching on the name
+dropped the one golden the capability most needed run, twelve of
+thirteen, and still reported the test passed.
 
 **prove.** In a fresh conversation, with `${PLUGIN_ROOT}` replaced by
 the installed package's root and `${WORK}` by a directory you choose:
