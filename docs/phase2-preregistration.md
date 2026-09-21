@@ -431,3 +431,36 @@ is already public and is not counted as a gotcha-avoidance case.
   This is the grader freeze the entry above requires, and it is dated
   before either arm has run. No case was dropped from the suite, so
   the powered run is still seven cases by two arms at N=20.
+
+- 2026-09-21 (transcript retention, recorded before the run): the
+  analysis commitments above have required raw transcripts for every
+  trial since this document was published, and the amendment earlier
+  today repeats it. The harness never asked for them. run_evals.py
+  writes transcripts only when given a directory, and ablate.sh called
+  it twice without one, so the pilot's stored results hold rates,
+  intervals and pass flags and nothing else, and no transcript of any
+  trial exists. The commitment was real and the harness quietly did not
+  meet it.
+
+  What that cost is already on the record above. Diagnosing the
+  release-mixing case meant reading the grader's source and
+  constructing what a correct reply must have said, because the three
+  replies that failed were not kept. The conclusion was reached by
+  reconstruction rather than from evidence, and it happened to be
+  reachable that way; a subtler fault would not have been.
+
+  Both arms now keep their transcripts beside their results, and the
+  run refuses to reach the scoreboard if either arm kept none. The
+  guard matters more than the flag, because a silent empty directory is
+  how this went unnoticed the first time. Carrying the transcripts out
+  of a credentialed run, as an artifact or otherwise, belongs to
+  whatever wires that run, and this entry is the standing requirement
+  that it must.
+
+  This is recorded before the powered run rather than after it for the
+  reason the model entry gives: that run pins a strong model, which
+  makes a null both likelier and harder to attribute, and a null whose
+  transcripts were kept is a finding somebody can open while a null
+  without them is the July null again. Nothing above is edited, and
+  nothing about the cases, the arms, the grading, the sample size or
+  the decision rule changes.
