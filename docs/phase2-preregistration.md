@@ -334,12 +334,41 @@ is already public and is not counted as a gotcha-avoidance case.
   its reason recorded here; a case that no arm can pass measures the
   grader, not the bundle.
 
-  **Model.** One model for both arms, pinned before the run and
-  recorded per trial with its exact identifier in the results record,
-  as the analysis commitments above already require. The pilot's
-  substitution is not repeated: if the pinned model is unavailable when
-  the run starts, the run waits rather than switching, because an arm
-  pair split across models measures the models.
+  **Model.** The powered run pins `claude-opus-5`, one model for both
+  arms, recorded per trial with its exact identifier in the results
+  record as the analysis commitments above already require. The
+  identifier is named here rather than left to the run because a
+  pre-registration that will not say what it ran has not registered
+  the condition that matters most; this is the decision owner's call,
+  taken on 2026-09-21, and it is the same reason the July entries name
+  the models they do.
+
+  This departs from the `claude-fable-5` the headline experiment was
+  originally registered on, and the departure is recorded rather than
+  passed over. Two consequences follow and are stated before the run so
+  that neither can be argued after it. First, the result is a statement
+  about this model and not about the Fable line the go conditions were
+  first written against; a later run on another model is a separate
+  result and takes its own entry. Second, and more important, a
+  stronger model carries more of these traps in its own prior
+  knowledge, which makes a null both more likely and harder to read: if
+  the model already knows that mascon leakage or a firn correction
+  matters, a bundle that states the trap's existence has nothing left
+  to add, and the ablation measures the model's memory rather than the
+  bundle's effect. That is a real and publishable finding, and it is
+  also precisely the second explanation this amendment set out to
+  separate from the skills confound. It is why the refined grading asks
+  for the value, the uncertainty and the version rather than for
+  recognition, since those are what a signed concept carries and a
+  model's prior knowledge does not, and why grace-leakage reports
+  separately in the decision rule below. Choosing a weaker model to
+  make an effect easier to find was considered and rejected: selecting
+  the condition that flatters the hypothesis is the thing
+  pre-registration exists to prevent.
+
+  The pilot's substitution is not repeated: if the pinned model is
+  unavailable when the run starts, the run waits rather than switching,
+  because an arm pair split across models measures the models.
 
   **Sample size.** N=20 trials per case per arm, as pre-registered, 7
   cases and 2 arms. The pilot's N=3 is not an input to the result.
