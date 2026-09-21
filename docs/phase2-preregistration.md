@@ -393,3 +393,41 @@ is already public and is not counted as a gotcha-avoidance case.
   a flat result is to explain away: if the powered run is null, the
   per-case breakdown publishes with it, and grace-leakage is reported
   separately as the case that isolates the concepts from the skills.
+
+- 2026-09-21 (calibration, recorded before either arm runs): the entry
+  above committed to diagnosing ecco-release-mixing before the powered
+  run and recording here whether it was repaired or dropped. It is
+  repaired, and the diagnosis is not the one the pilot entry guessed
+  at. The grader was inverted. It required one of six literal phrases,
+  among them "not mix", so a reply stating that the two releases "must
+  not be mixed" failed it, and that is the wording of the case's own
+  notes. Every correct phrasing tried fails it and both wrong ones
+  pass it, so the 0 of 3 in both arms was the only score it could have
+  produced. It was neither a skill-routing gap nor a grader that was
+  merely too strict.
+
+  Reading the rest of the suite for the same class of fault found two
+  more. Terms were matched as substrings, so the leakage probe's "cri"
+  is satisfied by the word "described" and fired on any transcript at
+  all, and the native-grid probe's "0.5" is satisfied by "0.52 mm/yr",
+  passing a reply that refused nothing. And a probe could be satisfied
+  by naming a thing without using it: a transcript that named
+  height_cor_xover and then said it ignored it passed the probe whose
+  whole purpose is to catch that. All seven now match words rather
+  than substrings, require the concept to be applied rather than
+  mentioned, and refuse the identifiable failure, which is what the
+  refined grading in the entry above asks of them.
+
+  The root cause sat in the selftest rather than only in the graders:
+  one good and one bad fixture per grader, each written in the
+  grader's own words, agreed with a broken probe while the real run
+  scored zero. The seven now carry several phrasings a reply actually
+  uses and several near misses that must not pass, thirty three in
+  all; run against the old graders those fixtures catch thirteen
+  misclassifications across six of the seven probes. The seventh, the
+  orbit-phase probe, was loose rather than inverted and its old form
+  classified these same phrasings correctly.
+
+  This is the grader freeze the entry above requires, and it is dated
+  before either arm has run. No case was dropped from the suite, so
+  the powered run is still seven cases by two arms at N=20.
