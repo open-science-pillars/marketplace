@@ -285,3 +285,111 @@ is already public and is not counted as a gotcha-avoidance case.
   before its pull request merges, and a value that failed to reproduce
   would be a finding recorded here rather than a number adjusted
   quietly. Nothing above is edited.
+
+- 2026-09-21 (the powered ablation: the refined design, recorded
+  before the run): this entry is the amendment the roadmap holds as
+  ablation-protocol-amendment, and it records the cases, the model, the
+  grading, the sample size and the decision rule that the powered run
+  will use. Nothing above is edited. The 2026-07-05 pilot entry stands
+  as written, including its finding, and this entry says what follows
+  from it.
+
+  **Two harness defects, found and fixed before anything was
+  redesigned.** The ablation manifest named its seven cases at
+  `ocean-science/evals/`, where they lived in July; they moved to the
+  agent-evals tree, every other manifest followed, and this one did
+  not, so all seven paths resolved to nothing. The runner pinned the
+  installed knowledge tree to ocean-science 0.3.0, four releases
+  behind, so the bundle-OFF arm could only reach its own guard and
+  exit. Both are corrected (evals: the manifest reads the agent-evals
+  paths, the runner finds the installed tree rather than naming a
+  version). This matters to the reading of the pilot only in that the
+  pilot ran before either drifted; it matters to the powered run
+  because without it there would have been no run at all.
+
+  **What the pilot's null does and does not license.** The pilot
+  entry attributes the flat result to the skills carrying the gotcha
+  rules in both arms. That explanation covers six of the seven cases,
+  which target a skill. It does not cover grace-leakage, which targets
+  no skill and rests on the concepts alone, and which was flat too. So
+  at least one other explanation is live and the powered run must be
+  able to separate them: that the traps in these cases are recoverable
+  from the model's own prior knowledge, in which case a bundle that
+  states the trap's existence adds nothing measurable, whatever the
+  skills do.
+
+  **Refined cases.** The suite is re-targeted rather than ablated more
+  deeply. Stripping the gotcha content from the skills as well would
+  confound the knowledge bundle with the skill bodies and would stop
+  measuring the thing the go condition names. Instead each case's
+  graded claim is raised from recognising that a trap exists to
+  stating what only the signed concept carries: a value, an
+  uncertainty or half width, a named version or epoch, or a dated
+  verification. A reply that names the trap and no number passes today
+  and fails under the refined grading, in both arms alike. The seven
+  cases keep their prompts and their identifiers; the change is in the
+  graders and in the pass bar, and it is made before either arm runs.
+  ecco-release-mixing, which failed 0/3 in both arms of the pilot, is
+  diagnosed first and either repaired or dropped from the suite with
+  its reason recorded here; a case that no arm can pass measures the
+  grader, not the bundle.
+
+  **Model.** The powered run pins `claude-opus-5`, one model for both
+  arms, recorded per trial with its exact identifier in the results
+  record as the analysis commitments above already require. The
+  identifier is named here rather than left to the run because a
+  pre-registration that will not say what it ran has not registered
+  the condition that matters most; this is the decision owner's call,
+  taken on 2026-09-21, and it is the same reason the July entries name
+  the models they do.
+
+  This departs from the `claude-fable-5` the headline experiment was
+  originally registered on, and the departure is recorded rather than
+  passed over. Two consequences follow and are stated before the run so
+  that neither can be argued after it. First, the result is a statement
+  about this model and not about the Fable line the go conditions were
+  first written against; a later run on another model is a separate
+  result and takes its own entry. Second, and more important, a
+  stronger model carries more of these traps in its own prior
+  knowledge, which makes a null both more likely and harder to read: if
+  the model already knows that mascon leakage or a firn correction
+  matters, a bundle that states the trap's existence has nothing left
+  to add, and the ablation measures the model's memory rather than the
+  bundle's effect. That is a real and publishable finding, and it is
+  also precisely the second explanation this amendment set out to
+  separate from the skills confound. It is why the refined grading asks
+  for the value, the uncertainty and the version rather than for
+  recognition, since those are what a signed concept carries and a
+  model's prior knowledge does not, and why grace-leakage reports
+  separately in the decision rule below. Choosing a weaker model to
+  make an effect easier to find was considered and rejected: selecting
+  the condition that flatters the hypothesis is the thing
+  pre-registration exists to prevent.
+
+  The pilot's substitution is not repeated: if the pinned model is
+  unavailable when the run starts, the run waits rather than switching,
+  because an arm pair split across models measures the models.
+
+  **Sample size.** N=20 trials per case per arm, as pre-registered, 7
+  cases and 2 arms. The pilot's N=3 is not an input to the result.
+
+  **Grading.** Programmatic graders where a case defines one, the
+  per-case rubric otherwise, the same rubric in both arms. Grader code
+  is frozen and its commit recorded before the bundle-OFF arm runs, as
+  above, and the refined graders are written and frozen before the
+  bundle-ON arm runs, so neither arm can be graded against a bar
+  adjusted after seeing it. Raw transcripts are retained for every
+  trial.
+
+  **Decision rule.** Unchanged from the go and stop conditions above,
+  and stated here so it cannot be read differently afterwards. The
+  headline is the pooled risk difference, bundle-ON minus bundle-OFF,
+  with its binomial 95 percent interval. An interval excluding zero in
+  favour of ON satisfies go condition 1. An interval including zero, or
+  favouring OFF, fires stop condition 1, and the publication rule
+  applies either way: the result publishes to the scoreboard and to the
+  progress record with its intervals regardless of outcome, a null
+  included. One further commitment, because the pilot showed how easy
+  a flat result is to explain away: if the powered run is null, the
+  per-case breakdown publishes with it, and grace-leakage is reported
+  separately as the case that isolates the concepts from the skills.
