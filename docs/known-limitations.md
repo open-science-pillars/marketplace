@@ -1,15 +1,22 @@
 # Known limitations
 
-What is verified where, as of 2026-09-13, and the caveats we ship with.
+What is verified where, as of 2026-09-21, and the caveats we ship with.
 The words used here are defined in
 [runtime-distribution.md](runtime-distribution.md).
 
 ## Verified where
 
 - **Claude Code** is the development environment. Every release is
-  exercised on it, and core 0.5.1 carries a qualified record (all
-  eleven tests pass). Every behavioral claim in the tutorials and the
-  eval seed grades is Claude Code evidence.
+  exercised on it. Two capabilities carry a qualified record of all
+  eleven tests: core 0.6.0, and hydrology 0.8.1, which is the first
+  record hydrology has carried at any version. Three do not and say so:
+  ocean-science 0.9.0, land-ice 0.2.0 and atmospheric-physics 0.2.0 are
+  waived for this runtime and brought down from supported to tested,
+  because the environment carrying those releases could not produce a
+  run that would be evidence rather than a description of itself. Each
+  waiver names the version the capability was last genuinely qualified
+  at. Every behavioral claim in the tutorials and the eval seed grades
+  is Claude Code evidence.
 - **Claude Cowork** installs from this marketplace (verified 2026-07-04)
   and is not yet qualified for any release. Cowork runs a plugin's
   local MCP servers on your computer, as any program you run does, so
