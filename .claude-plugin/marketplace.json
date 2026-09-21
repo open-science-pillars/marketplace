@@ -28,7 +28,7 @@
       "source": {
         "source": "github",
         "repo": "open-science-pillars/core",
-        "ref": "core--v0.5.0"
+        "ref": "core--v0.6.0"
       }
     },
     {
@@ -46,7 +46,7 @@
       "source": {
         "source": "github",
         "repo": "open-science-pillars/ocean-science",
-        "ref": "ocean-science--v0.8.2"
+        "ref": "ocean-science--v0.9.0"
       }
     },
     {
@@ -55,7 +55,7 @@
       "source": {
         "source": "github",
         "repo": "open-science-pillars/hydrology",
-        "ref": "hydrology--v0.7.0"
+        "ref": "hydrology--v0.8.1"
       },
       "tags": [
         "hydrology",
@@ -88,7 +88,7 @@
       "source": {
         "source": "github",
         "repo": "open-science-pillars/atmospheric-physics",
-        "ref": "atmospheric-physics--v0.1.0"
+        "ref": "atmospheric-physics--v0.2.0"
       }
     },
     {
@@ -110,7 +110,7 @@
       "source": {
         "source": "github",
         "repo": "open-science-pillars/land-ice",
-        "ref": "land-ice--v0.1.0"
+        "ref": "land-ice--v0.2.0"
       }
     },
     {
@@ -139,7 +139,7 @@
       "source": {
         "source": "github",
         "repo": "open-science-pillars/nasa-daac-knowledge",
-        "ref": "nasa-daac-knowledge--v2026.9.3"
+        "ref": "nasa-daac-knowledge--v2026.9.5"
       }
     }
   ]
