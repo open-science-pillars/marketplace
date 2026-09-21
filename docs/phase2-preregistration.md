@@ -464,3 +464,76 @@ is already public and is not counted as a gotcha-avoidance case.
   without them is the July null again. Nothing above is edited, and
   nothing about the cases, the arms, the grading, the sample size or
   the decision rule changes.
+
+- 2026-09-21 (five protocol changes, recorded before either arm of
+  either run): piloting the harness found four faults that change how
+  the experiment is conducted or read, and the decision owner has
+  settled a fifth question about what is to be run. All five are
+  recorded here before any powered arm, because each of them would
+  otherwise be a change made after seeing a result.
+
+  **Turn exhaustion is an outage, not a failure.** A trial that returns
+  "Error: Reached max turns" was being scored as a substantive failure.
+  The message cleared the harness's empty-transcript test by nine
+  characters and its quota test by one word, so it reached the rubric
+  judge, which wrote a reason about the case's elements not being
+  surfaced while noting in the same sentence that the transcript held
+  no assistant work at all. The analysis commitments above already say
+  a trial past the limit is an error and never a failure; this makes
+  the harness do it. The direction is why it matters rather than the
+  bookkeeping: consulting the bundle costs turns, because the skill
+  reads concepts and each read is a turn, so exhaustion does not fall
+  evenly across the arms and scoring it as failure manufactures a
+  difference out of the harness's own bound.
+
+  **The turn budget is 30, raised from 12.** At 12, seven of eight
+  pilot trials returned that error instead of an answer. At 30 the same
+  pilot returned eight of eight real answers and no errors. Once
+  exhaustion is an outage the bias is no longer in the rate but in the
+  sample, which is quieter: the trials that survive a budget the
+  treatment interacts with are the atypically brief ones. Eight trials
+  cannot establish which arm exhausts more and nothing here claims it;
+  what they establish is that the budget interacts with the treatment
+  at all, which makes it part of the treatment. 12 was the lowest
+  budget in the repository, and these same cases are given 15 and 20 in
+  the capability's own manifest.
+
+  **The probes are calibrated against recorded output.** The seven were
+  rewritten earlier today and calibrated against phrasings written by
+  hand. That is better than fixtures written in a grader's own words
+  and is still not output a model produced. The first pilot to return
+  real answers failed one of them: the reply quoted the collection
+  identifier as LLC0090 where the probe asked for llc90, and offered a
+  native path where the probe demanded a native grid. The rubric judge
+  passed that answer and the programmatic probe did not, so a correct
+  answer was recorded as a failure. Transcripts from that pilot are now
+  kept as fixtures and the harness's selftest asserts each probe
+  reaches the verdict the run reached, so a probe cannot drift back to
+  language nobody writes.
+
+  **Two runs, and only one of them decides.** The powered ablation runs
+  twice over, once on each of two models, so that the effect can be
+  read against model capability rather than reported for one model as
+  though it were general. The run on the model pinned in this
+  amendment's model entry is the registered headline and is the only
+  one that fires go condition 1 or stop condition 1. The second run
+  publishes alongside it with its own intervals, as a pre-registered
+  secondary that fires neither. This is fixed now because two pooled
+  risk differences would otherwise let the deciding result be chosen
+  after both were seen, which is the thing a pre-registration exists to
+  prevent.
+
+  **The direction of the difference between them is predicted, not
+  described.** The model entry above argues that a stronger model
+  carries more of these traps in its own prior knowledge, which makes
+  the bundle redundant and a null likelier. That argument is worth
+  nothing if it is only ever available afterwards, so it is committed
+  to in advance: the risk difference is expected to be larger on the
+  weaker of the two models. If both runs come back flat the prior
+  knowledge explanation is spent rather than reusable, and the skills
+  confound or the bundle's plain ineffectiveness becomes the reading
+  the evidence supports.
+
+  Nothing above is edited. The cases, the arms, the prompts, the
+  twenty trials per case per arm and the decision rule are as
+  registered.
