@@ -21,15 +21,15 @@ A schema-valid package is not a supported runtime. Package conformance
 pinned at 1.0.0) is a property of the package and says nothing about any
 client's behavior.
 
-## Status today (2026-09-13)
+## Status today (2026-09-21)
 
 | Runtime | Role | Status |
 |---|---|---|
-| Claude Code | development environment and required runtime | supported: every release is exercised on it; core 0.5.1 carries a qualified record |
+| Claude Code | development environment and required runtime | supported by core 0.6.0 and hydrology 0.8.1, each on a qualified record of all eleven tests; waived and brought down to tested by ocean-science 0.9.0, land-ice 0.2.0 and atmospheric-physics 0.2.0, whose records say why |
 | Claude Cowork | required runtime | tested: marketplace install verified 2026-07-04; no release qualified on it yet |
 | OpenAI Codex | required runtime, through the Agent Plugins package | planned: the package is rendered and conformance-checked; no release qualified on it yet |
 | Claude Science | future runtime | outside the required matrix |
-| Gemini CLI, Goose | compatibility targets | not yet probed |
+| Gemini CLI, Goose | compatibility targets | not yet probed; the probes are a proposed build-kit deliverable |
 | Cursor, GitHub Copilot and VS Code, Kiro | portable consumers | served by the Agent Plugins package with no dedicated adapter; standards compatibility, not qualified runtimes |
 
 Each installable repository declares this policy in `.osp/surfaces.yaml`:
