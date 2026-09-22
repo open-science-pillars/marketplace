@@ -777,3 +777,77 @@ is already public and is not counted as a gotcha-avoidance case.
   Nothing registered changes. The seven cases, the two arms, the
   prompts, the twenty trials per case per arm, the metric and the
   decision rule are as registered.
+
+- 2026-09-22 (the seven cases on the headline model, and what the number
+  is not): all seven gotcha-avoidance cases completed both arms on a
+  harness where the bundle-off arm was genuinely off. Pooled risk
+  difference **+0.131**, Newcombe 95% **[+0.003, +0.254]**, bundle-on
+  55 of 112 valid trials and bundle-off 41 of 114.
+
+  | case | on | off | difference (95%) | lost |
+  |---|---|---|---|---|
+  | native-grid-refusal | 20/20 | 17/20 | +0.150 [-0.038, +0.360] | 0/0 |
+  | swot-calval-window | 6/17 | 3/15 | +0.153 [-0.157, +0.420] | 3/5 |
+  | ecco-release-mixing | 6/12 | 8/13 | -0.115 [-0.437, +0.243] | 8/7 |
+  | mht-basin-scope | 8/19 | 0/20 | +0.421 [+0.172, +0.637] | 1/0 |
+  | swot-crossover-unapplied | 6/19 | 2/17 | +0.198 [-0.080, +0.438] | 1/3 |
+  | grace-leakage | 9/9 | 10/11 | +0.091 [-0.217, +0.377] | 11/9 |
+  | geothermal-omission | 0/16 | 1/18 | -0.056 [-0.258, +0.143] | 4/2 |
+
+  The interval clears zero by three thousandths. Five cases point one
+  way and two the other, and only one case excludes zero on its own.
+
+  **The arm was off, and this is the first run that can show it.** Across
+  140 bundle-off transcripts, none reproduces a line of the concepts its
+  case cites, audited against every window rather than three. Thirteen
+  bundle-on transcripts do reproduce concept prose, eight of them on one
+  case, which is the positive control: the test fires where trials could
+  read the concept and is silent where they could not.
+
+  **What the number measures is narrower than the knowledge layer.** The
+  registered design does not ablate the skills, and the skills carry more
+  of this material than a pointer. On grace-leakage a script inside the
+  skills tree states the coastal filter substance directly, a passing
+  bundle-off trial cites that script by name and reproduces the point,
+  and nine of ten passing bundle-off trials name the filter without any
+  concept on the machine. Three of them say in so many words that they
+  supplied the rest from their own knowledge; seven do not say. So the
+  bundle-off arm is not knowledge absent. It is **concept absent**, with
+  topic pointers and one substantive script retained, and the residual
+  text cannot be separated from what the runtime already knew. The
+  difference above is the effect of removing the concept files. It is not
+  the effect of removing the knowledge, and it should not be quoted as
+  though it were.
+
+  **A stopping condition was recorded and the runs went ahead anyway.**
+  The first completed record states that the remaining shards must not
+  start until the ablation scope question is settled, because the skills
+  restate what the concepts say. What was settled before the others
+  started was a different matter, that a transcript naming a concept path
+  has not read it. The scope question was not adjudicated, and six cases
+  ran past it. The seven records stand as produced and none was edited,
+  but the sequence was wrong and is recorded here rather than tidied
+  away. A second case has now reached the same finding by a different
+  route, with a script rather than a restatement, which is stronger
+  evidence than the first record had.
+
+  **About a fifth of the trials were lost**, 28 of 140 on the bundle-on
+  arm and 26 of 140 on the bundle-off arm, every one of them to turn
+  exhaustion at the cap and none to rate limiting. grace-leakage kept 9
+  and 11 of 20, so its difference rests on almost nothing, and its two
+  arms differ by ten points of loss, which is the threshold at which an
+  uneven loss is flagged. geothermal-omission scored zero of sixteen
+  against one of eighteen: a case the capability fails with the bundle as
+  thoroughly as without it.
+
+  **One more check could not fail.** The transcript audit reported a clean
+  bundle-off arm across zero transcripts and exited successfully, for a
+  shard that pushed its results without its transcript directories. It
+  now refuses an arm with no transcripts. The same shape as every earlier
+  fault here: a check returning a reassuring answer to a question it was
+  not able to ask.
+
+  Nothing registered changes. The seven cases, the two arms, the prompts,
+  the twenty trials per case per arm, the metric and the decision rule
+  are as registered. This is one model only and the second model has not
+  run, so no go or stop condition is in play.
