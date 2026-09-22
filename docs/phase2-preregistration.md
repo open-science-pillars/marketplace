@@ -537,3 +537,71 @@ is already public and is not counted as a gotcha-avoidance case.
   Nothing above is edited. The cases, the arms, the prompts, the
   twenty trials per case per arm and the decision rule are as
   registered.
+
+- 2026-09-22 (correction: the bundle-OFF arm was never off, and the
+  pilot of 2026-07-05 is withdrawn): the off arm moved one knowledge
+  tree aside, the ocean capability's own, and the harness called that
+  bundle-OFF. It was not off. Every case in the suite names its ground
+  truth by `concept_basis`, and thirteen of the suite's fourteen
+  citations name concepts that live in the provider knowledge bundle, a
+  separate plugin installed into a separate cache that neither arm ever
+  touched. The fourteenth is the ocean capability's own attested
+  computation.
+
+  A shard probe on 2026-09-21 settled this on evidence rather than on a
+  reading of the harness. Its off-arm transcript for `grace-leakage`
+  cites both of that case's concepts by their paths in the provider
+  bundle, and opens "I read the bundle concepts before touching data,
+  and they stop this computation as specified", in the arm where that
+  knowledge is supposed to be gone. The shard's headline delta, zero
+  between a rate of 1.00 and a rate of 1.00, is not a null. It is a
+  measurement of nothing.
+
+  **What this withdraws.** Every on minus off number the ablation has
+  produced compared an arm holding the cited knowledge against an arm
+  holding the cited knowledge. That includes the pilot of 2026-07-05
+  recorded above and published to the scoreboard, whose pooled 0.76 in
+  both arms and per-case delta of 0.00 were read at the time as
+  evidence of a design confound in which the skills carry the gotcha
+  rules and the concept files add nothing. A perfect identity between
+  two arms holding the same knowledge is what that harness was bound to
+  produce, so the pilot is no evidence for that reading and none
+  against it. The skills confound may well be real. It is an untested
+  hypothesis again, and the powered run will be the first measurement
+  this experiment has made. The scoreboard page carrying the pilot is
+  corrected where it was published rather than deleted.
+
+  **What this does not touch.** No go condition and no stop condition
+  fired on that pilot. It was published under its own amendment's label
+  as not the pre-registered result, and the conditions above were tied
+  to the powered run throughout, so no decision on the record rests on
+  a number that measured nothing.
+
+  **The fix is a refusal, not a wider strip alone.** The arm's scope is
+  derived now instead of assumed. The harness walks the plugins the
+  manifest's cases name plus every dependency those plugins declare,
+  because an installed capability brings its dependencies and a reader
+  consulting knowledge reaches all of them, and it moves the installed
+  knowledge tree of each aside. It then checks every case's
+  `concept_basis` against that scope and stops the run when a citation
+  falls outside it, so the failure this entry records cannot recur
+  quietly: a suite the arm cannot ablate refuses to run rather than
+  returning a delta. Against the registered suite, thirteen citations
+  are unreachable under the old scope and none under the derived one,
+  which resolves to the ocean capability, the core capability and the
+  provider knowledge bundle.
+
+  **The off arm is therefore a larger intervention than the registered
+  wording describes.** The protocol above says `knowledge/` removed
+  from the installed plugin, and the arm now removes the knowledge of
+  the installed plugin and of the plugins it depends on. That is read
+  as the registered intent rather than as a change to it: the question
+  is whether the installed knowledge bundle reduces the trap-hit rate,
+  an install brings its dependencies, and an arm that leaves the cited
+  concepts readable answers nothing in either direction. It is recorded
+  here because it is wider, and because a reader comparing the two
+  descriptions is entitled to know which one the run performed.
+
+  Nothing registered changes. The seven cases, the two arms, the
+  prompts, the twenty trials per case per arm, the metric and the
+  decision rule are as registered.
