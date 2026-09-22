@@ -662,3 +662,72 @@ is already public and is not counted as a gotcha-avoidance case.
   analysis commitments above would otherwise believe thirteen rubric
   documents exist and govern the grading, and because the powered run
   should begin with the record and the run saying the same thing.
+
+- 2026-09-22 (second correction: the arm was never off, for a second
+  reason, and the harness had never taken a tree away at all): the entry
+  above records that the off arm moved one knowledge tree where the
+  cases cite three plugins, and that the scope is derived now. A
+  re-pilot on that derived scope moved three trees, verified them gone
+  from their old paths mid-arm, and every bundle-off trial still read
+  the knowledge. All four cite their case's concepts by path, one quotes
+  a concept's own verification frontmatter, and one reproduces a numeric
+  anchor that appears in no skill.
+
+  **Two readable copies, and the evidence does not say which.** The same
+  knowledge is checked out in the workspace as ordinary files, and
+  recorded passing answers to these exact cases sit beside it under
+  results and fixture directories. Both carry the text the transcripts
+  reproduce, so nothing in a transcript distinguishes them. The second
+  is the worse of the two: an answer to a case contaminates the rate in
+  both arms rather than the difference between them.
+
+  **Confinement is not available through the launcher.** Setting the
+  trial's working directory was checked directly, not assumed: a run
+  whose working directory was an empty temporary directory read an
+  absolute path in the workspace without difficulty and quoted it back.
+
+  **A renamed directory was never a removed one.** Rehearsing the new
+  check found that moving a tree to `knowledge.ABLATION_OFF`, which is
+  what every version of this harness has done since the first pilot,
+  leaves it exactly where it was under a name a reader reaches as
+  easily. Every tree this experiment has ever moved was readable for the
+  whole of the arm that was supposed to be without it. Each one is now
+  written to a compressed archive outside the workspace and deleted,
+  and put back when the trials end. These cases are granted the ability
+  to read files and to use skills, and no shell, so an archive is out of
+  their reach; that is the boundary and it is not a stronger one.
+
+  **The case file is an answer sheet.** A case's notes state what a
+  passing answer must contain, and that is the rubric of record, as the
+  entry above says. It also sits in the workspace a trial reads. Every
+  run now sets the case directories aside once the runner has loaded
+  them, not the ablation alone, because this defeats any eval and not
+  only this experiment. In the same way, one fixture's own documentation
+  stated the correct behaviour for its case in a sentence, and the
+  synthetic data file the case has to hand the agent named the eval case
+  inside its own metadata. Both are removed.
+
+  **The gate is now content, not location.** Every fix before this one
+  was a better guess about where copies live. The check takes text out
+  of the concepts the cases cite and looks for that text on disk, so a
+  copy is found because it is a copy. It carries the text as hashes
+  rather than as prose, so that a machine running a shard holds no
+  concept text at all, and it collapses whitespace first, because a
+  concept wraps its prose and a transcript quoting it does not. It
+  refuses both arms over a readable answer and the off arm over a
+  readable concept. Rehearsed on a prepared workspace it refused over a
+  second copy of the provider bundle in the plugin cache, installed
+  under a different marketplace name by an earlier qualification run,
+  which appears in no derivation of scope.
+
+  **What none of this settles.** The experiment asks whether the
+  installed bundle changes behaviour, and it has never asked whether
+  the model carries these traps in its own prior knowledge. After three
+  harness failures in two days it would be easy to expect the next run
+  to show an effect merely because the last three could not have. A null
+  on a clean run is a real null, and the model entry above already
+  argues a null is likelier on the stronger model.
+
+  Nothing registered changes. The seven cases, the two arms, the
+  prompts, the twenty trials per case per arm, the metric and the
+  decision rule are as registered. No powered arm has run.
