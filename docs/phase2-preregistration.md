@@ -731,3 +731,49 @@ is already public and is not counted as a gotcha-avoidance case.
   Nothing registered changes. The seven cases, the two arms, the
   prompts, the twenty trials per case per arm, the metric and the
   decision rule are as registered. No powered arm has run.
+
+- 2026-09-22 (third correction, the contamination check had almost no
+  power): the check that asks whether a bundle-off transcript reproduced
+  a concept's prose was doing so against three fourteen-word windows per
+  concept, six for a case citing two. That is ample for the gate that
+  runs before each arm, which asks whether a copy of a whole file is
+  readable and finds one by any of its windows. It is thin for the
+  question the transcripts pose, because a trial can quote a paragraph
+  and miss three windows out of hundreds. Every off arm reported clean
+  so far was reported clean against six windows, which is a weaker
+  sentence than it sounded, and it was written here and in the shard
+  records as though it were a strong one.
+
+  Where an audit runs the concepts are readable, so it can use all of
+  their windows. It now does, minus any window that also occurs in
+  material the design leaves in place. The skills matter most there:
+  they cite and paraphrase the knowledge, they are deliberately not
+  ablated, and a window shared with them says nothing about whether a
+  concept was on the machine. The skills of every bundle count, since a
+  case's concept and the skill quoting it are routinely in different
+  bundles.
+
+  The five cases completed by this date were re-audited against 178 to
+  962 windows rather than three or six. Every off arm remains at zero.
+  Four bundle-on transcripts across two cases do reproduce prose, which
+  is the positive control that was missing until now: the test finds
+  reproduction where reproduction happened, in trials that could read
+  the concept, and finds none in any off arm. The conclusion is
+  unchanged and the evidence behind it is not.
+
+  The gate is deliberately unchanged. It runs where the concepts are not
+  readable, which is why its fingerprints are frozen as hashes, and
+  three windows per file answer the question it asks. No shard's gate
+  behaviour differs, in flight or otherwise, and no trial's score is
+  touched by any of this.
+
+  Recorded also: the gate printed one verdict for both arms, stating
+  that no copy of a cited concept was readable. Only the off arm is
+  checked for that; the on arm's concept hits are counted and discarded,
+  because the on arm is supposed to have its concepts. The line asserted
+  of the on arm something no arm verified, in a log every shard carries
+  twice. Each arm now states what it checked.
+
+  Nothing registered changes. The seven cases, the two arms, the
+  prompts, the twenty trials per case per arm, the metric and the
+  decision rule are as registered.
