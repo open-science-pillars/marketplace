@@ -605,3 +605,60 @@ is already public and is not counted as a gotcha-avoidance case.
   Nothing registered changes. The seven cases, the two arms, the
   prompts, the twenty trials per case per arm, the metric and the
   decision rule are as registered.
+
+- 2026-09-22 (registered before either run: what each arm loses is
+  published with what each arm scores): raising the turn budget from 12
+  to 30 yesterday was recorded on the reasoning that exhaustion is an
+  outage and not a failure, and that the remaining bias is in the sample
+  rather than the rate. A shard probe at 30 lost one of two bundle-on
+  trials to the limit, against none of two on the other arm. Eight
+  trials establish nothing about the size of that, and the direction is
+  not in doubt: consulting the bundle costs turns, because the skill
+  reads concepts and each read is a turn, so the arm holding the
+  knowledge exhausts its budget more readily and the trials that survive
+  it are the atypically brief ones. A budget the treatment interacts
+  with is part of the treatment at any value it is set to, so raising it
+  again is not the answer.
+
+  The commitment made here instead is to report it. Each arm's lost
+  trials publish per case and pooled, with the difference between the
+  arms, on the same page as the risk difference and not in a file
+  underneath it. Where that difference reaches ten points the page says
+  in so many words that a pooled risk difference between samples thinned
+  unequally is not read as a treatment effect without the thinning
+  stated. This is registered now because a result whose arms lost trials
+  at different rates invites two readings, and choosing between them
+  after seeing which way the difference fell is the thing a
+  pre-registration exists to prevent.
+
+  Nothing else changes. The budget stays at 30, the seven cases, the two
+  arms, the prompts, the twenty trials per case per arm, the metric and
+  the decision rule are as registered, and a lost trial still enters no
+  rate.
+
+- 2026-09-22 (correction: the rubric of record was never the rubric the
+  cases named): the analysis commitments above say trap-hit is graded by
+  the same rubric per case in both arms and that the grader code is
+  frozen before the bundle-off arm runs. Thirteen eval cases across two
+  repositories, among them all seven of this experiment's, named a
+  dedicated rubric document in their graders block. Not one of those
+  documents exists anywhere in the organization and none ever has. The
+  runner resolved a name it could not find by falling through to the
+  case's own notes, printing no warning, and no results file recorded
+  which text had graded a trial.
+
+  What was graded is not in question. The notes state pass and fail
+  intent for every one of these cases, the eval charter already calls
+  the notes the rubric of record, and the same text graded every arm and
+  every trial, so the first commitment was met in fact. The second was
+  not checkable: a grader cannot be frozen and verified against a record
+  that does not say what it was. Each case now names `notes` outright,
+  which changes no grading behaviour and makes the record state what is
+  in force; a rubric name that resolves to nothing stops a run rather
+  than being replaced quietly; and every results file from here carries,
+  per case, the text that graded it.
+
+  No published number changes. This is recorded because a reader of the
+  analysis commitments above would otherwise believe thirteen rubric
+  documents exist and govern the grading, and because the powered run
+  should begin with the record and the run saying the same thing.
