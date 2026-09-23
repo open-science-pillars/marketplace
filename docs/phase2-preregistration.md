@@ -851,3 +851,77 @@ is already public and is not counted as a gotcha-avoidance case.
   the twenty trials per case per arm, the metric and the decision rule
   are as registered. This is one model only and the second model has not
   run, so no go or stop condition is in play.
+
+- 2026-09-23 (the second model, and five faults found by sharing a
+  machine): all seven cases completed both arms on the second registered
+  model. Pooled risk difference **+0.153**, Newcombe 95%
+  **[+0.036, +0.264]**, bundle-on 58 of 131 valid trials and bundle-off
+  38 of 131.
+
+  | case | on | off | difference (95%) | lost |
+  |---|---|---|---|---|
+  | native-grid-refusal | 6/20 | 11/20 | -0.250 [-0.496, +0.052] | 0/0 |
+  | swot-calval-window | 12/16 | 5/18 | +0.472 [+0.136, +0.685] | 4/2 |
+  | ecco-release-mixing | 7/17 | 3/17 | +0.235 [-0.070, +0.491] | 3/3 |
+  | mht-basin-scope | 8/20 | 1/19 | +0.347 [+0.082, +0.565] | 0/1 |
+  | swot-crossover-unapplied | 1/20 | 1/19 | -0.003 [-0.201, +0.188] | 0/1 |
+  | grace-leakage | 17/18 | 13/19 | +0.260 [+0.001, +0.489] | 2/1 |
+  | geothermal-omission | 7/20 | 4/19 | +0.139 [-0.140, +0.390] | 0/1 |
+
+  **The two models are reported side by side and are never pooled.** The
+  first gave +0.131 [+0.003, +0.254] and this one +0.153 [+0.036,
+  +0.264]. Two runs on different models and different machines, landing
+  within 0.022 of each other with heavily overlapping intervals. This
+  run is the better conditioned of the two: it lost 6.4 percent of its
+  trials against about 19 percent, and the loss is exactly even between
+  arms rather than ten points apart on one case.
+
+  **The arm was off here too.** Across the seven cases no bundle-off
+  transcript reproduces a line of the concepts its case cites, audited
+  against 178 to 962 windows each. Nine bundle-on trials do reproduce
+  prose, eight of them on grace-leakage, which is the same case and the
+  same count as the first model produced. The positive control behaves
+  identically across two runs on different models.
+
+  **One case runs against the rest and is named rather than buried.**
+  native-grid-refusal scored better without the bundle, a difference of
+  -0.250 whose interval only just includes zero. On the first model that
+  same case was the strongest positive at +0.150. A case that reverses
+  sign between models is a result about the case, not noise to average
+  away, and it is the first place a reader should look.
+
+  **Both arms of this run came from two invocations rather than one.**
+  The off arm was refused by its own gate, correctly, and then failed on
+  an incomplete fix. Rather than discard 140 completed and validly gated
+  bundle-on trials, the harness was fixed and the off arm run separately
+  against the same workspace, the same model, the same trial count and
+  the same quarantine discipline. Every case on the first model ran both
+  arms in one invocation. The deviation is recorded because it is real,
+  not because it is thought to matter.
+
+  **Running both arms on one machine found five faults**, none of which
+  could appear while every arm was given a fresh one. The check for
+  recorded answers matched directory names exactly and so could not see
+  `transcripts_on` or `transcripts_off`, the names the harness itself
+  writes: forty eight recorded answers sat readable and it reported
+  nothing. The off arm could read the on arm's results file, which
+  carries every verdict and the grader's reasoning about what each
+  response said. The restore refused an absolute symlink, returned a
+  tree holding 370M of its 2.1G and never attempted the archives behind
+  it. The restore was registered after the loop that moves trees, so a
+  failure inside that loop left seven trees, three of them installed
+  knowledge, with no handler to put them back; they were recovered by
+  hand. And the transcript audit scanned a whole arm for each case, so
+  every line reported the arm's total where the case's was meant.
+
+  Four of those five weaken a guarantee this record has relied on. They
+  are fixed, and the run above was gated by the fixed versions.
+
+  **The standing caveat is unchanged and still governs both numbers.**
+  The registered design does not ablate the skills. The bundle-off arm
+  is concept absent, not knowledge absent, and neither difference should
+  be quoted as the effect of removing the knowledge.
+
+  Nothing registered changes. The seven cases, the two arms, the
+  prompts, the twenty trials per case per arm, the metric and the
+  decision rule are as registered.
