@@ -16,6 +16,7 @@ GOVERNANCE.md in the org `.github` repository sets.
 | [adr-c-code-placement-by-plane.md](adr-c-code-placement-by-plane.md) | Code placement by plane: one home per file, run instructions are skills, the placement gate | Accepted 2026-09-16 (merged to main); implemented 2026-09-16 (build-kit pull requests 63 and 64; ocean-science 63; hydrology 73; nasa-daac-knowledge 183; plugin-template 21; knowledge-template 12; core 45). Superseded 2026-09-20 by ADR E, except for the retirement of `references/skills/`, which stands |
 | [adr-d-promotion-to-host-a-wrap.md](adr-d-promotion-to-host-a-wrap.md) | Promotion to host a wrap: a planned capability may promote to wrap computations already signed in a provider bundle | Accepted 2026-09-19 (merged to main); implementation in progress. Superseded 2026-09-20 by ADR E |
 | [adr-e-a-computation-is-a-skill.md](adr-e-a-computation-is-a-skill.md) | A computation is a skill: the code, the data root and the concept live in the capability that runs it | Accepted 2026-09-20 (merged to main) by the decision owner |
+| [adr-f-words-a-scientist-meets.md](adr-f-words-a-scientist-meets.md) | Words a scientist meets: which words change, which stay with a one-line definition, and one pass over signed text | Proposed 2026-11-25 (open as a pull request); its evidence is [adr-f-reader-check.md](adr-f-reader-check.md) |
 
 The design proposal that led to these records has been retired; each
 record is the decision. ADR A and ADR B share one roadmap initiative
